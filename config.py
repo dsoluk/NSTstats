@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import json
 
 
-
 def load_default_params():
     load_dotenv()
     params = {
@@ -50,19 +49,11 @@ def load_default_params():
     ppp_cfg = _load_json_env("PPP_COLUMNS", default="{}")
     goalie_cfg = _load_json_env("GOALIE_COLUMNS", default="{}")
 
-    # Legacy support: if any are lists, try to promote to dicts using COLUMN_RENAMES
-    raw_map = os.getenv("COLUMN_RENAMES", "{}")
-    try:
-        legacy_map = json.loads(raw_map)
-    except json.JSONDecodeError:
-        print("Warning: COLUMN_RENAMES in .env is not valid JSON. Ignoring legacy map.")
-        legacy_map = {}
-
     def _normalize(cfg):
         # If cfg is a list, convert to dict using legacy_map, mapping each name
         # to its short name if available, else keep original (identity).
-        if isinstance(cfg, list):
-            return {col: legacy_map.get(col, col) for col in cfg}
+        # if isinstance(cfg, list):
+        #     return {col: legacy_map.get(col, col) for col in cfg}
         # If already a dict, assume proper mapping
         if isinstance(cfg, dict):
             return cfg
