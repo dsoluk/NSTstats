@@ -1,69 +1,57 @@
 import pandas as pd
 
-from datetime import timedelta
 
-def _parse_toi(toi_str):
-    """Convert MM:SS string to timedelta"""
-    try:
-        minutes, seconds = map(int, toi_str.split(":"))
-        return timedelta(minutes=minutes, seconds=seconds)
-    except:
-        return pd.NaT  # or timedelta(0) if you prefer
+def _coerce_to_numeric(series: pd.Series) -> pd.Series:
+    return
 
+
+def _coerce_toi_to_timedelta(series: pd.Series) -> pd.Series:
+    # Try to parse MM:SS first; non-strings will become NaT
+    td = pd.to_timedelta(series, errors="coerce")
+    # For remaining NaT, try interpreting numeric minutes → Timedelta
+    mask = td.isna()
+    if mask.any():
+        as_num = pd.to_numeric(series[mask], errors="coerce")
+        td.loc[mask] = pd.to_timedelta(as_num, unit="m", errors="coerce")
+    return td
 
 
 def basic_cleansing(souptable):
-
-    # Step 1: Extract headers
     headers = [th.get_text(strip=True) for th in souptable.find("tr").find_all("th")]
-
-    # Step 2: Extract rows and clean <a> tags
-    data_rows = []
-    for row in souptable.find_all("tr")[1:]:  # Skip header
+    rows = []
+    for row in souptable.find_all("tr")[1:]:
         cells = row.find_all("td")
-        cleaned_cells = []
+        cleaned = []
         for cell in cells:
-            # Remove <a> tags but keep their text
             for a in cell.find_all("a"):
                 a.unwrap()
-            cleaned_cells.append(cell.get_text(strip=True))
-        data_rows.append(cleaned_cells)
+            cleaned.append(cell.get_text(strip=True))
+        rows.append(cleaned)
 
-    # Step 3: Convert to DataFrame
-    df = pd.DataFrame(data_rows, columns=headers)
+    df = pd.DataFrame(rows, columns=headers)
 
-    # Step 4: Clean and convert decimal columns
-    # for col in df.columns:
-    #     if "/60" or "/gp" in col.lower():
-    #         df[col] = pd.to_numeric(df[col], errors="coerce")
-            # df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
-
-    # Step 5: Convert TOI column to timedelta
     for col in df.columns:
-        if "toi/gp" in col.lower():
-            df[col] = df[col].apply(_parse_toi)
-            # df[col] = df[col].fillna(timedelta(0))
+        # Coerce TOI/GP into Timedelta regardless of input format
+        if "toi" in col.lower():
+            df[col] = _coerce_toi_to_timedelta(df[col])
+        elif col.lower() in ["player", "team", "position"]:
+            df[col] = df[col].astype("string")
+        else:
+            df[col] = pd.to_numeric(df[col], errors="coerce", downcast="integer")
 
-    # Step 6: Clean and convert integer columns
-    # int_cols = ["GP", "G", "A", "P", "Shots"]
-    # for col in int_cols:
-    #     if col in df.columns:
-    #         df[col] = pd.to_numeric(df[col], errors="coerce")
-
+    print(f"Col dtypes {df.dtypes}")
     return df
 
 
 def basic_filtering(df: pd.DataFrame):
-    # find unnamed columns and remove them
     unnamed_cols = [col for col in df.columns if not col.strip()]
     if unnamed_cols:
-        print(f"Dropping unnamed columns: {unnamed_cols}")
+        # print(f"Dropping unnamed columns: {unnamed_cols}")
         df.drop(columns=unnamed_cols, inplace=True)
 
-    # Filter rows where TOI/GP < 10 minutes
     if "TOI/GP" in df.columns:
-        df = df[df["TOI/GP"]  >= 10]
-
+        toi = _coerce_toi_to_timedelta(df["TOI/GP"])  # idempotent if already timedelta
+        df = df[toi >= pd.Timedelta(minutes=1)]
     return df
 
 
