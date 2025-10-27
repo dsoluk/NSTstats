@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="tested registries">
+    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="pre re-org">
+      <change afterPath="$PROJECT_DIR$/yahoo/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yahoo/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yahoo/yahoo_auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yahoo/yfs_client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team2TM.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Team2TM.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/goalies.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipelines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_registry.csv" beforeDir="false" afterPath="$PROJECT_DIR$/player_registry.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/skaters.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +29,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -48,25 +56,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "merge__yah",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\soluk\PycharmProjects\NSTstats\helpers" />
@@ -122,7 +130,7 @@
       <workItem from="1761350892125" duration="4356000" />
       <workItem from="1761417840617" duration="2816000" />
       <workItem from="1761482575888" duration="10772000" />
-      <workItem from="1761597057694" duration="2209000" />
+      <workItem from="1761597057694" duration="4334000" />
     </task>
     <task id="LOCAL-00001" summary="with Pipelines">
       <option name="closed" value="true" />
@@ -156,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761523581281</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="pre re-org">
+      <option name="closed" value="true" />
+      <created>1761599526590</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1761599526590</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,9 +183,10 @@
     <MESSAGE value="main pipeline working" />
     <MESSAGE value="added registries" />
     <MESSAGE value="tested registries" />
-    <option name="LAST_COMMIT_MESSAGE" value="tested registries" />
+    <MESSAGE value="pre re-org" />
+    <option name="LAST_COMMIT_MESSAGE" value="pre re-org" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/NSTstats$main.coverage" NAME="main Coverage Results" MODIFIED="1761490278262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/NSTstats$main.coverage" NAME="main Coverage Results" MODIFIED="1761601277222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -9,15 +9,41 @@ try:
     from registries.reporting import SummaryReporter
     from registries.persistence import export_players_csv
     from adapters.nst import NSTPlayerAdapter
+    from yahoo.app import YahooFantasyApp
 except Exception:
     # Defer import errors to runtime handling in main()
     RegistryFactory = None
     SummaryReporter = None
     export_players_csv = None
     NSTPlayerAdapter = None
+    YahooFantasyApp = None
 
 
 def main():
+    # Fetch and process Yahoo Fantasy data
+    try:
+        yah_app = YahooFantasyApp()
+        yah_app.run()
+    except Exception as err:
+        print(f"Yahoo data source skipped due to error: {err}")
+
+    # Update Player/Team/Position registry from NST player list (optional)
+    try:
+        if RegistryFactory and SummaryReporter and NSTPlayerAdapter:
+            factory = RegistryFactory()
+            # Ensure team mappings are loaded from Team2TM.xlsx
+            factory.teams.load()
+            reporter = SummaryReporter()
+            nst_adapter = NSTPlayerAdapter()
+            factory.update_from_source(nst_adapter, reporter)
+            # Export CSV snapshot of registry if helper is available
+            if export_players_csv:
+                export_players_csv(factory.names.all(), 'player_registry.csv')
+            print("Registry update completed. See player_registry.json and summary.json.")
+        else:
+            print("Registry components not available (missing optional dependencies). Skipping registry update.")
+    except Exception as re:
+        print(f"Registry update skipped due to error: {re}")
 
     # Fetch and process Natural Stat Trick player names
     try:
@@ -55,24 +81,6 @@ def main():
         # indexer = PlayerIndexPipeline(skater_df)
         # scored_df = indexer.run()
         # TODO: persist scored_df if needed
-
-        # Update Player/Team/Position registry from NST player list (optional)
-        try:
-            if RegistryFactory and SummaryReporter and NSTPlayerAdapter:
-                factory = RegistryFactory()
-                # Ensure team mappings are loaded from Team2TM.xlsx
-                factory.teams.load()
-                reporter = SummaryReporter()
-                nst_adapter = NSTPlayerAdapter()
-                factory.update_from_source(nst_adapter, reporter)
-                # Export CSV snapshot of registry if helper is available
-                if export_players_csv:
-                    export_players_csv(factory.names.all(), 'player_registry.csv')
-                print("Registry update completed. See player_registry.json and summary.json.")
-            else:
-                print("Registry components not available (missing optional dependencies). Skipping registry update.")
-        except Exception as re:
-            print(f"Registry update skipped due to error: {re}")
 
     except Exception as e:
         print(f"NST processing failed: {e}")
