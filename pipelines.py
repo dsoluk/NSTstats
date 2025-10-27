@@ -28,7 +28,7 @@ class NSTPlayerPipeline:
     def fetch_html(self, sit, tgp):
         self.params["sit"] = sit
         self.params["tgp"] = tgp
-        print(f"Fetching {sit} {tgp}")
+        # print(f"Fetching {sit} {tgp}")
         return fetch_nst_html(self.url, self.params)
 
     def process(self, html):
@@ -60,18 +60,18 @@ class NSTPlayerPipeline:
 
         # Build the rename map only for columns present
         rename_map = {orig: short for orig, short in col_map.items() if orig in df.columns}
-        print(f"Rename map: {rename_map}")
+        # print(f"Rename map: {rename_map}")
 
         # Apply renaming
         renamed_df = df.rename(columns=rename_map) if rename_map else df
-        print(f"Renamed columns: {renamed_df.columns}")
+        # print(f"Renamed columns: {renamed_df.columns}")
 
         # Determine join keys using current and already processed frames
         # Use frames that are already renamed/prefixed in self.dataframes, plus the current renamed_df
         existing_frames = list(self.dataframes.values())
         frames_for_keys = [renamed_df] + existing_frames if existing_frames else [renamed_df]
         join_cols = self._detect_join_keys(frames_for_keys)
-        print(f"Join columns detected for prefixing: {join_cols}")
+        # print(f"Join columns detected for prefixing: {join_cols}")
 
         # Prefix all columns that are NOT join columns
         prefix = 'l7_' if str(tgp) == '7' else 'szn_'
@@ -114,7 +114,7 @@ class NSTPlayerPipeline:
         # print(f"Join keys (candidate columns): {candidate_cols}")
 
         def is_text_like(s: pd.Series) -> bool:
-            print(s.dtypes)
+            # print(s.dtypes)
 
             # Treat pandas string dtype, generic object (often strings), and categoricals as text-like
             return is_string_dtype(s)
@@ -129,7 +129,7 @@ class NSTPlayerPipeline:
                 # If any issue arises accessing the column/dtype, skip it safely
                 continue
 
-        print(f"Join keys (text-like heuristic): {keys}")
+        # print(f"Join keys (text-like heuristic): {keys}")
         return keys
 
     def merge(self):

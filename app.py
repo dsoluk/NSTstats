@@ -52,8 +52,8 @@ def main():
         goalie_pipeline.save("goalies.csv")
 
         # Example: compute player index on skaters
-        indexer = PlayerIndexPipeline(skater_df)
-        scored_df = indexer.run()
+        # indexer = PlayerIndexPipeline(skater_df)
+        # scored_df = indexer.run()
         # TODO: persist scored_df if needed
 
         # Update Player/Team/Position registry from NST player list (optional)
