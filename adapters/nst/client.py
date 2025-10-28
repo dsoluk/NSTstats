@@ -37,3 +37,4 @@ class NSTPlayerAdapter:
                 if name and team and pos:
                     rows.append({'display_name': name, 'team': team, 'position': pos, 'source': 'NST'})
         return rows
+

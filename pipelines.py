@@ -165,6 +165,16 @@ class NSTPlayerPipeline:
         merged = base
         for name, dfj in to_join:
             merged = merged.merge(dfj, how='left', on=on_cols)
+        # Rename pandas default merge suffixes to requested labels:
+        #   _x -> _all, _y -> _pp (only when they appear as terminal suffixes)
+        def _rename_suffix(col: str) -> str:
+            if isinstance(col, str):
+                if col.endswith('_x'):
+                    return col[:-2] + '_all'
+                if col.endswith('_y'):
+                    return col[:-2] + '_pp'
+            return col
+        merged.columns = [_rename_suffix(c) for c in merged.columns]
         return merged
 
     def save(self, path):
@@ -179,6 +189,66 @@ class NSTPlayerPipeline:
             except Exception:
                 # last resort: pick any existing frame
                 df = next(iter(self.dataframes.values())) if self.dataframes else pd.DataFrame()
+        # Format timedelta-like columns as HH:MM:SS strings for Excel compatibility
+        try:
+            formatted_cols = []
+
+            def _fmt_seconds_from_seconds(sec_val):
+                if pd.isna(sec_val):
+                    return ""
+                try:
+                    import math
+                    sec = float(sec_val)
+                except Exception:
+                    return ""
+                neg = sec < 0
+                # Use floor to handle negative fractional seconds correctly, then drop fraction
+                sec = abs(int(math.floor(sec)))
+                h = sec // 3600
+                m = (sec % 3600) // 60
+                s = sec % 60
+                out = f"{h:02d}:{m:02d}:{s:02d}"
+                return f"-{out}" if neg else out
+
+            def _format_td_series(series: pd.Series) -> pd.Series:
+                # Coerce any series (timedelta dtype or string/object) to timedeltas, then to seconds
+                td = pd.to_timedelta(series, errors='coerce')
+                secs = td.dt.total_seconds()
+                return secs.apply(_fmt_seconds_from_seconds)
+
+            # 1) Native timedelta columns
+            td_native = list(df.select_dtypes(include=['timedelta64[ns]']).columns)
+            for c in td_native:
+                df[c] = _format_td_series(df[c])
+                formatted_cols.append(c)
+
+            # 2) Object columns that look like time deltas (e.g., '0 days 00:20:20.400000' or '01:23:45')
+            obj_cols = [c for c in df.columns if df[c].dtype == 'object']
+            for c in obj_cols:
+                sample = df[c].dropna().astype(str).head(50)
+                if sample.empty:
+                    continue
+                if not sample.str.contains(r"\bday\b|\d{1,2}:\d{2}:\d{2}", regex=True, case=False).any():
+                    continue
+                # Only convert if coercion yields at least one non-NaT value
+                td_coerced = pd.to_timedelta(df[c], errors='coerce')
+                if td_coerced.notna().any():
+                    df[c] = _format_td_series(df[c])
+                    formatted_cols.append(c)
+
+            if formatted_cols:
+                print(f"Formatted timedelta columns to HH:MM:SS: {sorted(set(formatted_cols))}")
+        except Exception as e:
+            # If any issue occurs, proceed without special formatting but log the problem
+            print(f"[Warn] Timedelta formatting skipped due to error: {e}")
+        # Ensure destination directory exists
+        try:
+            import os
+            d = os.path.dirname(path)
+            if d:
+                os.makedirs(d, exist_ok=True)
+        except Exception:
+            pass
         df.to_csv(path, index=False)
 
 

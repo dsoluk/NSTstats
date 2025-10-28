@@ -1,0 +1,1 @@
+# Yahoo adapter package
