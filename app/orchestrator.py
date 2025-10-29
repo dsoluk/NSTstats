@@ -21,6 +21,12 @@ try:
 except Exception:
     YahooFantasyApp = None
 
+# Import merger lazily to avoid hard dependency
+try:
+    from app.merger import run_merge as _run_merge_impl
+except Exception:
+    _run_merge_impl = None
+
 
 def run_yahoo():
     # If YahooFantasyApp failed to import, provide a clear message and return
@@ -94,6 +100,16 @@ def run_nst():
 
     except Exception as e:
         print(f"NST processing failed: {e}")
+
+
+def run_merge():
+    if _run_merge_impl is None:
+        print("Merge step unavailable: app.merger.run_merge could not be imported.")
+        return
+    try:
+        _run_merge_impl()
+    except Exception as e:
+        print(f"Merge step failed: {e}")
 
 
 def run_all():

@@ -2,15 +2,15 @@ team_id,team_key,team_name,player_id,name,positions,selected_position
 1,465.l.83511.t.1,Jagrbombs,3638,Evgeni Malkin,C;LW;Util,C
 1,465.l.83511.t.1,Jagrbombs,6381,Dylan Larkin,C;Util,C
 1,465.l.83511.t.1,Jagrbombs,7267,Jesper Bratt,LW;RW;Util,LW
-1,465.l.83511.t.1,Jagrbombs,4969,Mikael Granlund,C;LW;RW;Util;IR+,LW
+1,465.l.83511.t.1,Jagrbombs,4684,Evander Kane,LW;Util,LW
 1,465.l.83511.t.1,Jagrbombs,6391,David Pastrnak,RW;Util,RW
 1,465.l.83511.t.1,Jagrbombs,6374,William Nylander,C;RW;Util;IR+,RW
 1,465.l.83511.t.1,Jagrbombs,7910,Noah Dobson,D;Util,D
 1,465.l.83511.t.1,Jagrbombs,5227,Brayden McNabb,D;Util,D
-1,465.l.83511.t.1,Jagrbombs,7920,K'Andre Miller,D;Util;IR+,D
 1,465.l.83511.t.1,Jagrbombs,7161,Filip Hronek,D;Util,D
+1,465.l.83511.t.1,Jagrbombs,5544,Dylan DeMelo,D;Util,D
 1,465.l.83511.t.1,Jagrbombs,3788,Anze Kopitar,C;Util,Util
-1,465.l.83511.t.1,Jagrbombs,4684,Evander Kane,LW;Util,BN
+1,465.l.83511.t.1,Jagrbombs,4969,Mikael Granlund,C;LW;RW;Util;IR+,BN
 1,465.l.83511.t.1,Jagrbombs,6009,Ryan Hartman,C;RW;Util,BN
 1,465.l.83511.t.1,Jagrbombs,9258,Adam Klapka,RW;Util,BN
 1,465.l.83511.t.1,Jagrbombs,6370,Sam Bennett,C;Util,BN
@@ -61,7 +61,7 @@ team_id,team_key,team_name,player_id,name,positions,selected_position
 3,465.l.83511.t.3,Autodraft Anomalies,5057,Scott Wedgewood,G,BN
 3,465.l.83511.t.3,Autodraft Anomalies,8002,Martin Pospisil,C;RW;Util;IR;IR+,IR
 3,465.l.83511.t.3,Autodraft Anomalies,7936,Alexander Romanov,D;Util;IR;IR+,IR
-3,465.l.83511.t.3,Autodraft Anomalies,5769,Shayne Gostisbehere,D;Util;IR;IR+,IR+
+3,465.l.83511.t.3,Autodraft Anomalies,5769,Shayne Gostisbehere,D;Util,IR+
 4,465.l.83511.t.4,Trocheck Backcheck Paycheque,8643,Tim Stutzle,C;LW;Util,C
 4,465.l.83511.t.4,Trocheck Backcheck Paycheque,5980,Nathan MacKinnon,C;Util,C
 4,465.l.83511.t.4,Trocheck Backcheck Paycheque,6035,Artturi Lehkonen,LW;RW;Util,LW
@@ -163,7 +163,7 @@ team_id,team_key,team_name,player_id,name,positions,selected_position
 8,465.l.83511.t.8,Bros before Ahos,7111,Pierre-Luc Dubois,C;LW;Util,BN
 8,465.l.83511.t.8,Bros before Ahos,4686,Oliver Ekman-Larsson,D;Util,BN
 8,465.l.83511.t.8,Bros before Ahos,5853,Linus Ullmark,G,G
-8,465.l.83511.t.8,Bros before Ahos,6784,Mackenzie Blackwood,G;IR+,G
+8,465.l.83511.t.8,Bros before Ahos,6784,Mackenzie Blackwood,G,G
 8,465.l.83511.t.8,Bros before Ahos,4699,Chris Kreider,LW;Util;IR+,IR+
 9,465.l.83511.t.9,Dan's Dazzling Team,6744,Jack Eichel,C;Util,C
 9,465.l.83511.t.9,Dan's Dazzling Team,5421,William Karlsson,C;Util,C
