@@ -36,13 +36,14 @@ def _load_yahoo_all_rosters(csv_path: str, pos_registry: PositionRegistry) -> pd
     Load Yahoo all_rosters.csv and return per-player rows with:
       - cname: normalized name for joining
       - ypos: normalized primary position for joining (C/L/R/D/G)
+      - fpos: coarse position for fallback joins (F/D/G) where C/L/R → F
       - yahoo_name: the Yahoo-displayed player name
       - yahoo_positions: semicolon-joined eligible positions from Yahoo, with 'Util' removed
       - team_name: Yahoo fantasy team name that currently rosters the player
-    Joining elsewhere will be on (cname, ypos); team is intentionally ignored for the match.
+    Joining elsewhere will be on (cname, ypos), with fallbacks to (cname, fpos) and (cname).
     """
     if not os.path.exists(csv_path):
-        return pd.DataFrame(columns=['cname', 'ypos', 'yahoo_name', 'yahoo_positions', 'team_name'])
+        return pd.DataFrame(columns=['cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name'])
     ydf = pd.read_csv(csv_path)
     # Normalize name to cname
     ydf['cname'] = ydf['name'].fillna('').apply(normalize_name)
@@ -74,6 +75,15 @@ def _load_yahoo_all_rosters(csv_path: str, pos_registry: PositionRegistry) -> pd
 
     # Primary normalized position for joining
     ydf['ypos'] = ydf.apply(map_pos, axis=1)
+    # Coarse position for fallback
+    def to_fpos(ypos: str) -> str:
+        y = str(ypos).upper()
+        if y in {'C', 'L', 'R'}:
+            return 'F'
+        if y in {'D', 'G'}:
+            return y
+        return ''
+    ydf['fpos'] = ydf['ypos'].apply(to_fpos)
 
     # Build yahoo_positions (eligible set) with 'UTIL' removed, preserve original Yahoo labels
     def build_yahoo_positions(poss: str) -> str:
@@ -106,14 +116,14 @@ def _load_yahoo_all_rosters(csv_path: str, pos_registry: PositionRegistry) -> pd
 
         agg = (
             ydf.dropna(subset=['cname', 'ypos'])
-               .groupby(['cname', 'ypos'], as_index=False)
+               .groupby(['cname', 'ypos', 'fpos'], as_index=False)
                .agg(yahoo_name=('yahoo_name', first_non_null),
                     yahoo_positions=('yahoo_positions', agg_positions),
                     team_name=('team_name', first_non_null))
         )
         return agg
 
-    return pd.DataFrame(columns=['cname', 'ypos', 'yahoo_name', 'yahoo_positions', 'team_name'])
+    return pd.DataFrame(columns=['cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name'])
 
 
 def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
@@ -130,6 +140,58 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
     if not os.path.exists(nst_csv):
         raise FileNotFoundError(f"NST CSV not found: {nst_csv}")
     df = pd.read_csv(nst_csv)
+
+    # Ensure TOI/GP columns are MM:SS for Excel (skaters only)
+    if role == 'skater':
+        try:
+            import pandas as _pd
+            import numpy as _np
+
+            def _fmt_hms_from_seconds(sec_val):
+                if _pd.isna(sec_val):
+                    return ""
+                try:
+                    sec = float(sec_val)
+                except Exception:
+                    return ""
+                if _np.isnan(sec):
+                    return ""
+                neg = sec < 0
+                # Truncate toward zero then format absolute value
+                sec = abs(int(sec))
+                hours = sec // 3600
+                minutes = (sec % 3600) // 60
+                seconds = sec % 60
+                out = f"{hours}:{minutes:02d}:{seconds:02d}"
+                return f"-{out}" if neg else out
+
+            def _coerce_to_seconds(series: _pd.Series) -> _pd.Series:
+                # Try timedelta first (handles '0 days 00:18:12' and '00:18:12')
+                td = _pd.to_timedelta(series, errors='coerce')
+                if td.notna().any():
+                    return td.dt.total_seconds()
+                # If already in M:SS or MM:SS or numeric, try to parse manually
+                s = series.astype(str)
+                # Pattern like 12:34 or 1:02
+                mask = s.str.match(r"^\s*\d{1,3}:\d{2}\s*$")
+                sec = _pd.Series(_np.nan, index=series.index, dtype='float64')
+                if mask.any():
+                    parts = s[mask].str.strip().str.split(':', n=1, expand=True)
+                    sec.loc[mask] = parts[0].astype(int) * 60 + parts[1].astype(int)
+                # Try raw numeric seconds
+                num_mask = ~mask
+                with _pd.option_context('mode.use_inf_as_na', True):
+                    sec.loc[num_mask] = _pd.to_numeric(s[num_mask], errors='coerce')
+                return sec
+
+            toi_cols = [c for c in df.columns if 'TOI/GP' in str(c)]
+            for c in toi_cols:
+                secs = _coerce_to_seconds(df[c])
+                if secs.notna().any():
+                    df[c] = secs.apply(_fmt_hms_from_seconds)
+        except Exception as _e:
+            # Non-fatal; leave as-is if something unexpected happens
+            print(f"[Warn] TOI/GP formatting skipped due to error: {_e}")
 
     # Prepare NST keys
     df['cname'] = df['Player'].astype(str).apply(normalize_name)
@@ -152,15 +214,66 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
     # Load Yahoo roster info and merge on cname+position (no team)
     yinfo = _load_yahoo_all_rosters(os.path.join('data', 'all_rosters.csv'), pos_registry)
     if not yinfo.empty:
+        # Exact match on (cname, exact position)
         merged = merged.merge(
             yinfo,
             left_on=['cname', 'pos_code'],
             right_on=['cname', 'ypos'],
             how='left'
         )
-        # Remove merge helper
-        if 'ypos' in merged.columns:
-            merged.drop(columns=['ypos'], inplace=True)
+        # Coarse F/D/G fallback for rows still missing team_name
+        def _to_fpos(p: str) -> str:
+            p = str(p).upper()
+            if p in {'C', 'L', 'R'}:
+                return 'F'
+            if p in {'D', 'G'}:
+                return p
+            return ''
+        merged['fpos'] = merged['pos_code'].apply(_to_fpos)
+        need_fallback = merged['team_name'].isna()
+        if need_fallback.any():
+            y_fg = yinfo[['cname', 'fpos', 'team_name', 'yahoo_positions', 'yahoo_name']].copy()
+            y_fg = y_fg.dropna(subset=['fpos'])
+            merged = merged.merge(
+                y_fg,
+                left_on=['cname', 'fpos'],
+                right_on=['cname', 'fpos'],
+                how='left',
+                suffixes=('', '_fg')
+            )
+            for col in ['team_name', 'yahoo_positions', 'yahoo_name']:
+                alt = f"{col}_fg"
+                if alt in merged.columns:
+                    merged[col] = merged[col].fillna(merged[alt])
+            drop_alt = [c for c in ['team_name_fg', 'yahoo_positions_fg', 'yahoo_name_fg'] if c in merged.columns]
+            if drop_alt:
+                merged.drop(columns=drop_alt, inplace=True)
+        # Final fallback: match on cname only (may be ambiguous for duplicate names)
+        need_final = merged['team_name'].isna()
+        if need_final.any():
+            y_by_name = (
+                yinfo.groupby('cname', as_index=False)
+                     .agg(team_name=('team_name', 'first'),
+                          yahoo_positions=('yahoo_positions', 'first'),
+                          yahoo_name=('yahoo_name', 'first'))
+            )
+            merged = merged.merge(
+                y_by_name,
+                on='cname',
+                how='left',
+                suffixes=('', '_byname')
+            )
+            for col in ['team_name', 'yahoo_positions', 'yahoo_name']:
+                alt = f"{col}_byname"
+                if alt in merged.columns:
+                    merged[col] = merged[col].fillna(merged[alt])
+            drop_alt = [c for c in ['team_name_byname', 'yahoo_positions_byname', 'yahoo_name_byname'] if c in merged.columns]
+            if drop_alt:
+                merged.drop(columns=drop_alt, inplace=True)
+        # Remove merge helpers
+        for helper in ['ypos', 'fpos']:
+            if helper in merged.columns:
+                merged.drop(columns=[helper], inplace=True)
     else:
         # Ensure yahoo columns exist even if empty
         merged['yahoo_name'] = None
@@ -197,7 +310,68 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
 
 
 def run_merge():
-    out1 = merge_role(os.path.join('data', 'skaters.csv'), 'skater', os.path.join('data', 'merged_skaters.csv'))
+    out1 = merge_role(os.path.join('data', 'skaters_scored.csv'), 'skater', os.path.join('data', 'merged_skaters.csv'))
     out2 = merge_role(os.path.join('data', 'goalies.csv'), 'goalie', os.path.join('data', 'merged_goalies.csv'))
     print(f"Saved merged skaters to {out1}")
     print(f"Saved merged goalies to {out2}")
+
+    # Lightweight data-quality report for merge coverage
+    try:
+        import json as _json
+        all_rosters_path = os.path.join('data', 'all_rosters.csv')
+        if os.path.exists(all_rosters_path):
+            ydf = pd.read_csv(all_rosters_path)
+            total_yahoo_rows = len(ydf)
+            # Build cname+ypos keys for yahoo to better reflect distinct roster spots
+            ydf['cname'] = ydf['name'].fillna('').apply(normalize_name)
+            pos_registry = PositionRegistry();
+            def _ypos_map(row):
+                sel = str(row.get('selected_position') or '').upper()
+                poss = str(row.get('positions') or '')
+                parts = [p.strip().upper() for p in poss.split(';') if p.strip()]
+                pref = sel if sel and sel not in {'BN','IR','IR+','NA'} else ''
+                order = ([pref] if pref else []) + parts
+                for p in order:
+                    c = pos_registry.normalize(p)
+                    if c in {'G','D','C','L','R'}:
+                        return c
+                if 'D' in parts: return 'D'
+                if 'G' in parts: return 'G'
+                return ''
+            ydf['ypos'] = ydf.apply(_ypos_map, axis=1)
+            # Distinct players count as in the CSV (user expectation)
+            expected_total = total_yahoo_rows
+
+            ms = pd.read_csv(out1)
+            mg = pd.read_csv(out2)
+            sk_with_team = int(ms['team_name'].notna().sum()) if 'team_name' in ms.columns else 0
+            g_with_team = int(mg['team_name'].notna().sum()) if 'team_name' in mg.columns else 0
+            total_with_team = sk_with_team + g_with_team
+
+            report = {
+                'expected_total_from_all_rosters_rows': expected_total,
+                'skaters_with_team_name': sk_with_team,
+                'goalies_with_team_name': g_with_team,
+                'total_with_team_name': total_with_team,
+                'difference': expected_total - total_with_team
+            }
+            os.makedirs('data', exist_ok=True)
+            with open(os.path.join('data','dq_merge_report.json'), 'w', encoding='utf-8') as f:
+                _json.dump(report, f, indent=2)
+            print(f"DQ report: {report}")
+
+            # Build list of yahoo players not matched in merged files (by cname)
+            ms_keys = set(ms['Player'].astype(str).apply(normalize_name)) if 'Player' in ms.columns else set()
+            mg_keys = set(mg['Player'].astype(str).apply(normalize_name)) if 'Player' in mg.columns else set()
+            merged_keys_with_team = set(ms.loc[ms.get('team_name').notna() if 'team_name' in ms.columns else [], 'Player'].astype(str).apply(normalize_name)) | \
+                                     set(mg.loc[mg.get('team_name').notna() if 'team_name' in mg.columns else [], 'Player'].astype(str).apply(normalize_name))
+            missing = ydf[~ydf['cname'].isin(merged_keys_with_team)].copy()
+            missing_cols = ['name', 'selected_position', 'positions', 'team_name']
+            keep_cols = [c for c in missing_cols if c in missing.columns]
+            missing_out = missing[['cname'] + keep_cols].drop_duplicates()
+            missing_out.to_csv(os.path.join('data','unmatched_in_merged.csv'), index=False)
+            print(f"Saved unmatched details to data/unmatched_in_merged.csv ({len(missing_out)} rows)")
+        else:
+            print("all_rosters.csv not found; skipped DQ merge report.")
+    except Exception as _e:
+        print(f"[Warn] Could not produce DQ report: {_e}")

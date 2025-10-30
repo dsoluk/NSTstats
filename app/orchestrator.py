@@ -93,10 +93,13 @@ def run_nst():
         skater_pipeline.save(os.path.join(out_dir, "skaters.csv"))
         goalie_pipeline.save(os.path.join(out_dir, "goalies.csv"))
 
-        # Example: compute player index on skaters
-        # indexer = PlayerIndexPipeline(skater_df)
-        # scored_df = indexer.run()
-        # TODO: persist scored_df if needed
+        # compute player index on skaters
+        indexer = PlayerIndexPipeline(skater_df)
+        scored_df = indexer.run()
+        # persist scored skaters
+        skater_scored_path = os.path.join(out_dir, "skaters_scored.csv")
+        scored_df.to_csv(skater_scored_path, index=False)
+        print(f"Saved scored skaters to {skater_scored_path}")
 
     except Exception as e:
         print(f"NST processing failed: {e}")

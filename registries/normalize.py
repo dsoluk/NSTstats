@@ -12,6 +12,8 @@ NICKNAME_MAP: Dict[str, str] = {
     'chris': 'christopher',
     'will': 'william',
     'bill': 'william',
+    'zach': 'zachary',
+    'zack': 'zachary',
 }
 
 

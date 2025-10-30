@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="merged in yahoo">
+    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="output changes">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/merger.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/merger.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/orchestrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/orchestrator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/all_rosters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_rosters.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/merged_goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_goalies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/merged_skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/skaters.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipelines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_registry.csv" beforeDir="false" afterPath="$PROJECT_DIR$/player_registry.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registries/normalize.py" beforeDir="false" afterPath="$PROJECT_DIR$/registries/normalize.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +162,7 @@
       <workItem from="1761417840617" duration="2816000" />
       <workItem from="1761482575888" duration="10772000" />
       <workItem from="1761597057694" duration="4334000" />
+      <workItem from="1761741187806" duration="16471000" />
     </task>
     <task id="LOCAL-00001" summary="with Pipelines">
       <option name="closed" value="true" />
@@ -205,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761669588479</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="output changes">
+      <option name="closed" value="true" />
+      <created>1761703356991</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1761703356991</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,7 +233,8 @@
     <MESSAGE value="tested registries" />
     <MESSAGE value="pre re-org" />
     <MESSAGE value="reorg'd and tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="reorg'd and tested" />
+    <MESSAGE value="output changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="output changes" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NSTstats$main.coverage" NAME="main Coverage Results" MODIFIED="1761609118434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

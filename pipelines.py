@@ -288,52 +288,110 @@ class StatPipelineFactory:
 class PlayerIndexPipeline:
     def __init__(self, df):
         self.df = df.copy()
+        # Base stat names (without prefixes)
         self.offensive_stats = ["G", "A", "PPP", "SOG", "FOW"]
         self.banger_stats = ["HIT", "BLK", "PIM"]
         self.weights = {"offensive": 0.7, "banger": 0.3}
+        # Determine which prefixes/windows are available
+        self.prefixes = self._detect_prefixes()
+        # Determine the position column name
+        self.pos_col = self._detect_position_col()
 
-    def log_transform(self):
-        for col in self.offensive_stats + self.banger_stats:
-            self.df[f"log_{col}"] = np.log(self.df[col] + 1)
+    def _detect_prefixes(self):
+        has_szn = any(c.startswith("szn_") for c in self.df.columns)
+        has_l7 = any(c.startswith("l7_") for c in self.df.columns)
+        prefixes = []
+        if has_szn:
+            prefixes.append("szn_")
+        if has_l7:
+            prefixes.append("l7_")
+        # Fallback to legacy (no-prefix) if neither present
+        if not prefixes:
+            prefixes = [""]
+        return prefixes
 
-    def t_score(self, series):
-        z = (series - series.mean()) / series.std()
-        return 50 + 10 * z
+    def _resolve_columns_for_prefix(self, base_names, prefix):
+        cols = []
+        for name in base_names:
+            cand = f"{prefix}{name}" if prefix else name
+            if cand in self.df.columns:
+                cols.append(cand)
+        return cols
+
+    def _detect_position_col(self):
+        for candidate in ["Position", "position", "POS", "pos"]:
+            if candidate in self.df.columns:
+                return candidate
+        # If not found, create a default F group to avoid crashes
+        self.df["Position"] = "F"
+        return "Position"
+
+    def _log_transform(self, cols):
+        for col in cols:
+            self.df[f"log_{col}"] = np.log(self.df[col].astype(float).clip(lower=0) + 1.0)
+
+    def _t_score_grouped(self, series, groups):
+        # Compute T-score within each group; if std=0, return 50 for that group
+        grp = series.groupby(groups)
+        mean = grp.transform("mean")
+        std = grp.transform("std")
+        z = (series - mean) / std.replace(0, np.nan)
+        t = 50 + 10 * z
+        return t.fillna(50)
 
     def calculate_t_scores(self):
-        for col in self.offensive_stats + self.banger_stats:
-            log_col = f"log_{col}"
-            self.df[f"T_{col}"] = self.t_score(self.df[log_col])
+        # Segment positions first
+        self.df["pos_group"] = self.df[self.pos_col].apply(lambda x: "D" if str(x).strip().upper() == "D" else "F")
+        # For each window/prefix, compute log and segmented T for the window's columns
+        for prefix in self.prefixes:
+            off_cols = self._resolve_columns_for_prefix(self.offensive_stats, prefix)
+            ban_cols = self._resolve_columns_for_prefix(self.banger_stats, prefix)
+            cols = off_cols + ban_cols
+            if not cols:
+                continue
+            self._log_transform(cols)
+            for col in cols:
+                log_col = f"log_{col}"
+                t_col = f"T_{col}"
+                self.df[t_col] = self._t_score_grouped(self.df[log_col], self.df["pos_group"]) 
 
-    def segment_positions(self):
-        self.df["pos_group"] = self.df["position"].apply(
-            lambda x: "D" if x == "D" else "F"
-        )
-
-    def calculate_offensive_index(self):
-        # TODO weighting?
-        self.df["Offensive_Index"] = self.df.groupby("pos_group")[
-            [f"T_{col}" for col in self.offensive_stats]
-        ].transform("mean").mean(axis=1)
-
-    def calculate_banger_index(self):
-        self.df["Banger_Index"] = self.df[
-            [f"T_{col}" for col in self.banger_stats]
-        ].mean(axis=1)
-
-    def calculate_composite_index(self):
-        w_off = self.weights["offensive"]
-        w_ban = self.weights["banger"]
-        self.df["Composite_Index"] = (
-            w_off * self.df["Offensive_Index"] + w_ban * self.df["Banger_Index"]
-        )
-        self.df["T_Composite_Index"] = self.t_score(self.df["Composite_Index"])
+    def calculate_indexes_per_window(self):
+        # Per window: mean of segmented T-scores for off/banger, and T of composite per window
+        for prefix in self.prefixes:
+            # Window label suffix: 'szn' or 'l7' or 'legacy'
+            win = 'szn' if prefix == 'szn_' else ('l7' if prefix == 'l7_' else 'legacy')
+            off_cols = self._resolve_columns_for_prefix(self.offensive_stats, prefix)
+            ban_cols = self._resolve_columns_for_prefix(self.banger_stats, prefix)
+            t_off = [f"T_{c}" for c in off_cols]
+            t_ban = [f"T_{c}" for c in ban_cols]
+            if t_off:
+                self.df[f"Offensive_Index_{win}"] = self.df[t_off].mean(axis=1)
+            else:
+                self.df[f"Offensive_Index_{win}"] = np.nan
+            if t_ban:
+                self.df[f"Banger_Index_{win}"] = self.df[t_ban].mean(axis=1)
+            else:
+                self.df[f"Banger_Index_{win}"] = np.nan
+            # Compute composite only to derive segmented T, then drop the raw composite
+            composite = (
+                self.weights["offensive"] * self.df[f"Offensive_Index_{win}"].astype(float) +
+                self.weights["banger"] * self.df[f"Banger_Index_{win}"].astype(float)
+            )
+            self.df[f"T_Composite_Index_{win}"] = self._t_score_grouped(composite, self.df["pos_group"]) 
+            # No persistent Composite_Index column per requirements
 
     def run(self):
-        self.log_transform()
         self.calculate_t_scores()
-        self.segment_positions()
-        self.calculate_offensive_index()
-        self.calculate_banger_index()
-        self.calculate_composite_index()
+        self.calculate_indexes_per_window()
+        # Remove any legacy/global index columns if they exist
+        drop_candidates = [
+            "Offensive_Index", "Banger_Index", "Composite_Index", "T_Composite_Index"
+        ]
+        existing = [c for c in drop_candidates if c in self.df.columns]
+        if existing:
+            self.df.drop(columns=existing, inplace=True)
+        # Remove log-normal columns from final df
+        log_cols = [c for c in self.df.columns if c.startswith("log_")]
+        if log_cols:
+            self.df.drop(columns=log_cols, inplace=True)
         return self.df

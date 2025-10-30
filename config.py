@@ -64,7 +64,7 @@ def load_default_params():
     ppp_columns = _normalize(ppp_cfg)
     goalie_columns = _normalize(goalie_cfg)
 
-    # Provide a simple default weights structure to preserve the function signature
+    # Provide a simple default weights structure to preserve the function signature...not sure if being used
     weights = {
         "offensive": {},
         "defensive": {},
