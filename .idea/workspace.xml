@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="merge checks">
+    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="added diagnostics">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/all_rosters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_rosters.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/skaters.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/skaters_scored.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/skaters_scored.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_registry.csv" beforeDir="false" afterPath="$PROJECT_DIR$/player_registry.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +155,8 @@
       <workItem from="1761417840617" duration="2816000" />
       <workItem from="1761482575888" duration="10772000" />
       <workItem from="1761597057694" duration="4334000" />
-      <workItem from="1761741187806" duration="20176000" />
+      <workItem from="1761741187806" duration="20402000" />
+      <workItem from="1762091788052" duration="3108000" />
     </task>
     <task id="LOCAL-00001" summary="with Pipelines">
       <option name="closed" value="true" />
@@ -217,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761784684921</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added diagnostics">
+      <option name="closed" value="true" />
+      <created>1761790307510</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1761790307510</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +245,8 @@
     <MESSAGE value="reorg'd and tested" />
     <MESSAGE value="output changes" />
     <MESSAGE value="merge checks" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge checks" />
+    <MESSAGE value="added diagnostics" />
+    <option name="LAST_COMMIT_MESSAGE" value="added diagnostics" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NSTstats$main.coverage" NAME="main Coverage Results" MODIFIED="1761609118434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
