@@ -3,6 +3,7 @@ import os
 from app.orchestrator import run_all, run_yahoo, run_registry_update, run_nst, run_merge
 from diagnostics.runner import run_dq as run_dq_diag
 
+
 def main():
     parser = argparse.ArgumentParser(description="NSTstats CLI")
     subparsers = parser.add_subparsers(dest="command")
