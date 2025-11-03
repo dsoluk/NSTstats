@@ -1,0 +1,10 @@
+adapters
+app
+application
+data
+diagnostics
+domain
+helpers
+infrastructure
+registries
+yahoo

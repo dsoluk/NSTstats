@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "NSTstats"
+version = "0.1.0"
+description = "NSTstats project"
+requires-python = ">=3.10"
+# Add your other runtime dependencies below as needed
+# Example: "pandas>=2.0", "requests>=2.31"
+dependencies = [
+  # … existing deps …,
+  "nhl-schedule @ file:///C:/Users/soluk/PycharmProjects/NHLschedule",
+]
+
+[tool.setuptools]
+# Automatically find packages (app, adapters, diagnostics, etc.) in the project root
+packages = { find = {} }
+
+[project.scripts]
+# Optional CLI entry point; lets you run `nststats` after installation
+nststats = "app.cli:main"
