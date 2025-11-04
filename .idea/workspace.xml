@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="pre new branch to integrate NHLschedule">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="added ly and ag projections and compare to forecast">
       <change beforePath="$PROJECT_DIR$/app/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/cli.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +50,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.cli.executor": "Run",
+    "Python.cli.executor": "Debug",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -236,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762198918906</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added ly and ag projections and compare to forecast">
+      <option name="closed" value="true" />
+      <created>1762218711980</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1762218711980</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,10 +260,11 @@
     <MESSAGE value="merge checks" />
     <MESSAGE value="added diagnostics" />
     <MESSAGE value="pre new branch to integrate NHLschedule" />
-    <option name="LAST_COMMIT_MESSAGE" value="pre new branch to integrate NHLschedule" />
+    <MESSAGE value="added ly and ag projections and compare to forecast" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ly and ag projections and compare to forecast" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NSTstats$main.coverage" NAME="main Coverage Results" MODIFIED="1761609118434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/NSTstats$cli.coverage" NAME="cli Coverage Results" MODIFIED="1761609206046" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/NSTstats$cli.coverage" NAME="cli Coverage Results" MODIFIED="1762269310925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
   </component>
 </project>

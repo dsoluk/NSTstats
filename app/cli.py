@@ -5,6 +5,7 @@ from app.orchestrator import run_all, run_yahoo, run_registry_update, run_nst, r
 from diagnostics.runner import run_dq as run_dq_diag
 from application.forecast import forecast as run_forecast
 from application.compare import compare as run_compare
+from application.analyze import evaluate as run_analyze
 
 # If you store canonical inputs in known NSTstats paths, set sensible defaults here
 DEFAULT_OUT_CSV = "data/lookup_table.csv"
@@ -89,6 +90,11 @@ def main():
     cp.add_argument("--all-players", dest="all_players", action="store_true", help="Include all players (default: owned only)")
     cp.add_argument("--out-csv", dest="out_csv", default=os.path.join("data","compare.csv"), help="Output CSV path (default data/compare.csv)")
 
+    # Analyze command
+    az = subparsers.add_parser("analyze", help="Evaluate season-total forecasts vs projections and export metrics/Excel")
+    az.add_argument("--compare-csv", dest="compare_csv", default=os.path.join("data","compare.csv"), help="Input compare CSV (default data/compare.csv)")
+    az.add_argument("--out-dir", dest="out_dir", default=os.path.join("data","eval"), help="Output directory for metrics/Excel (default data/eval)")
+
     args = parser.parse_args()
 
     # Determine command, honoring the top-level flag alias if provided
@@ -166,6 +172,11 @@ def main():
             all_players=all_players,
         )
         print(f"Comparison written to: {out_path}")
+    elif cmd == "analyze":
+        compare_csv = getattr(args, "compare_csv", os.path.join("data", "compare.csv"))
+        out_dir = getattr(args, "out_dir", os.path.join("data", "eval"))
+        out_path = run_analyze(compare_csv=compare_csv, out_dir=out_dir)
+        print(f"Season total evaluation written to: {out_path}\nPlots and CSVs in: {out_dir}")
     else:
         run_all()
 
