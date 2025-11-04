@@ -3,6 +3,8 @@ import os
 from nhl_schedule.build_lookup import build
 from app.orchestrator import run_all, run_yahoo, run_registry_update, run_nst, run_merge
 from diagnostics.runner import run_dq as run_dq_diag
+from application.forecast import forecast as run_forecast
+from application.compare import compare as run_compare
 
 # If you store canonical inputs in known NSTstats paths, set sensible defaults here
 DEFAULT_OUT_CSV = "data/lookup_table.csv"
@@ -63,6 +65,30 @@ def main():
     dq.add_argument("--min-n", type=int, default=25, help="Minimum sample size per group")
     dq.add_argument("--out", default=None, help="Output directory root (default data/dq)")
 
+    # Forecast command
+    fc = subparsers.add_parser("forecast", help="Compute per-player stat forecasts for ROW, Next Week, and ROS")
+    fc.add_argument("--current-week", dest="current_week", type=int, required=True, help="Current fantasy week number (1..24)")
+    fc.add_argument("--season-weight", dest="season_weight", type=float, default=0.8, help="Weight for season-to-date rates (default 0.8)")
+    fc.add_argument("--last7-weight", dest="last7_weight", type=float, default=0.2, help="Weight for last-7 games rates (default 0.2)")
+    fc.add_argument("--sos-weight", dest="sos_weight", type=float, default=0.3, help="Schedule strength impact weight; positive means hard schedule lowers output (default 0.3)")
+    fc.add_argument("--horizons", nargs="*", default=["row","next","ros"], help="Horizons to compute: row next ros")
+    fc.add_argument("--skaters-csv", dest="skaters_csv", default=os.path.join("data","merged_skaters.csv"), help="Input merged skaters CSV (default data/merged_skaters.csv)")
+    fc.add_argument("--lookup-csv", dest="lookup_csv", default=os.path.join("data","lookup_table.csv"), help="Schedule lookup CSV (default data/lookup_table.csv)")
+    fc.add_argument("--out-csv", dest="out_csv", default=os.path.join("data","forecasts.csv"), help="Output CSV path (default data/forecasts.csv)")
+
+    # Compare command
+    cp = subparsers.add_parser("compare", help="Compare our forecasts vs NatePts projections and Last-Year benchmarks")
+    cp.add_argument("--current-week", dest="current_week", type=int, required=True, help="Current fantasy week number (1..24)")
+    cp.add_argument("--forecast-csv", dest="forecast_csv", default=os.path.join("data","forecasts.csv"), help="Forecast CSV input (default data/forecasts.csv)")
+    cp.add_argument("--lookup-csv", dest="lookup_csv", default=os.path.join("data","lookup_table.csv"), help="Schedule lookup CSV (default data/lookup_table.csv)")
+    cp.add_argument("--proj-xlsx", dest="proj_xlsx", default=os.path.join("NatePts.xlsx"), help="Path to NatePts.xlsx (default NatePts.xlsx in project root)")
+    cp.add_argument("--proj-sheet", dest="proj_sheet", default="NatePts", help="Sheet/Table name in NatePts.xlsx (default NatePts)")
+    cp.add_argument("--ly-sit-s", dest="ly_sit_s_csv", default=None, help="Optional CSV of NST Last-Year all-situations per-60 (rate=y)")
+    cp.add_argument("--ly-sit-pp", dest="ly_sit_pp_csv", default=None, help="Optional CSV of NST Last-Year power-play per-60 (rate=y)")
+    cp.add_argument("--horizons", nargs="*", default=["row","next","ros"], help="Horizons to compute: row next ros")
+    cp.add_argument("--all-players", dest="all_players", action="store_true", help="Include all players (default: owned only)")
+    cp.add_argument("--out-csv", dest="out_csv", default=os.path.join("data","compare.csv"), help="Output CSV path (default data/compare.csv)")
+
     args = parser.parse_args()
 
     # Determine command, honoring the top-level flag alias if provided
@@ -93,9 +119,53 @@ def main():
             min_n=min_n,
         )
         print(f"Diagnostics written to: {out_path}")
+    elif cmd == "forecast":
+        current_week = getattr(args, "current_week")
+        season_weight = getattr(args, "season_weight", 0.8)
+        last7_weight = getattr(args, "last7_weight", 0.2)
+        sos_weight = getattr(args, "sos_weight", 0.3)
+        horizons = tuple(getattr(args, "horizons", ["row","next","ros"]))
+        skaters_csv = getattr(args, "skaters_csv", os.path.join("data","merged_skaters.csv"))
+        lookup_csv = getattr(args, "lookup_csv", os.path.join("data","lookup_table.csv"))
+        out_csv = getattr(args, "out_csv", os.path.join("data","forecasts.csv"))
+        out_path = run_forecast(
+            skaters_csv=skaters_csv,
+            lookup_csv=lookup_csv,
+            out_csv=out_csv,
+            current_week=current_week,
+            season_weight=season_weight,
+            last7_weight=last7_weight,
+            sos_weight=sos_weight,
+            horizons=horizons,
+        )
+        print(f"Forecasts written to: {out_path}")
     elif cmd == "schedule-lookup":
         # Pass an empty argv so the inner parser uses defaults and doesn't try to parse the outer Namespace
         cmd_schedule_refresh(argv=[])
+    elif cmd == "compare":
+        current_week = getattr(args, "current_week")
+        forecast_csv = getattr(args, "forecast_csv", os.path.join("data","forecasts.csv"))
+        lookup_csv = getattr(args, "lookup_csv", os.path.join("data","lookup_table.csv"))
+        proj_xlsx = getattr(args, "proj_xlsx", os.path.join("NatePts.xlsx"))
+        proj_sheet = getattr(args, "proj_sheet", "NatePts")
+        ly_sit_s_csv = getattr(args, "ly_sit_s_csv", None)
+        ly_sit_pp_csv = getattr(args, "ly_sit_pp_csv", None)
+        horizons = tuple(getattr(args, "horizons", ["row","next","ros"]))
+        out_csv = getattr(args, "out_csv", os.path.join("data","compare.csv"))
+        all_players = bool(getattr(args, "all_players", False))
+        out_path = run_compare(
+            current_week=current_week,
+            forecast_csv=forecast_csv,
+            lookup_csv=lookup_csv,
+            proj_xlsx=proj_xlsx,
+            proj_sheet=proj_sheet,
+            ly_sit_s_csv=ly_sit_s_csv,
+            ly_sit_pp_csv=ly_sit_pp_csv,
+            horizons=horizons,
+            out_csv=out_csv,
+            all_players=all_players,
+        )
+        print(f"Comparison written to: {out_path}")
     else:
         run_all()
 
