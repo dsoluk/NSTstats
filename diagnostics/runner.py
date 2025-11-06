@@ -96,11 +96,13 @@ def run_dq(
     metrics: List[str] = None,
     windows: List[str] = None,
     min_n: int = 25,
+    prior_input_csv: str | None = None,
 ) -> str:
     """
     Run distribution diagnostics for selected metrics and windows.
     - metrics: list of base metric names without prefix (defaults to DEFAULT_METRICS)
     - windows: e.g., ["szn"] (supported: "szn", "l7"). Defaults to ["szn"].
+    - prior_input_csv: optional path to a prior-season CSV with the same schema to compare best-fit distributions.
     Returns the output directory path created.
     """
     if metrics is None:
@@ -176,10 +178,52 @@ def run_dq(
                         "bic": res.bic,
                         "ks_pvalue": res.ks_pvalue,
                         "chosen": 1 if name == choice else 0,
+                        "season_label": "current",
                     }
                     for k, v in res.params.items():
                         row[f"param_{k}"] = v
                     summary_rows.append(row)
+
+    # Optional prior-season comparison
+    prior_summary_rows: List[Dict[str, object]] = []
+    if prior_input_csv:
+        if not os.path.exists(prior_input_csv):
+            raise FileNotFoundError(f"Prior input not found: {prior_input_csv}")
+        prior_df = pd.read_csv(prior_input_csv)
+        pos_col_prior = _detect_position_col(prior_df)
+        prior_df["pos_group"] = _derive_pos_group(prior_df, pos_col_prior)
+        for win in windows:
+            prefix = f"{win}_"
+            for metric in metrics:
+                col = f"{prefix}{metric}"
+                if col not in prior_df.columns:
+                    continue
+                for seg in ["F", "D"]:
+                    subset = prior_df.loc[prior_df["pos_group"] == seg, col]
+                    x = subset.replace([np.inf, -np.inf], np.nan).dropna().astype(float).values
+                    if x.size < min_n:
+                        continue
+                    fits = _fit_all(x)
+                    if not fits:
+                        continue
+                    choice = best_fit(fits, criterion="AIC")
+                    for name, res in fits.items():
+                        row = {
+                            "window": win,
+                            "segment": seg,
+                            "metric": metric,
+                            "n": res.n,
+                            "fit": name,
+                            "loglik": res.loglik,
+                            "aic": res.aic,
+                            "bic": res.bic,
+                            "ks_pvalue": res.ks_pvalue,
+                            "chosen": 1 if name == choice else 0,
+                            "season_label": "prior",
+                        }
+                        for k, v in res.params.items():
+                            row[f"param_{k}"] = v
+                        prior_summary_rows.append(row)
 
     # Write summary files
     if summary_rows:
@@ -195,4 +239,31 @@ def run_dq(
         json_dict = {f"{w}|{s}|{m}": rows for (w, s, m), rows in out_json.items()}
         with open(os.path.join(root, "summary.json"), "w", encoding="utf-8") as f:
             json.dump(json_dict, f, indent=2)
+
+    # Write prior summary if present
+    if prior_summary_rows:
+        prior_df_out = pd.DataFrame(prior_summary_rows)
+        prior_csv_path = os.path.join(root, "summary_prior.csv")
+        prior_df_out.to_csv(prior_csv_path, index=False)
+        # Comparison of best fits
+        try:
+            cur_best = (
+                pd.DataFrame(summary_rows)
+                .query("chosen == 1")
+                .loc[:, ["window","segment","metric","fit"]]
+                .rename(columns={"fit":"fit_current"})
+            )
+            prior_best = (
+                prior_df_out
+                .query("chosen == 1")
+                .loc[:, ["window","segment","metric","fit"]]
+                .rename(columns={"fit":"fit_prior"})
+            )
+            cmp_df = cur_best.merge(prior_best, on=["window","segment","metric"], how="outer")
+            cmp_df["different"] = (cmp_df["fit_current"] != cmp_df["fit_prior"]).astype(bool)
+            cmp_csv = os.path.join(root, "best_fit_comparison.csv")
+            cmp_df.to_csv(cmp_csv, index=False)
+        except Exception as _e:
+            print(f"[Warn] Could not build comparison: {_e}")
+
     return root

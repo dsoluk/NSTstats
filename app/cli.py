@@ -65,6 +65,7 @@ def main():
     dq.add_argument("--metrics", nargs="*", default=["G","A","PPP","SOG","FOW","HIT","BLK","PIM"], help="Metrics to analyze")
     dq.add_argument("--min-n", type=int, default=25, help="Minimum sample size per group")
     dq.add_argument("--out", default=None, help="Output directory root (default data/dq)")
+    dq.add_argument("--prior-csv", dest="prior_csv", default=None, help="Optional prior-season CSV to compare (e.g., data/skaters_scored_prior.csv)")
 
     # Forecast command
     fc = subparsers.add_parser("forecast", help="Compute per-player stat forecasts for ROW, Next Week, and ROS")
@@ -117,12 +118,14 @@ def main():
         min_n = getattr(args, "min_n", 25)
         out = getattr(args, "out", None)
         out_dir = out if out else None
+        prior_csv = getattr(args, "prior_csv", None)
         out_path = run_dq_diag(
             input_csv=os.path.join("data", "skaters_scored.csv"),
             out_dir=out_dir or os.path.join("data", "dq"),
             metrics=metrics,
             windows=windows,
             min_n=min_n,
+            prior_input_csv=prior_csv,
         )
         print(f"Diagnostics written to: {out_path}")
     elif cmd == "forecast":

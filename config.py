@@ -64,10 +64,40 @@ def load_default_params():
     ppp_columns = _normalize(ppp_cfg)
     goalie_columns = _normalize(goalie_cfg)
 
-    # Provide a simple default weights structure to preserve the function signature...not sure if being used
-    weights = {
-        "offensive": {},
-        "defensive": {},
-        "special": {}
+    # Index weights configuration with sensible defaults. Can be overridden via INDEX_WEIGHTS env var (JSON).
+    def _deep_merge(a: dict, b: dict) -> dict:
+        out = dict(a)
+        for k, v in b.items():
+            if isinstance(v, dict) and isinstance(out.get(k), dict):
+                out[k] = _deep_merge(out[k], v)
+            else:
+                out[k] = v
+        return out
+
+    default_index_weights = {
+        "offensive": {  # per-stat weights for offensive index
+            "G": 1.0,
+            "A": 1.0,
+            "PPP": 1.0,
+            "SOG": 1.0,
+            "FOW": 1.0,
+        },
+        "banger": {     # per-stat weights for banger index
+            "HIT": 1.0,
+            "BLK": 1.0,
+            "PIM": 1.0,
+        },
+        "composite": {  # weights for combining off/banger into composite
+            "offensive": 0.7,
+            "banger": 0.3,
+        }
     }
-    return params, url, weights, std_columns, ppp_columns, goalie_columns
+
+    # Allow overriding via env var as JSON
+    try:
+        env_index_weights = json.loads(os.getenv("INDEX_WEIGHTS", "{}"))
+        index_weights = _deep_merge(default_index_weights, env_index_weights)
+    except Exception:
+        index_weights = default_index_weights
+
+    return params, url, index_weights, std_columns, ppp_columns, goalie_columns

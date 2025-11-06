@@ -1,0 +1,17 @@
+window,segment,metric,fit_current,fit_prior,different
+szn,D,A,LogNormal,Normal(log1p),True
+szn,D,BLK,Normal(log1p),Normal(log1p),False
+szn,D,FOW,Normal,LogNormal,True
+szn,D,G,LogNormal,LogNormal,False
+szn,D,HIT,Normal(log1p),Normal(log1p),False
+szn,D,PIM,LogNormal,Normal(log1p),True
+szn,D,PPP,Normal(log1p),Normal(log1p),False
+szn,D,SOG,Normal(log1p),Normal(log1p),False
+szn,F,A,LogNormal,Normal(log1p),True
+szn,F,BLK,Normal(log1p),Normal(log1p),False
+szn,F,FOW,LogNormal,LogNormal,False
+szn,F,G,LogNormal,LogNormal,False
+szn,F,HIT,Normal(log1p),Normal(log1p),False
+szn,F,PIM,LogNormal,Gamma,True
+szn,F,PPP,Normal(log1p),Normal(log1p),False
+szn,F,SOG,Normal(log1p),Normal(log1p),False

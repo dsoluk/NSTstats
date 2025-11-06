@@ -1,10 +1,12 @@
 import os
+import math
 import pandas as pd
 import numpy as np
 from pandas.api.types import is_string_dtype, is_object_dtype, is_categorical_dtype
 
 from helpers.extract import fetch_nst_html
 from helpers.transform import basic_cleansing, basic_filtering
+from config import load_default_params
 
 
 
@@ -288,14 +290,27 @@ class StatPipelineFactory:
 class PlayerIndexPipeline:
     def __init__(self, df):
         self.df = df.copy()
+        # Load weights from config
+        try:
+            _, _, index_weights, _, _, _ = load_default_params()
+        except Exception:
+            index_weights = {
+                "offensive": {"G": 1.0, "A": 1.0, "PPP": 1.0, "SOG": 1.0, "FOW": 1.0},
+                "banger": {"HIT": 1.0, "BLK": 1.0, "PIM": 1.0},
+                "composite": {"offensive": 0.7, "banger": 0.3},
+            }
+        self.index_weights = index_weights
+        # Verbose scoring diagnostics via env flag
+        self.verbose = str(os.getenv("VERBOSE_SCORING", "0")).lower() in {"1", "true", "yes", "y"}
         # Base stat names (without prefixes)
         self.offensive_stats = ["G", "A", "PPP", "SOG", "FOW"]
         self.banger_stats = ["HIT", "BLK", "PIM"]
-        self.weights = {"offensive": 0.7, "banger": 0.3}
         # Determine which prefixes/windows are available
         self.prefixes = self._detect_prefixes()
         # Determine the position column name
         self.pos_col = self._detect_position_col()
+        # Prepare distribution mapping from best_fit_comparison
+        self.best_fit = self._load_best_fit_mapping()
 
     def _detect_prefixes(self):
         has_szn = any(c.startswith("szn_") for c in self.df.columns)
@@ -326,59 +341,198 @@ class PlayerIndexPipeline:
         self.df["Position"] = "F"
         return "Position"
 
-    def _log_transform(self, cols):
-        for col in cols:
-            self.df[f"log_{col}"] = np.log(self.df[col].astype(float).clip(lower=0) + 1.0)
+    def _load_best_fit_mapping(self):
+        # Find latest dq directory
+        dq_root = os.path.join("data", "dq")
+        fit_path = None
+        try:
+            if os.path.isdir(dq_root):
+                candidates = [d for d in os.listdir(dq_root) if os.path.isdir(os.path.join(dq_root, d))]
+                candidates = sorted(candidates)
+                for d in reversed(candidates):
+                    p = os.path.join(dq_root, d, "best_fit_comparison.csv")
+                    if os.path.isfile(p):
+                        fit_path = p
+                        break
+        except Exception:
+            fit_path = None
+        mapping = {}
+        if fit_path:
+            try:
+                fit_df = pd.read_csv(fit_path)
+                # Expect columns: window, segment, metric, fit_current, ...
+                for _, r in fit_df.iterrows():
+                    w = str(r.get("window", "")).strip() or "szn"
+                    s = str(r.get("segment", "")).strip().upper() or "F"
+                    m = str(r.get("metric", "")).strip().upper()
+                    f = str(r.get("fit_current", "")).strip()
+                    if not m:
+                        continue
+                    mapping[(w, s, m)] = f
+            except Exception:
+                mapping = {}
+        return mapping
 
-    def _t_score_grouped(self, series, groups):
-        # Compute T-score within each group; if std=0, return 50 for that group
-        grp = series.groupby(groups)
-        mean = grp.transform("mean")
-        std = grp.transform("std")
-        z = (series - mean) / std.replace(0, np.nan)
-        t = 50 + 10 * z
-        return t.fillna(50)
+    @staticmethod
+    def _phi(z):
+        # Vectorized standard normal CDF using error function
+        # Prefer numpy's erfc (vectorized and widely available), fallback to vectorized math.erf
+        try:
+            import numpy as _np
+            return 0.5 * _np.erfc(-_np.asarray(z, dtype=float) / _np.sqrt(2.0))
+        except Exception:
+            # Very unlikely path; ensure elementwise fallback using already-imported numpy as np
+            arr = np.asarray(z, dtype=float)
+            return 0.5 * (1.0 + np.vectorize(math.erf)(arr / math.sqrt(2.0)))
+
+    def _percentile_from_family(self, x_series: pd.Series, family: str, group_mask: pd.Series):
+        # Compute p = F(x) per group based on selected family by estimating parameters from group sample
+        # Coerce to numeric first to avoid dtype issues (e.g., strings)
+        x = pd.to_numeric(x_series, errors="coerce")
+        # Extract group sample
+        sample = x[group_mask]
+        if sample.empty:
+            return pd.Series(np.nan, index=x.index)
+        fam = (family or "").lower()
+        try:
+            # Determine transformed variable y and its parameters
+            if "normal(log1p)" in fam:
+                y = np.log1p(sample.clip(lower=0))
+                mu = y.mean()
+                sd = y.std(ddof=0)
+                if not np.isfinite(sd) or sd <= 0:
+                    p = pd.Series(0.5, index=sample.index)
+                else:
+                    p = pd.Series(self._phi((np.log1p(sample.clip(lower=0)) - mu) / sd), index=sample.index)
+            elif "lognormal" in fam:
+                # use log1p for stability with zeros
+                y = np.log1p(sample.clip(lower=0))
+                mu = y.mean()
+                sd = y.std(ddof=0)
+                if not np.isfinite(sd) or sd <= 0:
+                    p = pd.Series(0.5, index=sample.index)
+                else:
+                    p = pd.Series(self._phi((np.log1p(sample.clip(lower=0)) - mu) / sd), index=sample.index)
+            elif "normal" in fam:
+                mu = sample.mean()
+                sd = sample.std(ddof=0)
+                if not np.isfinite(sd) or sd <= 0:
+                    p = pd.Series(0.5, index=sample.index)
+                else:
+                    p = pd.Series(self._phi((sample - mu) / sd), index=sample.index)
+            else:
+                # Fallback: empirical percentile within group
+                ranks = sample.rank(method="average", pct=True)
+                p = pd.Series(ranks, index=sample.index)
+        except Exception as err:
+            if self.verbose:
+                nn = sample.notna().sum()
+                print(f"[Scoring] Error computing CDF family='{family}' on {nn} non-null samples. Example values: {sample.head(5).tolist()} | err={err}")
+            raise
+        # Build full-length series with NaNs elsewhere
+        out = pd.Series(np.nan, index=x.index)
+        out.loc[sample.index] = p.values
+        return out
+
+    def _score_cols_for_window(self, prefix: str, window_key: str):
+        # Compute percentile-based T_* scores per stat for a given window
+        off_cols = self._resolve_columns_for_prefix(self.offensive_stats, prefix)
+        ban_cols = self._resolve_columns_for_prefix(self.banger_stats, prefix)
+        cols = off_cols + ban_cols
+        if not cols:
+            return
+        # position segmentation: map to 'D' vs 'F' group
+        self.df["pos_group"] = self.df[self.pos_col].apply(lambda x: "D" if str(x).strip().upper() == "D" else "F")
+        for col in cols:
+            base_metric = col.replace(prefix, "") if prefix else col
+            metric_u = base_metric.upper()
+            # Determine family: from mapping; if missing, fallback by simple heuristics
+            fam = self.best_fit.get((window_key, "D", metric_u)) if False else None  # dummy to satisfy linter
+            # We need per segment family; select later inside group loop
+            # Initialize output series
+            score_col = f"T_{col}"
+            scores = pd.Series(np.nan, index=self.df.index)
+            # Precompute numeric coercion for diagnostics
+            if self.verbose:
+                series_num = pd.to_numeric(self.df[col], errors="coerce")
+                print(f"[Scoring] window={window_key} col={col} metric={metric_u} dtype={self.df[col].dtype} nonnull={series_num.notna().sum()} total={len(series_num)}")
+            for seg in ["D", "F"]:
+                seg_mask = self.df["pos_group"] == seg
+                if not seg_mask.any():
+                    continue
+                # Choose family: if mapping contains (window, seg, metric) else fallback
+                fam = self.best_fit.get((window_key, seg, metric_u))
+                if not fam:
+                    # Use szn mapping if l7 missing
+                    fam = self.best_fit.get(("szn", seg, metric_u))
+                if not fam:
+                    # Heuristic: treat non-negative count-like stats as Normal(log1p)
+                    fam = "Normal(log1p)"
+                if self.verbose:
+                    if 'series_num' in locals():
+                        seg_nonnull = series_num[seg_mask].notna().sum()
+                        print(f"[Scoring]  └─ seg={seg} family={fam} group_size={int(seg_mask.sum())} seg_nonnull={int(seg_nonnull)}")
+                    else:
+                        print(f"[Scoring]  └─ seg={seg} family={fam} group_size={int(seg_mask.sum())}")
+                p = self._percentile_from_family(self.df[col], fam, seg_mask)
+                # Scale to 0..99, round up to integer
+                s = np.ceil(99.0 * p.clip(lower=0.0, upper=1.0)).astype("Int64")
+                # Replace NaNs with 50
+                s = s.fillna(50)
+                scores.loc[seg_mask] = s.loc[seg_mask]
+            self.df[score_col] = scores.astype("Int64")
 
     def calculate_t_scores(self):
-        # Segment positions first
-        self.df["pos_group"] = self.df[self.pos_col].apply(lambda x: "D" if str(x).strip().upper() == "D" else "F")
-        # For each window/prefix, compute log and segmented T for the window's columns
+        # For each window, compute percentile-based scores per requirement
         for prefix in self.prefixes:
-            off_cols = self._resolve_columns_for_prefix(self.offensive_stats, prefix)
-            ban_cols = self._resolve_columns_for_prefix(self.banger_stats, prefix)
-            cols = off_cols + ban_cols
-            if not cols:
-                continue
-            self._log_transform(cols)
-            for col in cols:
-                log_col = f"log_{col}"
-                t_col = f"T_{col}"
-                self.df[t_col] = self._t_score_grouped(self.df[log_col], self.df["pos_group"]) 
+            win = 'szn' if prefix == 'szn_' else ('l7' if prefix == 'l7_' else 'szn')
+            self._score_cols_for_window(prefix, win)
 
     def calculate_indexes_per_window(self):
-        # Per window: mean of segmented T-scores for off/banger, and T of composite per window
+        # Per window: weighted averages of percentile T_* scores using configured weights
+        off_w = self.index_weights.get("offensive", {})
+        ban_w = self.index_weights.get("banger", {})
+        comp_w = self.index_weights.get("composite", {"offensive": 0.7, "banger": 0.3})
         for prefix in self.prefixes:
             # Window label suffix: 'szn' or 'l7' or 'legacy'
             win = 'szn' if prefix == 'szn_' else ('l7' if prefix == 'l7_' else 'legacy')
             off_cols = self._resolve_columns_for_prefix(self.offensive_stats, prefix)
             ban_cols = self._resolve_columns_for_prefix(self.banger_stats, prefix)
-            t_off = [f"T_{c}" for c in off_cols]
-            t_ban = [f"T_{c}" for c in ban_cols]
-            if t_off:
-                self.df[f"Offensive_Index_{win}"] = self.df[t_off].mean(axis=1)
+            # Offensive index weighted by per-stat weights
+            t_off_cols = [f"T_{c}" for c in off_cols]
+            if t_off_cols:
+                weights = np.array([off_w.get(c.replace(prefix, ""), 1.0) for c in off_cols], dtype=float)
+                weights = np.where(np.isfinite(weights) & (weights >= 0), weights, 0.0)
+                wsum = weights.sum()
+                if wsum <= 0:
+                    off_series = self.df[t_off_cols].mean(axis=1)
+                else:
+                    off_vals = self.df[t_off_cols].astype(float).values
+                    off_series = pd.Series(np.dot(off_vals, weights) / wsum, index=self.df.index)
+                self.df[f"Offensive_Index_{win}"] = off_series
             else:
                 self.df[f"Offensive_Index_{win}"] = np.nan
-            if t_ban:
-                self.df[f"Banger_Index_{win}"] = self.df[t_ban].mean(axis=1)
+            # Banger index weighted
+            t_ban_cols = [f"T_{c}" for c in ban_cols]
+            if t_ban_cols:
+                weights = np.array([ban_w.get(c.replace(prefix, ""), 1.0) for c in ban_cols], dtype=float)
+                weights = np.where(np.isfinite(weights) & (weights >= 0), weights, 0.0)
+                wsum = weights.sum()
+                if wsum <= 0:
+                    ban_series = self.df[t_ban_cols].mean(axis=1)
+                else:
+                    ban_vals = self.df[t_ban_cols].astype(float).values
+                    ban_series = pd.Series(np.dot(ban_vals, weights) / wsum, index=self.df.index)
+                self.df[f"Banger_Index_{win}"] = ban_series
             else:
                 self.df[f"Banger_Index_{win}"] = np.nan
-            # Compute composite only to derive segmented T, then drop the raw composite
-            composite = (
-                self.weights["offensive"] * self.df[f"Offensive_Index_{win}"].astype(float) +
-                self.weights["banger"] * self.df[f"Banger_Index_{win}"].astype(float)
-            )
-            self.df[f"T_Composite_Index_{win}"] = self._t_score_grouped(composite, self.df["pos_group"]) 
-            # No persistent Composite_Index column per requirements
+            # Composite index as weighted combination of offensive and banger indices
+            off_wt = float(comp_w.get("offensive", 0.7))
+            ban_wt = float(comp_w.get("banger", 0.3))
+            denom = off_wt + ban_wt if (off_wt + ban_wt) > 0 else 1.0
+            comp_series = (off_wt * self.df[f"Offensive_Index_{win}"].astype(float) +
+                           ban_wt * self.df[f"Banger_Index_{win}"].astype(float)) / denom
+            self.df[f"Composite_Index_{win}"] = comp_series
 
     def run(self):
         self.calculate_t_scores()

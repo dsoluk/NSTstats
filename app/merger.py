@@ -315,6 +315,19 @@ def run_merge():
     print(f"Saved merged skaters to {out1}")
     print(f"Saved merged goalies to {out2}")
 
+    # If prior-season inputs exist, produce prior merged outputs too
+    try:
+        prior_sk_in = os.path.join('data', 'skaters_scored_prior.csv')
+        prior_g_in = os.path.join('data', 'goalies_prior.csv')
+        if os.path.exists(prior_sk_in):
+            prior_sk_out = merge_role(prior_sk_in, 'skater', os.path.join('data', 'merged_skaters_prior.csv'))
+            print(f"Saved prior-season merged skaters to {prior_sk_out}")
+        if os.path.exists(prior_g_in):
+            prior_g_out = merge_role(prior_g_in, 'goalie', os.path.join('data', 'merged_goalies_prior.csv'))
+            print(f"Saved prior-season merged goalies to {prior_g_out}")
+    except Exception as _pm:
+        print(f"[Warn] Prior-season merge skipped due to error: {_pm}")
+
     # Lightweight data-quality report for merge coverage
     try:
         import json as _json
