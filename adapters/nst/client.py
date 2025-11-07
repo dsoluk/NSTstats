@@ -3,7 +3,7 @@ from typing import Iterable, Dict
 import requests
 from bs4 import BeautifulSoup
 
-
+# NO LONGER USED
 class NSTPlayerAdapter:
     BASE_URL = 'https://www.naturalstattrick.com/playerlist.php'
 

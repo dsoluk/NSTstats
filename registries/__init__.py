@@ -1,1 +1,1 @@
-# Registry package initializer
+# Registry package initializer NO LONGER USING A REGISTRY FOR PLAYER NAMES, TEAMS and POSITIONS
