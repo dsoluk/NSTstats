@@ -9,14 +9,13 @@ Purpose: Gather actual performance from Natural Stat Trick (NST) and join to Yah
 Inputs and sources:
 - NST skater/goalie stats (season‑to‑date and last 7 games). Rates are per‑60 (NST `rate=y`).
 - Yahoo Fantasy roster export (current league rosters/ownership).
-- Player registry (canonical player IDs; refreshed from NST list).
+- Local normalization helpers for names/teams/positions (helpers/normalization.py).
 
 Process (via CLI):
 - `nst`: fetch/refresh NST skater and goalie datasets in canonical CSV/Parquet form.
-- `registry`: update/refresh the player registry from NST player lists.
 - `yahoo`: fetch or refresh Yahoo roster data.
-- `merge`: merge NST stats + registry with Yahoo ownership, producing per‑player rows with `team_name` attribution.
-- `all`: convenience orchestration that runs `yahoo`, `registry`, and `nst` (and often the subsequent merge step) in a sane sequence.
+- `merge`: merge NST stats with Yahoo ownership using local normalization helpers, producing per‑player rows with `team_name` attribution.
+- `all`: convenience orchestration that runs `yahoo` and `nst` (and you can run `merge` after as needed).
 
 Key outputs:
 - `data/merged_skaters.csv` (and analogous outputs for goalies, if applicable).
@@ -41,8 +40,8 @@ How to run diagnostics:
 
 DQ checks we perform (and suggested additions):
 - Merge coverage and identity
-  - Percent of NST players matched to the registry and Yahoo; track over time.
-  - Count by mismatch category (name variant, diacritics, missing in registry, duplicate IDs).
+  - Percent of NST players matched to Yahoo ownership; track over time.
+  - Count by mismatch category (name variant, diacritics, duplicate names/IDs).
   - Export `unmatched_in_merged.csv` with helpful columns: input name, guessed canonical, suggested fixes.
 - Distribution sanity by metric and window
   - For each metric (G, A, PPP, SOG, FOW, HIT, BLK, PIM) and window (Szn, L7), check:
@@ -57,11 +56,11 @@ DQ checks we perform (and suggested additions):
 
 Common mismatch patterns and remediation:
 - Name variants (e.g., "Alex Ovechkin" vs "Alexander Ovechkin").
-  - Remediation: Add alias to the registry; normalize accents/diacritics; keep a curated mapping file.
+  - Remediation: Improve local normalization rules (helpers/normalization.py); keep a curated alias map if needed.
 - Suffixes and initials ("Jr.", middle initials).
   - Remediation: Strip or standardize in a preprocessing normalizer before joins.
-- Recent call‑ups or new players not yet in the registry.
-  - Remediation: Automated registry refresh (`registry` step) plus a manual review queue.
+- Recent call‑ups or new players appearing after the last refresh.
+  - Remediation: Re-run Yahoo and NST ingestion; normalization rules will cover most cases.
 - Duplicates due to multiple data rows (team changes, position changes).
   - Remediation: Use stable player IDs as primary keys; deduplicate with latest team context.
 
@@ -146,7 +145,6 @@ Outputs:
 - Inputs/Config
   - `NatePts.xlsx` – external projections
   - `Team2TM.xlsx` – team mapping (if applicable)
-  - `player_registry.csv|json` – canonical players
   - `config.py`, `secrets.json` – configuration and secrets
 - Intermediate/Outputs
   - `data/merged_skaters.csv` – merged NST+Yahoo per‑player
@@ -159,7 +157,7 @@ Outputs:
 
 ## Suggested Workflow (Conceptual)
 
-1. Refresh inputs (NST, registry, Yahoo)
+1. Refresh inputs (NST and Yahoo)
 2. Merge to attribute ownership (`team_name`)
 3. Build schedule lookup
 4. Forecast across horizons (ROW, Next Week, ROS; later EoS)
@@ -173,13 +171,11 @@ flowchart LR
   subgraph Inputs
     NST[NST skaters/goalies Szn & L7 per60]
     Yahoo[Yahoo rosters]
-    Registry[Player registry]
     SchedSrc[NHL schedule inputs]
   end
 
   NST --> Merge
   Yahoo --> Merge
-  Registry --> Merge
   Merge --> Merged[data/merged_skaters.csv]
 
   SchedSrc --> Sched[Schedule Lookup]

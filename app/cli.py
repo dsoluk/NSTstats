@@ -1,7 +1,7 @@
 import argparse
 import os
 from nhl_schedule.build_lookup import build
-from app.orchestrator import run_all, run_yahoo, run_registry_update, run_nst, run_merge
+from app.orchestrator import run_all, run_yahoo, run_nst, run_merge
 from diagnostics.runner import run_dq as run_dq_diag
 from application.forecast import forecast as run_forecast
 from application.compare import compare as run_compare
@@ -46,11 +46,10 @@ def main():
 
     subparsers = parser.add_subparsers(dest="command")
 
-    subparsers.add_parser("all", help="Run Yahoo, registry update, and NST pipelines")
+    subparsers.add_parser("all", help="Run Yahoo and NST pipelines")
     subparsers.add_parser("yahoo", help="Run Yahoo Fantasy helper")
-    subparsers.add_parser("registry", help="Update registry from NST player list")
     subparsers.add_parser("nst", help="Run NST pipelines (skaters, goalies)")
-    subparsers.add_parser("merge", help="Merge NST+Registry with Yahoo ownership to CSVs")
+    subparsers.add_parser("merge", help="Merge NST with Yahoo ownership to CSVs")
 
     # Schedule lookup command (nhl_schedule integration)
     sched = subparsers.add_parser("schedule-lookup", help="Build or update the weekly schedule lookup table from inputs")
@@ -106,8 +105,6 @@ def main():
 
     if cmd == "yahoo":
         run_yahoo()
-    elif cmd == "registry":
-        run_registry_update()
     elif cmd == "nst":
         run_nst()
     elif cmd == "merge":

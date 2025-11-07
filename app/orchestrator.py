@@ -2,18 +2,11 @@ import os
 from config import load_default_params
 from pipelines import StatPipelineFactory, PlayerIndexPipeline
 
-# Optional registry imports (added for Player/Team/Position registry)
-try:
-    from registries.factory import RegistryFactory
-    from registries.reporting import SummaryReporter
-    from registries.persistence import export_players_csv
-    from adapters.nst.client import NSTPlayerAdapter
-except Exception:
-    # Defer import errors to runtime handling in main() for registry-only pieces
-    RegistryFactory = None
-    SummaryReporter = None
-    export_players_csv = None
-    NSTPlayerAdapter = None
+# Registry removed: using local normalization; keep placeholders for backward compatibility
+RegistryFactory = None
+SummaryReporter = None
+export_players_csv = None
+NSTPlayerAdapter = None
 
 # Import Yahoo app separately so a registry failure doesn't break Yahoo
 try:
@@ -40,23 +33,6 @@ def run_yahoo():
         print(f"Yahoo data source skipped due to error: {err}")
 
 
-def run_registry_update():
-    try:
-        if RegistryFactory and SummaryReporter and NSTPlayerAdapter:
-            factory = RegistryFactory()
-            # Ensure team mappings are loaded from Team2TM.xlsx
-            factory.teams.load()
-            reporter = SummaryReporter()
-            nst_adapter = NSTPlayerAdapter()
-            factory.update_from_source(nst_adapter, reporter)
-            # Export CSV snapshot of registry if helper is available
-            if export_players_csv:
-                export_players_csv(factory.names.all(), 'player_registry.csv')
-            print("Registry update completed. See player_registry.json and summary.json.")
-        else:
-            print("Registry components not available (missing optional dependencies). Skipping registry update.")
-    except Exception as re:
-        print(f"Registry update skipped due to error: {re}")
 
 
 def run_nst():
@@ -115,7 +91,8 @@ def run_nst():
         # Save unified CSVs under data/ directory
         out_dir = os.path.join("data")
         os.makedirs(out_dir, exist_ok=True)
-        skater_pipeline.save(os.path.join(out_dir, "skaters.csv"))
+        # Skipping persistence of raw skaters.csv per simplification; keep goalies.csv
+        # skater_pipeline.save(os.path.join(out_dir, "skaters.csv"))
         goalie_pipeline.save(os.path.join(out_dir, "goalies.csv"))
 
         # compute player index on skaters
@@ -183,7 +160,6 @@ def run_merge():
 
 def run_all():
     run_yahoo()
-    run_registry_update()
     run_nst()
 
 

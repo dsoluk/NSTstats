@@ -1,37 +1,15 @@
 import os
-from typing import Tuple
 
 import pandas as pd
 
-from registries.names import NamesRegistry
-from registries.normalize import normalize_name
-from registries.positions import PositionRegistry
-from registries.teams import TeamRegistry
+from helpers.normalization import normalize_name, normalize_position, to_team_code, to_fpos
 
 
-def _prepare_registry_df() -> pd.DataFrame:
-    names = NamesRegistry()
-    names.load()
-    rows = []
-    for r in names.all():
-        rows.append({
-            'registry_id': r.id,
-            'cname': r.cname,
-            'reg_team': r.team,
-            'reg_pos': r.position,
-            'reg_display_name': r.display_name,
-            'reg_source': r.source,
-        })
-    return pd.DataFrame(rows)
 
 
-def _normalize_team_pos(team_registry: TeamRegistry, pos_registry: PositionRegistry, team: str, pos: str) -> Tuple[str, str]:
-    t = team_registry.to_code(team)
-    p = pos_registry.normalize(pos)
-    return t or '', p or ''
 
 
-def _load_yahoo_all_rosters(csv_path: str, pos_registry: PositionRegistry) -> pd.DataFrame:
+def _load_yahoo_all_rosters(csv_path: str) -> pd.DataFrame:
     """
     Load Yahoo all_rosters.csv and return per-player rows with:
       - cname: normalized name for joining
@@ -56,9 +34,9 @@ def _load_yahoo_all_rosters(csv_path: str, pos_registry: PositionRegistry) -> pd
         # Prefer selected_position if available and not bench/IR
         pref = sel if sel and sel not in {'BN', 'IR', 'IR+', 'NA'} else ''
         order = ([pref] if pref else []) + parts
-        # Map to our codes using PositionRegistry
+        # Map to our codes using helpers.normalize_position
         for p in order:
-            code = pos_registry.normalize(p)
+            code = normalize_position(p)
             if code in {'G', 'D', 'C', 'L', 'R'}:
                 return code
         # Fallbacks
@@ -68,7 +46,7 @@ def _load_yahoo_all_rosters(csv_path: str, pos_registry: PositionRegistry) -> pd
             return 'G'
         # Any forward variants → try to coerce to C by default
         for cand in ['C', 'LW', 'RW']:
-            code = pos_registry.normalize(cand)
+            code = normalize_position(cand)
             if code:
                 return code
         return ''
@@ -76,13 +54,6 @@ def _load_yahoo_all_rosters(csv_path: str, pos_registry: PositionRegistry) -> pd
     # Primary normalized position for joining
     ydf['ypos'] = ydf.apply(map_pos, axis=1)
     # Coarse position for fallback
-    def to_fpos(ypos: str) -> str:
-        y = str(ypos).upper()
-        if y in {'C', 'L', 'R'}:
-            return 'F'
-        if y in {'D', 'G'}:
-            return y
-        return ''
     ydf['fpos'] = ydf['ypos'].apply(to_fpos)
 
     # Build yahoo_positions (eligible set) with 'UTIL' removed, preserve original Yahoo labels
@@ -128,13 +99,10 @@ def _load_yahoo_all_rosters(csv_path: str, pos_registry: PositionRegistry) -> pd
 
 def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
     """
-    Merge NST stats with Player Registry, then with Yahoo ownership.
+    Merge NST stats with Yahoo ownership using local normalization (no registry).
     role: 'skater' or 'goalie'
     Returns output CSV path.
     """
-    team_registry = TeamRegistry()
-    pos_registry = PositionRegistry()
-    team_registry.load()
 
     # Load NST
     if not os.path.exists(nst_csv):
@@ -197,22 +165,25 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
     df['cname'] = df['Player'].astype(str).apply(normalize_name)
     if role == 'goalie':
         df['Position'] = 'G'
-    df['pos_code'] = df['Position'].astype(str).apply(pos_registry.normalize)
-    df['team_code'] = df['Team'].astype(str).apply(team_registry.to_code)
+    # Normalize NST team/position using local helpers
+    def _last_token(val: str) -> str:
+        s = str(val or '').strip()
+        if ',' in s:
+            parts = [p.strip() for p in s.split(',') if p.strip()]
+            if parts:
+                return parts[-1]
+        return s
+    # If role goalie, force G; else use provided Position and select last if comma-separated
+    if role != 'goalie':
+        df['Position'] = df['Position'].astype(str).apply(_last_token)
+    df['pos_code'] = df['Position'].astype(str).apply(normalize_position)
+    df['team_code'] = df['Team'].astype(str).apply(_last_token).apply(to_team_code)
 
-    # Load Registry
-    reg = _prepare_registry_df()
-
-    # Merge NST with registry on cname+team+pos
-    merged = df.merge(
-        reg,
-        left_on=['cname', 'team_code', 'pos_code'],
-        right_on=['cname', 'reg_team', 'reg_pos'],
-        how='left'
-    )
+    # Start merged from NST; no registry
+    merged = df.copy()
 
     # Load Yahoo roster info and merge on cname+position (no team)
-    yinfo = _load_yahoo_all_rosters(os.path.join('data', 'all_rosters.csv'), pos_registry)
+    yinfo = _load_yahoo_all_rosters(os.path.join('data', 'all_rosters.csv'))
     if not yinfo.empty:
         # Exact match on (cname, exact position)
         merged = merged.merge(
@@ -288,8 +259,8 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
 
     # Drop fields per request (updated)
     drop_cols = [
-        'registry_id', 'reg_display_name', 'cname', 'team_code', 'pos_code',
-        'reg_team', 'reg_pos', 'reg_source', 'owned_count', 'owned_pct',
+        'cname', 'team_code', 'pos_code',
+        'owned_count', 'owned_pct',
         'Position', 'yahoo_name', 'yahoo_positions'
     ]
     existing_drops = [c for c in drop_cols if c in merged.columns]
@@ -337,7 +308,6 @@ def run_merge():
             total_yahoo_rows = len(ydf)
             # Build cname+ypos keys for yahoo to better reflect distinct roster spots
             ydf['cname'] = ydf['name'].fillna('').apply(normalize_name)
-            pos_registry = PositionRegistry();
             def _ypos_map(row):
                 sel = str(row.get('selected_position') or '').upper()
                 poss = str(row.get('positions') or '')
@@ -345,7 +315,7 @@ def run_merge():
                 pref = sel if sel and sel not in {'BN','IR','IR+','NA'} else ''
                 order = ([pref] if pref else []) + parts
                 for p in order:
-                    c = pos_registry.normalize(p)
+                    c = normalize_position(p)
                     if c in {'G','D','C','L','R'}:
                         return c
                 if 'D' in parts: return 'D'
