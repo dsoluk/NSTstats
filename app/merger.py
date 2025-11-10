@@ -85,13 +85,16 @@ def _load_yahoo_all_rosters(csv_path: str) -> pd.DataFrame:
                     return v
             return None
 
+        # Aggregate to one row per (cname, ypos). fpos is derived deterministically from ypos.
         agg = (
             ydf.dropna(subset=['cname', 'ypos'])
-               .groupby(['cname', 'ypos', 'fpos'], as_index=False)
+               .groupby(['cname', 'ypos'], as_index=False)
                .agg(yahoo_name=('yahoo_name', first_non_null),
                     yahoo_positions=('yahoo_positions', agg_positions),
                     team_name=('team_name', first_non_null))
         )
+        # Recompute fpos from ypos
+        agg['fpos'] = agg['ypos'].apply(to_fpos)
         return agg
 
     return pd.DataFrame(columns=['cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name'])
@@ -185,66 +188,117 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
     # Load Yahoo roster info and merge on cname+position (no team)
     yinfo = _load_yahoo_all_rosters(os.path.join('data', 'all_rosters.csv'))
     if not yinfo.empty:
-        # Exact match on (cname, exact position)
-        merged = merged.merge(
-            yinfo,
-            left_on=['cname', 'pos_code'],
-            right_on=['cname', 'ypos'],
-            how='left'
-        )
-        # Coarse F/D/G fallback for rows still missing team_name
-        def _to_fpos(p: str) -> str:
-            p = str(p).upper()
-            if p in {'C', 'L', 'R'}:
-                return 'F'
-            if p in {'D', 'G'}:
-                return p
-            return ''
-        merged['fpos'] = merged['pos_code'].apply(_to_fpos)
-        need_fallback = merged['team_name'].isna()
-        if need_fallback.any():
+        if role == 'skater':
+            # Primary join on coarse position (F/D) as suggested; compute NST coarse pos
+            merged['fpos'] = merged['pos_code'].apply(to_fpos)
+            # Prepare Yahoo coarse F/D view and de-duplicate to one row per (cname, fpos)
             y_fg = yinfo[['cname', 'fpos', 'team_name', 'yahoo_positions', 'yahoo_name']].copy()
-            y_fg = y_fg.dropna(subset=['fpos'])
+            y_fg = y_fg.dropna(subset=['cname', 'fpos'])
+            y_fg = y_fg[y_fg['fpos'].isin(['F', 'D'])]
+            def _agg_positions(series: pd.Series) -> str:
+                acc = []
+                seen = set()
+                for s in series.dropna().astype(str):
+                    for p in s.split(';') if s else []:
+                        if p and p not in seen:
+                            seen.add(p); acc.append(p)
+                return ';'.join(acc)
+            if not y_fg.empty:
+                y_fg = (
+                    y_fg.groupby(['cname', 'fpos'], as_index=False)
+                        .agg(team_name=('team_name', 'first'),
+                             yahoo_positions=('yahoo_positions', _agg_positions),
+                             yahoo_name=('yahoo_name', 'first'))
+                )
+            # Join on coarse key
             merged = merged.merge(
                 y_fg,
-                left_on=['cname', 'fpos'],
-                right_on=['cname', 'fpos'],
-                how='left',
-                suffixes=('', '_fg')
+                on=['cname', 'fpos'],
+                how='left'
             )
-            for col in ['team_name', 'yahoo_positions', 'yahoo_name']:
-                alt = f"{col}_fg"
-                if alt in merged.columns:
-                    merged[col] = merged[col].fillna(merged[alt])
-            drop_alt = [c for c in ['team_name_fg', 'yahoo_positions_fg', 'yahoo_name_fg'] if c in merged.columns]
-            if drop_alt:
-                merged.drop(columns=drop_alt, inplace=True)
-        # Final fallback: match on cname only (may be ambiguous for duplicate names)
-        need_final = merged['team_name'].isna()
-        if need_final.any():
-            y_by_name = (
-                yinfo.groupby('cname', as_index=False)
-                     .agg(team_name=('team_name', 'first'),
-                          yahoo_positions=('yahoo_positions', 'first'),
-                          yahoo_name=('yahoo_name', 'first'))
-            )
+            # Skaters: intentionally skip by-name fallback to avoid mixing F vs D for duplicate names
+            # Any remaining unmatched rows will keep team_name as null and be listed in unmatched report.
+            # Remove merge helpers
+            for helper in ['ypos', 'fpos']:
+                if helper in merged.columns:
+                    merged.drop(columns=[helper], inplace=True)
+        else:
+            # Original behavior (goalies): exact match on (cname, exact position) with fallback to coarse and by-name
             merged = merged.merge(
-                y_by_name,
-                on='cname',
-                how='left',
-                suffixes=('', '_byname')
+                yinfo,
+                left_on=['cname', 'pos_code'],
+                right_on=['cname', 'ypos'],
+                how='left'
             )
-            for col in ['team_name', 'yahoo_positions', 'yahoo_name']:
-                alt = f"{col}_byname"
-                if alt in merged.columns:
-                    merged[col] = merged[col].fillna(merged[alt])
-            drop_alt = [c for c in ['team_name_byname', 'yahoo_positions_byname', 'yahoo_name_byname'] if c in merged.columns]
-            if drop_alt:
-                merged.drop(columns=drop_alt, inplace=True)
-        # Remove merge helpers
-        for helper in ['ypos', 'fpos']:
-            if helper in merged.columns:
-                merged.drop(columns=[helper], inplace=True)
+            # Coarse F/D/G fallback for rows still missing team_name
+            def _to_fpos(p: str) -> str:
+                p = str(p).upper()
+                if p in {'C', 'L', 'R'}:
+                    return 'F'
+                if p in {'D', 'G'}:
+                    return p
+                return ''
+            merged['fpos'] = merged['pos_code'].apply(_to_fpos)
+            need_fallback = merged['team_name'].isna()
+            if need_fallback.any():
+                y_fg = yinfo[['cname', 'fpos', 'team_name', 'yahoo_positions', 'yahoo_name']].copy()
+                y_fg = y_fg.dropna(subset=['fpos'])
+                # De-duplicate by (cname, fpos) to avoid multiplying rows when a player has multiple yahoo primary positions
+                if not y_fg.empty:
+                    def _agg_positions(series: pd.Series) -> str:
+                        acc = []
+                        seen = set()
+                        for s in series.dropna().astype(str):
+                            for p in s.split(';') if s else []:
+                                if p and p not in seen:
+                                    seen.add(p); acc.append(p)
+                        return ';'.join(acc)
+                    y_fg = (
+                        y_fg.groupby(['cname', 'fpos'], as_index=False)
+                            .agg(team_name=('team_name', 'first'),
+                                 yahoo_positions=('yahoo_positions', _agg_positions),
+                                 yahoo_name=('yahoo_name', 'first'))
+                    )
+                merged = merged.merge(
+                    y_fg,
+                    left_on=['cname', 'fpos'],
+                    right_on=['cname', 'fpos'],
+                    how='left',
+                    suffixes=('', '_fg')
+                )
+                for col in ['team_name', 'yahoo_positions', 'yahoo_name']:
+                    alt = f"{col}_fg"
+                    if alt in merged.columns:
+                        merged[col] = merged[col].fillna(merged[alt])
+                drop_alt = [c for c in ['team_name_fg', 'yahoo_positions_fg', 'yahoo_name_fg'] if c in merged.columns]
+                if drop_alt:
+                    merged.drop(columns=drop_alt, inplace=True)
+            # Final fallback: match on cname only (may be ambiguous for duplicate names)
+            need_final = merged['team_name'].isna()
+            if need_final.any():
+                y_by_name = (
+                    yinfo.groupby('cname', as_index=False)
+                         .agg(team_name=('team_name', 'first'),
+                              yahoo_positions=('yahoo_positions', 'first'),
+                              yahoo_name=('yahoo_name', 'first'))
+                )
+                merged = merged.merge(
+                    y_by_name,
+                    on='cname',
+                    how='left',
+                    suffixes=('', '_byname')
+                )
+                for col in ['team_name', 'yahoo_positions', 'yahoo_name']:
+                    alt = f"{col}_byname"
+                    if alt in merged.columns:
+                        merged[col] = merged[col].fillna(merged[alt])
+                drop_alt = [c for c in ['team_name_byname', 'yahoo_positions_byname', 'yahoo_name_byname'] if c in merged.columns]
+                if drop_alt:
+                    merged.drop(columns=drop_alt, inplace=True)
+            # Remove merge helpers
+            for helper in ['ypos', 'fpos']:
+                if helper in merged.columns:
+                    merged.drop(columns=[helper], inplace=True)
     else:
         # Ensure yahoo columns exist even if empty
         merged['yahoo_name'] = None
@@ -286,18 +340,118 @@ def run_merge():
     print(f"Saved merged skaters to {out1}")
     print(f"Saved merged goalies to {out2}")
 
-    # If prior-season inputs exist, produce prior merged outputs too
+    # If prior-season inputs exist, integrate last-year stats into current files (ly_ prefix)
     try:
+        def _coarse_from_elig(elig: str) -> str:
+            s = str(elig or '')
+            parts = [p.strip() for p in s.split(';') if p.strip()]
+            for p in parts:
+                c = normalize_position(p)
+                f = to_fpos(c)
+                if f:
+                    return f
+            # Fallbacks
+            if any(p.upper() == 'D' for p in parts):
+                return 'D'
+            if any(p.upper() == 'G' for p in parts):
+                return 'G'
+            return ''
+
+        def _integrate_prior(curr_path: str, role: str, prior_input_csv: str):
+            if not os.path.exists(prior_input_csv) or not os.path.exists(curr_path):
+                return None
+            # Build a prior-season merged view (same shape as current) using existing routine
+            tmp_out = os.path.join('data', f'_tmp_prior_merged_{role}s.csv')
+            try:
+                merge_role(prior_input_csv, role, tmp_out)
+                prior_df = pd.read_csv(tmp_out)
+            finally:
+                try:
+                    if os.path.exists(tmp_out):
+                        os.remove(tmp_out)
+                except Exception:
+                    pass
+            curr_df = pd.read_csv(curr_path)
+
+            # Build join keys: cname + coarse position (F/D/G) to reduce C/L/R drift
+            curr_df['__cname'] = curr_df['Player'].astype(str).apply(normalize_name)
+            prior_df['__cname'] = prior_df['Player'].astype(str).apply(normalize_name)
+            if role == 'goalie':
+                curr_df['__coarse'] = 'G'
+                prior_df['__coarse'] = 'G'
+            else:
+                curr_df['__coarse'] = curr_df.get('Elig_Pos').apply(_coarse_from_elig) if 'Elig_Pos' in curr_df.columns else ''
+                prior_df['__coarse'] = prior_df.get('Elig_Pos').apply(_coarse_from_elig) if 'Elig_Pos' in prior_df.columns else ''
+
+            # Prepare prior columns with ly_ prefix (exclude keys to avoid collisions)
+            exclude = {'Player', 'Elig_Pos'}
+            prior_renamed = {}
+            for c in prior_df.columns:
+                if c in {'__cname', '__coarse'}:
+                    continue
+                if c in exclude:
+                    prior_renamed[c] = f"ly_{c}"
+                else:
+                    prior_renamed[c] = f"ly_{c}"
+            # Reduce prior to one row per (__cname, __coarse) to avoid cartesian expansion on join
+            if not prior_df.empty and {'__cname','__coarse'}.issubset(prior_df.columns):
+                sort_cols = [c for c in ['szn_GP_all', 'l7_GP_all'] if c in prior_df.columns]
+                if sort_cols:
+                    prior_df = prior_df.sort_values(by=sort_cols, ascending=[False]*len(sort_cols))
+                # Keep the first (highest GP) per key
+                prior_df = prior_df.drop_duplicates(subset=['__cname','__coarse'], keep='first')
+
+            prior_pref = prior_df.rename(columns=prior_renamed)
+
+            # Join
+            merged = curr_df.merge(
+                prior_pref,
+                how='left',
+                left_on=['__cname', '__coarse'],
+                right_on=['ly___cname', 'ly___coarse'] if 'ly___cname' in prior_pref.columns else ['__cname', '__coarse']
+            )
+            # Safety: if any duplication still occurred, collapse to unique rows by (Player, Team, Elig_Pos)
+            dedup_keys = [k for k in ['Player','Team','Elig_Pos'] if k in merged.columns]
+            if dedup_keys:
+                merged = merged.drop_duplicates(subset=dedup_keys, keep='first')
+
+            # Team change log
+            try:
+                ly_team_col = 'ly_Team' if 'ly_Team' in merged.columns else None
+                if ly_team_col:
+                    changed = merged[(merged[ly_team_col].notna()) & (merged.get('Team') != merged[ly_team_col])].copy()
+                    if not changed.empty:
+                        changed_out = changed[['Player', ly_team_col, 'Team']].copy()
+                        changed_out.rename(columns={ly_team_col: 'Prior_Team', 'Team': 'Current_Team'}, inplace=True)
+                        changed_out['Role'] = 'G' if role == 'goalie' else 'Skater'
+                        os.makedirs('data', exist_ok=True)
+                        tlog = os.path.join('data', 'team_changes.csv')
+                        # Append or write
+                        if os.path.exists(tlog):
+                            prev = pd.read_csv(tlog)
+                            combined = pd.concat([prev, changed_out], ignore_index=True).drop_duplicates()
+                            combined.to_csv(tlog, index=False)
+                        else:
+                            changed_out.to_csv(tlog, index=False)
+            except Exception as _tc:
+                print(f"[Warn] Could not write team change log: {_tc}")
+
+            # Clean helper cols
+            for c in ['__cname', '__coarse']:
+                if c in merged.columns:
+                    del merged[c]
+                if f"ly_{c}" in merged.columns:
+                    del merged[f"ly_{c}"]
+
+            merged.to_csv(curr_path, index=False)
+            return curr_path
+
         prior_sk_in = os.path.join('data', 'skaters_scored_prior.csv')
         prior_g_in = os.path.join('data', 'goalies_prior.csv')
-        if os.path.exists(prior_sk_in):
-            prior_sk_out = merge_role(prior_sk_in, 'skater', os.path.join('data', 'merged_skaters_prior.csv'))
-            print(f"Saved prior-season merged skaters to {prior_sk_out}")
-        if os.path.exists(prior_g_in):
-            prior_g_out = merge_role(prior_g_in, 'goalie', os.path.join('data', 'merged_goalies_prior.csv'))
-            print(f"Saved prior-season merged goalies to {prior_g_out}")
+        _integrate_prior(out1, 'skater', prior_sk_in)
+        _integrate_prior(out2, 'goalie', prior_g_in)
     except Exception as _pm:
-        print(f"[Warn] Prior-season merge skipped due to error: {_pm}")
+        print(f"[Warn] Prior-season integration skipped due to error: {_pm}")
 
     # Lightweight data-quality report for merge coverage
     try:

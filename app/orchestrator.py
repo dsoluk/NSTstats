@@ -161,6 +161,7 @@ def run_merge():
 def run_all():
     run_yahoo()
     run_nst()
+    run_merge()
 
 
 def main():
