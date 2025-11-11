@@ -4,10 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="changed score calcs">
+    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="merge ly and debug, fixed Elias">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adapters/nst/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/adapters/nst/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/registries/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/registries/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_cache/nst_team_pk_NA_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_pk_NA_20252026.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_cache/nst_team_pp_NA_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_pp_NA_20252026.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_cache/nst_team_sva_B_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_sva_B_20252026.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_Opponent_Ease_0_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_Opponent_Ease_0_100.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_TeamWeek_SOS_0_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_TeamWeek_SOS_0_100.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/Bangers_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/Bangers_residuals_by_decile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/Bangers_scatter.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/Bangers_scatter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/Overall_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/Overall_residuals_by_decile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/Overall_scatter.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/Overall_scatter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/Points_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/Points_residuals_by_decile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/Points_scatter.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/Points_scatter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_A_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_A_residuals_by_decile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_A_scatter.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_A_scatter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_BLK_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_BLK_residuals_by_decile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_BLK_scatter.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_BLK_scatter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_FOW_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_FOW_residuals_by_decile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_FOW_scatter.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_FOW_scatter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_G_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_G_residuals_by_decile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_G_scatter.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_G_scatter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_HIT_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_HIT_residuals_by_decile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_HIT_scatter.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_HIT_scatter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_PIM_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_PIM_residuals_by_decile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_PIM_scatter.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_PIM_scatter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_PPP_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_PPP_residuals_by_decile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_PPP_scatter.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_PPP_scatter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_SOG_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_SOG_residuals_by_decile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/_plots/STAT_SOG_scatter.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/STAT_SOG_scatter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/metrics_by_decile.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/metrics_by_decile.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/metrics_by_position.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/metrics_by_position.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/metrics_summary.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/metrics_summary.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/eval/season_total_eval.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/season_total_eval.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/merged_skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,28 +79,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.cli.executor": "Debug",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "master",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "junie.project.settings",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.cli.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;junie.project.settings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\soluk\PycharmProjects\NSTstats\adapters\nst" />
@@ -157,6 +187,7 @@
       <workItem from="1762189200978" duration="1668000" />
       <workItem from="1762197825056" duration="6874000" />
       <workItem from="1762431603508" duration="16669000" />
+      <workItem from="1762814585811" duration="4720000" />
     </task>
     <task id="LOCAL-00001" summary="with Pipelines">
       <option name="closed" value="true" />
