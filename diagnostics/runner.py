@@ -34,9 +34,18 @@ def _detect_position_col(df: pd.DataFrame) -> str:
 
 
 def _derive_pos_group(df: pd.DataFrame, pos_col: str) -> pd.Series:
+    import re
     def f(x):
         s = str(x).strip().upper()
-        return "D" if s == "D" else "F"
+        # Common defense encodings seen across sources
+        if s in {"D", "LD", "RD", "D/F", "F/D"}:
+            return "D"
+        # Split on common separators and whitespace, then look for a standalone 'D' token
+        tokens = [t for t in re.split(r"[/,;|\s]+", s) if t]
+        if "D" in tokens:
+            return "D"
+        # Default all other skater positions (C, LW, RW, F, etc.) to forwards
+        return "F"
     return df[pos_col].apply(f)
 
 
@@ -97,6 +106,10 @@ def run_dq(
     windows: List[str] = None,
     min_n: int = 25,
     prior_input_csv: str | None = None,
+    # New options to support goalies and appending to an existing timestamp dir
+    group_by_position: bool = True,
+    segments: List[str] | None = None,
+    existing_root: str | None = None,
 ) -> str:
     """
     Run distribution diagnostics for selected metrics and windows.
@@ -108,17 +121,41 @@ def run_dq(
     if metrics is None:
         metrics = list(DEFAULT_METRICS)
     if windows is None:
-        windows = ["szn"]
+        # Default to analyzing both season-to-date and last-7 windows
+        windows = ["szn", "l7"]
 
     if not os.path.exists(input_csv):
         raise FileNotFoundError(f"Input not found: {input_csv}")
     df = pd.read_csv(input_csv)
 
-    pos_col = _detect_position_col(df)
-    df["pos_group"] = _derive_pos_group(df, pos_col)
+    # Determine segmentation
+    if group_by_position:
+        # Prefer an existing pos_group column if already prepared by upstream pipelines
+        if "pos_group" in df.columns:
+            # Normalize formatting but do not re-derive
+            df["pos_group"] = df["pos_group"].astype(str).str.strip().str.upper()
+            if segments is not None:
+                seg_values = segments
+            else:
+                # Derive segments from the data, keep only standard skater groups
+                seg_values = [s for s in pd.unique(df["pos_group"]) if s in ("F", "D")]
+                if not seg_values:
+                    seg_values = ["F", "D"]
+        else:
+            pos_col = _detect_position_col(df)
+            df["pos_group"] = _derive_pos_group(df, pos_col)
+            seg_values = segments if segments is not None else ["F", "D"]
+    else:
+        # Single-segment dataset (e.g., goalies). Use provided segments or default to ["G"].
+        seg_values = segments if segments is not None else ["G"]
+        df["pos_group"] = seg_values[0] if len(seg_values) == 1 else "All"
 
-    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-    root = os.path.join(out_dir, ts)
+    # Use existing root if provided (to append into same summary), else create a new timestamped folder
+    if existing_root:
+        root = existing_root
+    else:
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        root = os.path.join(out_dir, ts)
     os.makedirs(root, exist_ok=True)
 
     # Prepare summary rows
@@ -130,7 +167,7 @@ def run_dq(
             col = f"{prefix}{metric}"
             if col not in df.columns:
                 continue
-            for seg in ["F", "D"]:
+            for seg in seg_values:
                 subset = df.loc[df["pos_group"] == seg, col]
                 # Clean values: finite only
                 x = subset.replace([np.inf, -np.inf], np.nan).dropna().astype(float).values
@@ -190,15 +227,29 @@ def run_dq(
         if not os.path.exists(prior_input_csv):
             raise FileNotFoundError(f"Prior input not found: {prior_input_csv}")
         prior_df = pd.read_csv(prior_input_csv)
-        pos_col_prior = _detect_position_col(prior_df)
-        prior_df["pos_group"] = _derive_pos_group(prior_df, pos_col_prior)
+        if group_by_position:
+            if "pos_group" in prior_df.columns:
+                prior_df["pos_group"] = prior_df["pos_group"].astype(str).str.strip().str.upper()
+                if segments is not None:
+                    prior_seg_values = segments
+                else:
+                    prior_seg_values = [s for s in pd.unique(prior_df["pos_group"]) if s in ("F", "D")]
+                    if not prior_seg_values:
+                        prior_seg_values = ["F", "D"]
+            else:
+                pos_col_prior = _detect_position_col(prior_df)
+                prior_df["pos_group"] = _derive_pos_group(prior_df, pos_col_prior)
+                prior_seg_values = segments if segments is not None else ["F", "D"]
+        else:
+            prior_seg_values = segments if segments is not None else ["G"]
+            prior_df["pos_group"] = prior_seg_values[0] if len(prior_seg_values) == 1 else "All"
         for win in windows:
             prefix = f"{win}_"
             for metric in metrics:
                 col = f"{prefix}{metric}"
                 if col not in prior_df.columns:
                     continue
-                for seg in ["F", "D"]:
+                for seg in prior_seg_values:
                     subset = prior_df.loc[prior_df["pos_group"] == seg, col]
                     x = subset.replace([np.inf, -np.inf], np.nan).dropna().astype(float).values
                     if x.size < min_n:
@@ -229,21 +280,46 @@ def run_dq(
     if summary_rows:
         summary_df = pd.DataFrame(summary_rows)
         csv_path = os.path.join(root, "summary.csv")
+        if os.path.exists(csv_path):
+            try:
+                existing_df = pd.read_csv(csv_path)
+                summary_df = pd.concat([existing_df, summary_df], ignore_index=True)
+            except Exception:
+                pass
         summary_df.to_csv(csv_path, index=False)
-        # Also write JSON grouped compactly
+        # Also write JSON grouped compactly (append/merge if exists)
         out_json: Dict[Tuple[str, str, str], List[Dict[str, object]]] = {}
         for r in summary_rows:
             key = (r["window"], r["segment"], r["metric"])  # type: ignore
             out_json.setdefault(tuple(key), []).append(r)
-        # Convert tuple keys to strings
-        json_dict = {f"{w}|{s}|{m}": rows for (w, s, m), rows in out_json.items()}
-        with open(os.path.join(root, "summary.json"), "w", encoding="utf-8") as f:
-            json.dump(json_dict, f, indent=2)
+        # Load existing json if present and merge
+        json_path = os.path.join(root, "summary.json")
+        merged_json: Dict[str, List[Dict[str, object]]] = {}
+        if os.path.exists(json_path):
+            try:
+                with open(json_path, "r", encoding="utf-8") as f:
+                    merged_json = json.load(f)
+            except Exception:
+                merged_json = {}
+        # Convert tuple keys to strings and merge
+        for (w, s, m), rows in out_json.items():
+            k = f"{w}|{s}|{m}"
+            merged_json.setdefault(k, [])
+            merged_json[k].extend(rows)
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(merged_json, f, indent=2)
 
     # Write prior summary if present
     if prior_summary_rows:
         prior_df_out = pd.DataFrame(prior_summary_rows)
         prior_csv_path = os.path.join(root, "summary_prior.csv")
+        # Append if exists
+        if os.path.exists(prior_csv_path):
+            try:
+                _existing = pd.read_csv(prior_csv_path)
+                prior_df_out = pd.concat([_existing, prior_df_out], ignore_index=True)
+            except Exception:
+                pass
         prior_df_out.to_csv(prior_csv_path, index=False)
         # Comparison of best fits
         try:
@@ -265,5 +341,139 @@ def run_dq(
             cmp_df.to_csv(cmp_csv, index=False)
         except Exception as _e:
             print(f"[Warn] Could not build comparison: {_e}")
+
+    return root
+
+
+def run_dq_prior(
+    input_csv: str,
+    out_dir: str = os.path.join("data", "dq", "prior"),
+    metrics: List[str] | None = None,
+    windows: List[str] | None = None,
+    min_n: int = 25,
+    group_by_position: bool = True,
+    segments: List[str] | None = None,
+    existing_ts: str | None = None,
+) -> str:
+    """
+    Run distribution diagnostics for PRIOR-season inputs and write results under data/dq/prior.
+    - Defaults to only the 'szn' window for prior (no 'l7').
+    - Returns the output directory path created under out_dir/<ts>.
+    """
+    if metrics is None:
+        metrics = list(DEFAULT_METRICS)
+    # For prior, default to season-only unless explicitly specified
+    if windows is None:
+        windows = ["szn"]
+
+    if not os.path.exists(input_csv):
+        raise FileNotFoundError(f"Input not found: {input_csv}")
+    df = pd.read_csv(input_csv)
+
+    # Determine segmentation
+    if group_by_position:
+        # Prefer an existing pos_group if present in the prior CSV (skaters)
+        if "pos_group" in df.columns:
+            df["pos_group"] = df["pos_group"].astype(str).str.strip().str.upper()
+            if segments is not None:
+                seg_values = segments
+            else:
+                seg_values = [s for s in pd.unique(df["pos_group"]) if s in ("F", "D")]
+                if not seg_values:
+                    seg_values = ["F", "D"]
+        else:
+            pos_col = _detect_position_col(df)
+            df["pos_group"] = _derive_pos_group(df, pos_col)
+            seg_values = segments if segments is not None else ["F", "D"]
+    else:
+        seg_values = segments if segments is not None else ["G"]
+        df["pos_group"] = seg_values[0] if len(seg_values) == 1 else "All"
+
+    # Build root under dq/prior using provided ts for alignment if given
+    ts = existing_ts or datetime.now().strftime("%Y%m%d_%H%M%S")
+    root = os.path.join(out_dir, ts)
+    os.makedirs(root, exist_ok=True)
+
+    summary_rows: List[Dict[str, object]] = []
+
+    for win in windows:
+        prefix = f"{win}_"
+        for metric in metrics:
+            col = f"{prefix}{metric}"
+            if col not in df.columns:
+                continue
+            for seg in seg_values:
+                subset = df.loc[df["pos_group"] == seg, col]
+                x = subset.replace([np.inf, -np.inf], np.nan).dropna().astype(float).values
+                if x.size < min_n:
+                    continue
+                fits = _fit_all(x)
+                if not fits:
+                    continue
+                choice = best_fit(fits, criterion="AIC")
+
+                # Save plots (mirror current behavior) under prior root
+                subdir = os.path.join(root, metric)
+                os.makedirs(subdir, exist_ok=True)
+                title = f"{metric} ({win}, {seg}) — best: {choice} [PRIOR]"
+                hist_path = os.path.join(subdir, f"{win}_{seg}_hist.png")
+                pdfs = {name: fn for name, res in fits.items() for n, fn in _pdf_builders(res.params).items() if name == n}
+                plot_hist_with_pdfs(pd.Series(x), pdfs, bins=30, title=title, out_path=hist_path)
+                qq_raw_path = os.path.join(subdir, f"{win}_{seg}_qq_raw.png")
+                qq_plot_normal(pd.Series(x), title=f"QQ Normal — {metric} ({win}, {seg}) raw [PRIOR]", out_path=qq_raw_path)
+                x_log1p = np.log1p(np.clip(x, 0, None))
+                qq_log_path = os.path.join(subdir, f"{win}_{seg}_qq_log1p.png")
+                qq_plot_normal(pd.Series(x_log1p), title=f"QQ Normal — {metric} ({win}, {seg}) log1p [PRIOR]", out_path=qq_log_path)
+
+                # Record summary per fit
+                for name, res in fits.items():
+                    row = {
+                        "window": win,
+                        "segment": seg,
+                        "metric": metric,
+                        "n": res.n,
+                        "fit": name,
+                        "loglik": res.loglik,
+                        "aic": res.aic,
+                        "bic": res.bic,
+                        "ks_pvalue": res.ks_pvalue,
+                        "chosen": 1 if name == choice else 0,
+                        "season_label": "prior",
+                    }
+                    for k, v in res.params.items():
+                        row[f"param_{k}"] = v
+                    summary_rows.append(row)
+
+    # Write prior summary
+    if summary_rows:
+        prior_df_out = pd.DataFrame(summary_rows)
+        prior_csv_path = os.path.join(root, "summary.csv")
+        if os.path.exists(prior_csv_path):
+            try:
+                _existing = pd.read_csv(prior_csv_path)
+                prior_df_out = pd.concat([_existing, prior_df_out], ignore_index=True)
+            except Exception:
+                pass
+        prior_df_out.to_csv(prior_csv_path, index=False)
+
+        # Also JSON grouped
+        out_json: Dict[Tuple[str, str, str], List[Dict[str, object]]] = {}
+        for r in summary_rows:
+            key = (r["window"], r["segment"], r["metric"])  # type: ignore
+            out_json.setdefault(tuple(key), []).append(r)
+        json_path = os.path.join(root, "summary.json")
+        merged_json: Dict[str, List[Dict[str, object]]] = {}
+        if os.path.exists(json_path):
+            try:
+                with open(json_path, "r", encoding="utf-8") as f:
+                    merged_json = json.load(f)
+            except Exception:
+                merged_json = {}
+        for (w, s, m), rows in out_json.items():
+            k = f"{w}|{s}|{m}"
+            merged_json.setdefault(k, [])
+            merged_json[k].extend(rows)
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(merged_json, f, indent=2)
 
     return root

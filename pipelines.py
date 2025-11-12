@@ -549,3 +549,117 @@ class PlayerIndexPipeline:
         if log_cols:
             self.df.drop(columns=log_cols, inplace=True)
         return self.df
+
+
+class GoalieIndexPipeline:
+    def __init__(self, df):
+        self.df = df.copy()
+        # Verbose scoring diagnostics via env flag
+        self.verbose = str(os.getenv("VERBOSE_SCORING", "0")).lower() in {"1", "true", "yes", "y"}
+        # Goalie metrics to score (without prefixes)
+        self.goalie_stats = ["GA", "SV%", "GAA"]
+        # Which metrics are lower-better and should be inverted after percentile mapping
+        self.lower_better = {"GA": True, "GAA": True, "SV%": False}
+        # Determine which prefixes/windows are available
+        self.prefixes = self._detect_prefixes()
+
+    def _detect_prefixes(self):
+        has_szn = any(c.startswith("szn_") for c in self.df.columns)
+        has_l7 = any(c.startswith("l7_") for c in self.df.columns)
+        prefixes = []
+        if has_szn:
+            prefixes.append("szn_")
+        if has_l7:
+            prefixes.append("l7_")
+        if not prefixes:
+            prefixes = [""]
+        return prefixes
+
+    def _resolve_columns_for_prefix(self, base_names, prefix):
+        cols = []
+        for name in base_names:
+            cand = f"{prefix}{name}" if prefix else name
+            if cand in self.df.columns:
+                cols.append(cand)
+        return cols
+
+    @staticmethod
+    def _phi(z):
+        try:
+            import numpy as _np
+            return 0.5 * _np.erfc(-_np.asarray(z, dtype=float) / _np.sqrt(2.0))
+        except Exception:
+            arr = np.asarray(z, dtype=float)
+            return 0.5 * (1.0 + np.vectorize(math.erf)(arr / math.sqrt(2.0)))
+
+    def _percentile_from_family(self, x_series: pd.Series, family: str):
+        x = pd.to_numeric(x_series, errors="coerce")
+        sample = x.dropna()
+        if sample.empty:
+            return pd.Series(np.nan, index=x.index)
+        fam = (family or "").lower()
+        try:
+            if "normal(log1p)" in fam:
+                y = np.log1p(sample.clip(lower=0))
+                mu = y.mean(); sd = y.std(ddof=0)
+                p = pd.Series(0.5, index=sample.index) if (not np.isfinite(sd) or sd <= 0) else pd.Series(self._phi((np.log1p(sample.clip(lower=0)) - mu) / sd), index=sample.index)
+            elif "lognormal" in fam:
+                y = np.log1p(sample.clip(lower=0))
+                mu = y.mean(); sd = y.std(ddof=0)
+                p = pd.Series(0.5, index=sample.index) if (not np.isfinite(sd) or sd <= 0) else pd.Series(self._phi((np.log1p(sample.clip(lower=0)) - mu) / sd), index=sample.index)
+            elif "normal" in fam:
+                mu = sample.mean(); sd = sample.std(ddof=0)
+                p = pd.Series(0.5, index=sample.index) if (not np.isfinite(sd) or sd <= 0) else pd.Series(self._phi((sample - mu) / sd), index=sample.index)
+            else:
+                p = sample.rank(method="average", pct=True)
+        except Exception as err:
+            if self.verbose:
+                nn = sample.notna().sum()
+                print(f"[GoalieScoring] Error computing CDF family='{family}' on {nn} samples. Example values: {sample.head(5).tolist()} | err={err}")
+            raise
+        out = pd.Series(np.nan, index=x.index)
+        out.loc[sample.index] = p.values
+        return out
+
+    def _family_for_metric(self, metric_upper: str) -> str:
+        # Heuristic families: counts/rates -> Normal(log1p); percentages -> Normal
+        if metric_upper in {"GA", "GAA"}:
+            return "Normal(log1p)"
+        if metric_upper in {"SV%"}:
+            return "Normal"
+        return "Normal(log1p)"
+
+    def calculate_t_scores(self):
+        for prefix in self.prefixes:
+            win = 'szn' if prefix == 'szn_' else ('l7' if prefix == 'l7_' else 'szn')
+            cols = self._resolve_columns_for_prefix(self.goalie_stats, prefix)
+            for col in cols:
+                base_metric = col.replace(prefix, "") if prefix else col
+                metric_u = base_metric.upper()
+                fam = self._family_for_metric(metric_u)
+                if self.verbose:
+                    series_num = pd.to_numeric(self.df[col], errors="coerce")
+                    print(f"[GoalieScoring] window={win} col={col} metric={metric_u} dtype={self.df[col].dtype} nonnull={series_num.notna().sum()} total={len(series_num)} family={fam}")
+                p = self._percentile_from_family(self.df[col], fam)
+                # Invert for lower-better metrics
+                if self.lower_better.get(metric_u, False):
+                    p = 1.0 - p
+                s = np.ceil(99.0 * p.clip(lower=0.0, upper=1.0)).astype("Int64").fillna(50)
+                self.df[f"T_{col}"] = s.astype("Int64")
+
+    def calculate_indexes_per_window(self):
+        # Build a single goalie index per window as average of T_ metrics present
+        for prefix in self.prefixes:
+            win = 'szn' if prefix == 'szn_' else ('l7' if prefix == 'l7_' else 'legacy')
+            cols = self._resolve_columns_for_prefix(self.goalie_stats, prefix)
+            t_cols = [f"T_{c}" for c in cols if f"T_{c}" in self.df.columns]
+            if t_cols:
+                self.df[f"Goalie_Index_{win}"] = self.df[t_cols].astype(float).mean(axis=1)
+            else:
+                self.df[f"Goalie_Index_{win}"] = np.nan
+
+    def run(self):
+        self.calculate_t_scores()
+        self.calculate_indexes_per_window()
+        # Drop any temporary log columns if any were created (none expected here)
+        return self.df

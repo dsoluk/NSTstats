@@ -91,7 +91,7 @@ def run_nst():
         # Save unified CSVs under data/ directory
         out_dir = os.path.join("data")
         os.makedirs(out_dir, exist_ok=True)
-        # Skipping persistence of raw skaters.csv per simplification; keep goalies.csv
+        # Skipping persistence of raw skaters.csv per simplification; keep goalies.csv for DQ
         # skater_pipeline.save(os.path.join(out_dir, "skaters.csv"))
         goalie_pipeline.save(os.path.join(out_dir, "goalies.csv"))
 
@@ -111,6 +111,17 @@ def run_nst():
         skater_scored_path = os.path.join(out_dir, "skaters_scored.csv")
         scored_df.to_csv(skater_scored_path, index=False)
         print(f"Saved scored skaters to {skater_scored_path}")
+
+        # Score goalies (GA, SV%, GAA) similarly to skaters
+        try:
+            from pipelines import GoalieIndexPipeline
+            g_indexer = GoalieIndexPipeline(goalie_df)
+            g_scored = g_indexer.run()
+            goalie_scored_path = os.path.join(out_dir, "goalies_scored.csv")
+            g_scored.to_csv(goalie_scored_path, index=False)
+            print(f"Saved scored goalies to {goalie_scored_path}")
+        except Exception as ge:
+            print(f"[Warn] Goalie scoring failed: {ge}")
 
         # Optional prior-season pass (derive from env FROMSEASON/THRUSEASON)
         try:
@@ -141,6 +152,16 @@ def run_nst():
                     prior_scored_path = os.path.join(out_dir, "skaters_scored_prior.csv")
                     prior_scored.to_csv(prior_scored_path, index=False)
                     print(f"Saved prior-season skaters to {prior_sk_path} and scored to {prior_scored_path}")
+                    # Score prior goalies
+                    try:
+                        from pipelines import GoalieIndexPipeline as _GIP
+                        prior_g_indexer = _GIP(prior_g_df)
+                        prior_g_scored = prior_g_indexer.run()
+                        prior_g_scored_path = os.path.join(out_dir, "goalies_scored_prior.csv")
+                        prior_g_scored.to_csv(prior_g_scored_path, index=False)
+                        print(f"Saved prior-season goalies to {prior_g_path} and scored to {prior_g_scored_path}")
+                    except Exception as _gge:
+                        print(f"[Warn] Prior-season goalie scoring failed: {_gge}")
         except Exception as _pe:
             print(f"[Warn] Prior-season pass skipped due to error: {_pe}")
 
@@ -161,7 +182,7 @@ def run_merge():
 def run_all():
     run_yahoo()
     run_nst()
-
+    run_merge()
 
 def main():
     run_all()

@@ -282,14 +282,16 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
 
 def run_merge():
     out1 = merge_role(os.path.join('data', 'skaters_scored.csv'), 'skater', os.path.join('data', 'merged_skaters.csv'))
-    out2 = merge_role(os.path.join('data', 'goalies.csv'), 'goalie', os.path.join('data', 'merged_goalies.csv'))
+    # Use scored goalies in merge (goalies_scored.csv), not raw goalies.csv
+    out2 = merge_role(os.path.join('data', 'goalies_scored.csv'), 'goalie', os.path.join('data', 'merged_goalies.csv'))
     print(f"Saved merged skaters to {out1}")
     print(f"Saved merged goalies to {out2}")
 
     # If prior-season inputs exist, produce prior merged outputs too
     try:
         prior_sk_in = os.path.join('data', 'skaters_scored_prior.csv')
-        prior_g_in = os.path.join('data', 'goalies_prior.csv')
+        # Use scored prior goalies if available
+        prior_g_in = os.path.join('data', 'goalies_scored_prior.csv')
         if os.path.exists(prior_sk_in):
             prior_sk_out = merge_role(prior_sk_in, 'skater', os.path.join('data', 'merged_skaters_prior.csv'))
             print(f"Saved prior-season merged skaters to {prior_sk_out}")

@@ -12,7 +12,8 @@ Inputs and sources:
 - Local normalization helpers for names/teams/positions (helpers/normalization.py).
 
 Process (via CLI):
-- `nst`: fetch/refresh NST skater and goalie datasets in canonical CSV/Parquet form.
+- `nst`: fetch/refresh NST skater and goalie datasets; compute scored outputs for skaters and goalies.
+  - Produces `data/skaters_scored.csv` and `data/goalies_scored.csv` (plus prior variants if configured).
 - `yahoo`: fetch or refresh Yahoo roster data.
 - `merge`: merge NST stats with Yahoo ownership using local normalization helpers, producing per‑player rows with `team_name` attribution.
 - `all`: convenience orchestration that runs `yahoo` and `nst` (and you can run `merge` after as needed).
@@ -21,22 +22,31 @@ Key outputs:
 - `data/merged_skaters.csv` (and analogous outputs for goalies, if applicable).
 - Data quality artifacts (see next section) such as unmatched players and merge reports.
 
-Notes on metrics:
+Notes on metrics and scoring:
 - Actuals tracked for both season‑to‑date (Szn) and last‑7 games (L7).
-- Metrics are per‑60 rates consistent with NST (`rate=y`).
+- Skaters are scored into percentile‑based T_scores per metric and window, with Offensive/Banger/Composite indexes.
+- Goalies are scored analogously on GA, SV%, and GAA per window, with a Goalie_Index per window.
+- Skater inputs use NST per‑60 rates (`rate=y`); goalie pulls use NST goalie tables with appropriate parameters.
 
 ## 2) Data Quality (DQ)
 
-Purpose: Ensure merges and distributions look correct; surface issues early.
+Purpose: Ensure merges and distributions look correct; surface issues early. See docs/DATA_QUALITY.md for detailed guidance and outputs, including prior-season diagnostics.
 
 Artifacts (examples from this repo):
 - `data/unmatched_in_merged.csv`: players present in inputs but not merged (naming/ID issues).
 - `data/dq_merge_report.json`: summary of merge events, counts, or anomalies.
-- Distribution diagnostics produced by the `dq` CLI subcommand under `data/dq/<timestamp>/...`.
+- Distribution diagnostics produced by the `dq` CLI subcommand:
+  - Current season under `data/dq/<timestamp>/...` (skaters and goalies; results combined in summary files).
+  - Prior season (if prior inputs exist) under `data/dq/prior/<same_timestamp>/...` as a separate sibling directory.
 
 How to run diagnostics:
 - `python -m app.cli dq --windows szn l7 --metrics G A PPP SOG FOW HIT BLK PIM --min-n 25 --out data/dq`
-  - Produces per‑window/per‑metric plots and CSVs for quick visual checks.
+  - Produces per‑window/per‑metric plots and CSVs for current season in `data/dq/<timestamp>/`.
+  - Goalie diagnostics (GA, SV%, GAA) read from `data/merged_goalies.csv` and prior from `data/merged_goalies_prior.csv`.
+  - If the following prior-season files exist, they are automatically processed and written to `data/dq/prior/<same_timestamp>/` (default window szn only):
+    - Skaters prior: `data/merged_skaters_prior.csv`
+    - Goalies prior: `data/merged_goalies_prior.csv`
+  - You can override the skater prior input path with `--prior-csv <path>`.
 
 DQ checks we perform (and suggested additions):
 - Merge coverage and identity
@@ -47,7 +57,7 @@ DQ checks we perform (and suggested additions):
   - For each metric (G, A, PPP, SOG, FOW, HIT, BLK, PIM) and window (Szn, L7), check:
     - Outliers (e.g., > 5 SD from mean in per‑60).
     - Heavy‑tail behavior and long‑term shifts week‑over‑week.
-    - Position‑conditioned distributions (F/D/G where applicable).
+    - Position‑conditioned distributions (F/D for skaters; G for goalies). Skater segmentation uses the `pos_group` column if present; otherwise it is derived from position with robust recognition of defense encodings (D, LD, RD, F/D, D/F, ...).
 - Ownership attribution
   - Verify that every owned player maps to exactly one `team_name` and that free agents are flagged consistently.
   - Flag cases where a player appears on multiple Yahoo rosters (stale export) or none (recent drop/add).
@@ -66,7 +76,7 @@ Common mismatch patterns and remediation:
 
 Suggested DQ workflow:
 1. After `merge`, inspect `data/unmatched_in_merged.csv` and `data/dq_merge_report.json`.
-2. Run `dq` distributions for Szn and L7 on key metrics; review plots in `data/dq/<timestamp>/`.
+2. Run `dq` distributions for Szn and L7 on key metrics; review plots in `data/dq/<timestamp>/` for current season and `data/dq/prior/<same_timestamp>/` for prior season when available.
 3. Apply registry updates or alias fixes, re‑run `merge`, and re‑run `dq` to confirm improvements.
 4. Keep a changelog of registry aliases and a dashboard of coverage metrics.
 

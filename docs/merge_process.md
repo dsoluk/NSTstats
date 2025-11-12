@@ -17,9 +17,11 @@ See also: [PROCESS.md](../PROCESS.md)
 
 ## Inputs
 - NST CSVs produced by the pipelines (see run_nst in app/orchestrator.py):
-  - data/skaters.csv (used to compute data/skaters_scored.csv)
-  - data/goalies.csv
-  - Optionally prior‑season variants (data/skaters_prior.csv, data/goalies_prior.csv) and scored skaters (data/skaters_scored_prior.csv)
+  - data/skaters_scored.csv (skaters already scored with percentile T_scores and indexes)
+  - data/goalies_scored.csv (goalies scored on GA, SV%, GAA with percentile T_scores and Goalie_Index)
+  - Optionally prior‑season variants:
+    - data/skaters_scored_prior.csv
+    - data/goalies_scored_prior.csv
 - Yahoo All Rosters export:
   - data/all_rosters.csv
 
@@ -33,7 +35,8 @@ See also: [PROCESS.md](../PROCESS.md)
      - yahoo_name, team_name (fantasy team)
 
 2) Load NST CSVs and normalize
-   - Skaters: input is data/skaters_scored.csv (produced by PlayerIndexPipeline); Goalies: input is data/goalies.csv.
+   - Skaters: input is data/skaters_scored.csv (produced by PlayerIndexPipeline)
+   - Goalies: input is data/goalies_scored.csv (produced by GoalieIndexPipeline)
    - Compute cname from Player, pos_code from Position (forcing G for goalies), team_code from Team.
    - If NST fields contain comma‑separated history (e.g., CHI, VAN), select the last token (VAN) as current.
 
@@ -45,8 +48,8 @@ See also: [PROCESS.md](../PROCESS.md)
 
 ## Outputs
 - data/merged_skaters.csv (from skaters_scored.csv)
-- data/merged_goalies.csv (from goalies.csv)
-- If prior season files exist (skaters_scored_prior.csv, goalies_prior.csv), prior merged outputs are produced as well.
+- data/merged_goalies.csv (from goalies_scored.csv)
+- If prior season files exist (skaters_scored_prior.csv, goalies_scored_prior.csv), prior merged outputs are produced as well.
 
 ## Notes
 - helpers/normalization.py centralizes normalization for names (accents/suffixes removed), teams (Team2TM.xlsx + aliases), and positions (mapped to {C,L,R,D,G}).

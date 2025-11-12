@@ -2,7 +2,7 @@ import argparse
 import os
 from nhl_schedule.build_lookup import build
 from app.orchestrator import run_all, run_yahoo, run_nst, run_merge
-from diagnostics.runner import run_dq as run_dq_diag
+from diagnostics.runner import run_dq as run_dq_diag, run_dq_prior as run_dq_prior_diag
 from application.forecast import forecast as run_forecast
 from application.compare import compare as run_compare
 from application.analyze import evaluate as run_analyze
@@ -59,12 +59,12 @@ def main():
     # sched.add_argument("--out-xlsx", dest="out_xlsx", default=DEFAULT_OUT_XLSX, help="Optional Excel output path")
 
     # Diagnostics command
-    dq = subparsers.add_parser("dq", help="Run distribution diagnostics on skaters_scored.csv")
+    dq = subparsers.add_parser("dq", help="Run distribution diagnostics on skaters and goalies")
     dq.add_argument("--windows", nargs="*", default=["szn"], help="Windows to analyze (e.g., szn l7)")
     dq.add_argument("--metrics", nargs="*", default=["G","A","PPP","SOG","FOW","HIT","BLK","PIM"], help="Metrics to analyze")
     dq.add_argument("--min-n", type=int, default=25, help="Minimum sample size per group")
     dq.add_argument("--out", default=None, help="Output directory root (default data/dq)")
-    dq.add_argument("--prior-csv", dest="prior_csv", default=None, help="Optional prior-season CSV to compare (e.g., data/skaters_scored_prior.csv)")
+    dq.add_argument("--prior-csv", dest="prior_csv", default=None, help="Optional prior-season CSV to compare (e.g., data/merged_skaters_prior.csv)")
 
     # Forecast command
     fc = subparsers.add_parser("forecast", help="Compute per-player stat forecasts for ROW, Next Week, and ROS")
@@ -120,14 +120,65 @@ def main():
         out = getattr(args, "out", None)
         out_dir = out if out else None
         prior_csv = getattr(args, "prior_csv", None)
+        # 1) Skaters (F/D)
         out_path = run_dq_diag(
             input_csv=os.path.join("data", "skaters_scored.csv"),
             out_dir=out_dir or os.path.join("data", "dq"),
             metrics=metrics,
             windows=windows,
             min_n=min_n,
-            prior_input_csv=prior_csv,
+            prior_input_csv=None,  # keep current season separate from prior outputs
+            group_by_position=True,
         )
+        # 2) Goalies (G) — append to same summary
+        try:
+            g_metrics = ["GA", "SV%", "GAA"]
+            g_csv = os.path.join("data", "merged_goalies.csv")
+            if os.path.exists(g_csv):
+                run_dq_diag(
+                    input_csv=g_csv,
+                    out_dir=out_dir or os.path.join("data", "dq"),
+                    metrics=g_metrics,
+                    windows=windows,
+                    min_n=min_n,
+                    prior_input_csv=None,
+                    group_by_position=False,
+                    segments=["G"],
+                    existing_root=out_path,
+                )
+        except Exception as _e:
+            print(f"[Warn] Goalie diagnostics skipped due to error: {_e}")
+        # 3) Prior season runs in a separate dq/prior/<ts> directory
+        try:
+            ts = os.path.basename(out_path.rstrip(os.sep))
+            # Prior Skaters
+            prior_skaters_path = prior_csv or os.path.join("data", "merged_skaters_prior.csv")
+            if os.path.exists(prior_skaters_path):
+                run_dq_prior_diag(
+                    input_csv=prior_skaters_path,
+                    out_dir=os.path.join("data", "dq", "prior"),
+                    metrics=metrics,
+                    windows=None,  # default to ["szn"] for prior
+                    min_n=min_n,
+                    group_by_position=True,
+                    segments=None,
+                    existing_ts=ts,
+                )
+            # Prior Goalies
+            prior_goalies_path = os.path.join("data", "merged_goalies_prior.csv")
+            if os.path.exists(prior_goalies_path):
+                run_dq_prior_diag(
+                    input_csv=prior_goalies_path,
+                    out_dir=os.path.join("data", "dq", "prior"),
+                    metrics=g_metrics,
+                    windows=None,  # default to ["szn"] for prior
+                    min_n=min_n,
+                    group_by_position=False,
+                    segments=["G"],
+                    existing_ts=ts,
+                )
+        except Exception as _e:
+            print(f"[Warn] Prior-season diagnostics skipped due to error: {_e}")
         print(f"Diagnostics written to: {out_path}")
     elif cmd == "forecast":
         current_week = getattr(args, "current_week")
