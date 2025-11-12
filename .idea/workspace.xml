@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="merge ly and debug, fixed Elias">
+    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="rerun prior to branch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_cache/nst_team_pk_NA_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_pk_NA_20252026.parquet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_cache/nst_team_pp_NA_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_pp_NA_20252026.parquet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_cache/nst_team_sva_B_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_sva_B_20252026.parquet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_Opponent_Ease_0_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_Opponent_Ease_0_100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_TeamWeek_SOS_0_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_TeamWeek_SOS_0_100.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/analyze.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/analyze.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/forecast.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/forecast.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/all_rosters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_rosters.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/compare.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/compare.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/eval/_plots/Bangers_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/Bangers_residuals_by_decile.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/eval/_plots/Bangers_scatter.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/Bangers_scatter.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/eval/_plots/Overall_residuals_by_decile.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/_plots/Overall_residuals_by_decile.png" afterDir="false" />
@@ -37,7 +37,17 @@
       <change beforePath="$PROJECT_DIR$/data/eval/metrics_by_position.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/metrics_by_position.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/eval/metrics_summary.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/metrics_summary.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/eval/season_total_eval.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/eval/season_total_eval.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/forecasts.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/forecasts.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lookup_table.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/lookup_table.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/merged_goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_goalies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/merged_goalies_prior.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_goalies_prior.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/merged_skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/merged_skaters_prior.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters_prior.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/skaters_scored.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/skaters_scored.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/unmatched_in_compare.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/unmatched_in_compare.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/unmatched_in_merged.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/unmatched_in_merged.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/PROCESS.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PROCESS.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +64,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="predictive-model" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -89,7 +99,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fcast&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -187,7 +197,8 @@
       <workItem from="1762189200978" duration="1668000" />
       <workItem from="1762197825056" duration="6874000" />
       <workItem from="1762431603508" duration="16669000" />
-      <workItem from="1762814585811" duration="4720000" />
+      <workItem from="1762814585811" duration="19301000" />
+      <workItem from="1762959373177" duration="1622000" />
     </task>
     <task id="LOCAL-00001" summary="with Pipelines">
       <option name="closed" value="true" />
@@ -293,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762394064715</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="rerun prior to branch">
+      <option name="closed" value="true" />
+      <created>1762869463023</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1762869463023</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,7 +332,8 @@
     <MESSAGE value="added ly and ag projections and compare to forecast" />
     <MESSAGE value="added analysis...note. no ly yet" />
     <MESSAGE value="changed score calcs" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed score calcs" />
+    <MESSAGE value="rerun prior to branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="rerun prior to branch" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NSTstats$main.coverage" NAME="main Coverage Results" MODIFIED="1761609118434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

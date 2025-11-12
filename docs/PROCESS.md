@@ -87,14 +87,16 @@ Default output:
 
 ## 4) Forecasting
 
-Purpose: Produce per‑player stat forecasts across requested horizons using a blend of Szn and L7 per‑60 rates and schedule context.
+Purpose: Produce per‑player stat forecasts across requested horizons using a blend of Szn and L7 per‑60 rates, optional Last‑Year context, and schedule.
+
+See also: docs/FORECAST.md
 
 CLI:
-- `python -m app.cli forecast --current-week <N> [--season-weight 0.8 --last7-weight 0.2 --sos-weight 0.3 --horizons row next ros --skaters-csv data/merged_skaters.csv --lookup-csv data/lookup_table.csv --out-csv data/forecasts.csv]`
+- `python -m app.cli forecast --current-week <N> [--season-weight 0.8 --last7-weight 0.2 --last-year-weight 0.0 --sos-weight 0.3 --horizons row next ros --skaters-csv data/merged_skaters.csv --lookup-csv data/lookup_table.csv --out-csv data/forecasts.csv]`
 
 Method (high level):
-- Blend rates: `blend = season_weight * Szn_per60 + last7_weight * L7_per60`.
-- Scale by expected opportunities from the schedule (games in each horizon).
+- Blend rates: `blend = season_weight * Szn_per60 + last7_weight * L7_per60 + last_year_weight * LY_per60` (weights are normalized over available values).
+- Convert to per‑game using TOI/GP (PP for PPP; all‑situations otherwise) and scale by schedule games for each horizon.
 - Apply schedule strength adjustment (`sos_weight`) if configured.
 
 Output:
@@ -103,6 +105,8 @@ Output:
 ## 5) Compare (Benchmarks & Projections)
 
 Purpose: Compare our forecasts to external projections (e.g., `NatePts.xlsx`) and optional last‑year rate benchmarks.
+
+See also: docs/COMPARE.md
 
 CLI:
 - `python -m app.cli compare --current-week <N> --forecast-csv data/forecasts.csv --lookup-csv data/lookup_table.csv --proj-xlsx NatePts.xlsx --proj-sheet NatePts --horizons row next ros --out-csv data/compare.csv [--all-players] [--ly-sit-s <csv>] [--ly-sit-pp <csv>]`
@@ -117,6 +121,8 @@ Output:
 ## 6) Analyze (Season‑Total Evaluation)
 
 Purpose: Evaluate season‑to‑date accuracy against projections and export summary metrics and Excel reports.
+
+See also: docs/ANALYZE.md
 
 CLI:
 - `python -m app.cli analyze --compare-csv data/compare.csv --out-dir data/eval`

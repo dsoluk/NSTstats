@@ -69,13 +69,17 @@ def main():
     # Forecast command
     fc = subparsers.add_parser("forecast", help="Compute per-player stat forecasts for ROW, Next Week, and ROS")
     fc.add_argument("--current-week", dest="current_week", type=int, required=True, help="Current fantasy week number (1..24)")
-    fc.add_argument("--season-weight", dest="season_weight", type=float, default=0.8, help="Weight for season-to-date rates (default 0.8)")
-    fc.add_argument("--last7-weight", dest="last7_weight", type=float, default=0.2, help="Weight for last-7 games rates (default 0.2)")
+    fc.add_argument("--season-weight", dest="season_weight", type=float, default=0.5, help="Weight for season-to-date rates (manual override; ignored if auto-weights is enabled)")
+    fc.add_argument("--last7-weight", dest="last7_weight", type=float, default=0.2, help="Weight for last-7 games rates (default 0.2; held constant when auto-weights is enabled)")
+    fc.add_argument("--last-year-weight", dest="last_year_weight", type=float, default=0.3, help="Weight for last-year per-60 based per-game expectation (manual override; ignored if auto-weights is enabled)")
     fc.add_argument("--sos-weight", dest="sos_weight", type=float, default=0.3, help="Schedule strength impact weight; positive means hard schedule lowers output (default 0.3)")
     fc.add_argument("--horizons", nargs="*", default=["row","next","ros"], help="Horizons to compute: row next ros")
     fc.add_argument("--skaters-csv", dest="skaters_csv", default=os.path.join("data","merged_skaters.csv"), help="Input merged skaters CSV (default data/merged_skaters.csv)")
     fc.add_argument("--lookup-csv", dest="lookup_csv", default=os.path.join("data","lookup_table.csv"), help="Schedule lookup CSV (default data/lookup_table.csv)")
     fc.add_argument("--out-csv", dest="out_csv", default=os.path.join("data","forecasts.csv"), help="Output CSV path (default data/forecasts.csv)")
+    fc.add_argument("--auto-weights", dest="auto_weights", action="store_true", default=True, help="Enable sliding-scale weights between last-year and season-to-date (default on)")
+    fc.add_argument("--no-auto-weights", dest="auto_weights", action="store_false", help="Disable sliding-scale weights; use manual season/last7/last-year weights")
+    fc.add_argument("--weeks-in-season", dest="weeks_in_season", type=int, default=24, help="Total number of fantasy weeks (default 24)")
 
     # Compare command
     cp = subparsers.add_parser("compare", help="Compare our forecasts vs NatePts projections and Last-Year benchmarks")
@@ -141,8 +145,11 @@ def main():
             current_week=current_week,
             season_weight=season_weight,
             last7_weight=last7_weight,
+            last_year_weight=getattr(args, "last_year_weight", 0.0),
             sos_weight=sos_weight,
             horizons=horizons,
+            auto_weights=getattr(args, "auto_weights", True),
+            weeks_in_season=getattr(args, "weeks_in_season", 24),
         )
         print(f"Forecasts written to: {out_path}")
     elif cmd == "schedule-lookup":

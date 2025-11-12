@@ -1,72 +1,74 @@
 Player,Team,team_name,Elig_Pos,szn_GP,szn_GA,szn_SV%,szn_GAA,l7_GP,l7_GA,l7_SV%,l7_GAA
-Jonathan Quick,NYR,,,3,4,0.941,1.35,1.0,0.0,1.0,0.0
-Jacob Markstrom,N.J,robert's Fabulous Team,G,6,21,0.871,3.95,3.0,12.0,0.886,4.0
-Jake Allen,N.J,,,8,19,0.904,2.48,4.0,12.0,0.876,3.0
-Darcy Kuemper,L.A,Bar Down Beauties,G,10,26,0.9,2.57,5.0,13.0,0.904,2.56
-Cam Talbot,DET,,,7,18,0.897,2.76,3.0,12.0,0.862,3.8
-Sergei Bobrovsky,FLA,Trocheck Backcheck Paycheque,G,11,30,0.887,2.74,6.0,20.0,0.862,3.33
-Calvin Pickard,EDM,Dan's Dazzling Team,G,5,17,0.85,3.42,2.0,7.0,0.857,3.5
-Scott Wedgewood,COL,Autodraft Anomalies,G,12,28,0.902,2.49,5.0,15.0,0.86,3.59
-Philipp Grubauer,SEA,,,2,3,0.897,2.12,,,,
-Petr Mrazek,ANA,,,2,11,0.831,5.52,1.0,5.0,0.881,5.02
-Frederik Andersen,CAR,Dan's Dazzling Team,G,8,24,0.892,2.97,4.0,14.0,0.891,3.47
+Jonathan Quick,NYR,,,4,5,0.95,1.26,2.0,1.0,0.982,0.5
+Jacob Markstrom,N.J,robert's Fabulous Team,G,7,24,0.872,3.82,4.0,15.0,0.884,3.77
+Jake Allen,N.J,,,9,20,0.914,2.29,3.0,9.0,0.9,2.94
+Darcy Kuemper,L.A,Bar Down Beauties,G,11,28,0.905,2.52,5.0,11.0,0.924,2.2
+Cam Talbot,DET,,,8,22,0.891,2.92,3.0,9.0,0.892,2.85
+Sergei Bobrovsky,FLA,Trocheck Backcheck Paycheque,G,12,32,0.893,2.68,5.0,14.0,0.891,2.77
+Calvin Pickard,EDM,Dan's Dazzling Team,G,6,22,0.836,4.0,2.0,8.0,0.814,5.31
+Scott Wedgewood,COL,Autodraft Anomalies,G,13,29,0.906,2.37,4.0,9.0,0.911,2.25
+Philipp Grubauer,SEA,,,3,6,0.875,2.49,1.0,3.0,0.842,3.02
+Petr Mrazek,ANA,,,3,14,0.865,4.56,1.0,3.0,0.923,2.79
+Frederik Andersen,CAR,Dan's Dazzling Team,G,8,24,0.892,2.97,3.0,10.0,0.875,3.39
 Anton Forsberg,L.A,,,5,18,0.878,3.54,2.0,6.0,0.872,3.01
 Jordan Binnington,STL,robert's Fabulous Team,G,11,32,0.859,3.34,4.0,13.0,0.833,3.71
-John Gibson,DET,,,8,23,0.89,3.03,4.0,11.0,0.905,2.78
-Andrei Vasilevskiy,T.B,Autodraft Anomalies,G,10,27,0.901,2.7,5.0,10.0,0.92,2.0
-Matt Murray,SEA,,,2,4,0.889,3.24,2.0,4.0,0.889,3.24
+John Gibson,DET,,,9,27,0.882,3.15,4.0,11.0,0.896,2.78
+Andrei Vasilevskiy,T.B,Autodraft Anomalies,G,11,29,0.905,2.64,6.0,12.0,0.923,2.0
+Matt Murray,SEA,,,3,6,0.902,2.72,2.0,3.0,0.893,2.41
 Joonas Korpisalo,BOS,,,7,23,0.885,3.24,3.0,7.0,0.928,2.25
-Anthony Stolarz,TOR,The Epstein Islanders,G,11,34,0.895,3.11,5.0,16.0,0.895,3.23
-Connor Hellebuyck,WPG,Dan's Dazzling Team,G,10,23,0.921,2.31,5.0,12.0,0.915,2.42
-Linus Ullmark,OTT,Bros before Ahos,G,12,41,0.863,3.36,6.0,18.0,0.873,2.92
-Juuse Saros,NSH,Sask Squatches,G,13,38,0.902,2.88,5.0,16.0,0.889,3.21
-Tristan Jarry,PIT,,,7,18,0.911,2.6,3.0,8.0,0.893,2.72
-Eric Comrie,WPG,,,3,7,0.929,2.33,2.0,5.0,0.921,2.5
-Thatcher Demko,VAN,Hughes your daddy,G,9,23,0.911,2.57,4.0,12.0,0.889,2.97
-Alex Nedeljkovic,S.J,,,6,20,0.895,3.29,2.0,4.0,0.937,1.92
-Vitek Vanecek,UTA,,,4,10,0.885,2.52,2.0,6.0,0.875,3.04
-Jonas Johansson,T.B,,,4,11,0.916,2.78,2.0,5.0,0.925,2.5
-Elvis Merzlikins,CBJ,,,6,18,0.917,2.98,3.0,10.0,0.906,3.26
-Ilya Sorokin,NYI,Jagrbombs,G,9,30,0.879,3.33,4.0,11.0,0.887,2.65
-Igor Shesterkin,NYR,Jagrbombs,G,11,25,0.915,2.26,6.0,20.0,0.879,3.29
-Mackenzie Blackwood,COL,Bros before Ahos,G,1,3,0.87,2.91,1.0,3.0,0.87,2.91
+Anthony Stolarz,TOR,The Epstein Islanders,G,12,38,0.889,3.35,5.0,15.0,0.894,3.4
+Connor Hellebuyck,WPG,Dan's Dazzling Team,G,11,25,0.922,2.3,5.0,13.0,0.909,2.64
+Linus Ullmark,OTT,Bros before Ahos,G,13,43,0.866,3.24,5.0,18.0,0.859,3.44
+Juuse Saros,NSH,Sask Squatches,G,14,43,0.892,3.11,5.0,17.0,0.864,3.62
+Tristan Jarry,PIT,,,7,18,0.911,2.6,2.0,5.0,0.894,2.55
+Eric Comrie,WPG,,,4,11,0.908,2.75,2.0,6.0,0.882,3.0
+Thatcher Demko,VAN,Hughes your daddy,G;IR+,9,23,0.911,2.57,3.0,9.0,0.886,2.99
+Alex Nedeljkovic,S.J,,,7,21,0.906,2.96,3.0,5.0,0.948,1.62
+Vitek Vanecek,UTA,,,5,14,0.875,2.85,3.0,10.0,0.863,3.42
+Jonas Johansson,T.B,,,4,11,0.916,2.78,1.0,2.0,0.926,2.0
+Elvis Merzlikins,CBJ,,,7,22,0.909,3.14,3.0,10.0,0.9,3.38
+Ilya Sorokin,NYI,Jagrbombs,G,11,32,0.898,2.9,4.0,6.0,0.949,1.46
+Igor Shesterkin,NYR,Jagrbombs,G,13,32,0.909,2.46,5.0,14.0,0.896,2.79
+Mackenzie Blackwood,COL,Bros before Ahos,G,2,7,0.875,3.42,2.0,7.0,0.875,3.42
 Dan Vladar,PHI,,,9,19,0.917,2.18,4.0,10.0,0.896,2.66
-Sam Montembeault,MTL,,,7,26,0.855,3.67,3.0,13.0,0.852,4.19
+Sam Montembeault,MTL,,,8,28,0.864,3.46,4.0,15.0,0.87,3.66
 Adin Hill,VGK,Boats and Ahos,G;IR+,5,10,0.888,2.73,,,,
-Karel Vejmelka,UTA,P Diddlers,G,10,26,0.894,2.6,5.0,15.0,0.876,3.02
-Joey Daccord,SEA,P Diddlers,G,11,30,0.9,2.83,6.0,15.0,0.908,2.6
-Casey DeSmith,DAL,,,4,13,0.876,3.15,3.0,8.0,0.899,2.53
+Karel Vejmelka,UTA,P Diddlers,G,11,32,0.881,2.91,4.0,15.0,0.831,3.78
+Joey Daccord,SEA,P Diddlers,G;IR;IR+,11,30,0.9,2.83,5.0,15.0,0.885,3.15
+Casey DeSmith,DAL,,,5,14,0.897,2.73,3.0,7.0,0.918,2.22
 Charlie Lindgren,WSH,,,5,18,0.878,3.59,3.0,14.0,0.841,4.6
-Alex Lyon,BUF,,,10,28,0.915,2.8,4.0,13.0,0.9,3.18
-Filip Gustavsson,MIN,Hughes your daddy,G,12,38,0.896,3.19,6.0,20.0,0.891,3.34
-David Rittich,NYI,,,4,12,0.902,3.01,3.0,10.0,0.889,3.34
-Stuart Skinner,EDM,The Epstein Islanders,G,10,26,0.899,2.54,5.0,15.0,0.891,2.92
-Jake Oettinger,DAL,Autodraft Anomalies,G,10,29,0.899,2.89,4.0,10.0,0.908,2.49
+Alex Lyon,BUF,,,11,32,0.912,2.91,4.0,14.0,0.891,3.44
+Filip Gustavsson,MIN,Hughes your daddy,G,12,38,0.896,3.19,5.0,15.0,0.895,2.98
+David Rittich,NYI,,,5,17,0.886,3.41,3.0,13.0,0.841,4.34
+Stuart Skinner,EDM,The Epstein Islanders,G,12,34,0.883,2.91,6.0,20.0,0.863,3.54
+Jake Oettinger,DAL,Autodraft Anomalies,G,11,33,0.893,2.99,4.0,12.0,0.882,2.99
 Ukko-Pekka Luukkonen,BUF,,,3,9,0.877,2.91,3.0,9.0,0.877,2.91
-Cayden Primeau,TOR,,,3,13,0.838,4.3,2.0,9.0,0.82,4.45
-Daniil Tarasov,FLA,,,3,8,0.886,2.64,1.0,2.0,0.882,1.85
-Jeremy Swayman,BOS,Jagrbombs,G,9,28,0.897,3.1,4.0,13.0,0.89,3.2
-Logan Thompson,WSH,Bar Down Beauties,G,9,13,0.938,1.45,4.0,5.0,0.95,1.26
-Lukas Dostal,ANA,Trocheck Backcheck Paycheque,G,11,31,0.904,2.81,6.0,17.0,0.903,2.8
-Kevin Lankinen,VAN,,,6,22,0.88,3.62,3.0,11.0,0.878,3.65
-Joel Hofer,STL,,,7,22,0.864,4.08,4.0,10.0,0.905,2.89
-Justus Annunen,NSH,,,3,11,0.861,3.7,2.0,6.0,0.887,3.02
-Akira Schmid,VGK,,,7,15,0.908,2.31,4.0,7.0,0.928,1.83
-Samuel Ersson,PHI,,,4,13,0.876,3.08,2.0,5.0,0.904,2.31
-Spencer Knight,CHI,robert's Fabulous Team,G,10,26,0.919,2.56,5.0,16.0,0.901,3.17
-Trent Miner,COL,,,2,4,0.909,2.12,2.0,4.0,0.909,2.12
+Cayden Primeau,TOR,,,3,13,0.838,4.3,1.0,6.0,0.75,6.0
+Daniil Tarasov,FLA,,,4,10,0.891,2.5,2.0,4.0,0.897,1.95
+Jeremy Swayman,BOS,Jagrbombs,G,10,31,0.899,3.09,4.0,14.0,0.881,3.44
+Logan Thompson,WSH,Bar Down Beauties,G,10,16,0.93,1.61,4.0,7.0,0.917,1.78
+Lukas Dostal,ANA,Trocheck Backcheck Paycheque,G,12,32,0.908,2.66,6.0,14.0,0.916,2.31
+Kevin Lankinen,VAN,,,8,30,0.879,3.71,4.0,15.0,0.885,3.68
+Joel Hofer,STL,,,8,26,0.865,4.05,4.0,9.0,0.918,2.58
+Justus Annunen,NSH,,,5,17,0.841,3.98,3.0,9.0,0.83,3.89
+Akira Schmid,VGK,,,8,19,0.901,2.51,3.0,7.0,0.909,2.28
+Samuel Ersson,PHI,,,5,16,0.866,3.03,2.0,5.0,0.875,2.34
+Spencer Knight,CHI,robert's Fabulous Team,G,11,26,0.926,2.33,5.0,14.0,0.915,2.78
+Trent Miner,COL,,,2,4,0.909,2.12,1.0,4.0,0.833,3.88
 Colten Ellis,BUF,,,1,2,0.935,2.0,,,,
-Pyotr Kochetkov,CAR,Boats and Ahos,G,1,0,1.0,0.0,1.0,0.0,1.0,0.0
-Arturs Silovs,PIT,Sask Squatches,G,8,22,0.912,2.7,4.0,13.0,0.906,3.14
-Dustin Wolf,CGY,Sask Squatches,G,13,38,0.895,3.19,6.0,14.0,0.918,2.66
+Pyotr Kochetkov,CAR,Boats and Ahos,G,2,3,0.938,1.51,2.0,3.0,0.938,1.51
+Arturs Silovs,PIT,Sask Squatches,G,9,23,0.916,2.49,4.0,10.0,0.917,2.41
+Dustin Wolf,CGY,Sask Squatches,G,14,42,0.892,3.26,5.0,13.0,0.904,3.04
 Nico Daws,N.J,,,1,1,0.968,1.0,,,,
-Yaroslav Askarov,S.J,,,8,31,0.876,3.88,5.0,14.0,0.903,2.79
-Devin Cooley,CGY,,,4,6,0.933,1.98,2.0,3.0,0.94,1.74
-Leevi Meriläinen,OTT,,,2,9,0.833,4.57,1.0,2.0,0.929,2.0
-Jakub Dobes,MTL,Boats and Ahos,G,7,16,0.92,2.25,4.0,11.0,0.906,2.71
-Jesper Wallstedt,MIN,,,3,11,0.863,3.45,1.0,6.0,0.76,5.68
-Carl Lindbom,VGK,,,3,10,0.873,3.36,3.0,10.0,0.873,3.36
+Yaroslav Askarov,S.J,,,9,32,0.889,3.56,4.0,8.0,0.934,2.01
+Devin Cooley,CGY,,,5,7,0.935,1.75,3.0,4.0,0.941,1.49
+Leevi Meriläinen,OTT,,,3,11,0.871,3.71,2.0,4.0,0.932,2.0
+Jakub Dobes,MTL,Boats and Ahos,G,7,16,0.92,2.25,3.0,10.0,0.875,3.29
+Jesper Wallstedt,MIN,,,5,13,0.909,2.51,2.0,2.0,0.968,1.0
+Carl Lindbom,VGK,P Diddlers,G,4,13,0.869,3.29,4.0,13.0,0.869,3.29
 Aleksei Kolosov,PHI,,,2,2,0.929,1.62,2.0,2.0,0.929,1.62
-Arvid Soderblom,CHI,,,4,12,0.885,3.04,2.0,5.0,0.889,2.6
-Jet Greaves,CBJ,,,7,20,0.907,2.89,4.0,14.0,0.894,3.53
-Brandon Bussi,CAR,,,4,9,0.916,2.25,2.0,5.0,0.919,2.54
+Arvid Soderblom,CHI,,,5,13,0.913,2.63,2.0,4.0,0.943,2.05
+Jet Greaves,CBJ,,,8,25,0.895,3.15,4.0,14.0,0.889,3.51
+Brandon Bussi,CAR,,,5,13,0.898,2.6,2.0,6.0,0.875,3.0
+Sergei Murashov,PIT,,,1,3,0.889,3.09,1.0,3.0,0.889,3.09
+Dennis Hildeby,TOR,,,2,6,0.91,3.96,2.0,6.0,0.91,3.96
