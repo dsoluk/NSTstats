@@ -1,6 +1,6 @@
 import argparse
 import os
-from nhl_schedule.build_lookup import build
+import sys
 from app.orchestrator import run_all, run_yahoo, run_nst, run_merge
 from diagnostics.runner import run_dq as run_dq_diag, run_dq_prior as run_dq_prior_diag
 from application.forecast import forecast as run_forecast
@@ -20,6 +20,15 @@ def cmd_schedule_refresh(argv=None):
                    help="Output CSV path (default: data/lookup_table.csv)")
     p.add_argument("--refresh-cache", action="store_true",
                    help="Bypass cache and refetch all team tables (proxied to nhl_schedule)")
+    p.add_argument(
+        "--nhl-schedule-path",
+        dest="nhl_schedule_path",
+        default=None,
+        help=(
+            "Optional path to your local NHLschedule project. If provided (or if the NHL_SCHEDULE_PATH env var is set),\n"
+            "we will import nhl_schedule from there so recent local edits are used without reinstalling."
+        ),
+    )
 
     args = p.parse_args(argv)
 
@@ -28,6 +37,21 @@ def cmd_schedule_refresh(argv=None):
     out_dir = os.path.dirname(out_csv)
     if out_dir:
         os.makedirs(out_dir, exist_ok=True)
+
+    # If user passed a local path (or env var is set), insert it into sys.path for this invocation
+    nhl_schedule_path = args.nhl_schedule_path or os.environ.get("NHL_SCHEDULE_PATH")
+    if nhl_schedule_path and os.path.isdir(nhl_schedule_path):
+        if nhl_schedule_path not in sys.path:
+            sys.path.insert(0, nhl_schedule_path)
+
+    # Import here so that sys.path injection (if any) takes effect
+    try:
+        from nhl_schedule.build_lookup import build
+    except Exception as e:
+        raise RuntimeError(
+            "Failed to import nhl_schedule. If you are developing NHLschedule in a separate project, "
+            "either install it (pip install -e <path>) or pass --nhl-schedule-path / set NHL_SCHEDULE_PATH."
+        ) from e
 
     # Use NHLschedule defaults for schedule path and sheet/table by passing None
     out_path = build(

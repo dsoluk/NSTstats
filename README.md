@@ -19,6 +19,20 @@ python -m app.cli merge
 # Build or refresh schedule lookup
 python -m app.cli --schedule-lookup
 
+# If you are actively editing the NHLschedule project in a different repo and want those edits to be used immediately
+# (without reinstalling), either use an editable install or provide the path at runtime:
+
+# Option A: one-time editable install into your active venv
+pip install -e C:\Users\soluk\PycharmProjects\NHLschedule
+
+# Option B: point NSTstats to your local NHLschedule path just for this run
+python -m app.cli --schedule-lookup --nhl-schedule-path C:\Users\soluk\PycharmProjects\NHLschedule
+
+# Option C: set an environment variable so you don't need to pass the flag each time
+# (PowerShell)
+$env:NHL_SCHEDULE_PATH = "C:\\Users\\soluk\\PycharmProjects\\NHLschedule"
+python -m app.cli --schedule-lookup
+
 # Forecasts
 python -m app.cli forecast --current-week 12
 
