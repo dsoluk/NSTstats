@@ -35,7 +35,7 @@ def run_yahoo():
 
 
 
-def run_nst():
+def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False):
     try:
         from helpers.seasons import previous_season_label
         params, url, weights, std_columns, ppp_columns, goalie_columns = load_default_params()
@@ -130,6 +130,18 @@ def run_nst():
             if len(from_season) == 8 and from_season.isdigit() and from_season == thru_season:
                 prior_label = previous_season_label(from_season)
                 if prior_label and prior_label != from_season:
+                    # Check for existing prior-season scored outputs
+                    prior_sk_scored_path = os.path.join(out_dir, "skaters_scored_prior.csv")
+                    prior_g_scored_path = os.path.join(out_dir, "goalies_scored_prior.csv")
+
+                    if skip_prior:
+                        print("[Info] Skipping prior-season fetch/scoring due to --skip-prior flag.")
+                        return
+
+                    if (not refresh_prior) and os.path.exists(prior_sk_scored_path) and os.path.exists(prior_g_scored_path):
+                        print("[Info] Prior-season scored CSVs already exist; skipping re-fetch. Use --refresh-prior to force.")
+                        return
+
                     prior_params = dict(params)
                     prior_params["fromseason"] = prior_label
                     prior_params["thruseason"] = prior_label
@@ -149,7 +161,7 @@ def run_nst():
                     # Score prior skaters
                     prior_indexer = PlayerIndexPipeline(prior_sk_df)
                     prior_scored = prior_indexer.run()
-                    prior_scored_path = os.path.join(out_dir, "skaters_scored_prior.csv")
+                    prior_scored_path = prior_sk_scored_path
                     prior_scored.to_csv(prior_scored_path, index=False)
                     print(f"Saved prior-season skaters to {prior_sk_path} and scored to {prior_scored_path}")
                     # Score prior goalies
@@ -157,7 +169,7 @@ def run_nst():
                         from pipelines import GoalieIndexPipeline as _GIP
                         prior_g_indexer = _GIP(prior_g_df)
                         prior_g_scored = prior_g_indexer.run()
-                        prior_g_scored_path = os.path.join(out_dir, "goalies_scored_prior.csv")
+                        # use previously defined scored path
                         prior_g_scored.to_csv(prior_g_scored_path, index=False)
                         print(f"Saved prior-season goalies to {prior_g_path} and scored to {prior_g_scored_path}")
                     except Exception as _gge:

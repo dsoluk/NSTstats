@@ -72,7 +72,9 @@ def main():
 
     subparsers.add_parser("all", help="Run Yahoo and NST pipelines")
     subparsers.add_parser("yahoo", help="Run Yahoo Fantasy helper")
-    subparsers.add_parser("nst", help="Run NST pipelines (skaters, goalies)")
+    nst = subparsers.add_parser("nst", help="Run NST pipelines (skaters, goalies)")
+    nst.add_argument("--refresh-prior", dest="refresh_prior", action="store_true", help="Force re-fetch/re-score prior-season data even if cached CSVs exist")
+    nst.add_argument("--skip-prior", dest="skip_prior", action="store_true", help="Skip prior-season fetch/scoring regardless of cache state")
     subparsers.add_parser("merge", help="Merge NST with Yahoo ownership to CSVs")
 
     # Schedule lookup command (nhl_schedule integration)
@@ -134,7 +136,10 @@ def main():
     if cmd == "yahoo":
         run_yahoo()
     elif cmd == "nst":
-        run_nst()
+        run_nst(
+            refresh_prior=getattr(args, "refresh_prior", False),
+            skip_prior=getattr(args, "skip_prior", False),
+        )
     elif cmd == "merge":
         run_merge()
     elif cmd == "dq":

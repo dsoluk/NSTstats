@@ -13,7 +13,10 @@ Inputs and sources:
 
 Process (via CLI):
 - `nst`: fetch/refresh NST skater and goalie datasets; compute scored outputs for skaters and goalies.
-  - Produces `data/skaters_scored.csv` and `data/goalies_scored.csv` (plus prior variants if configured).
+  - Produces `data/skaters_scored.csv` and `data/goalies_scored.csv`.
+  - Prior-season caching: if both `data/skaters_scored_prior.csv` and `data/goalies_scored_prior.csv` already exist, the prior-season fetch/scoring is skipped by default since last-year stats do not change during the current season.
+    - Use `python -m app.cli nst --refresh-prior` to force a re-fetch/re-score of the prior season.
+    - Use `python -m app.cli nst --skip-prior` to explicitly skip the prior-season step regardless of cache state.
 - `yahoo`: fetch or refresh Yahoo roster data.
 - `merge`: merge NST stats with Yahoo ownership using local normalization helpers, producing per‑player rows with `team_name` attribution.
 - `all`: convenience orchestration that runs `yahoo` and `nst` (and you can run `merge` after as needed).
@@ -22,7 +25,7 @@ Key outputs:
 - `data/merged_skaters.csv` (and analogous outputs for goalies, if applicable).
 - Data quality artifacts (see next section) such as unmatched players and merge reports.
 
-Notes on metrics and scoring:
+Notes on metrics and scoring (see also [SCORING.md](./SCORING.md)):
 - Actuals tracked for both season‑to‑date (Szn) and last‑7 games (L7).
 - Skaters are scored into percentile‑based T_scores per metric and window, with Offensive/Banger/Composite indexes.
 - Goalies are scored analogously on GA, SV%, and GAA per window, with a Goalie_Index per window.
@@ -97,7 +100,7 @@ Default output:
 
 ## 4) Forecasting
 
-Purpose: Produce per‑player stat forecasts across requested horizons using a blend of Szn and L7 per‑60 rates, optional Last‑Year context, and schedule.
+Purpose: Produce per‑player stat forecasts across requested horizons using a blend of Szn and L7 per‑60 rates, optional Last‑Year context, and schedule. For how scoring outputs feed forecasting, see [SCORING.md](./SCORING.md).
 
 See also: docs/FORECAST.md
 

@@ -4,15 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="goalies working">
+    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="better NHLschedule integration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_cache/nst_team_pk_NA_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_pk_NA_20252026.parquet" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_cache/nst_team_pp_NA_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_pp_NA_20252026.parquet" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_cache/nst_team_sva_B_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_sva_B_20252026.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/corr_pk.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/corr_pk.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/corr_pp.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/corr_pp.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/corr_sva.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/corr_sva.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_plots/normality_Opponent_Ease_0_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_Opponent_Ease_0_100.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_plots/normality_TeamWeek_SOS_0_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_TeamWeek_SOS_0_100.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_ga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_ga60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_hdca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_hdca60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_sa60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_sa60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_sca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_sca60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_xga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_xga60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_ga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_ga60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_hdca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_hdca60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_sa60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_sa60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_sca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_sca60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_xga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_xga60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_ga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_ga60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_hdca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_hdca60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_sa60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_sa60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_sca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_sca60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_xga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_xga60.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/orchestrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/orchestrator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/all_rosters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_rosters.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/goalies_scored.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies_scored.csv" afterDir="false" />
@@ -21,7 +39,12 @@
       <change beforePath="$PROJECT_DIR$/data/merged_goalies_prior.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_goalies_prior.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/merged_skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/merged_skaters_prior.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters_prior.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/opponent_ease_lookup.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/opponent_ease_lookup.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/skaters_scored.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/skaters_scored.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/unmatched_in_merged.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/unmatched_in_merged.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/PROCESS.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PROCESS.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/merge_process.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/merge_process.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers/transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers/transform.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +196,8 @@
       <workItem from="1762431603508" duration="16669000" />
       <workItem from="1762814585811" duration="19301000" />
       <workItem from="1762959373177" duration="10156000" />
-      <workItem from="1763125229493" duration="1083000" />
+      <workItem from="1763125229493" duration="1213000" />
+      <workItem from="1763385301306" duration="6735000" />
     </task>
     <task id="LOCAL-00001" summary="with Pipelines">
       <option name="closed" value="true" />
@@ -303,7 +327,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762991792096</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="better NHLschedule integration">
+      <option name="closed" value="true" />
+      <created>1763126408661</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1763126408661</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,7 +358,8 @@
     <MESSAGE value="rerun prior to branch" />
     <MESSAGE value="fcast improvements and pre-adding goalie dq" />
     <MESSAGE value="goalies working" />
-    <option name="LAST_COMMIT_MESSAGE" value="goalies working" />
+    <MESSAGE value="better NHLschedule integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="better NHLschedule integration" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NSTstats$main.coverage" NAME="main Coverage Results" MODIFIED="1761609118434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

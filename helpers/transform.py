@@ -39,7 +39,7 @@ def basic_cleansing(souptable):
         else:
             df[col] = pd.to_numeric(df[col], errors="coerce", downcast="integer")
 
-    print(f"Col dtypes {df.dtypes}")
+    # print(f"Col dtypes {df.dtypes}")
     return df
 
 

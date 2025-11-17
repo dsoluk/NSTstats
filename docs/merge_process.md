@@ -1,8 +1,8 @@
 # Merge process overview (registry removed)
 
-This document reflects the simplified merge without the player registry. Normalization (names, teams, positions) now lives in helpers/normalization.py. For the end‑to‑end process and environment variables, see PROCESS.md.
+This document reflects the simplified merge without the player registry. Normalization (names, teams, positions) now lives in helpers/normalization.py. For the end‑to‑end process and environment variables, see PROCESS.md. For how players are scored and how those scores flow into merge/forecasting, see SCORING.md.
 
-See also: [PROCESS.md](../PROCESS.md)
+See also: [PROCESS.md](../PROCESS.md), [SCORING.md](../docs/SCORING.md)
 
 - Primary implementation: app/merger.py
 - Orchestration entry points: app/orchestrator.py
@@ -22,6 +22,10 @@ See also: [PROCESS.md](../PROCESS.md)
   - Optionally prior‑season variants:
     - data/skaters_scored_prior.csv
     - data/goalies_scored_prior.csv
+  - Prior-season caching behavior:
+    - By default, if both prior scored files exist, the NST step will NOT re-fetch/re-score prior season.
+    - Force refresh with: `python -m app.cli nst --refresh-prior`
+    - Explicitly skip with: `python -m app.cli nst --skip-prior`
 - Yahoo All Rosters export:
   - data/all_rosters.csv
 
