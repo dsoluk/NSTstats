@@ -7,6 +7,11 @@ High-level documentation for the project now lives under the `docs/` folder.
   - Expanded Data Quality (DQ) section with checks, common mismatches, remediation, and a suggested DQ workflow
   - Mermaid flowchart of the pipeline (renders in PyCharm)
 
+## Junie Pro Guidelines
+
+- Project-specific guidance: [docs/JUNIE_GUIDELINES.md](docs/JUNIE_GUIDELINES.md) — adds NSTstats preferences on top of the org-wide guide.
+- Canonical org-wide guide: [.junie/guidelines.md](.junie/guidelines.md) — the single source of truth used by Junie across projects.
+
 ## Quick start
 
 Common CLI commands (see details in `docs/PROCESS.md`):
