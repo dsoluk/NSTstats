@@ -77,7 +77,7 @@ CAR,3,4,3,"WPG, MTL, WPG, NYR",50%,"Good [24,68,24,84]",0,1,0,72,CAR3
 CAR,4,4,1,"TOR, OTT, NSH, PHI",59%,"Average [19,87,57,72]",2,4,0,68,CAR4
 CAR,5,3,2,"COL, CHI, MIN",49%,"Good [94,20,33]",0,1,0,65,CAR5
 CAR,6,3,0,"STL, S.J, WPG",40%,"Good [55,50,24]",0,1,0,62,CAR6
-CAR,7,4,1,"CHI, BUF, DAL, VAN",35%,"Good [20,36,73,10]",4,3,4,58,CAR7
+CAR,7,4,1,"CHI, BUF, DAL, VAN",35%,"Good [20,36,73,10]",4,3,3,58,CAR7
 CAR,8,3,1,"T.B, FLA, CBJ",57%,"Average [50,81,33]",0,3,0,55,CAR8
 CAR,9,3,0,"NSH, MIN, UTA",55%,"Average [57,33,75]",0,1,0,52,CAR9
 CAR,10,3,2,"BUF, DET, L.A",38%,"Good [36,41,50]",0,1,0,49,CAR10
@@ -149,7 +149,7 @@ CHI,3,2,0,"T.B, L.A",50%,"Good [50,50]",0,1,0,73,CHI3
 CHI,4,3,0,"OTT, WPG, EDM",52%,"Average [87,24,44]",0,2,0,70,CHI4
 CHI,5,4,3,"SEA, VAN, CAR, DET",50%,"Good [74,10,73,41]",0,4,0,66,CHI5
 CHI,6,2,1,"N.J, TOR",19%,"Excellent [50,19]",0,0,0,64,CHI6
-CHI,7,4,1,"CAR, SEA, BUF, CGY",66%,"Average [73,74,36,80]",2,1,4,60,CHI7
+CHI,7,4,1,"CAR, SEA, BUF, CGY",66%,"Average [73,74,36,80]",2,1,3,60,CHI7
 CHI,8,3,1,"MIN, NSH, ANA",36%,"Good [33,57,17]",0,0,0,57,CHI8
 CHI,9,4,0,"VGK, L.A, L.A, ANA",50%,"Good [83,50,50,17]",2,4,0,53,CHI9
 CHI,10,3,2,"NYR, STL, DET",60%,"Average [84,55,41]",2,1,0,50,CHI10
@@ -173,7 +173,7 @@ COL,3,3,1,"DAL, WSH, PIT",63%,"Average [73,75,42]",2,2,0,74,COL3
 COL,4,4,2,"BUF, TOR, STL, NYI",29%,"Excellent [36,19,55,7]",4,2,0,70,COL4
 COL,5,2,1,"CAR, VAN",42%,"Good [73,10]",0,2,0,68,COL5
 COL,6,4,1,"EDM, SEA, EDM, NYR",62%,"Average [44,74,44,84]",2,2,0,64,COL6
-COL,7,4,0,"MTL, WPG, TOR, DET",38%,"Good [68,24,19,41]",2,3,3,60,COL7
+COL,7,4,0,"MTL, WPG, TOR, DET",38%,"Good [68,24,19,41]",2,3,2,60,COL7
 COL,8,3,0,"WSH, TOR, PIT",45%,"Good [75,19,42]",0,1,0,57,COL8
 COL,9,4,1,"N.J, DET, FLA, WSH",66%,"Average [50,41,81,75]",2,3,0,53,COL9
 COL,10,3,0,"CBJ, OTT, VGK",68%,"Average [33,87,83]",0,1,0,50,COL10
@@ -197,7 +197,7 @@ DAL,3,4,0,"COL, L.A, CBJ, NSH",61%,"Average [94,50,33,57]",2,1,0,73,DAL3
 DAL,4,3,0,"WSH, T.B, FLA",78%,"Difficult [75,50,81]",0,2,0,70,DAL4
 DAL,5,4,0,"EDM, ANA, NSH, SEA",48%,"Good [44,17,57,74]",2,1,0,66,DAL5
 DAL,6,3,0,"OTT, MTL, PHI",76%,"Difficult [87,68,72]",0,2,0,63,DAL6
-DAL,7,3,0,"NYI, VAN, CAR",30%,"Excellent [7,10,73]",0,2,3,60,DAL7
+DAL,7,3,0,"NYI, VAN, CAR",30%,"Excellent [7,10,73]",0,2,2,60,DAL7
 DAL,8,4,2,"EDM, SEA, UTA, OTT",70%,"Average [44,74,75,87]",2,2,0,56,DAL8
 DAL,9,4,2,"NYR, N.J, S.J, PIT",63%,"Average [84,50,50,42]",2,2,0,52,DAL9
 DAL,10,3,0,"WPG, MIN, FLA",46%,"Good [24,33,81]",0,2,0,49,DAL10
@@ -221,7 +221,7 @@ DET,3,3,1,"BUF, NYI, STL",33%,"Good [36,7,55]",2,2,0,73,DET3
 DET,4,4,2,"STL, L.A, ANA, S.J",36%,"Good [55,50,17,50]",2,4,0,69,DET4
 DET,5,3,1,"VGK, NYR, CHI",62%,"Average [83,84,20]",0,1,0,66,DET5
 DET,6,3,1,"ANA, BUF, NYR",46%,"Good [17,36,84]",2,1,0,63,DET6
-DET,7,3,0,"SEA, NYI, COL",58%,"Average [74,7,94]",0,0,3,60,DET7
+DET,7,3,0,"SEA, NYI, COL",58%,"Average [74,7,94]",0,0,2,60,DET7
 DET,8,4,0,"N.J, NSH, T.B, BOS",36%,"Good [50,57,50,14]",2,2,0,56,DET8
 DET,9,3,0,"BOS, COL, SEA",61%,"Average [14,94,74]",0,2,0,53,DET9
 DET,10,4,2,"VAN, CAR, EDM, CHI",37%,"Good [10,73,44,20]",2,4,0,49,DET10
@@ -365,7 +365,7 @@ N.J,3,4,2,"TOR, MIN, S.J, CGY",44%,"Good [19,33,50,80]",2,1,0,73,N.J3
 N.J,4,4,1,"CGY, S.J, L.A, ANA",48%,"Good [80,50,50,17]",2,4,0,69,N.J4
 N.J,5,2,0,"MTL, PIT",55%,"Average [68,42]",0,0,0,67,N.J5
 N.J,6,3,2,"NYI, CHI, WSH",34%,"Good [7,20,75]",0,2,0,64,N.J6
-N.J,7,3,0,"T.B, FLA, PHI",76%,"Difficult [50,81,72]",0,3,3,61,N.J7
+N.J,7,3,0,"T.B, FLA, PHI",76%,"Difficult [50,81,72]",0,3,2,61,N.J7
 N.J,8,4,0,"DET, STL, BUF, PHI",51%,"Average [41,55,36,72]",2,1,0,57,N.J8
 N.J,9,4,3,"COL, DAL, VGK, BOS",66%,"Average [94,73,83,14]",2,1,0,53,N.J9
 N.J,10,4,0,"OTT, T.B, ANA, VAN",38%,"Good [87,50,17,10]",2,1,0,49,N.J10
@@ -413,7 +413,7 @@ NYI,3,3,0,"S.J, DET, PHI",56%,"Average [50,41,72]",0,1,0,74,NYI3
 NYI,4,4,2,"BOS, CBJ, WSH, COL",54%,"Average [14,33,75,94]",2,3,0,70,NYI4
 NYI,5,3,1,"BOS, MIN, NYR",44%,"Good [14,33,84]",2,1,0,67,NYI5
 NYI,6,4,3,"N.J, VGK, UTA, CGY",79%,"Difficult [50,83,75,80]",2,4,0,63,NYI6
-NYI,7,4,0,"DAL, DET, STL, SEA",61%,"Average [73,41,55,74]",2,2,4,59,NYI7
+NYI,7,4,0,"DAL, DET, STL, SEA",61%,"Average [73,41,55,74]",2,2,3,59,NYI7
 NYI,8,3,1,"BOS, PHI, WSH",54%,"Average [14,72,75]",0,0,0,56,NYI8
 NYI,9,4,0,"T.B, CGY, T.B, FLA",80%,"Difficult [50,80,50,81]",2,2,0,52,NYI9
 NYI,10,3,0,"VGK, ANA, T.B",50%,"Good [83,17,50]",0,0,0,49,NYI10
@@ -437,7 +437,7 @@ NYR,3,3,1,"MIN, S.J, CAR",53%,"Average [33,50,73]",0,1,0,72,NYR3
 NYR,4,3,0,"VAN, EDM, SEA",43%,"Good [10,44,74]",0,3,0,69,NYR4
 NYR,5,3,1,"CBJ, DET, NYI",27%,"Excellent [33,41,7]",2,1,0,66,NYR5
 NYR,6,4,3,"NSH, T.B, COL, DET",64%,"Average [57,50,94,41]",2,2,0,62,NYR6
-NYR,7,3,0,"VGK, CGY, UTA",79%,"Difficult [83,80,75]",0,3,3,59,NYR7
+NYR,7,3,0,"VGK, CGY, UTA",79%,"Difficult [83,80,75]",0,3,2,59,NYR7
 NYR,8,4,0,"STL, CBJ, BOS, T.B",34%,"Good [55,33,14,50]",2,2,0,55,NYR8
 NYR,9,4,0,"DAL, OTT, CGY, VGK",81%,"Difficult [73,87,80,83]",2,1,0,51,NYR9
 NYR,10,2,1,"CHI, MTL",44%,"Good [20,68]",0,1,0,49,NYR10
@@ -533,7 +533,7 @@ S.J,3,4,1,"NYI, NYR, N.J, MIN",41%,"Good [7,84,50,33]",2,4,0,73,S.J3
 S.J,4,4,1,"L.A, N.J, CGY, DET",60%,"Average [50,50,80,41]",2,0,0,69,S.J4
 S.J,5,3,2,"SEA, WPG, FLA",60%,"Average [74,24,81]",2,1,0,66,S.J5
 S.J,6,3,0,"MIN, CAR, SEA",60%,"Average [33,73,74]",0,3,0,63,S.J6
-S.J,7,4,0,"UTA, L.A, OTT, BOS",59%,"Average [75,50,87,14]",2,0,4,59,S.J7
+S.J,7,4,0,"UTA, L.A, OTT, BOS",59%,"Average [75,50,87,14]",2,0,3,59,S.J7
 S.J,8,3,0,"CGY, VAN, VGK",58%,"Average [80,10,83]",2,2,0,56,S.J8
 S.J,9,4,3,"UTA, WSH, DAL, CBJ",64%,"Average [75,75,73,33]",0,2,0,52,S.J9
 S.J,10,3,0,"PHI, TOR, PIT",44%,"Good [72,19,42]",0,3,0,49,S.J10
@@ -557,7 +557,7 @@ SEA,3,4,1,"PHI, WSH, WPG, EDM",54%,"Average [72,75,24,44]",2,3,0,73,SEA3
 SEA,4,2,0,"MTL, NYR",76%,"Difficult [68,84]",0,0,0,71,SEA4
 SEA,5,4,2,"CHI, S.J, STL, DAL",49%,"Good [20,50,55,73]",2,2,0,67,SEA5
 SEA,6,3,0,"COL, WPG, S.J",59%,"Average [94,24,50]",0,0,0,64,SEA6
-SEA,7,4,0,"DET, CHI, PIT, NYI",28%,"Excellent [41,20,42,7]",2,4,4,60,SEA7
+SEA,7,4,0,"DET, CHI, PIT, NYI",28%,"Excellent [41,20,42,7]",2,4,3,60,SEA7
 SEA,8,2,0,"DAL, EDM",58%,"Average [73,44]",0,0,0,58,SEA8
 SEA,9,2,0,"EDM, DET",42%,"Good [44,41]",0,1,0,56,SEA9
 SEA,10,4,3,"MIN, L.A, UTA, BUF",48%,"Good [33,50,75,36]",0,1,0,52,SEA10
@@ -581,7 +581,7 @@ STL,3,3,0,"L.A, UTA, DET",58%,"Average [50,75,41]",0,1,0,74,STL3
 STL,4,4,1,"PIT, DET, VAN, COL",47%,"Good [42,41,10,94]",2,2,0,70,STL4
 STL,5,4,2,"EDM, WSH, BUF, SEA",57%,"Average [44,75,36,74]",2,2,0,66,STL5
 STL,6,3,1,"CAR, PHI, VGK",76%,"Difficult [73,72,83]",2,0,0,63,STL6
-STL,7,3,0,"TOR, PHI, NYI",33%,"Good [19,72,7]",0,3,3,60,STL7
+STL,7,3,0,"TOR, PHI, NYI",33%,"Good [19,72,7]",0,3,2,60,STL7
 STL,8,4,0,"NYR, N.J, OTT, UTA",82%,"Difficult [84,50,87,75]",2,2,0,56,STL8
 STL,9,4,1,"ANA, BOS, OTT, MTL",46%,"Good [17,14,87,68]",2,3,0,52,STL9
 STL,10,3,1,"BOS, NSH, CHI",30%,"Excellent [14,57,20]",2,1,0,49,STL10
@@ -605,7 +605,7 @@ T.B,3,3,0,"CHI, ANA, VGK",40%,"Good [20,17,83]",2,0,0,73,T.B3
 T.B,4,3,1,"NSH, DAL, UTA",68%,"Average [57,73,75]",0,2,0,70,T.B4
 T.B,5,3,0,"CGY, VGK, WSH",79%,"Difficult [80,83,75]",0,2,0,67,T.B5
 T.B,6,3,2,"NYR, FLA, VAN",58%,"Average [84,81,10]",2,1,0,64,T.B6
-T.B,7,3,0,"N.J, EDM, WSH",60%,"Average [50,44,75]",0,1,3,61,T.B7
+T.B,7,3,0,"N.J, EDM, WSH",60%,"Average [50,44,75]",0,1,2,61,T.B7
 T.B,8,4,0,"PHI, CAR, DET, NYR",68%,"Average [72,73,41,84]",2,2,0,57,T.B8
 T.B,9,3,0,"NYI, PIT, NYI",19%,"Excellent [7,42,7]",0,1,0,54,T.B9
 T.B,10,4,1,"TOR, MTL, N.J, NYI",31%,"Good [19,68,50,7]",2,4,0,50,T.B10
@@ -629,7 +629,7 @@ TOR,3,3,1,"N.J, BUF, BUF",36%,"Good [50,36,36]",2,1,0,73,TOR3
 TOR,4,3,1,"CAR, COL, PHI",80%,"Difficult [73,94,72]",2,2,0,70,TOR4
 TOR,5,4,2,"PIT, UTA, BOS, CBJ",41%,"Good [42,75,14,33]",2,0,0,66,TOR5
 TOR,6,3,0,"BOS, L.A, CHI",17%,"Excellent [14,50,20]",0,2,0,63,TOR6
-TOR,7,3,0,"STL, COL, MTL",72%,"Difficult [55,94,68]",0,1,3,60,TOR7
+TOR,7,3,0,"STL, COL, MTL",72%,"Difficult [55,94,68]",0,1,2,60,TOR7
 TOR,8,3,0,"COL, WSH, PIT",70%,"Average [94,75,42]",2,3,0,57,TOR8
 TOR,9,3,0,"FLA, CBJ, MTL",61%,"Average [81,33,68]",0,2,0,54,TOR9
 TOR,10,3,1,"T.B, S.J, EDM",44%,"Good [50,50,44]",0,0,0,51,TOR10
@@ -653,7 +653,7 @@ UTA,3,4,0,"CGY, STL, MIN, WPG",48%,"Good [80,55,33,24]",2,3,0,72,UTA3
 UTA,4,2,1,"EDM, T.B",44%,"Good [44,50]",0,1,0,70,UTA4
 UTA,5,4,1,"BUF, TOR, MTL, OTT",52%,"Average [36,19,68,87]",4,4,0,66,UTA5
 UTA,6,2,2,"BUF, NYI",22%,"Excellent [36,7]",0,0,0,64,UTA6
-UTA,7,4,0,"ANA, S.J, VGK, NYR",61%,"Average [17,50,83,84]",2,2,3,60,UTA7
+UTA,7,4,0,"ANA, S.J, VGK, NYR",61%,"Average [17,50,83,84]",2,2,2,60,UTA7
 UTA,8,4,0,"VGK, MTL, DAL, STL",70%,"Average [83,68,73,55]",2,2,0,56,UTA8
 UTA,9,4,3,"S.J, ANA, VAN, CAR",33%,"Good [50,17,10,73]",2,4,0,52,UTA9
 UTA,10,4,3,"L.A, FLA, SEA, PIT",66%,"Average [50,81,74,42]",0,1,0,48,UTA10
@@ -701,7 +701,7 @@ VGK,3,3,1,"CBJ, FLA, T.B",57%,"Average [33,81,50]",2,2,0,73,VGK3
 VGK,4,2,1,"CBJ, CGY",56%,"Average [33,80]",0,1,0,71,VGK4
 VGK,5,3,0,"DET, T.B, ANA",29%,"Excellent [41,50,17]",0,0,0,68,VGK5
 VGK,6,4,2,"FLA, NYI, STL, MIN",44%,"Good [81,7,55,33]",2,2,0,64,VGK6
-VGK,7,3,0,"NYR, UTA, ANA",59%,"Average [84,75,17]",0,2,3,61,VGK7
+VGK,7,3,0,"NYR, UTA, ANA",59%,"Average [84,75,17]",0,2,2,61,VGK7
 VGK,8,4,0,"UTA, OTT, MTL, S.J",77%,"Difficult [75,87,68,50]",2,1,0,57,VGK8
 VGK,9,3,1,"CHI, N.J, NYR",52%,"Average [20,50,84]",0,2,0,54,VGK9
 VGK,10,3,0,"NYI, PHI, COL",58%,"Average [7,72,94]",0,3,0,51,VGK10
@@ -725,7 +725,7 @@ WPG,3,4,2,"CAR, SEA, CAR, UTA",74%,"Difficult [73,74,73,75]",2,1,0,73,WPG3
 WPG,4,3,0,"MIN, CHI, PIT",32%,"Good [33,20,42]",0,1,0,70,WPG4
 WPG,5,3,1,"L.A, S.J, ANA",17%,"Excellent [50,50,17]",0,3,0,67,WPG5
 WPG,6,3,0,"VAN, SEA, CAR",52%,"Average [10,74,73]",0,3,0,64,WPG6
-WPG,7,3,1,"COL, CBJ, MIN",53%,"Average [94,33,33]",0,0,3,61,WPG7
+WPG,7,3,1,"COL, CBJ, MIN",53%,"Average [94,33,33]",0,0,2,61,WPG7
 WPG,8,3,0,"WSH, CBJ, NSH",55%,"Average [75,33,57]",2,3,0,58,WPG8
 WPG,9,4,3,"BUF, MTL, BUF, EDM",46%,"Good [36,68,36,44]",2,3,0,54,WPG9
 WPG,10,3,0,"DAL, BOS, WSH",54%,"Average [73,14,75]",0,0,0,51,WPG10
