@@ -28,8 +28,8 @@ team_id,team_key,team_name,player_id,name,positions,selected_position
 2,465.l.83511.t.2,Bar Down Beauties,4351,Brad Marchand,LW;RW;Util,RW
 2,465.l.83511.t.2,Bar Down Beauties,5992,Josh Morrissey,D;Util,D
 2,465.l.83511.t.2,Bar Down Beauties,5370,Dougie Hamilton,D;Util,D
-2,465.l.83511.t.2,Bar Down Beauties,5251,Brenden Dillon,D;Util,D
 2,465.l.83511.t.2,Bar Down Beauties,9270,Simon Nemec,D;Util,D
+2,465.l.83511.t.2,Bar Down Beauties,4472,Drew Doughty,D;Util,D
 2,465.l.83511.t.2,Bar Down Beauties,6038,Tyler Bertuzzi,LW;RW;Util,Util
 2,465.l.83511.t.2,Bar Down Beauties,8303,Connor McMichael,C;LW;Util,BN
 2,465.l.83511.t.2,Bar Down Beauties,7134,Tage Thompson,C;RW;Util,BN
@@ -40,27 +40,26 @@ team_id,team_key,team_name,player_id,name,positions,selected_position
 2,465.l.83511.t.2,Bar Down Beauties,8155,Logan Thompson,G,G
 2,465.l.83511.t.2,Bar Down Beauties,5336,Darcy Kuemper,G,G
 2,465.l.83511.t.2,Bar Down Beauties,7174,Adam Fox,D;Util;IR;IR+,IR
-2,465.l.83511.t.2,Bar Down Beauties,4472,Drew Doughty,D;Util;IR;IR+,IR
 2,465.l.83511.t.2,Bar Down Beauties,5462,Jean-Gabriel Pageau,C;RW;Util;IR+,IR+
-3,465.l.83511.t.3,Autodraft Anomalies,7528,Nick Suzuki,C;Util,C
+3,465.l.83511.t.3,Autodraft Anomalies,8652,Anton Lundell,C;Util,C
+3,465.l.83511.t.3,Autodraft Anomalies,4681,John Tavares,C;Util,C
 3,465.l.83511.t.3,Autodraft Anomalies,5363,Gabriel Landeskog,LW;Util,LW
-3,465.l.83511.t.3,Autodraft Anomalies,7961,Jack McBain,C;LW;Util,LW
-3,465.l.83511.t.3,Autodraft Anomalies,8898,Wyatt Johnston,C;RW;Util,RW
+3,465.l.83511.t.3,Autodraft Anomalies,8683,Emil Heineman,LW;RW;Util,LW
 3,465.l.83511.t.3,Autodraft Anomalies,5376,J.T. Miller,C;RW;Util,RW
+3,465.l.83511.t.3,Autodraft Anomalies,7900,Andrei Svechnikov,LW;RW;Util,RW
 3,465.l.83511.t.3,Autodraft Anomalies,6750,Zach Werenski,D;Util,D
 3,465.l.83511.t.3,Autodraft Anomalies,8284,Moritz Seider,D;Util,D
 3,465.l.83511.t.3,Autodraft Anomalies,6643,Darren Raddysh,D;Util,D
 3,465.l.83511.t.3,Autodraft Anomalies,5769,Shayne Gostisbehere,D;Util,D
-3,465.l.83511.t.3,Autodraft Anomalies,6936,Matt Roy,D;Util,Util
-3,465.l.83511.t.3,Autodraft Anomalies,8652,Anton Lundell,C;Util,BN
-3,465.l.83511.t.3,Autodraft Anomalies,8683,Emil Heineman,LW;RW;Util,BN
-3,465.l.83511.t.3,Autodraft Anomalies,4681,John Tavares,C;Util,BN
-3,465.l.83511.t.3,Autodraft Anomalies,7900,Andrei Svechnikov,LW;RW;Util,BN
+3,465.l.83511.t.3,Autodraft Anomalies,5989,Valeri Nichushkin,LW;RW;Util,Util
 3,465.l.83511.t.3,Autodraft Anomalies,6377,Kevin Fiala,LW;Util,BN
-3,465.l.83511.t.3,Autodraft Anomalies,5989,Valeri Nichushkin,LW;RW;Util,BN
+3,465.l.83511.t.3,Autodraft Anomalies,6936,Matt Roy,D;Util,BN
+3,465.l.83511.t.3,Autodraft Anomalies,8898,Wyatt Johnston,C;RW;Util,BN
+3,465.l.83511.t.3,Autodraft Anomalies,7961,Jack McBain,C;LW;Util,BN
+3,465.l.83511.t.3,Autodraft Anomalies,7528,Nick Suzuki,C;Util,BN
 3,465.l.83511.t.3,Autodraft Anomalies,7498,Neal Pionk,D;Util,BN
-3,465.l.83511.t.3,Autodraft Anomalies,7541,Jake Oettinger,G,G
-3,465.l.83511.t.3,Autodraft Anomalies,5699,Andrei Vasilevskiy,G,BN
+3,465.l.83511.t.3,Autodraft Anomalies,7541,Jake Oettinger,G,BN
+3,465.l.83511.t.3,Autodraft Anomalies,5699,Andrei Vasilevskiy,G;IR+,BN
 3,465.l.83511.t.3,Autodraft Anomalies,4682,Victor Hedman,D;Util;IR;IR+,IR
 3,465.l.83511.t.3,Autodraft Anomalies,6794,Jeremy Lauzon,D;Util;IR;IR+,IR
 3,465.l.83511.t.3,Autodraft Anomalies,5057,Scott Wedgewood,G;IR+,IR+
@@ -86,24 +85,24 @@ team_id,team_key,team_name,player_id,name,positions,selected_position
 4,465.l.83511.t.4,Trocheck Backcheck Paycheque,7983,Lukas Dostal,G;IR;IR+,IR
 4,465.l.83511.t.4,Trocheck Backcheck Paycheque,8296,Thomas Harley,D;Util;IR+,IR+
 5,465.l.83511.t.5,Hughes your daddy,30024,Frank Nazar,C;Util,C
-5,465.l.83511.t.5,Hughes your daddy,4263,Mikael Backlund,C;Util,C
+5,465.l.83511.t.5,Hughes your daddy,7535,Robert Thomas,C;Util,C
 5,465.l.83511.t.5,Hughes your daddy,8392,Dmitri Voronkov,LW;Util,LW
 5,465.l.83511.t.5,Hughes your daddy,8654,Dylan Holloway,C;LW;Util,LW
 5,465.l.83511.t.5,Hughes your daddy,8293,Cole Caufield,LW;RW;Util,RW
 5,465.l.83511.t.5,Hughes your daddy,6890,Troy Terry,RW;Util,RW
 5,465.l.83511.t.5,Hughes your daddy,6005,Shea Theodore,D;Util,D
-5,465.l.83511.t.5,Hughes your daddy,7124,Jakob Chychrun,D;Util,D
 5,465.l.83511.t.5,Hughes your daddy,6798,Vince Dunn,D;Util,D
 5,465.l.83511.t.5,Hughes your daddy,5254,Dmitry Orlov,D;Util,D
-5,465.l.83511.t.5,Hughes your daddy,5985,Sean Monahan,C;Util;IR+,Util
+5,465.l.83511.t.5,Hughes your daddy,8659,Braden Schneider,D;Util,D
+5,465.l.83511.t.5,Hughes your daddy,5985,Sean Monahan,C;Util,Util
+5,465.l.83511.t.5,Hughes your daddy,7124,Jakob Chychrun,D;Util,BN
 5,465.l.83511.t.5,Hughes your daddy,8369,Aliaksei Protas,LW;RW;Util,BN
 5,465.l.83511.t.5,Hughes your daddy,6752,Mikko Rantanen,LW;RW;Util,BN
 5,465.l.83511.t.5,Hughes your daddy,9269,Juraj Slafkovský,LW;RW;Util,BN
 5,465.l.83511.t.5,Hughes your daddy,4519,Jamie Benn,C;LW;Util,BN
 5,465.l.83511.t.5,Hughes your daddy,5697,Tomas Hertl,C;LW;Util,BN
-5,465.l.83511.t.5,Hughes your daddy,7535,Robert Thomas,C;Util,BN
 5,465.l.83511.t.5,Hughes your daddy,8651,Yaroslav Askarov,G,G
-5,465.l.83511.t.5,Hughes your daddy,7163,Filip Gustavsson,G,BN
+5,465.l.83511.t.5,Hughes your daddy,7163,Filip Gustavsson,G,G
 5,465.l.83511.t.5,Hughes your daddy,8279,Jack Hughes,C;LW;Util;IR;IR+,IR
 5,465.l.83511.t.5,Hughes your daddy,6760,Thomas Chabot,D;Util;IR;IR+,IR
 6,465.l.83511.t.6,Sask Squatches,6743,Connor McDavid,C;Util,C
@@ -126,28 +125,28 @@ team_id,team_key,team_name,player_id,name,positions,selected_position
 6,465.l.83511.t.6,Sask Squatches,6078,Juuse Saros,G,G
 6,465.l.83511.t.6,Sask Squatches,8433,Arturs Silovs,G,BN
 6,465.l.83511.t.6,Sask Squatches,8656,Kaiden Guhle,D;Util;IR;IR+,IR+
-7,465.l.83511.t.7,Boats and Ahos,7516,Nico Hischier,C;Util,C
-7,465.l.83511.t.7,Boats and Ahos,30547,Will Smith,C;RW;Util,C
-7,465.l.83511.t.7,Boats and Ahos,31759,Cutter Gauthier,LW;Util,LW
-7,465.l.83511.t.7,Boats and Ahos,7525,Owen Tippett,LW;RW;Util,LW
-7,465.l.83511.t.7,Boats and Ahos,30550,Ryan Leonard,RW;Util,RW
+7,465.l.83511.t.7,Boats and Ahos,6762,Joel Eriksson Ek,C;Util,C
+7,465.l.83511.t.7,Boats and Ahos,6777,Sebastian Aho,C;Util,C
+7,465.l.83511.t.7,Boats and Ahos,7902,Brady Tkachuk,C;LW;Util,LW
+7,465.l.83511.t.7,Boats and Ahos,30227,Matthew Knies,LW;Util,LW
 7,465.l.83511.t.7,Boats and Ahos,32790,Ivan Demidov,RW;Util,RW
+7,465.l.83511.t.7,Boats and Ahos,5053,Bryan Rust,RW;Util,RW
 7,465.l.83511.t.7,Boats and Ahos,32764,Artyom Levshunov,D;Util,D
 7,465.l.83511.t.7,Boats and Ahos,32766,Zeev Buium,D;Util,D
 7,465.l.83511.t.7,Boats and Ahos,8645,Jake Sanderson,D;Util,D
 7,465.l.83511.t.7,Boats and Ahos,7117,Mikhail Sergachev,D;Util,D
 7,465.l.83511.t.7,Boats and Ahos,4786,Ryan O'Reilly,C;Util,Util
-7,465.l.83511.t.7,Boats and Ahos,6762,Joel Eriksson Ek,C;Util,BN
-7,465.l.83511.t.7,Boats and Ahos,7902,Brady Tkachuk,C;LW;Util,BN
-7,465.l.83511.t.7,Boats and Ahos,30227,Matthew Knies,LW;Util,BN
-7,465.l.83511.t.7,Boats and Ahos,5053,Bryan Rust,RW;Util,BN
-7,465.l.83511.t.7,Boats and Ahos,6777,Sebastian Aho,C;Util,BN
+7,465.l.83511.t.7,Boats and Ahos,7516,Nico Hischier,C;Util,BN
+7,465.l.83511.t.7,Boats and Ahos,30547,Will Smith,C;RW;Util,BN
+7,465.l.83511.t.7,Boats and Ahos,31759,Cutter Gauthier,LW;Util,BN
+7,465.l.83511.t.7,Boats and Ahos,7525,Owen Tippett,LW;RW;Util,BN
+7,465.l.83511.t.7,Boats and Ahos,30550,Ryan Leonard,RW;Util,BN
 7,465.l.83511.t.7,Boats and Ahos,8794,Devin Cooley,G,G
-7,465.l.83511.t.7,Boats and Ahos,7084,Charlie Lindgren,G,G
-7,465.l.83511.t.7,Boats and Ahos,8314,Pyotr Kochetkov,G;IR+,BN
-7,465.l.83511.t.7,Boats and Ahos,5405,Boone Jenner,C;LW;Util;IR;IR+,IR
+7,465.l.83511.t.7,Boats and Ahos,8314,Pyotr Kochetkov,G;IR+,G
+7,465.l.83511.t.7,Boats and Ahos,7084,Charlie Lindgren,G,BN
+7,465.l.83511.t.7,Boats and Ahos,6448,Brayden Point,C;Util;IR;IR+,IR
 7,465.l.83511.t.7,Boats and Ahos,6818,Adin Hill,G;IR;IR+,IR
-7,465.l.83511.t.7,Boats and Ahos,6448,Brayden Point,C;Util;IR;IR+,IR+
+7,465.l.83511.t.7,Boats and Ahos,5405,Boone Jenner,C;LW;Util;IR;IR+,IR+
 8,465.l.83511.t.8,Bros before Ahos,7109,Auston Matthews,C;Util,C
 8,465.l.83511.t.8,Bros before Ahos,4990,Brock Nelson,C;Util,C
 8,465.l.83511.t.8,Bros before Ahos,5362,Ryan Nugent-Hopkins,C;LW;Util,LW
@@ -170,7 +169,7 @@ team_id,team_key,team_name,player_id,name,positions,selected_position
 8,465.l.83511.t.8,Bros before Ahos,4686,Oliver Ekman-Larsson,D;Util,IR+
 9,465.l.83511.t.9,Dan's Dazzling Team,3737,Sidney Crosby,C;Util,C
 9,465.l.83511.t.9,Dan's Dazzling Team,30546,Adam Fantilli,C;Util,C
-9,465.l.83511.t.9,Dan's Dazzling Team,6062,Carter Verhaeghe,LW;Util;IR+,LW
+9,465.l.83511.t.9,Dan's Dazzling Team,6062,Carter Verhaeghe,LW;Util,LW
 9,465.l.83511.t.9,Dan's Dazzling Team,6375,Nikolaj Ehlers,LW;RW;Util,LW
 9,465.l.83511.t.9,Dan's Dazzling Team,7147,Alex DeBrincat,LW;RW;Util,RW
 9,465.l.83511.t.9,Dan's Dazzling Team,7332,Mathieu Olivier,RW;Util;IR;IR+,RW
@@ -232,7 +231,7 @@ team_id,team_key,team_name,player_id,name,positions,selected_position
 12,465.l.83511.t.12,The Epstein Islanders,8310,Shane Pinto,C;Util,C
 12,465.l.83511.t.12,The Epstein Islanders,5691,Filip Forsberg,LW;Util,LW
 12,465.l.83511.t.12,The Epstein Islanders,5364,Jonathan Huberdeau,C;LW;Util,LW
-12,465.l.83511.t.12,The Epstein Islanders,7947,Kirill Marchenko,RW;Util;IR+,RW
+12,465.l.83511.t.12,The Epstein Islanders,7947,Kirill Marchenko,RW;Util,RW
 12,465.l.83511.t.12,The Epstein Islanders,7264,Brandon Hagel,LW;RW;Util,RW
 12,465.l.83511.t.12,The Epstein Islanders,5263,Ben Chiarot,D;Util,D
 12,465.l.83511.t.12,The Epstein Islanders,5983,Seth Jones,D;Util,D

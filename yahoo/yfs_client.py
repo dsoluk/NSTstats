@@ -72,6 +72,51 @@ class YahooFantasyClient:
         path = f"/team/{team_key}/roster"
         return self.get(path)
 
+    def get_team_roster_week(self, team_key: str, week: int) -> Dict[str, Any]:
+        # Fetch the roster for a specific team for a given week
+        # Endpoint pattern: /team/{team_key}/roster;week=N
+        path = f"/team/{team_key}/roster;week={week}"
+        return self.get(path)
+
+    def get_team_roster_date(self, team_key: str, date_iso: str) -> Dict[str, Any]:
+        # Fetch the roster for a specific team for a given calendar date (YYYY-MM-DD)
+        # Endpoint pattern: /team/{team_key}/roster;date=YYYY-MM-DD
+        path = f"/team/{team_key}/roster;date={date_iso}"
+        return self.get(path)
+
+    def get_league_settings(self, league_key: str) -> Dict[str, Any]:
+        # Endpoint: /league/{league_key}/settings
+        path = f"/league/{league_key}/settings"
+        return self.get(path)
+
+    def get_league_scoreboard(self, league_key: str, week: Optional[int] = None) -> Dict[str, Any]:
+        # Endpoint: /league/{league_key}/scoreboard[;week=N]
+        suffix = f";week={week}" if week else ""
+        path = f"/league/{league_key}/scoreboard{suffix}"
+        return self.get(path)
+
+    def get_team_week_stats(self, team_key: str, week: int) -> Dict[str, Any]:
+        # Endpoint: /team/{team_key}/stats;type=week;week=N
+        path = f"/team/{team_key}/stats;type=week;week={week}"
+        return self.get(path)
+
+    def get_players_week_stats(self, player_keys: list[str], week: int) -> Dict[str, Any]:
+        """Batch-fetch weekly stats for up to 25 players.
+        Endpoint: /players;player_keys=K1,K2,.../stats;type=week;week=N
+        """
+        # Yahoo caps player_keys per request (commonly 25)
+        keys = ",".join(player_keys)
+        path = f"/players;player_keys={keys}/stats;type=week;week={week}"
+        return self.get(path)
+
+    def get_players_date_stats(self, player_keys: list[str], date_iso: str) -> Dict[str, Any]:
+        """Batch-fetch single-date stats for up to 25 players.
+        Endpoint: /players;player_keys=K1,K2,.../stats;type=date;date=YYYY-MM-DD
+        """
+        keys = ",".join(player_keys)
+        path = f"/players;player_keys={keys}/stats;type=date;date={date_iso}"
+        return self.get(path)
+
 
 # Convenience function to extract the numeric game_key from the Yahoo response
 # Works with either Yahoo JSON (preferred) or XML fallback stored under _raw_xml.
@@ -353,4 +398,193 @@ def parse_roster_xml(raw_xml: str) -> Dict[str, Any]:
             })
     result['players'] = players
     result['count'] = len(players)
+    return result
+
+
+def _text(el) -> str:
+    try:
+        return (el.text or "").strip()
+    except Exception:
+        return ""
+
+
+def parse_settings_xml(raw_xml: str) -> Dict[str, Any]:
+    """Parse league settings to extract stat categories mapping.
+    Returns: { 'stat_categories': [{id:int, name:str, display:str, position_type:str}],
+               'current_week': Optional[int] }
+    """
+    out: Dict[str, Any] = {"stat_categories": [], "current_week": None}
+    try:
+        root = ET.fromstring(raw_xml)
+        # Find current_week
+        for elem in root.iter():
+            tag = elem.tag.split('}', 1)[-1] if isinstance(elem.tag, str) else elem.tag
+            if tag == 'current_week':
+                try:
+                    out['current_week'] = int(_text(elem) or '0') or None
+                except Exception:
+                    pass
+        # Find stat categories
+        # Use BeautifulSoup to be flexible
+        soup = _make_soup(raw_xml)
+        if soup:
+            stats_parent = None
+            # common nesting: league > settings > stat_categories > stats > stat
+            for cand in soup.find_all():
+                nm = getattr(cand, 'name', '') or ''
+                if nm.endswith('stat_categories'):
+                    stats_parent = cand
+                    break
+            if stats_parent is None:
+                stats_parent = soup
+            stats = []
+            for st in stats_parent.find_all(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('stat')):
+                sid = st.find(lambda t: hasattr(t, 'name') and str(t.name).endswith('stat_id'))
+                name = st.find(lambda t: hasattr(t, 'name') and str(t.name).endswith('name'))
+                display = st.find(lambda t: hasattr(t, 'name') and str(t.name).endswith('display_name'))
+                pos = st.find(lambda t: hasattr(t, 'name') and str(t.name).endswith('position_type'))
+                try:
+                    sid_int = int(sid.text.strip()) if sid and sid.text else None
+                except Exception:
+                    sid_int = None
+                if sid_int is None:
+                    continue
+                stats.append({
+                    'id': sid_int,
+                    'name': (name.text.strip() if name and name.text else ''),
+                    'display': (display.text.strip() if display and display.text else ''),
+                    'position_type': (pos.text.strip() if pos and pos.text else ''),
+                })
+            out['stat_categories'] = stats
+    except Exception:
+        pass
+    return out
+
+
+def parse_scoreboard_xml(raw_xml: str, week: Optional[int] = None) -> Dict[str, Any]:
+    """Parse league scoreboard XML into structured rows.
+    Returns: { 'week': int|None, 'matchups': [ { 'matchup_index': int,
+               'teams': [ { 'team_key': str, 'team_name': str, 'stats': {stat_id: value} } ] } ] }
+    """
+    data: Dict[str, Any] = {"week": week, "matchups": []}
+    soup = _make_soup(raw_xml)
+    if not soup:
+        return data
+    # Determine week if present
+    wk_tag = soup.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('week'))
+    if wk_tag and (not week):
+        try:
+            data['week'] = int(wk_tag.text.strip())
+        except Exception:
+            pass
+    # Iterate matchups
+    matchups = soup.find_all(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('matchup'))
+    m_index = 0
+    for m in matchups:
+        m_index += 1
+        teams_block = m.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('teams')) or m
+        team_nodes = teams_block.find_all(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('team'))
+        team_list = []
+        for tn in team_nodes:
+            tkey = tn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('team_key'))
+            tname = tn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('name'))
+            stats_block = tn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('team_stats')) or tn
+            stats_pairs = {}
+            for st in stats_block.find_all(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('stat')):
+                sid = st.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('stat_id'))
+                val = st.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('value'))
+                try:
+                    sid_int = int(sid.text.strip()) if sid and sid.text else None
+                except Exception:
+                    sid_int = None
+                if sid_int is None:
+                    continue
+                # Value can be float, int, or empty
+                sval = (val.text.strip() if val and val.text is not None else '')
+                # Try numeric
+                try:
+                    if '.' in sval:
+                        nval = float(sval)
+                    else:
+                        nval = int(sval)
+                    stats_pairs[sid_int] = nval
+                except Exception:
+                    stats_pairs[sid_int] = sval
+            team_list.append({
+                'team_key': tkey.text.strip() if tkey and tkey.text else '',
+                'team_name': tname.text.strip() if tname and tname.text else '',
+                'stats': stats_pairs,
+            })
+        if team_list:
+            data['matchups'].append({'matchup_index': m_index, 'teams': team_list})
+    return data
+
+
+def parse_team_week_stats_xml(raw_xml: str) -> Dict[str, Any]:
+    """Parse /team/.../stats;type=week payload into a dict {team_key, team_name, stats{stat_id:value}}"""
+    soup = _make_soup(raw_xml)
+    out: Dict[str, Any] = {"team_key": "", "team_name": "", "stats": {}}
+    if not soup:
+        return out
+    tkey = soup.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('team_key'))
+    tname = soup.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('name'))
+    out['team_key'] = tkey.text.strip() if tkey and tkey.text else ''
+    out['team_name'] = tname.text.strip() if tname and tname.text else ''
+    stats_block = soup.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('team_stats')) or soup
+    stats: Dict[int, Any] = {}
+    for st in stats_block.find_all(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('stat')):
+        sid = st.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('stat_id'))
+        val = st.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('value'))
+        try:
+            sid_int = int(sid.text.strip()) if sid and sid.text else None
+        except Exception:
+            sid_int = None
+        if sid_int is None:
+            continue
+        sval = (val.text.strip() if val and val.text is not None else '')
+        try:
+            stats[sid_int] = float(sval) if '.' in sval else int(sval)
+        except Exception:
+            stats[sid_int] = sval
+    out['stats'] = stats
+    return out
+
+
+def parse_players_week_stats_xml(raw_xml: str) -> Dict[str, Any]:
+    """Parse /players;player_keys=.../stats;type=week payload.
+    Returns: { 'players': [ { 'player_key': str, 'player_id': str, 'name': str, 'stats': {stat_id: value} } ] }
+    """
+    soup = _make_soup(raw_xml)
+    result: Dict[str, Any] = {"players": []}
+    if not soup:
+        return result
+    players_parent = soup.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('players')) or soup
+    pnodes = players_parent.find_all(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('player'))
+    for pn in pnodes:
+        pkey = pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('player_key'))
+        pid = pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('player_id'))
+        name_node = pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('full')) or \
+                    pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('name'))
+        stats_block = pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('player_stats')) or pn
+        stats: Dict[int, Any] = {}
+        for st in stats_block.find_all(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('stat')):
+            sid = st.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('stat_id'))
+            val = st.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('value'))
+            try:
+                sid_int = int(sid.text.strip()) if sid and sid.text else None
+            except Exception:
+                sid_int = None
+            if sid_int is None:
+                continue
+            sval = (val.text.strip() if val and val.text is not None else '')
+            try:
+                stats[sid_int] = float(sval) if '.' in sval else int(sval)
+            except Exception:
+                stats[sid_int] = sval
+        result["players"].append({
+            'player_key': pkey.text.strip() if pkey and pkey.text else '',
+            'player_id': pid.text.strip() if pid and pid.text else '',
+            'name': name_node.text.strip() if name_node and name_node.text else '',
+            'stats': stats,
+        })
     return result

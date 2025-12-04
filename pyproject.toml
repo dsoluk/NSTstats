@@ -10,7 +10,28 @@ requires-python = ">=3.10"
 # Add your other runtime dependencies below as needed
 # Example: "pandas>=2.0", "requests>=2.31"
 dependencies = [
-  # … existing deps …,
+  # Core data + HTTP
+  "requests>=2.31",
+  "python-dotenv>=1.0",
+
+  # Parsing
+  "beautifulsoup4>=4.12",
+  "lxml>=4.9",
+
+  # Data science
+  "pandas>=2.0",
+  "numpy>=1.24",
+
+  # Yahoo OAuth client
+  "yahoo-oauth>=2.0",
+
+  # DB + migrations
+  "SQLAlchemy>=2.0",
+  "alembic>=1.13",
+  # Optional: required when using Postgres (ignored for SQLite). Safe to include.
+  "psycopg2-binary>=2.9",
+
+  # Local package dependency (keep last so it's easy to spot)
   "nhl-schedule @ file:///C:/Users/soluk/PycharmProjects/NHLschedule",
 ]
 
