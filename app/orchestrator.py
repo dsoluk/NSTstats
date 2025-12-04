@@ -33,8 +33,6 @@ def run_yahoo():
         print(f"Yahoo data source skipped due to error: {err}")
 
 
-
-
 def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False):
     try:
         from helpers.seasons import previous_season_label

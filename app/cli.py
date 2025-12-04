@@ -6,6 +6,7 @@ from diagnostics.runner import run_dq as run_dq_diag, run_dq_prior as run_dq_pri
 from application.forecast import forecast as run_forecast
 from application.compare import compare as run_compare
 from application.analyze import evaluate as run_analyze
+from application.waiver_agent import recommend as run_waiver
 
 # If you store canonical inputs in known NSTstats paths, set sensible defaults here
 DEFAULT_OUT_CSV = "data/lookup_table.csv"
@@ -124,6 +125,15 @@ def main():
     az = subparsers.add_parser("analyze", help="Evaluate season-total forecasts vs projections and export metrics/Excel")
     az.add_argument("--compare-csv", dest="compare_csv", default=os.path.join("data","compare.csv"), help="Input compare CSV (default data/compare.csv)")
     az.add_argument("--out-dir", dest="out_dir", default=os.path.join("data","eval"), help="Output directory for metrics/Excel (default data/eval)")
+
+    # Waiver agent command
+    wa = subparsers.add_parser("waiver-agent", help="Recommend waiver-wire streamers vs your roster by position and horizon")
+    wa.add_argument("--team-name", dest="team_name", required=True, help="Exact team_name to analyze (e.g., Trocheck Backcheck Paycheque)")
+    wa.add_argument("--current-week", dest="current_week", type=int, required=True, help="Current fantasy week number (1..24)")
+    wa.add_argument("--skaters-csv", dest="skaters_csv", default=os.path.join("data","merged_skaters.csv"), help="Merged skaters CSV (default data/merged_skaters.csv)")
+    wa.add_argument("--lookup-csv", dest="lookup_csv", default=os.path.join("data","lookup_table.csv"), help="Schedule lookup CSV (default data/lookup_table.csv)")
+    wa.add_argument("--prior-csv", dest="prior_csv", default=os.path.join("data","merged_skaters_prior.csv"), help="Prior-season merged skaters CSV (default data/merged_skaters_prior.csv)")
+    wa.add_argument("--out-dir", dest="out_dir", default=os.path.join("output"), help="Output directory for CSV (default output/)")
 
     args = parser.parse_args()
 
@@ -264,6 +274,24 @@ def main():
         out_dir = getattr(args, "out_dir", os.path.join("data", "eval"))
         out_path = run_analyze(compare_csv=compare_csv, out_dir=out_dir)
         print(f"Season total evaluation written to: {out_path}\nPlots and CSVs in: {out_dir}")
+    elif cmd == "waiver-agent":
+        team_name = getattr(args, "team_name")
+        current_week = int(getattr(args, "current_week"))
+        skaters_csv = getattr(args, "skaters_csv", os.path.join("data","merged_skaters.csv"))
+        lookup_csv = getattr(args, "lookup_csv", os.path.join("data","lookup_table.csv"))
+        prior_csv = getattr(args, "prior_csv", os.path.join("data","merged_skaters_prior.csv"))
+        out_dir = getattr(args, "out_dir", os.path.join("output"))
+        paths = run_waiver(
+            team_name=team_name,
+            current_week=current_week,
+            skaters_csv=skaters_csv,
+            lookup_csv=lookup_csv,
+            prior_csv=prior_csv,
+            out_dir=out_dir,
+        )
+        print("Waiver recommendations written to:")
+        print(f"  CSV: {paths.get('csv')}")
+        print(f"  Plots: {paths.get('plots_dir')}")
     else:
         run_all()
 
