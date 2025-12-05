@@ -122,6 +122,7 @@ class WeeklyPlayerGP(Base):
 
 
 class RosterSlotDaily(Base):
+    # test comment
     __tablename__ = "roster_slots_daily"
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     date: Mapped[_dt.date] = mapped_column(Date, nullable=False)
