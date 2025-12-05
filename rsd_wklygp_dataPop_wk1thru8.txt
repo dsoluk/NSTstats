@@ -1,0 +1,333 @@
+(.venv) PS C:\Users\soluk\PycharmProjects\NSTstats> python -m app.cli fetch-daily-gp --league-key 465.l.83511 --start-week 1 --end-week 4 --team-keys 465.l.83511.t.1,465.l.83511.t.2 --sleep-sec 1.5          
+[2025-12-05 11:18:42,309 DEBUG] [yahoo_oauth.oauth.handler] AUTHORIZATION URL : https://api.login.yahoo.com/oauth2/request_auth?redirect_uri=oob&response_type=code&client_id=dj0yJmk9ZTVsZWxJdkhHZzY3JmQ9WVdrOVoySjNaekJJVG1JbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTY0
+Enter verifier : 424vc7b
+[2025-12-05 11:18:51,791 DEBUG] [yahoo_oauth.oauth.token_is_valid] ELAPSED TIME : 0.5818381309509277
+[2025-12-05 11:18:51,792 DEBUG] [yahoo_oauth.oauth.token_is_valid] TOKEN IS STILL VALID
+Processing Week 1 (2025-10-07..2025-10-12) for 2 team(s)
+  Date 2025-10-07
+  Date 2025-10-08
+  Date 2025-10-09
+  Date 2025-10-10
+  Date 2025-10-11
+  Date 2025-10-12
+Processing Week 2 (2025-10-13..2025-10-19) for 2 team(s)
+  Date 2025-10-13
+  Date 2025-10-14
+  Date 2025-10-15
+  Date 2025-10-16
+  Date 2025-10-17
+  Date 2025-10-18
+  Date 2025-10-19
+Processing Week 3 (2025-10-20..2025-10-26) for 2 team(s)
+  Date 2025-10-20
+  Date 2025-10-21
+  Date 2025-10-22
+  Date 2025-10-23
+  Date 2025-10-24
+  Date 2025-10-25
+  Date 2025-10-26
+Processing Week 4 (2025-10-27..2025-11-02) for 2 team(s)
+  Date 2025-10-27
+  Date 2025-10-28
+  Date 2025-10-29
+  Date 2025-10-30
+  Date 2025-10-31
+  Date 2025-11-01
+  Date 2025-11-02
+Done. RosterSlotDaily rows written: 1096
+(.venv) PS C:\Users\soluk\PycharmProjects\NSTstats> python -m app.cli fetch-daily-gp --league-key 465.l.83511 --start-week 1 --end-week 4 --team-keys 465.l.83511.t.3,465.l.83511.t.4,465.l.83511.t.5,465.l.83511.t.6 --sleep-sec 2.0                                                                                                                                                                                                                                 
+[2025-12-05 11:26:28,904 DEBUG] [yahoo_oauth.oauth.handler] AUTHORIZATION URL : https://api.login.yahoo.com/oauth2/request_auth?redirect_uri=oob&response_type=code&client_id=dj0yJmk9ZTVsZWxJdkhHZzY3JmQ9WVdrOVoySjNaekJJVG1JbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTY0
+Enter verifier : f88cgyn
+[2025-12-05 11:26:38,146 DEBUG] [yahoo_oauth.oauth.token_is_valid] ELAPSED TIME : 0.8791027069091797
+[2025-12-05 11:26:38,146 DEBUG] [yahoo_oauth.oauth.token_is_valid] TOKEN IS STILL VALID
+Processing Week 1 (2025-10-07..2025-10-12) for 4 team(s)
+  Date 2025-10-07
+  Date 2025-10-08
+  Date 2025-10-09
+  Date 2025-10-10
+  Date 2025-10-11
+  Date 2025-10-12
+    [Warn] Failed team 465.l.83511.t.5 on 2025-10-12: 500 Server Error: INKApi Error for url: https://fantasysports.yahooapis.com/fantasy/v2/team/465.l.83511.t.5/roster;date=2025-10-12?format=xml
+Processing Week 2 (2025-10-13..2025-10-19) for 4 team(s)
+  Date 2025-10-13
+  Date 2025-10-14
+  Date 2025-10-15
+  Date 2025-10-16
+  Date 2025-10-17
+  Date 2025-10-18
+  Date 2025-10-19
+Processing Week 3 (2025-10-20..2025-10-26) for 4 team(s)
+  Date 2025-10-20
+  Date 2025-10-21
+  Date 2025-10-22
+  Date 2025-10-23
+  Date 2025-10-24
+  Date 2025-10-25
+  Date 2025-10-26
+Processing Week 4 (2025-10-27..2025-11-02) for 4 team(s)
+  Date 2025-10-27
+  Date 2025-10-28
+  Date 2025-10-29
+  Date 2025-10-30
+  Date 2025-10-31
+  Date 2025-11-01
+  Date 2025-11-02
+Done. RosterSlotDaily rows written: 2154
+(.venv) PS C:\Users\soluk\PycharmProjects\NSTstats> python -m app.cli fetch-daily-gp --league-key 465.l.83511 --start-week 1 --end-week 4 --team-keys 465.l.83511.t.7,465.l.83511.t.8,465.l.83511.t.9,465.l.83511.t.10 --sleep-sec 2.5                                                                                                                                                                                                                                
+[2025-12-05 11:45:41,053 DEBUG] [yahoo_oauth.oauth.handler] AUTHORIZATION URL : https://api.login.yahoo.com/oauth2/request_auth?redirect_uri=oob&response_type=code&client_id=dj0yJmk9ZTVsZWxJdkhHZzY3JmQ9WVdrOVoySjNaekJJVG1JbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTY0
+Enter verifier : 4wasdep
+[2025-12-05 11:45:56,995 DEBUG] [yahoo_oauth.oauth.token_is_valid] ELAPSED TIME : 0.9686005115509033
+[2025-12-05 11:45:56,995 DEBUG] [yahoo_oauth.oauth.token_is_valid] TOKEN IS STILL VALID
+Processing Week 1 (2025-10-07..2025-10-12) for 4 team(s)
+  Date 2025-10-07
+  Date 2025-10-08
+  Date 2025-10-09
+  Date 2025-10-10
+  Date 2025-10-11
+  Date 2025-10-12
+Processing Week 2 (2025-10-13..2025-10-19) for 4 team(s)
+  Date 2025-10-13
+  Date 2025-10-14
+  Date 2025-10-15
+  Date 2025-10-16
+  Date 2025-10-17
+  Date 2025-10-18
+  Date 2025-10-19
+Processing Week 3 (2025-10-20..2025-10-26) for 4 team(s)
+  Date 2025-10-20
+  Date 2025-10-21
+  Date 2025-10-22
+  Date 2025-10-23
+  Date 2025-10-24
+  Date 2025-10-25
+  Date 2025-10-26
+Processing Week 4 (2025-10-27..2025-11-02) for 4 team(s)
+  Date 2025-10-27
+  Date 2025-10-28
+  Date 2025-10-29
+  Date 2025-10-30
+  Date 2025-10-31
+  Date 2025-11-01
+  Date 2025-11-02
+Done. RosterSlotDaily rows written: 2198
+(.venv) PS C:\Users\soluk\PycharmProjects\NSTstats> python -m app.cli fetch-daily-gp --league-key 465.l.83511 --start-week 1 --end-week 4 --team-keys 465.l.83511.t.11,465.l.83511.t.12 --sleep-sec 1.5                            
+[2025-12-05 11:55:39,848 DEBUG] [yahoo_oauth.oauth.handler] AUTHORIZATION URL : https://api.login.yahoo.com/oauth2/request_auth?redirect_uri=oob&response_type=code&client_id=dj0yJmk9ZTVsZWxJdkhHZzY3JmQ9WVdrOVoySjNaekJJVG1JbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTY0
+Enter verifier : zqhkg86
+[2025-12-05 11:55:55,673 DEBUG] [yahoo_oauth.oauth.token_is_valid] ELAPSED TIME : 0.8771140575408936
+[2025-12-05 11:55:55,673 DEBUG] [yahoo_oauth.oauth.token_is_valid] TOKEN IS STILL VALID
+Processing Week 1 (2025-10-07..2025-10-12) for 2 team(s)
+  Date 2025-10-07
+  Date 2025-10-08
+  Date 2025-10-09
+  Date 2025-10-10
+  Date 2025-10-11
+  Date 2025-10-12
+Processing Week 2 (2025-10-13..2025-10-19) for 2 team(s)
+  Date 2025-10-13
+  Date 2025-10-14
+  Date 2025-10-15
+  Date 2025-10-16
+  Date 2025-10-17
+  Date 2025-10-18
+  Date 2025-10-19
+Processing Week 3 (2025-10-20..2025-10-26) for 2 team(s)
+  Date 2025-10-20
+  Date 2025-10-21
+  Date 2025-10-22
+  Date 2025-10-23
+  Date 2025-10-24
+  Date 2025-10-25
+  Date 2025-10-26
+Processing Week 4 (2025-10-27..2025-11-02) for 2 team(s)
+  Date 2025-10-27
+  Date 2025-10-28
+  Date 2025-10-29
+  Date 2025-10-30
+  Date 2025-10-31
+  Date 2025-11-01
+  Date 2025-11-02
+Done. RosterSlotDaily rows written: 1109
+(.venv) PS C:\Users\soluk\PycharmProjects\NSTstats> python -m app.cli fetch-daily-gp --league-key 465.l.83511 --start-week 5 --end-week 8 --sleep-sec 1.5                                              
+[2025-12-05 12:42:33,170 DEBUG] [yahoo_oauth.oauth.handler] AUTHORIZATION URL : https://api.login.yahoo.com/oauth2/request_auth?redirect_uri=oob&response_type=code&client_id=dj0yJmk9ZTVsZWxJdkhHZzY3JmQ9WVdrOVoySjNaekJJVG1JbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTY0
+Enter verifier : 2hutqyx
+[2025-12-05 12:42:46,523 DEBUG] [yahoo_oauth.oauth.token_is_valid] ELAPSED TIME : 0.49393606185913086
+[2025-12-05 12:42:46,523 DEBUG] [yahoo_oauth.oauth.token_is_valid] TOKEN IS STILL VALID
+Processing Week 5 (2025-11-03..2025-11-09) for 12 team(s)
+  Date 2025-11-03
+  Date 2025-11-04
+  Date 2025-11-05
+  Date 2025-11-06
+  Date 2025-11-07
+  Date 2025-11-08
+  Date 2025-11-09
+Processing Week 6 (2025-11-10..2025-11-16) for 12 team(s)
+  Date 2025-11-10
+  Date 2025-11-11
+  Date 2025-11-12
+  Date 2025-11-13
+  Date 2025-11-14
+  Date 2025-11-15
+  Date 2025-11-16
+Processing Week 7 (2025-11-17..2025-11-23) for 12 team(s)
+  Date 2025-11-17
+  Date 2025-11-18
+  Date 2025-11-19
+  Date 2025-11-20
+  Date 2025-11-21
+  Date 2025-11-22
+  Date 2025-11-23
+Processing Week 8 (2025-11-24..2025-11-30) for 12 team(s)
+  Date 2025-11-24
+  Date 2025-11-25
+  Date 2025-11-26
+  Date 2025-11-27
+  Date 2025-11-28
+  Date 2025-11-29
+  Date 2025-11-30
+Done. RosterSlotDaily rows written: 6971
+(.venv) PS C:\Users\soluk\PycharmProjects\NSTstats> python -m app.cli backfill-gp --league-key 465.l.83511 --start-week 1 --end-week 8                   
+Processing Week 1 (2025-10-07..2025-10-12) for 12 team(s)
+  Team batch 1: 3 team(s)
+    465.l.83511.t.1: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.10: wrote 20 WeeklyPlayerGP row(s)
+    465.l.83511.t.11: wrote 22 WeeklyPlayerGP row(s)
+  Team batch 2: 3 team(s)
+    465.l.83511.t.12: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.2: wrote 19 WeeklyPlayerGP row(s)
+    465.l.83511.t.3: wrote 22 WeeklyPlayerGP row(s)
+  Team batch 3: 3 team(s)
+    465.l.83511.t.4: wrote 22 WeeklyPlayerGP row(s)
+    465.l.83511.t.5: wrote 21 WeeklyPlayerGP row(s)
+    465.l.83511.t.6: wrote 19 WeeklyPlayerGP row(s)
+  Team batch 4: 3 team(s)
+    465.l.83511.t.7: wrote 22 WeeklyPlayerGP row(s)
+    465.l.83511.t.8: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.9: wrote 22 WeeklyPlayerGP row(s)
+  Week 1 marked closed
+Processing Week 2 (2025-10-13..2025-10-19) for 12 team(s)
+  Team batch 1: 3 team(s)
+    465.l.83511.t.1: wrote 24 WeeklyPlayerGP row(s)
+    465.l.83511.t.10: wrote 21 WeeklyPlayerGP row(s)
+    465.l.83511.t.11: wrote 21 WeeklyPlayerGP row(s)
+  Team batch 2: 3 team(s)
+    465.l.83511.t.12: wrote 25 WeeklyPlayerGP row(s)
+    465.l.83511.t.2: wrote 22 WeeklyPlayerGP row(s)
+    465.l.83511.t.3: wrote 24 WeeklyPlayerGP row(s)
+  Team batch 3: 3 team(s)
+    465.l.83511.t.4: wrote 22 WeeklyPlayerGP row(s)
+    465.l.83511.t.5: wrote 24 WeeklyPlayerGP row(s)
+    465.l.83511.t.6: wrote 22 WeeklyPlayerGP row(s)
+  Team batch 4: 3 team(s)
+    465.l.83511.t.7: wrote 25 WeeklyPlayerGP row(s)
+    465.l.83511.t.8: wrote 22 WeeklyPlayerGP row(s)
+    465.l.83511.t.9: wrote 20 WeeklyPlayerGP row(s)
+  Week 2 marked closed
+Processing Week 3 (2025-10-20..2025-10-26) for 12 team(s)
+  Team batch 1: 3 team(s)
+    465.l.83511.t.1: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.10: wrote 20 WeeklyPlayerGP row(s)
+    465.l.83511.t.11: wrote 23 WeeklyPlayerGP row(s)
+  Team batch 2: 3 team(s)
+    465.l.83511.t.12: wrote 21 WeeklyPlayerGP row(s)
+    465.l.83511.t.2: wrote 21 WeeklyPlayerGP row(s)
+    465.l.83511.t.3: wrote 23 WeeklyPlayerGP row(s)
+  Team batch 3: 3 team(s)
+    465.l.83511.t.4: wrote 22 WeeklyPlayerGP row(s)
+    465.l.83511.t.5: wrote 22 WeeklyPlayerGP row(s)
+    465.l.83511.t.6: wrote 20 WeeklyPlayerGP row(s)
+  Team batch 4: 3 team(s)
+    465.l.83511.t.7: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.8: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.9: wrote 22 WeeklyPlayerGP row(s)
+  Week 3 marked closed
+Processing Week 4 (2025-10-27..2025-11-02) for 12 team(s)
+  Team batch 1: 3 team(s)
+    465.l.83511.t.1: wrote 25 WeeklyPlayerGP row(s)
+    465.l.83511.t.10: wrote 20 WeeklyPlayerGP row(s)
+    465.l.83511.t.11: wrote 21 WeeklyPlayerGP row(s)
+  Team batch 2: 3 team(s)
+    465.l.83511.t.12: wrote 22 WeeklyPlayerGP row(s)
+    465.l.83511.t.2: wrote 20 WeeklyPlayerGP row(s)
+    465.l.83511.t.3: wrote 30 WeeklyPlayerGP row(s)
+  Team batch 3: 3 team(s)
+    465.l.83511.t.4: wrote 24 WeeklyPlayerGP row(s)
+    465.l.83511.t.5: wrote 24 WeeklyPlayerGP row(s)
+    465.l.83511.t.6: wrote 21 WeeklyPlayerGP row(s)
+  Team batch 4: 3 team(s)
+    465.l.83511.t.7: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.8: wrote 24 WeeklyPlayerGP row(s)
+    465.l.83511.t.9: wrote 20 WeeklyPlayerGP row(s)
+  Week 4 marked closed
+Processing Week 5 (2025-11-03..2025-11-09) for 12 team(s)
+  Team batch 1: 3 team(s)
+    465.l.83511.t.1: wrote 24 WeeklyPlayerGP row(s)
+    465.l.83511.t.10: wrote 20 WeeklyPlayerGP row(s)
+    465.l.83511.t.11: wrote 24 WeeklyPlayerGP row(s)
+  Team batch 2: 3 team(s)
+    465.l.83511.t.12: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.2: wrote 22 WeeklyPlayerGP row(s)
+    465.l.83511.t.3: wrote 23 WeeklyPlayerGP row(s)
+  Team batch 3: 3 team(s)
+    465.l.83511.t.4: wrote 24 WeeklyPlayerGP row(s)
+    465.l.83511.t.5: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.6: wrote 20 WeeklyPlayerGP row(s)
+  Team batch 4: 3 team(s)
+    465.l.83511.t.7: wrote 25 WeeklyPlayerGP row(s)
+    465.l.83511.t.8: wrote 24 WeeklyPlayerGP row(s)
+    465.l.83511.t.9: wrote 20 WeeklyPlayerGP row(s)
+  Week 5 marked closed
+Processing Week 6 (2025-11-10..2025-11-16) for 12 team(s)
+  Team batch 1: 3 team(s)
+    465.l.83511.t.1: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.10: wrote 20 WeeklyPlayerGP row(s)
+    465.l.83511.t.11: wrote 24 WeeklyPlayerGP row(s)
+  Team batch 2: 3 team(s)
+    465.l.83511.t.12: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.2: wrote 21 WeeklyPlayerGP row(s)
+    465.l.83511.t.3: wrote 25 WeeklyPlayerGP row(s)
+  Team batch 3: 3 team(s)
+    465.l.83511.t.4: wrote 20 WeeklyPlayerGP row(s)
+    465.l.83511.t.5: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.6: wrote 20 WeeklyPlayerGP row(s)
+  Team batch 4: 3 team(s)
+    465.l.83511.t.7: wrote 25 WeeklyPlayerGP row(s)
+    465.l.83511.t.8: wrote 26 WeeklyPlayerGP row(s)
+    465.l.83511.t.9: wrote 20 WeeklyPlayerGP row(s)
+  Week 6 marked closed
+Processing Week 7 (2025-11-17..2025-11-23) for 12 team(s)
+  Team batch 1: 3 team(s)
+    465.l.83511.t.1: wrote 21 WeeklyPlayerGP row(s)
+    465.l.83511.t.10: wrote 20 WeeklyPlayerGP row(s)
+    465.l.83511.t.11: wrote 21 WeeklyPlayerGP row(s)
+  Team batch 2: 3 team(s)
+    465.l.83511.t.12: wrote 21 WeeklyPlayerGP row(s)
+    465.l.83511.t.2: wrote 21 WeeklyPlayerGP row(s)
+    465.l.83511.t.3: wrote 25 WeeklyPlayerGP row(s)
+  Team batch 3: 3 team(s)
+    465.l.83511.t.4: wrote 20 WeeklyPlayerGP row(s)
+    465.l.83511.t.5: wrote 21 WeeklyPlayerGP row(s)
+    465.l.83511.t.6: wrote 21 WeeklyPlayerGP row(s)
+  Team batch 4: 3 team(s)
+    465.l.83511.t.7: wrote 25 WeeklyPlayerGP row(s)
+    465.l.83511.t.8: wrote 26 WeeklyPlayerGP row(s)
+    465.l.83511.t.9: wrote 20 WeeklyPlayerGP row(s)
+  Week 7 marked closed
+Processing Week 8 (2025-11-24..2025-11-30) for 12 team(s)
+  Team batch 1: 3 team(s)
+    465.l.83511.t.1: wrote 21 WeeklyPlayerGP row(s)
+    465.l.83511.t.10: wrote 20 WeeklyPlayerGP row(s)
+    465.l.83511.t.11: wrote 20 WeeklyPlayerGP row(s)
+  Team batch 2: 3 team(s)
+    465.l.83511.t.12: wrote 23 WeeklyPlayerGP row(s)
+    465.l.83511.t.2: wrote 22 WeeklyPlayerGP row(s)
+    465.l.83511.t.3: wrote 25 WeeklyPlayerGP row(s)
+  Team batch 3: 3 team(s)
+    465.l.83511.t.4: nothing to write (existing or empty)
+    465.l.83511.t.5: wrote 22 WeeklyPlayerGP row(s)
+    465.l.83511.t.6: wrote 20 WeeklyPlayerGP row(s)
+  Team batch 4: 3 team(s)
+    465.l.83511.t.7: wrote 25 WeeklyPlayerGP row(s)
+    465.l.83511.t.8: wrote 22 WeeklyPlayerGP row(s)
+    465.l.83511.t.9: wrote 21 WeeklyPlayerGP row(s)
+  Week 8 marked closed
+Done. Total WeeklyPlayerGP rows written: 2112
