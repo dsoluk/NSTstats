@@ -344,3 +344,52 @@ def upsert_weekly_player_gp(session: Session, *, league_id: int, week_num: int, 
             session.flush()
     return obj
 
+
+def upsert_roster_slot_daily(session: Session, *, date: _dt.date, league_id: int, team_key: str,
+                             player_key: str, selected_position: Optional[str], had_game: Optional[bool],
+                             gp: int, player_name: Optional[str] = None, positions: Optional[str] = None) -> RosterSlotDaily:
+    """Insert/update a daily roster slot row for a player.
+
+    Uniqueness is defined by (date, league_id, team_key, player_key).
+    Ensures the Player exists; Team is expected to already exist (created elsewhere).
+    """
+    # Ensure player exists and positions are current (best-effort; ignore errors)
+    try:
+        upsert_player(session, player_key=player_key, name=player_name)
+        if positions:
+            set_player_positions(session, player_key=player_key,
+                                 positions=[p.strip() for p in str(positions).split(',') if p.strip()])
+    except Exception:
+        # Non-fatal: FK may already be satisfied
+        pass
+
+    obj = (
+        session.query(RosterSlotDaily)
+        .filter_by(date=date, league_id=league_id, team_key=team_key, player_key=player_key)
+        .one_or_none()
+    )
+    if obj is None:
+        obj = RosterSlotDaily(
+            date=date,
+            league_id=league_id,
+            team_key=team_key,
+            player_key=player_key,
+            selected_position=(selected_position or None),
+            had_game=had_game,
+            gp=int(gp or 0),
+        )
+        session.add(obj)
+        session.flush()
+    else:
+        changed = False
+        sel = (selected_position or None)
+        if obj.selected_position != sel:
+            obj.selected_position = sel; changed = True
+        if obj.had_game != had_game:
+            obj.had_game = had_game; changed = True
+        if int(obj.gp or 0) != int(gp or 0):
+            obj.gp = int(gp or 0); changed = True
+        if changed:
+            session.flush()
+    return obj
+
