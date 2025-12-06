@@ -74,6 +74,10 @@ class StatCategory(Base):
     abbr: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     name: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
     position_type: Mapped[Optional[str]] = mapped_column(String(16), nullable=True)
+    # Optional grouping metadata for ordering reports
+    group_code: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
+    group_order: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    stat_order: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     league: Mapped[League] = relationship(back_populates="stats")
     __table_args__ = (
         UniqueConstraint("league_id", "stat_id", name="uq_stat_cat_league_stat"),

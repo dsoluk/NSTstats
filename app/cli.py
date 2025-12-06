@@ -79,6 +79,16 @@ def main():
     nst.add_argument("--skip-prior", dest="skip_prior", action="store_true", help="Skip prior-season fetch/scoring regardless of cache state")
     subparsers.add_parser("merge", help="Merge NST with Yahoo ownership to CSVs")
 
+    # Average comparison grid (team vs opp and league) from DB
+    avg_cmp = subparsers.add_parser(
+        "avg-compare",
+        help="Print average stat values prior to current week: Team vs Opponent and Team vs League Avg (split by position type)",
+    )
+    avg_cmp.add_argument("--league-key", dest="league_key", required=True, help="Yahoo league_key (e.g., nhl.p.2526)")
+    avg_cmp.add_argument("--current-week", dest="current_week", type=int, required=True, help="Current week number; averages use weeks < current_week")
+    avg_cmp.add_argument("--team-id", dest="team_id", required=True, help="Team identifier (numeric id like 4 or full team_key)")
+    avg_cmp.add_argument("--opp-team-id", dest="opp_team_id", required=True, help="Opponent team identifier (numeric id like 8 or full team_key)")
+
     # Fetch per-date roster and player GP into RosterSlotDaily (Yahoo API; rate-limit friendly)
     fd = subparsers.add_parser(
         "fetch-daily-gp",
@@ -312,6 +322,18 @@ def main():
         out_dir = getattr(args, "out_dir", os.path.join("data", "eval"))
         out_path = run_analyze(compare_csv=compare_csv, out_dir=out_dir)
         print(f"Season total evaluation written to: {out_path}\nPlots and CSVs in: {out_dir}")
+    elif cmd == "avg-compare":
+        from application.avg_compare import compare_averages as run_avg_compare
+        league_key = getattr(args, "league_key")
+        current_week = int(getattr(args, "current_week"))
+        team_id = str(getattr(args, "team_id"))
+        opp_team_id = str(getattr(args, "opp_team_id"))
+        run_avg_compare(
+            league_key=league_key,
+            current_week=current_week,
+            team_id=team_id,
+            opp_team_id=opp_team_id,
+        )
     elif cmd == "backfill-gp":
         # Lazy import SQLAlchemy models/helpers to keep CLI import-time light
         from sqlalchemy import func
