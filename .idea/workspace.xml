@@ -5,61 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="added avg_compare">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_cache/nst_team_pk_NA_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_pk_NA_20252026.parquet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_cache/nst_team_pp_NA_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_pp_NA_20252026.parquet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_cache/nst_team_sva_B_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_sva_B_20252026.parquet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/corr_pk.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/corr_pk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/corr_pp.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/corr_pp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/corr_sva.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/corr_sva.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_Opponent_Ease_0_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_Opponent_Ease_0_100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_Opponent_Offense_0_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_Opponent_Offense_0_100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_TeamWeek_SOS_0_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_TeamWeek_SOS_0_100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_ga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_ga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_gf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_gf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_hdca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_hdca60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_hdcf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_hdcf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_sa60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_sa60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_sca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_sca60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_scf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_scf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_sf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_sf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_xga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_xga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_xgf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_xgf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_ga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_ga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_gf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_gf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_hdca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_hdca60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_hdcf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_hdcf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_sa60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_sa60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_sca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_sca60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_scf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_scf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_sf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_sf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_xga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_xga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_xgf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_xgf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_ga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_ga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_gf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_gf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_hdca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_hdca60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_hdcf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_hdcf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_sa60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_sa60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_sca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_sca60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_scf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_scf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_sf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_sf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_xga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_xga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_xgf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_xgf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/team_defense_vs_ga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/team_defense_vs_ga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/team_defense_vs_xga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/team_defense_vs_xga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/all_rosters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_rosters.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/goalies_scored.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies_scored.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lookup_table.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/lookup_table.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/merged_goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_goalies.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/merged_goalies_prior.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_goalies_prior.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/merged_skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/merged_skaters_prior.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters_prior.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/opponent_offense_lookup.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/opponent_offense_lookup.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/skaters_scored.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/skaters_scored.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/team_defense_lookup.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/team_defense_lookup.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/team_offense_lookup.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/team_offense_lookup.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/unmatched_in_merged.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/unmatched_in_merged.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,34 +50,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.cli.executor": "Debug",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "expected-gp",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "junie.project.settings",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.cli.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;expected-gp&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;junie.project.settings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\soluk\PycharmProjects\NSTstats\adapters\nst" />
