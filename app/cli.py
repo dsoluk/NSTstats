@@ -133,6 +133,18 @@ def main():
     # sched.add_argument("--out-csv", dest="out_csv", default=DEFAULT_OUT_CSV, help="Output CSV path for the lookup table")
     # sched.add_argument("--out-xlsx", dest="out_xlsx", default=DEFAULT_OUT_XLSX, help="Optional Excel output path")
 
+    # Init weeks from nhl_schedule (populate Week table start/end dates)
+    iw = subparsers.add_parser(
+        "init-weeks",
+        help="Upsert Week rows (start/end dates) for a league using nhl_schedule (Yahoo week windows)",
+    )
+    iw.add_argument("--league-key", dest="league_key", required=True, help="Yahoo league_key (e.g., nhl.p.2526)")
+    iw.add_argument("--season", dest="season", required=False, help="Season year (e.g., 2025). Defaults to SEASON in .env")
+    iw.add_argument("--start-week", dest="start_week", type=int, default=10, help="First week to load (default 10)")
+    iw.add_argument("--end-week", dest="end_week", type=int, default=24, help="Last week to load (default 24)")
+    iw.add_argument("--refresh-cache", dest="refresh_cache", action="store_true", help="Force refresh of nhl_schedule cached data")
+    iw.add_argument("--dry-run", dest="dry_run", action="store_true", help="Do not write to DB; print planned upserts only")
+
     # Diagnostics command
     dq = subparsers.add_parser("dq", help="Run distribution diagnostics on skaters and goalies")
     dq.add_argument("--windows", nargs="*", default=["szn"], help="Windows to analyze (e.g., szn l7)")
@@ -690,6 +702,147 @@ def main():
                             continue
 
             print(f"Done. RosterSlotDaily rows written: {total_rows}")
+        finally:
+            try:
+                session.close()
+            except Exception:
+                pass
+    elif cmd == "init-weeks":
+        # Populate Week table (start/end dates) from nhl_schedule (Yahoo-defined week windows)
+        import csv
+        import datetime as _dt
+        import os as _os
+        from infrastructure.persistence import get_session, League, upsert_week
+
+        league_key = getattr(args, "league_key")
+        start_week = int(getattr(args, "start_week", 10) or 10)
+        end_week = int(getattr(args, "end_week", 24) or 24)
+        refresh_cache = bool(getattr(args, "refresh_cache", False))
+        dry_run = bool(getattr(args, "dry_run", False))
+
+        if end_week < start_week:
+            raise SystemExit("end-week must be >= start-week")
+
+        # Resolve season: arg --season overrides .env SEASON
+        season = getattr(args, "season", None)
+        if not season:
+            try:
+                from dotenv import load_dotenv  # type: ignore
+                load_dotenv()
+            except Exception:
+                pass
+            season = _os.getenv("SEASON")
+        if not season:
+            raise SystemExit("Season not provided. Pass --season or set SEASON in .env")
+        season = str(season).strip()
+
+        # Attempt to build a season lookup CSV via nhl_schedule and derive Yahoo weeks from it
+        try:
+            from nhl_schedule.build_lookup import build as _build_lookup
+        except Exception as e:
+            raise SystemExit(
+                "Failed to import nhl_schedule. Install the package or set NHL_SCHEDULE_PATH, or run the schedule-lookup command first."
+            ) from e
+
+        # Choose an output CSV path inside the project data directory, namespaced by season
+        out_csv_path = os.path.join("data", f"lookup_table_{season}.csv")
+        try:
+            _ = _build_lookup(
+                schedule_path=None,
+                sheet_or_table=None,
+                out_csv=out_csv_path,
+                out_xlsx=None,
+                refresh_cache=refresh_cache,
+                season=str(season) if "season" in _build_lookup.__code__.co_varnames else None,  # backward compat
+            )
+        except TypeError:
+            # Older nhl_schedule without season arg
+            _ = _build_lookup(
+                schedule_path=None,
+                sheet_or_table=None,
+                out_csv=out_csv_path,
+                out_xlsx=None,
+                refresh_cache=refresh_cache,
+            )
+
+        # Parse the lookup CSV for Yahoo week numbers and dates
+        def _parse_date(s: str) -> _dt.date:
+            s = (s or "").strip()
+            try:
+                return _dt.date.fromisoformat(s)
+            except Exception:
+                for fmt in ("%Y-%m-%d", "%m/%d/%Y", "%Y/%m/%d"):
+                    try:
+                        return _dt.datetime.strptime(s, fmt).date()
+                    except Exception:
+                        pass
+            raise SystemExit(f"Invalid date value in schedule: {s}")
+
+        with open(out_csv_path, "r", newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            if not reader.fieldnames:
+                raise SystemExit("Schedule CSV appears empty; cannot derive weeks")
+            # Normalize headers to map common names
+            keys = [(h or "").strip().lower().lstrip("\ufeff") for h in reader.fieldnames]
+            header_map = {k: h for k, h in zip(keys, reader.fieldnames)}
+            week_col = (
+                header_map.get("week")
+                or header_map.get("week_num")
+                or header_map.get("weeknum")
+                or header_map.get("yahoo_week")
+            )
+            date_col = (
+                header_map.get("date")
+                or header_map.get("game_date")
+                or header_map.get("dt")
+            )
+            if not (week_col and date_col):
+                raise SystemExit("Schedule CSV is missing required columns (week and date). Consider updating nhl_schedule or running schedule-lookup.")
+
+            # Accumulate min/max per week
+            wk_bounds: dict[int, tuple[_dt.date, _dt.date]] = {}
+            for row in reader:
+                try:
+                    wk = int(str(row.get(week_col, "")).strip())
+                except Exception:
+                    continue
+                try:
+                    d = _parse_date(str(row.get(date_col, "")).strip())
+                except SystemExit:
+                    continue
+                if wk in wk_bounds:
+                    lo, hi = wk_bounds[wk]
+                    if d < lo:
+                        lo = d
+                    if d > hi:
+                        hi = d
+                    wk_bounds[wk] = (lo, hi)
+                else:
+                    wk_bounds[wk] = (d, d)
+
+        # Select desired week range
+        selected = [(wk, lo, hi) for wk, (lo, hi) in wk_bounds.items() if start_week <= wk <= end_week]
+        if not selected:
+            raise SystemExit(f"No weeks found in range {start_week}..{end_week} for season {season}")
+        selected.sort(key=lambda x: x[0])
+
+        session = get_session()
+        try:
+            league = session.query(League).filter(League.league_key == str(league_key)).one_or_none()
+            if league is None:
+                raise SystemExit(f"League not found: {league_key}")
+
+            wrote = 0
+            for wk, sd, ed in selected:
+                if dry_run:
+                    print(f"[DRY] upsert_week league={league.league_key} week={wk} {sd}..{ed}")
+                    wrote += 1
+                    continue
+                upsert_week(session, league_id=league.id, week_num=int(wk), start_date=sd, end_date=ed)
+                wrote += 1
+            if not dry_run:
+                session.commit()
+            print(f"init-weeks: processed {len(selected)} week(s); {'planned' if dry_run else 'upserted'} {wrote}")
         finally:
             try:
                 session.close()
