@@ -143,6 +143,10 @@ def main():
     iw.add_argument("--start-week", dest="start_week", type=int, default=10, help="First week to load (default 10)")
     iw.add_argument("--end-week", dest="end_week", type=int, default=24, help="Last week to load (default 24)")
     iw.add_argument("--refresh-cache", dest="refresh_cache", action="store_true", help="Force refresh of nhl_schedule cached data")
+    iw.add_argument("--source", dest="source", choices=["auto", "lookup", "excel"], default="auto", help="Where to source weeks: nhl_schedule lookup CSV, Excel sheet, or auto (try both)")
+    iw.add_argument("--excel-path", dest="excel_path", default=None, help="Path to Excel schedule (e.g., AG_2526_Schedule.xlsx)")
+    iw.add_argument("--excel-sheet", dest="excel_sheet", default="Yahoo_Weeks", help="Excel sheet name containing Yahoo weeks (default Yahoo_Weeks)")
+    iw.add_argument("--debug", dest="debug", action="store_true", help="Print detected headers and sample parsed rows for troubleshooting")
     iw.add_argument("--dry-run", dest="dry_run", action="store_true", help="Do not write to DB; print planned upserts only")
 
     # Diagnostics command
@@ -718,6 +722,10 @@ def main():
         start_week = int(getattr(args, "start_week", 10) or 10)
         end_week = int(getattr(args, "end_week", 24) or 24)
         refresh_cache = bool(getattr(args, "refresh_cache", False))
+        source = str(getattr(args, "source", "auto") or "auto").lower()
+        excel_path = getattr(args, "excel_path", None)
+        excel_sheet = getattr(args, "excel_sheet", "Yahoo_Weeks")
+        debug = bool(getattr(args, "debug", False))
         dry_run = bool(getattr(args, "dry_run", False))
 
         if end_week < start_week:
@@ -736,34 +744,38 @@ def main():
             raise SystemExit("Season not provided. Pass --season or set SEASON in .env")
         season = str(season).strip()
 
-        # Attempt to build a season lookup CSV via nhl_schedule and derive Yahoo weeks from it
-        try:
-            from nhl_schedule.build_lookup import build as _build_lookup
-        except Exception as e:
-            raise SystemExit(
-                "Failed to import nhl_schedule. Install the package or set NHL_SCHEDULE_PATH, or run the schedule-lookup command first."
-            ) from e
-
-        # Choose an output CSV path inside the project data directory, namespaced by season
+        # Attempt to build a season lookup CSV via nhl_schedule (for lookup/auto)
         out_csv_path = os.path.join("data", f"lookup_table_{season}.csv")
-        try:
-            _ = _build_lookup(
-                schedule_path=None,
-                sheet_or_table=None,
-                out_csv=out_csv_path,
-                out_xlsx=None,
-                refresh_cache=refresh_cache,
-                season=str(season) if "season" in _build_lookup.__code__.co_varnames else None,  # backward compat
-            )
-        except TypeError:
-            # Older nhl_schedule without season arg
-            _ = _build_lookup(
-                schedule_path=None,
-                sheet_or_table=None,
-                out_csv=out_csv_path,
-                out_xlsx=None,
-                refresh_cache=refresh_cache,
-            )
+        csv_ready = False
+        if source in ("auto", "lookup"):
+            try:
+                from nhl_schedule.build_lookup import build as _build_lookup
+            except Exception as e:
+                if source == "lookup":
+                    raise SystemExit(
+                        "Failed to import nhl_schedule. Install the package or set NHL_SCHEDULE_PATH, or run schedule-lookup first."
+                    ) from e
+                if debug:
+                    print("[init-weeks] nhl_schedule not importable; skipping CSV source")
+            else:
+                try:
+                    _ = _build_lookup(
+                        schedule_path=None,
+                        sheet_or_table=None,
+                        out_csv=out_csv_path,
+                        out_xlsx=None,
+                        refresh_cache=refresh_cache,
+                        season=str(season) if "season" in _build_lookup.__code__.co_varnames else None,
+                    )
+                except TypeError:
+                    _ = _build_lookup(
+                        schedule_path=None,
+                        sheet_or_table=None,
+                        out_csv=out_csv_path,
+                        out_xlsx=None,
+                        refresh_cache=refresh_cache,
+                    )
+                csv_ready = True
 
         # Parse the lookup CSV for Yahoo week numbers and dates
         def _parse_date(s: str) -> _dt.date:
@@ -782,49 +794,156 @@ def main():
             reader = csv.DictReader(f)
             if not reader.fieldnames:
                 raise SystemExit("Schedule CSV appears empty; cannot derive weeks")
-            # Normalize headers to map common names
-            keys = [(h or "").strip().lower().lstrip("\ufeff") for h in reader.fieldnames]
-            header_map = {k: h for k, h in zip(keys, reader.fieldnames)}
-            week_col = (
-                header_map.get("week")
-                or header_map.get("week_num")
-                or header_map.get("weeknum")
-                or header_map.get("yahoo_week")
-            )
-            date_col = (
-                header_map.get("date")
-                or header_map.get("game_date")
-                or header_map.get("dt")
-            )
-            if not (week_col and date_col):
-                raise SystemExit("Schedule CSV is missing required columns (week and date). Consider updating nhl_schedule or running schedule-lookup.")
+            # Normalize headers, build lookup of normalized->original
+            raw_headers = list(reader.fieldnames)
+            norm_headers = [(h or "").strip().lstrip("\ufeff") for h in raw_headers]
+            keys = [h.lower().replace(" ", "_") for h in norm_headers]
+            header_map = {k: h for k, h in zip(keys, raw_headers)}
 
-            # Accumulate min/max per week
+            # Aliases
+            def pick(*cands):
+                for c in cands:
+                    if c in header_map:
+                        return header_map[c]
+                return None
+
+            week_col = pick("week", "week_num", "weeknum", "week_id", "weekid", "yahoo_week")
+            date_col = pick("date", "game_date", "dt")
+            start_col = pick("start", "start_date", "startdate")
+            end_col = pick("end", "end_date", "enddate")
+
+            if debug:
+                print(f"[init-weeks] Detected headers: {raw_headers}")
+                print(f"[init-weeks] Mapped columns -> week:{week_col} date:{date_col} start:{start_col} end:{end_col}")
+
             wk_bounds: dict[int, tuple[_dt.date, _dt.date]] = {}
-            for row in reader:
-                try:
-                    wk = int(str(row.get(week_col, "")).strip())
-                except Exception:
-                    continue
-                try:
-                    d = _parse_date(str(row.get(date_col, "")).strip())
-                except SystemExit:
-                    continue
-                if wk in wk_bounds:
-                    lo, hi = wk_bounds[wk]
-                    if d < lo:
-                        lo = d
-                    if d > hi:
-                        hi = d
-                    wk_bounds[wk] = (lo, hi)
-                else:
-                    wk_bounds[wk] = (d, d)
+
+            if week_col and start_col and end_col:
+                # Weekly summary shape (prefer this if available)
+                for row in reader:
+                    try:
+                        wk = int(str(row.get(week_col, "")).strip())
+                    except Exception:
+                        continue
+                    sd_raw = str(row.get(start_col, "")).strip()
+                    ed_raw = str(row.get(end_col, "")).strip()
+                    if not sd_raw or not ed_raw:
+                        continue
+                    sd = _parse_date(sd_raw)
+                    ed = _parse_date(ed_raw)
+                    if wk not in wk_bounds:
+                        wk_bounds[wk] = (sd, ed)
+                    else:
+                        # In case multiple rows, keep min/max
+                        lo, hi = wk_bounds[wk]
+                        wk_bounds[wk] = (sd if sd < lo else lo, ed if ed > hi else hi)
+            elif week_col and date_col:
+                # Per-date shape: compute min/max per week
+                for row in reader:
+                    try:
+                        wk = int(str(row.get(week_col, "")).strip())
+                    except Exception:
+                        continue
+                    try:
+                        d = _parse_date(str(row.get(date_col, "")).strip())
+                    except SystemExit:
+                        continue
+                    if wk in wk_bounds:
+                        lo, hi = wk_bounds[wk]
+                        if d < lo:
+                            lo = d
+                        if d > hi:
+                            hi = d
+                        wk_bounds[wk] = (lo, hi)
+                    else:
+                        wk_bounds[wk] = (d, d)
+            else:
+                # CSV headers missing expected shapes -> optionally fall back to Excel
+                if source == "lookup":
+                    detected = ", ".join(raw_headers)
+                    raise SystemExit(
+                        "Schedule CSV is missing required columns. Expected either: "
+                        "(week + date) or (week + start + end). Detected headers: " + detected
+                    )
+                # Try Excel if allowed
+                wk_bounds = {}
+                tried_excel = False
+                if source in ("auto", "excel"):
+                    tried_excel = True
+                    x_path = excel_path or _os.getenv("NHL_SCHEDULE_XLSX_PATH")
+                    if not x_path or not _os.path.exists(x_path):
+                        if debug:
+                            print(f"[init-weeks] Excel path not provided or not found: {x_path}")
+                    else:
+                        try:
+                            from openpyxl import load_workbook  # type: ignore
+                        except Exception as e:
+                            raise SystemExit("openpyxl is required to read Excel. Install with: pip install openpyxl") from e
+                        wb = load_workbook(x_path, data_only=True, read_only=True)
+                        if excel_sheet not in wb.sheetnames:
+                            raise SystemExit(f"Excel sheet not found: {excel_sheet}. Available: {wb.sheetnames}")
+                        ws = wb[excel_sheet]
+                        rows_iter = ws.iter_rows(values_only=True)
+                        try:
+                            header_row = next(rows_iter)
+                        except StopIteration:
+                            raise SystemExit("Excel sheet is empty; cannot derive weeks")
+                        raw_xhdr = [str(h or '').strip() for h in header_row]
+                        norm = [h.strip().lstrip("\ufeff").lower().replace(' ', '_') for h in raw_xhdr]
+                        idx_map = {k: i for i, k in enumerate(norm)}
+                        def _idx(*cands):
+                            for c in cands:
+                                k = c.strip().lower().replace(' ', '_')
+                                if k in idx_map:
+                                    return idx_map[k]
+                            return None
+                        i_week = _idx("week", "week_num", "weekid", "week_id")
+                        i_start = _idx("start", "start_date", "startdate")
+                        i_end = _idx("end", "end_date", "enddate")
+                        if debug:
+                            print(f"[init-weeks] Excel headers: {raw_xhdr}")
+                            print(f"[init-weeks] Excel mapped idx -> week:{i_week} start:{i_start} end:{i_end}")
+                        if i_week is None or i_start is None or i_end is None:
+                            raise SystemExit("Excel sheet must include columns for Week/Start/End")
+                        # Parse rows
+                        for r in rows_iter:
+                            try:
+                                wv = r[i_week]
+                                if wv is None or str(wv).strip() == '':
+                                    continue
+                                wk = int(str(wv).strip())
+                            except Exception:
+                                continue
+                            s_raw = r[i_start]
+                            e_raw = r[i_end]
+                            try:
+                                sd = _parse_date(s_raw.isoformat() if hasattr(s_raw, 'isoformat') else str(s_raw))
+                                ed = _parse_date(e_raw.isoformat() if hasattr(e_raw, 'isoformat') else str(e_raw))
+                            except SystemExit:
+                                continue
+                            wk_bounds[wk] = (sd, ed)
+                        if not wk_bounds:
+                            raise SystemExit("No week rows parsed from Excel source")
+                        # Continue after Excel fallback
+                if not wk_bounds:
+                    detected = ", ".join(raw_headers)
+                    tried = [f"CSV:{out_csv_path}"]
+                    if tried_excel:
+                        tried.append(f"Excel:{excel_path or _os.getenv('NHL_SCHEDULE_XLSX_PATH')}")
+                    raise SystemExit(
+                        "Unable to derive week windows from provided sources. Tried " + ", ".join(tried) + ". "
+                        "CSV detected headers: " + detected + ". Use --excel-path/--excel-sheet or --debug for details."
+                    )
 
         # Select desired week range
         selected = [(wk, lo, hi) for wk, (lo, hi) in wk_bounds.items() if start_week <= wk <= end_week]
         if not selected:
             raise SystemExit(f"No weeks found in range {start_week}..{end_week} for season {season}")
         selected.sort(key=lambda x: x[0])
+
+        if debug:
+            preview = ", ".join([f"w{wk}:{lo}..{hi}" for wk, lo, hi in selected[:3]])
+            print(f"[init-weeks] Parsed weeks preview: {preview}")
 
         session = get_session()
         try:
