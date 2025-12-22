@@ -436,6 +436,105 @@ def main():
             team_id=team_id,
             opp_team_id=opp_team_id,
         )
+    elif cmd == "fetch-daily-gp":
+        from infrastructure.persistence import (
+            get_session, League, Team, Week, RosterSlotDaily,
+            upsert_roster_slot_daily
+        )
+        from yahoo.yfs_client import YahooFantasyClient, parse_roster_xml, extract_num_teams, make_team_key
+        from yahoo.yahoo_auth import get_oauth
+
+        league_key = getattr(args, "league_key")
+        start_week = int(getattr(args, "start_week"))
+        end_week = int(getattr(args, "end_week"))
+        team_keys_arg = getattr(args, "team_keys", None)
+        sleep_sec = float(getattr(args, "sleep_sec", 1.0) or 1.0)
+        dry_run = bool(getattr(args, "dry_run", False))
+
+        if end_week < start_week:
+            raise SystemExit("end-week must be >= start-week")
+
+        session = get_session()
+        try:
+            league = session.query(League).filter(League.league_key == str(league_key)).one_or_none()
+            if league is None:
+                raise SystemExit(f"League not found: {league_key}. Run init-weeks first.")
+
+            # Resolve team scope
+            team_q = session.query(Team).filter(Team.league_id == league.id)
+            if team_keys_arg:
+                scope = [t.strip() for t in str(team_keys_arg).split(',') if t.strip()]
+                team_q = team_q.filter(Team.team_key.in_(scope))
+            teams = list(team_q.order_by(Team.team_key.asc()).all())
+            if not teams:
+                raise SystemExit("No teams found to process")
+
+            client_id = os.getenv("YAHOO_CLIENT_ID")
+            client_secret = os.getenv("YAHOO_CLIENT_SECRET")
+            client = YahooFantasyClient(get_oauth(client_id, client_secret))
+
+            for wk in range(start_week, end_week + 1):
+                wk_row = session.query(Week).filter(Week.league_id == league.id, Week.week_num == wk).one_or_none()
+                if wk_row is None or not wk_row.start_date or not wk_row.end_date:
+                    print(f"[Warn] Missing dates for week {wk}; skipping")
+                    continue
+
+                print(f"Processing Week {wk} ({wk_row.start_date}..{wk_row.end_date}) for {len(teams)} team(s)")
+                
+                # Iterate through each date in the week
+                import datetime
+                curr_date = wk_row.start_date
+                while curr_date <= wk_row.end_date:
+                    date_str = curr_date.strftime("%Y-%m-%d")
+                    print(f"  Date: {date_str}")
+                    
+                    for t in teams:
+                        tkey = t.team_key
+                        if dry_run:
+                            print(f"    [DRY] Fetching roster for {tkey} on {date_str}")
+                            continue
+                        
+                        try:
+                            # Fetch roster for this date
+                            payload = client.get_team_roster_date(tkey, date_str)
+                            roster = parse_roster_xml(payload.get("_raw_xml", ""))
+                            
+                            for p in roster.get("players", []):
+                                pkey = f"{league.game_key}.p.{p['player_id']}"
+                                sel_pos = p.get("selected_position")
+                                
+                                # In a real scenario, we might want to fetch player stats for this date 
+                                # to see if they actually played (gp=1), but for now we follow the 
+                                # pattern of populating from roster.
+                                # If selected_position is BN/IR/IR+, gp=0, else gp=1 if they have a game.
+                                is_bench = sel_pos in {'BN', 'IR', 'IR+', 'NA'}
+                                gp_val = 0 if is_bench else 1
+                                
+                                upsert_roster_slot_daily(
+                                    session,
+                                    date=curr_date,
+                                    league_id=league.id,
+                                    team_key=tkey,
+                                    player_key=pkey,
+                                    selected_position=sel_pos,
+                                    had_game=None, # We'd need schedule info for this
+                                    gp=gp_val,
+                                    player_name=p.get("name"),
+                                    positions=";".join(p.get("positions", []))
+                                )
+                            
+                            session.commit()
+                            time.sleep(sleep_sec)
+                        except Exception as e:
+                            print(f"    [Warn] Failed {tkey} on {date_str}: {e}")
+                            session.rollback()
+                    
+                    curr_date += datetime.timedelta(days=1)
+
+            print(f"Done.")
+        finally:
+            session.close()
+
     elif cmd == "backfill-gp":
         # Lazy import SQLAlchemy models/helpers to keep CLI import-time light
         from sqlalchemy import func
@@ -571,6 +670,101 @@ def main():
                 session.close()
             except Exception:
                 pass
+
+    elif cmd == "fetch-daily-gp":
+        from infrastructure.persistence import (
+            get_session, League, Team, Week, RosterSlotDaily,
+            upsert_roster_slot_daily
+        )
+        from yahoo.yfs_client import YahooFantasyClient, parse_roster_xml, extract_num_teams, make_team_key
+        from yahoo.yahoo_auth import get_oauth
+        import datetime
+
+        league_key = getattr(args, "league_key")
+        start_week = int(getattr(args, "start_week"))
+        end_week = int(getattr(args, "end_week"))
+        team_keys_arg = getattr(args, "team_keys", None)
+        sleep_sec = float(getattr(args, "sleep_sec", 1.0) or 1.0)
+        dry_run = bool(getattr(args, "dry_run", False))
+
+        if end_week < start_week:
+            raise SystemExit("end-week must be >= start-week")
+
+        session = get_session()
+        try:
+            league = session.query(League).filter(League.league_key == str(league_key)).one_or_none()
+            if league is None:
+                raise SystemExit(f"League not found: {league_key}. Run init-weeks first.")
+
+            # Resolve team scope
+            team_q = session.query(Team).filter(Team.league_id == league.id)
+            if team_keys_arg:
+                scope = [t.strip() for t in str(team_keys_arg).split(',') if t.strip()]
+                team_q = team_q.filter(Team.team_key.in_(scope))
+            teams = list(team_q.order_by(Team.team_key.asc()).all())
+            if not teams:
+                raise SystemExit("No teams found to process")
+
+            client_id = os.getenv("YAHOO_CLIENT_ID")
+            client_secret = os.getenv("YAHOO_CLIENT_SECRET")
+            client = YahooFantasyClient(get_oauth(client_id, client_secret))
+
+            for wk in range(start_week, end_week + 1):
+                wk_row = session.query(Week).filter(Week.league_id == league.id, Week.week_num == wk).one_or_none()
+                if wk_row is None or not wk_row.start_date or not wk_row.end_date:
+                    print(f"[Warn] Missing dates for week {wk}; skipping")
+                    continue
+
+                print(f"Processing Week {wk} ({wk_row.start_date}..{wk_row.end_date}) for {len(teams)} team(s)")
+                
+                curr_date = wk_row.start_date
+                while curr_date <= wk_row.end_date:
+                    date_str = curr_date.strftime("%Y-%m-%d")
+                    print(f"  Date: {date_str}")
+                    
+                    for t in teams:
+                        tkey = t.team_key
+                        if dry_run:
+                            print(f"    [DRY] Fetching roster for {tkey} on {date_str}")
+                            continue
+                        
+                        try:
+                            # Fetch roster for this date
+                            payload = client.get_team_roster_date(tkey, date_str)
+                            roster = parse_roster_xml(payload.get("_raw_xml", ""))
+                            
+                            for p in roster.get("players", []):
+                                pkey = f"{league.game_key}.p.{p['player_id']}"
+                                sel_pos = p.get("selected_position")
+                                
+                                # Logic: If selected_position is BN/IR/IR+, gp=0, else gp=1
+                                is_bench = sel_pos in {'BN', 'IR', 'IR+', 'NA'}
+                                gp_val = 0 if is_bench else 1
+                                
+                                upsert_roster_slot_daily(
+                                    session,
+                                    date=curr_date,
+                                    league_id=league.id,
+                                    team_key=tkey,
+                                    player_key=pkey,
+                                    selected_position=sel_pos,
+                                    had_game=None, 
+                                    gp=gp_val,
+                                    player_name=p.get("name"),
+                                    positions=";".join(p.get("positions", []))
+                                )
+                            
+                            session.commit()
+                            time.sleep(sleep_sec)
+                        except Exception as e:
+                            print(f"    [Warn] Failed {tkey} on {date_str}: {e}")
+                            session.rollback()
+                    
+                    curr_date += datetime.timedelta(days=1)
+
+            print(f"Done.")
+        finally:
+            session.close()
 
 if __name__ == "__main__":
     main()
