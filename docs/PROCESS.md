@@ -19,7 +19,7 @@ Process (via CLI):
     - Use `python -m app.cli nst --skip-prior` to explicitly skip the prior-season step regardless of cache state.
 - `yahoo`: fetch or refresh Yahoo roster data.
 - `merge`: merge NST stats with Yahoo ownership using local normalization helpers, producing per‑player rows with `team_name` attribution.
-- `all`: convenience orchestration that runs `yahoo` and `nst` (and you can run `merge` after as needed).
+- `all`: convenience orchestration that runs `yahoo` and `nst` and `merge`.
 
 Key outputs:
 - `data/merged_skaters.csv` (and analogous outputs for goalies, if applicable).

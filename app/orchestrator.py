@@ -194,5 +194,59 @@ def run_all():
     run_nst()
     run_merge()
 
+
+def run_roster_sync(league_key: str):
+    """
+    Refresh local roster state to reduce API overhead for all subsequent commands.
+    """
+    from infrastructure.persistence import (
+        get_session, League, Team, Player, CurrentRoster, 
+        upsert_team, upsert_player
+    )
+    from yahoo.yfs_client import YahooFantasyClient, parse_roster_xml, extract_num_teams, make_team_key
+    from yahoo.yahoo_auth import get_oauth
+
+    session = get_session()
+    try:
+        league = session.query(League).filter(League.league_key == league_key).one_or_none()
+        if not league:
+            print(f"League {league_key} not found. Run init-weeks first.")
+            return
+
+        client_id = os.getenv("YAHOO_CLIENT_ID")
+        client_secret = os.getenv("YAHOO_CLIENT_SECRET")
+        client = YahooFantasyClient(get_oauth(client_id, client_secret))
+
+        league_json = client.get_league(league_key)
+        num_teams = extract_num_teams(league_json) or 12
+        game_key = league_key.split('.l.')[0]
+
+        print(f"Syncing rosters for {num_teams} teams...")
+        session.query(CurrentRoster).filter(CurrentRoster.league_id == league.id).delete()
+
+        for i in range(1, num_teams + 1):
+            # team_id is the numeric part: e.g. 4
+            tkey = make_team_key(game_key, league_key.split('.l.')[1], i)
+            try:
+                payload = client.get_team_roster(tkey)
+                roster = parse_roster_xml(payload.get("_raw_xml", ""))
+                team_name = roster.get("team_name")
+                
+                upsert_team(session, league_id=league.id, team_key=tkey, team_name=team_name)
+                
+                for p in roster.get("players", []):
+                    pkey = f"{game_key}.p.{p['player_id']}"
+                    upsert_player(session, pkey, p.get("name"), ";".join(p.get("positions", [])))
+                    session.add(CurrentRoster(league_id=league.id, player_key=pkey, team_key=tkey))
+                
+                print(f"  Synced {team_name}")
+                session.commit()
+            except Exception as e:
+                print(f"  [Warn] Failed {tkey}: {e}")
+                session.rollback()
+    finally:
+        session.close()
+
+
 def main():
     run_all()

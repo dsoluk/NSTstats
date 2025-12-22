@@ -2,15 +2,89 @@ import argparse
 import os
 import sys
 import time
-from app.orchestrator import run_all, run_yahoo, run_nst, run_merge
+from app.orchestrator import run_all, run_yahoo, run_nst, run_merge, run_roster_sync
 from diagnostics.runner import run_dq as run_dq_diag, run_dq_prior as run_dq_prior_diag
 from application.forecast import forecast as run_forecast
 from application.compare import compare as run_compare
 from application.analyze import evaluate as run_analyze
 from application.waiver_agent import recommend as run_waiver
+import os
+import datetime as _dt
+from infrastructure.persistence import (
+    get_session, League, Team, Player, CurrentRoster, 
+    upsert_team, upsert_player
+)
+from yahoo.yfs_client import YahooFantasyClient, parse_roster_xml, extract_num_teams, make_team_key
+from yahoo.yahoo_auth import get_oauth
 
 # If you store canonical inputs in known NSTstats paths, set sensible defaults here
 DEFAULT_OUT_CSV = "data/lookup_table.csv"
+
+def run_roster_sync(league_key: str):
+    """
+    Fetches latest rosters from Yahoo and persists to local DB.
+    This eliminates redundant API calls in 'merge' and 'avg-compare'.
+    """
+    session = get_session()
+    try:
+        league = session.query(League).filter(League.league_key == league_key).one_or_none()
+        if not league:
+            print(f"League {league_key} not found. Run init-weeks first.")
+            return
+
+        client_id = os.getenv("YAHOO_CLIENT_ID")
+        client_secret = os.getenv("YAHOO_CLIENT_SECRET")
+        client = YahooFantasyClient(get_oauth(client_id, client_secret))
+
+        # Get total teams for this league
+        league_json = client.get_league(league_key)
+        num_teams = extract_num_teams(league_json) or 12
+        game_key = league_key.split('.l.')[0]
+
+        print(f"Syncing rosters for {num_teams} teams in {league_key}...")
+        
+        # Clear current mapping for this league before rebuilding
+        session.query(CurrentRoster).filter(CurrentRoster.league_id == league.id).delete()
+
+        for i in range(1, num_teams + 1):
+            tkey = make_team_key(game_key, league_key.split('.l.')[1], i)
+            try:
+                payload = client.get_team_roster(tkey)
+                if not payload.get("_raw_xml"):
+                    continue
+                
+                roster = parse_roster_xml(payload["_raw_xml"])
+                team_name = roster.get("team_name")
+                
+                # Update local Team record
+                upsert_team(session, league_id=league.id, team_key=tkey, team_name=team_name)
+                
+                for p in roster.get("players", []):
+                    pid = p.get("player_id")
+                    if not pid: continue
+                    pkey = f"{game_key}.p.{pid}"
+                    
+                    # Update Player metadata
+                    upsert_player(session, pkey, p.get("name"), ";".join(p.get("positions", [])))
+                    
+                    # Create the current mapping
+                    mapping = CurrentRoster(
+                        league_id=league.id,
+                        player_key=pkey,
+                        team_key=tkey
+                    )
+                    session.add(mapping)
+                
+                print(f"  Synced: {team_name}")
+                session.commit()
+            except Exception as e:
+                print(f"  [Warn] Failed sync for {tkey}: {e}")
+                session.rollback()
+
+    finally:
+        session.close()
+
+# def run_all():
 
 
 def cmd_schedule_refresh(argv=None):
@@ -74,6 +148,11 @@ def main():
 
     subparsers.add_parser("all", help="Run Yahoo and NST pipelines")
     subparsers.add_parser("yahoo", help="Run Yahoo Fantasy helper")
+    
+    # New Sync Rosters command
+    sync_rosters = subparsers.add_parser("sync-rosters", help="Sync Yahoo rosters to database")
+    sync_rosters.add_argument("--league-key", required=True, help="Yahoo league_key")
+    
     nst = subparsers.add_parser("nst", help="Run NST pipelines (skaters, goalies)")
     nst.add_argument("--refresh-prior", dest="refresh_prior", action="store_true", help="Force re-fetch/re-score prior-season data even if cached CSVs exist")
     nst.add_argument("--skip-prior", dest="skip_prior", action="store_true", help="Skip prior-season fetch/scoring regardless of cache state")
@@ -209,6 +288,8 @@ def main():
 
     if cmd == "yahoo":
         run_yahoo()
+    elif cmd == "sync-rosters":
+        run_roster_sync(args.league_key)
     elif cmd == "nst":
         run_nst(
             refresh_prior=getattr(args, "refresh_prior", False),
@@ -418,12 +499,13 @@ def main():
                 # Batch teams
                 for i in range(0, len(teams), batch_size):
                     batch = teams[i:i + batch_size]
-                    print(f"  Team batch {i//batch_size + 1}: {len(batch)} team(s)")
+                    print(f"  Team batch {i // batch_size + 1}: {len(batch)} team(s)")
                     for t in batch:
                         tkey = t.team_key
                         # Aggregate daily gp by player
                         daily_q = (
-                            session.query(RosterSlotDaily.player_key, func.coalesce(func.sum(RosterSlotDaily.gp), 0))
+                            session.query(RosterSlotDaily.player_key,
+                                          func.coalesce(func.sum(RosterSlotDaily.gp), 0))
                             .filter(
                                 RosterSlotDaily.league_id == league.id,
                                 RosterSlotDaily.team_key == tkey,
@@ -443,7 +525,8 @@ def main():
                             if (not force) and pkey in skip_set:
                                 continue
                             if dry_run:
-                                print(f"    [DRY] upsert_weekly_player_gp wk={wk} team={tkey} player={pkey} gp={int(gp_sum or 0)} source=daily_agg")
+                                print(
+                                    f"    [DRY] upsert_weekly_player_gp wk={wk} team={tkey} player={pkey} gp={int(gp_sum or 0)} source=daily_agg")
                                 wrote += 1
                                 continue
                             upsert_weekly_player_gp(
@@ -483,511 +566,3 @@ def main():
                 session.close()
             except Exception:
                 pass
-    elif cmd == "fetch-daily-gp":
-        # Build RosterSlotDaily from Yahoo per-date roster and stats (rate-limit aware)
-        from yahoo.yahoo_auth import get_oauth
-        from yahoo.yfs_client import YahooFantasyClient, parse_roster_xml, parse_settings_xml, parse_players_week_stats_xml
-        from infrastructure.persistence import (
-            get_session,
-            League,
-            Week,
-            Team,
-            upsert_team,
-            upsert_roster_slot_daily,
-        )
-
-        league_key = getattr(args, "league_key")
-        start_week = int(getattr(args, "start_week"))
-        end_week = int(getattr(args, "end_week"))
-        sleep_sec = float(getattr(args, "sleep_sec", 1.0) or 0)
-        team_keys_arg = getattr(args, "team_keys", None)
-        dry_run = bool(getattr(args, "dry_run", False))
-
-        if end_week < start_week:
-            raise SystemExit("end-week must be >= start-week")
-
-        session = get_session()
-        try:
-            league = session.query(League).filter(League.league_key == str(league_key)).one_or_none()
-            if league is None:
-                raise SystemExit(f"League not found: {league_key}")
-
-            # Resolve team scope from DB
-            team_q = session.query(Team).filter(Team.league_id == league.id)
-            if team_keys_arg:
-                scope = [t.strip() for t in str(team_keys_arg).split(',') if t.strip()]
-                team_q = team_q.filter(Team.team_key.in_(scope))
-            teams = list(team_q.order_by(Team.team_key.asc()).all())
-            if not teams:
-                raise SystemExit("No teams found to process")
-
-            # Resolve week date ranges
-            weeks = (
-                session.query(Week)
-                .filter(Week.league_id == league.id, Week.week_num >= start_week, Week.week_num <= end_week)
-                .order_by(Week.week_num.asc())
-                .all()
-            )
-            week_map = {w.week_num: w for w in weeks if w.start_date and w.end_date}
-            missing = [w for w in range(start_week, end_week + 1) if w not in week_map]
-            if missing:
-                print(f"[Warn] Missing dates for weeks: {missing}; they will be skipped")
-
-            # Initialize Yahoo client with credentials from environment/.env
-            # Load .env on demand to avoid requiring it for other commands
-            try:
-                from dotenv import load_dotenv  # type: ignore
-                load_dotenv()
-            except Exception:
-                pass
-
-            # Accept common env var spellings (case-insensitive) and guard for typos
-            def _get_env_any(*keys):
-                for k in keys:
-                    v = os.getenv(k)
-                    if v:
-                        return v
-                return None
-
-            client_id = _get_env_any(
-                "YAHOO_CLIENT_ID", "yahoo_client_id", "Yahoo_Client_Id"
-            )
-            client_secret = _get_env_any(
-                "YAHOO_CLIENT_SECRET", "yahoo_client_secret", "Yahoo_Client_Secret",
-                # also handle common typo without second 'i'
-                "YAHOO_CLENT_SECRET", "yahoo_clent_secret"
-            )
-            if not client_id or not client_secret:
-                raise SystemExit(
-                    "Missing Yahoo OAuth credentials. Set YAHOO_CLIENT_ID and YAHOO_CLIENT_SECRET in your .env"
-                )
-
-            client = YahooFantasyClient(get_oauth(client_id, client_secret))
-
-            # Discover GP stat id
-            settings_payload = client.get_league_settings(league_key)
-            settings_xml = settings_payload.get("_raw_xml") if isinstance(settings_payload, dict) else None
-            gp_stat_id = None
-            if settings_xml:
-                settings = parse_settings_xml(settings_xml)
-                for s in settings.get("stat_categories", []) or []:
-                    try:
-                        sid = int(s.get("id"))
-                        disp = s.get("display") or s.get("name") or str(sid)
-                        d = str(disp).strip().lower()
-                        if gp_stat_id is None and (d == 'gp' or 'games played' in d):
-                            gp_stat_id = sid
-                    except Exception:
-                        continue
-
-            def daterange(start_d, end_d):
-                cur = start_d
-                while cur <= end_d:
-                    yield cur
-                    cur = cur + __import__('datetime').timedelta(days=1)
-
-            total_rows = 0
-            for wk in range(start_week, end_week + 1):
-                wk_row = week_map.get(wk)
-                if not wk_row:
-                    print(f"[Skip] Week {wk} has no dates configured")
-                    continue
-                print(f"Processing Week {wk} ({wk_row.start_date}..{wk_row.end_date}) for {len(teams)} team(s)")
-
-                for d in daterange(wk_row.start_date, wk_row.end_date):
-                    date_iso = d.isoformat()
-                    print(f"  Date {date_iso}")
-                    for t in teams:
-                        tkey = t.team_key
-                        try:
-                            roster_payload = client.get_team_roster_date(tkey, date_iso)
-                            r_xml = roster_payload.get("_raw_xml") if isinstance(roster_payload, dict) else None
-                            if not r_xml:
-                                print(f"    [Warn] No roster XML for {tkey} on {date_iso}; skipping")
-                                continue
-                            roster = parse_roster_xml(r_xml)
-                            team_name = roster.get('team_name') or roster.get('name') or ''
-                            players = roster.get('players', []) or []
-                            # Build player keys and meta
-                            pkeys = []
-                            pmeta = {}
-                            for p in players:
-                                pid = str(p.get('player_id') or '').strip()
-                                if not pid.isdigit():
-                                    continue
-                                # player_key is game_key invariant; however Yahoo accepts any key for per-date stats
-                                # We will build player_key based on the league's game part from team_key
-                                # team_key looks like nhl.l.<league>.t.<id> → derive game_key = nhl
-                                game_key = tkey.split('.l.')[0]
-                                player_key = f"{game_key}.p.{pid}"
-                                pkeys.append(player_key)
-                                positions = p.get('positions') or []
-                                pos_str = ",".join([str(x) for x in positions]) if isinstance(positions, (list, tuple)) else str(positions or '')
-                                pname = p.get('name') or p.get('name_full') or ''
-                                sel = (p.get('selected_position') or '').strip().upper()
-                                pmeta[player_key] = {"name": pname, "positions": pos_str, "selected_position": sel}
-                            if not pkeys:
-                                continue
-
-                            # Fetch player date stats in batches of 25
-                            stats_by_key = {}
-                            for i in range(0, len(pkeys), 25):
-                                batch = pkeys[i:i+25]
-                                try:
-                                    pd_payload = client.get_players_date_stats(batch, date_iso)
-                                    pd_xml = pd_payload.get("_raw_xml") if isinstance(pd_payload, dict) else None
-                                    if not pd_xml:
-                                        continue
-                                    parsed = parse_players_week_stats_xml(pd_xml)
-                                    for item in parsed.get('players', []) or []:
-                                        stats_by_key[item.get('player_key')] = item.get('stats', {}) or {}
-                                except Exception as _pe:
-                                    print(f"    [Warn] player date stats failed {tkey} {date_iso}: {_pe}")
-                                    continue
-
-                            inactive_slots = {"BN", "IR", "IR+"}
-                            # Upsert rows
-                            wrote = 0
-                            for pkey in pkeys:
-                                meta = pmeta.get(pkey, {})
-                                stats = stats_by_key.get(pkey, {}) or {}
-                                # had_game detection using GP stat if available, else any positive stat
-                                gp_val = None
-                                if gp_stat_id is not None and gp_stat_id in stats:
-                                    gp_val = stats.get(gp_stat_id)
-                                elif 0 in stats:
-                                    gp_val = stats.get(0)
-                                had_game = False
-                                if gp_val is not None:
-                                    try:
-                                        had_game = int(float(str(gp_val))) > 0
-                                    except Exception:
-                                        had_game = False
-                                else:
-                                    for v in stats.values():
-                                        try:
-                                            if float(str(v)) > 0:
-                                                had_game = True
-                                                break
-                                        except Exception:
-                                            continue
-                                sel_pos = (meta.get('selected_position') or '').strip().upper()
-                                active_slot = (sel_pos != '' and sel_pos not in inactive_slots)
-                                gp_num = 1 if (active_slot and had_game) else 0
-
-                                if dry_run:
-                                    print(f"    [DRY] upsert RSD {date_iso} team={tkey} player={pkey} sel={sel_pos} had_game={had_game} gp={gp_num}")
-                                    wrote += 1
-                                    continue
-
-                                # Ensure team row and then upsert daily
-                                upsert_team(session, league_id=league.id, team_key=tkey, team_name=team_name)
-                                upsert_roster_slot_daily(
-                                    session,
-                                    date=d,
-                                    league_id=league.id,
-                                    team_key=tkey,
-                                    player_key=pkey,
-                                    selected_position=sel_pos,
-                                    had_game=bool(had_game),
-                                    gp=int(gp_num),
-                                    player_name=meta.get('name') or None,
-                                    positions=meta.get('positions') or None,
-                                )
-                                wrote += 1
-                            if wrote and not dry_run:
-                                session.commit()
-                                total_rows += wrote
-                                # Gentle sleep between teams to avoid rate limits
-                            if sleep_sec > 0:
-                                time.sleep(sleep_sec)
-                        except Exception as _te:
-                            print(f"    [Warn] Failed team {tkey} on {date_iso}: {_te}")
-                            continue
-
-            print(f"Done. RosterSlotDaily rows written: {total_rows}")
-        finally:
-            try:
-                session.close()
-            except Exception:
-                pass
-    elif cmd == "init-weeks":
-        # Populate Week table (start/end dates) from nhl_schedule (Yahoo-defined week windows)
-        import csv
-        import datetime as _dt
-        import os as _os
-        from infrastructure.persistence import get_session, League, upsert_week
-
-        league_key = getattr(args, "league_key")
-        start_week = int(getattr(args, "start_week", 10) or 10)
-        end_week = int(getattr(args, "end_week", 24) or 24)
-        refresh_cache = bool(getattr(args, "refresh_cache", False))
-        source = str(getattr(args, "source", "auto") or "auto").lower()
-        excel_path = getattr(args, "excel_path", None)
-        excel_sheet = getattr(args, "excel_sheet", "Yahoo_Weeks")
-        debug = bool(getattr(args, "debug", False))
-        dry_run = bool(getattr(args, "dry_run", False))
-
-        if end_week < start_week:
-            raise SystemExit("end-week must be >= start-week")
-
-        # Resolve season: arg --season overrides .env SEASON
-        season = getattr(args, "season", None)
-        if not season:
-            try:
-                from dotenv import load_dotenv  # type: ignore
-                load_dotenv()
-            except Exception:
-                pass
-            season = _os.getenv("SEASON")
-        if not season:
-            raise SystemExit("Season not provided. Pass --season or set SEASON in .env")
-        season = str(season).strip()
-
-        # Attempt to build a season lookup CSV via nhl_schedule (for lookup/auto)
-        out_csv_path = os.path.join("data", f"lookup_table_{season}.csv")
-        csv_ready = False
-        if source in ("auto", "lookup"):
-            try:
-                from nhl_schedule.build_lookup import build as _build_lookup
-            except Exception as e:
-                if source == "lookup":
-                    raise SystemExit(
-                        "Failed to import nhl_schedule. Install the package or set NHL_SCHEDULE_PATH, or run schedule-lookup first."
-                    ) from e
-                if debug:
-                    print("[init-weeks] nhl_schedule not importable; skipping CSV source")
-            else:
-                try:
-                    _ = _build_lookup(
-                        schedule_path=None,
-                        sheet_or_table=None,
-                        out_csv=out_csv_path,
-                        out_xlsx=None,
-                        refresh_cache=refresh_cache,
-                        season=str(season) if "season" in _build_lookup.__code__.co_varnames else None,
-                    )
-                except TypeError:
-                    _ = _build_lookup(
-                        schedule_path=None,
-                        sheet_or_table=None,
-                        out_csv=out_csv_path,
-                        out_xlsx=None,
-                        refresh_cache=refresh_cache,
-                    )
-                csv_ready = True
-
-        # Parse the lookup CSV for Yahoo week numbers and dates
-        def _parse_date(s: str) -> _dt.date:
-            s = (s or "").strip()
-            try:
-                return _dt.date.fromisoformat(s)
-            except Exception:
-                for fmt in ("%Y-%m-%d", "%m/%d/%Y", "%Y/%m/%d"):
-                    try:
-                        return _dt.datetime.strptime(s, fmt).date()
-                    except Exception:
-                        pass
-            raise SystemExit(f"Invalid date value in schedule: {s}")
-
-        with open(out_csv_path, "r", newline="", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            if not reader.fieldnames:
-                raise SystemExit("Schedule CSV appears empty; cannot derive weeks")
-            # Normalize headers, build lookup of normalized->original
-            raw_headers = list(reader.fieldnames)
-            norm_headers = [(h or "").strip().lstrip("\ufeff") for h in raw_headers]
-            keys = [h.lower().replace(" ", "_") for h in norm_headers]
-            header_map = {k: h for k, h in zip(keys, raw_headers)}
-
-            # Aliases
-            def pick(*cands):
-                for c in cands:
-                    if c in header_map:
-                        return header_map[c]
-                return None
-
-            week_col = pick("week", "week_num", "weeknum", "week_id", "weekid", "yahoo_week")
-            date_col = pick("date", "game_date", "dt")
-            start_col = pick("start", "start_date", "startdate")
-            end_col = pick("end", "end_date", "enddate")
-
-            if debug:
-                print(f"[init-weeks] Detected headers: {raw_headers}")
-                print(f"[init-weeks] Mapped columns -> week:{week_col} date:{date_col} start:{start_col} end:{end_col}")
-
-            wk_bounds: dict[int, tuple[_dt.date, _dt.date]] = {}
-
-            if week_col and start_col and end_col:
-                # Weekly summary shape (prefer this if available)
-                for row in reader:
-                    try:
-                        wk = int(str(row.get(week_col, "")).strip())
-                    except Exception:
-                        continue
-                    sd_raw = str(row.get(start_col, "")).strip()
-                    ed_raw = str(row.get(end_col, "")).strip()
-                    if not sd_raw or not ed_raw:
-                        continue
-                    sd = _parse_date(sd_raw)
-                    ed = _parse_date(ed_raw)
-                    if wk not in wk_bounds:
-                        wk_bounds[wk] = (sd, ed)
-                    else:
-                        # In case multiple rows, keep min/max
-                        lo, hi = wk_bounds[wk]
-                        wk_bounds[wk] = (sd if sd < lo else lo, ed if ed > hi else hi)
-            elif week_col and date_col:
-                # Per-date shape: compute min/max per week
-                for row in reader:
-                    try:
-                        wk = int(str(row.get(week_col, "")).strip())
-                    except Exception:
-                        continue
-                    try:
-                        d = _parse_date(str(row.get(date_col, "")).strip())
-                    except SystemExit:
-                        continue
-                    if wk in wk_bounds:
-                        lo, hi = wk_bounds[wk]
-                        if d < lo:
-                            lo = d
-                        if d > hi:
-                            hi = d
-                        wk_bounds[wk] = (lo, hi)
-                    else:
-                        wk_bounds[wk] = (d, d)
-            else:
-                # CSV headers missing expected shapes -> optionally fall back to Excel
-                if source == "lookup":
-                    detected = ", ".join(raw_headers)
-                    raise SystemExit(
-                        "Schedule CSV is missing required columns. Expected either: "
-                        "(week + date) or (week + start + end). Detected headers: " + detected
-                    )
-                # Try Excel if allowed
-                wk_bounds = {}
-                tried_excel = False
-                if source in ("auto", "excel"):
-                    tried_excel = True
-                    x_path = excel_path or _os.getenv("NHL_SCHEDULE_XLSX_PATH")
-                    if not x_path or not _os.path.exists(x_path):
-                        if debug:
-                            print(f"[init-weeks] Excel path not provided or not found: {x_path}")
-                    else:
-                        try:
-                            from openpyxl import load_workbook  # type: ignore
-                        except Exception as e:
-                            raise SystemExit("openpyxl is required to read Excel. Install with: pip install openpyxl") from e
-                        wb = load_workbook(x_path, data_only=True, read_only=True)
-                        if excel_sheet not in wb.sheetnames:
-                            raise SystemExit(f"Excel sheet not found: {excel_sheet}. Available: {wb.sheetnames}")
-                        ws = wb[excel_sheet]
-                        rows_iter = ws.iter_rows(values_only=True)
-                        try:
-                            header_row = next(rows_iter)
-                        except StopIteration:
-                            raise SystemExit("Excel sheet is empty; cannot derive weeks")
-                        raw_xhdr = [str(h or '').strip() for h in header_row]
-                        norm = [h.strip().lstrip("\ufeff").lower().replace(' ', '_') for h in raw_xhdr]
-                        idx_map = {k: i for i, k in enumerate(norm)}
-                        def _idx(*cands):
-                            for c in cands:
-                                k = c.strip().lower().replace(' ', '_')
-                                if k in idx_map:
-                                    return idx_map[k]
-                            return None
-                        i_week = _idx("week", "week_num", "weekid", "week_id")
-                        i_start = _idx("start", "start_date", "startdate")
-                        i_end = _idx("end", "end_date", "enddate")
-                        if debug:
-                            print(f"[init-weeks] Excel headers: {raw_xhdr}")
-                            print(f"[init-weeks] Excel mapped idx -> week:{i_week} start:{i_start} end:{i_end}")
-                        if i_week is None or i_start is None or i_end is None:
-                            raise SystemExit("Excel sheet must include columns for Week/Start/End")
-                        # Parse rows
-                        for r in rows_iter:
-                            try:
-                                wv = r[i_week]
-                                if wv is None or str(wv).strip() == '':
-                                    continue
-                                wk = int(str(wv).strip())
-                            except Exception:
-                                continue
-                            s_raw = r[i_start]
-                            e_raw = r[i_end]
-                            try:
-                                sd = _parse_date(s_raw.isoformat() if hasattr(s_raw, 'isoformat') else str(s_raw))
-                                ed = _parse_date(e_raw.isoformat() if hasattr(e_raw, 'isoformat') else str(e_raw))
-                            except SystemExit:
-                                continue
-                            wk_bounds[wk] = (sd, ed)
-                        if not wk_bounds:
-                            raise SystemExit("No week rows parsed from Excel source")
-                        # Continue after Excel fallback
-                if not wk_bounds:
-                    detected = ", ".join(raw_headers)
-                    tried = [f"CSV:{out_csv_path}"]
-                    if tried_excel:
-                        tried.append(f"Excel:{excel_path or _os.getenv('NHL_SCHEDULE_XLSX_PATH')}")
-                    raise SystemExit(
-                        "Unable to derive week windows from provided sources. Tried " + ", ".join(tried) + ". "
-                        "CSV detected headers: " + detected + ". Use --excel-path/--excel-sheet or --debug for details."
-                    )
-
-        # Select desired week range
-        selected = [(wk, lo, hi) for wk, (lo, hi) in wk_bounds.items() if start_week <= wk <= end_week]
-        if not selected:
-            raise SystemExit(f"No weeks found in range {start_week}..{end_week} for season {season}")
-        selected.sort(key=lambda x: x[0])
-
-        if debug:
-            preview = ", ".join([f"w{wk}:{lo}..{hi}" for wk, lo, hi in selected[:3]])
-            print(f"[init-weeks] Parsed weeks preview: {preview}")
-
-        session = get_session()
-        try:
-            league = session.query(League).filter(League.league_key == str(league_key)).one_or_none()
-            if league is None:
-                raise SystemExit(f"League not found: {league_key}")
-
-            wrote = 0
-            for wk, sd, ed in selected:
-                if dry_run:
-                    print(f"[DRY] upsert_week league={league.league_key} week={wk} {sd}..{ed}")
-                    wrote += 1
-                    continue
-                upsert_week(session, league_id=league.id, week_num=int(wk), start_date=sd, end_date=ed)
-                wrote += 1
-            if not dry_run:
-                session.commit()
-            print(f"init-weeks: processed {len(selected)} week(s); {'planned' if dry_run else 'upserted'} {wrote}")
-        finally:
-            try:
-                session.close()
-            except Exception:
-                pass
-    elif cmd == "waiver-agent":
-        team_name = getattr(args, "team_name")
-        current_week = int(getattr(args, "current_week"))
-        skaters_csv = getattr(args, "skaters_csv", os.path.join("data","merged_skaters.csv"))
-        lookup_csv = getattr(args, "lookup_csv", os.path.join("data","lookup_table.csv"))
-        prior_csv = getattr(args, "prior_csv", os.path.join("data","merged_skaters_prior.csv"))
-        out_dir = getattr(args, "out_dir", os.path.join("output"))
-        paths = run_waiver(
-            team_name=team_name,
-            current_week=current_week,
-            skaters_csv=skaters_csv,
-            lookup_csv=lookup_csv,
-            prior_csv=prior_csv,
-            out_dir=out_dir,
-        )
-        print("Waiver recommendations written to:")
-        print(f"  CSV: {paths.get('csv')}")
-        print(f"  Plots: {paths.get('plots_dir')}")
-    else:
-        run_all()
-
-
-if __name__ == "__main__":
-    main()
