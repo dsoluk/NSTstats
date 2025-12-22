@@ -2,6 +2,11 @@ import argparse
 import os
 import sys
 import time
+from dotenv import load_dotenv
+
+# Load .env variables before other imports that might depend on them
+load_dotenv()
+
 from app.orchestrator import run_all, run_yahoo, run_nst, run_merge, run_roster_sync
 from diagnostics.runner import run_dq as run_dq_diag, run_dq_prior as run_dq_prior_diag
 from application.forecast import forecast as run_forecast
@@ -297,6 +302,9 @@ def main():
         )
     elif cmd == "merge":
         run_merge()
+    elif cmd == "schedule-lookup":
+        # Pass an empty argv so the inner parser uses defaults and doesn't try to parse the outer Namespace
+        cmd_schedule_refresh(argv=[])
     elif cmd == "dq":
         windows = getattr(args, "windows", ["szn"]) or ["szn"]
         metrics = getattr(args, "metrics", ["G","A","PPP","SOG","FOW","HIT","BLK","PIM"]) or ["G","A","PPP","SOG","FOW","HIT","BLK","PIM"]
@@ -387,9 +395,6 @@ def main():
             weeks_in_season=getattr(args, "weeks_in_season", 24),
         )
         print(f"Forecasts written to: {out_path}")
-    elif cmd == "schedule-lookup":
-        # Pass an empty argv so the inner parser uses defaults and doesn't try to parse the outer Namespace
-        cmd_schedule_refresh(argv=[])
     elif cmd == "compare":
         current_week = getattr(args, "current_week")
         forecast_csv = getattr(args, "forecast_csv", os.path.join("data","forecasts.csv"))
@@ -566,3 +571,6 @@ def main():
                 session.close()
             except Exception:
                 pass
+
+if __name__ == "__main__":
+    main()

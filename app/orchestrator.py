@@ -89,8 +89,8 @@ def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False):
         # Save unified CSVs under data/ directory
         out_dir = os.path.join("data")
         os.makedirs(out_dir, exist_ok=True)
-        # Skipping persistence of raw skaters.csv per simplification; keep goalies.csv for DQ
-        # skater_pipeline.save(os.path.join(out_dir, "skaters.csv"))
+        # Restore persistence of raw skaters.csv for diagnostic visibility
+        skater_pipeline.save(os.path.join(out_dir, "skaters.csv"))
         goalie_pipeline.save(os.path.join(out_dir, "goalies.csv"))
 
         # compute player index on skaters

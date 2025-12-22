@@ -100,6 +100,28 @@ _SUFFIXES = [
 ]
 
 
+# common nickname/alternate name mapping (normalized keys)
+_NICKNAME_MAP = {
+    'alexander': 'alex',
+    'mitchell': 'mitch',
+    'nicholas': 'nick',
+    'christopher': 'chris',
+    'matthew': 'matt',
+    'zachary': 'zach',
+    'zack': 'zach',
+    'zackary': 'zach',
+    'jacob': 'jake',
+    'anthony': 'tony',
+    'william': 'will',
+    'robert': 'bob',
+    'michael': 'mike',
+    'vince': 'vincent',
+    'evgenii': 'evgeny',
+    'alexei': 'alexey',
+    'sergei': 'sergey',
+}
+
+
 def normalize_name(name: str) -> str:
     s = str(name or '').strip()
     s = unicodedata.normalize('NFKD', s)
@@ -114,6 +136,13 @@ def normalize_name(name: str) -> str:
         parts = parts[:-1]
     # special: remove dots from initials like "t.j." -> "tj"
     parts = [p.replace("'", '') for p in parts]
+    
+    # Apply nickname mapping to first name if it matches
+    if parts:
+        first = parts[0]
+        if first in _NICKNAME_MAP:
+            parts[0] = _NICKNAME_MAP[first]
+
     return ' '.join(parts)
 
 
