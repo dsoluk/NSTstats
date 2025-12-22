@@ -153,6 +153,10 @@ def main():
 
     subparsers.add_parser("all", help="Run Yahoo and NST pipelines")
     subparsers.add_parser("yahoo", help="Run Yahoo Fantasy helper")
+
+    # New Composite Commands
+    subparsers.add_parser("daily", help="Daily workflow: sync-rosters, all, schedule-lookup")
+    subparsers.add_parser("weekly", help="Weekly workflow: fetch-daily-gp, backfill-gp, avg-compare (for prior week)")
     
     # New Sync Rosters command
     sync_rosters = subparsers.add_parser("sync-rosters", help="Sync Yahoo rosters to database")
@@ -285,6 +289,22 @@ def main():
 
     args = parser.parse_args()
 
+    def get_default_league_key():
+        # 1) Try environment
+        lk = os.getenv("YAHOO_LEAGUE_KEY")
+        if lk:
+            return lk
+        # 2) Try database
+        from infrastructure.persistence import get_session as _gs, League as _LM
+        session = _gs()
+        try:
+            league = session.query(_LM).order_by(_LM.id.desc()).first()
+            if league:
+                return league.league_key
+        finally:
+            session.close()
+        return None
+
     # Determine command, honoring the top-level flag alias if provided
     if getattr(args, "schedule_lookup", False) and not getattr(args, "command", None):
         cmd = "schedule-lookup"
@@ -295,6 +315,136 @@ def main():
         run_yahoo()
     elif cmd == "sync-rosters":
         run_roster_sync(args.league_key)
+    elif cmd == "daily":
+        league_key = get_default_league_key()
+        if not league_key:
+            league_key = input("Enter Yahoo league key: ").strip()
+        
+        # We don't really use current-week in sync-rosters or all, 
+        # but user asked to prompt for it in daily. 
+        # It might be used in the excel analysis they mention.
+        curr_wk_str = input("Enter current week number: ").strip()
+        
+        print(f"\n--- Starting Daily Workflow (Week {curr_wk_str}, League {league_key}) ---")
+        run_roster_sync(league_key)
+        run_all()
+        cmd_schedule_refresh(argv=[])
+        print("--- Daily Workflow Complete ---")
+
+    elif cmd == "weekly":
+        league_key = get_default_league_key()
+        if not league_key:
+            league_key = input("Enter Yahoo league key: ").strip()
+            
+        curr_wk_str = input("Enter current week number: ").strip()
+        try:
+            curr_wk = int(curr_wk_str)
+        except ValueError:
+            print("Invalid week number.")
+            return
+            
+        team_id = input("Enter your Team ID: ").strip()
+        opp_id = input("Enter opponent Team ID: ").strip()
+        
+        # Derive prior week
+        prior_wk = curr_wk - 1
+        if prior_wk < 1:
+            print(f"Current week is {curr_wk}; no prior week to process.")
+            return
+
+        print(f"\n--- Starting Weekly Workflow (Prior Week {prior_wk}, League {league_key}) ---")
+        
+        # 1) fetch-daily-gp
+        # We need to mimic the logic in fetch-daily-gp block
+        from infrastructure.persistence import League as LeagueModel, Team as TeamModel, Week as WeekModel
+        from yahoo.yfs_client import YahooFantasyClient, parse_roster_xml
+        from yahoo.yahoo_auth import get_oauth
+        import datetime
+        from infrastructure.persistence import get_session as _gs
+
+        session = _gs()
+        try:
+            league = session.query(LeagueModel).filter(LeagueModel.league_key == league_key).one_or_none()
+            if not league:
+                print(f"League {league_key} not found. Run init-weeks first.")
+                return
+
+            teams = session.query(TeamModel).filter(TeamModel.league_id == league.id).all()
+            
+            client_id = os.getenv("YAHOO_CLIENT_ID")
+            client_secret = os.getenv("YAHOO_CLIENT_SECRET")
+            client = YahooFantasyClient(get_oauth(client_id, client_secret))
+
+            # Fetch daily for prior week
+            wk_row = session.query(WeekModel).filter(WeekModel.league_id == league.id, WeekModel.week_num == prior_wk).one_or_none()
+            if wk_row and wk_row.start_date and wk_row.end_date:
+                print(f"Step 1: Fetching daily GP for Week {prior_wk}...")
+                curr_date = wk_row.start_date
+                while curr_date <= wk_row.end_date:
+                    date_str = curr_date.strftime("%Y-%m-%d")
+                    for t in teams:
+                        try:
+                            payload = client.get_team_roster_date(t.team_key, date_str)
+                            roster = parse_roster_xml(payload.get("_raw_xml", ""))
+                            from infrastructure.persistence import upsert_roster_slot_daily
+                            for p in roster.get("players", []):
+                                pkey = f"{league.game_key}.p.{p['player_id']}"
+                                sel_pos = p.get("selected_position")
+                                gp_val = 0 if sel_pos in {'BN', 'IR', 'IR+', 'NA'} else 1
+                                upsert_roster_slot_daily(
+                                    session, date=curr_date, league_id=league.id, team_key=t.team_key,
+                                    player_key=pkey, selected_position=sel_pos, had_game=None, gp=gp_val,
+                                    player_name=p.get("name"), positions=";".join(p.get("positions", []))
+                                )
+                            session.commit()
+                            time.sleep(1.0)
+                        except Exception as e:
+                            print(f"      [Warn] Failed {t.team_key} on {date_str}: {e}")
+                            session.rollback()
+                    curr_date += datetime.timedelta(days=1)
+            else:
+                print(f"[Warn] Missing dates for week {prior_wk}; skipping fetch-daily-gp")
+
+            # 2) backfill-gp
+            print(f"Step 2: Backfilling weekly GP for Week {prior_wk}...")
+            from sqlalchemy import func
+            from infrastructure.persistence import RosterSlotDaily, WeeklyPlayerGP, upsert_weekly_player_gp, mark_week_closed
+            
+            if wk_row and wk_row.start_date and wk_row.end_date:
+                for t in teams:
+                    daily_q = (
+                        session.query(RosterSlotDaily.player_key, func.coalesce(func.sum(RosterSlotDaily.gp), 0))
+                        .filter(
+                            RosterSlotDaily.league_id == league.id,
+                            RosterSlotDaily.team_key == t.team_key,
+                            RosterSlotDaily.date >= wk_row.start_date,
+                            RosterSlotDaily.date <= wk_row.end_date,
+                        )
+                        .group_by(RosterSlotDaily.player_key)
+                    )
+                    for pkey, gp_sum in daily_q.all():
+                        upsert_weekly_player_gp(
+                            session, league_id=league.id, week_num=prior_wk, team_key=t.team_key,
+                            player_key=str(pkey), gp=int(gp_sum or 0), source="daily_agg"
+                        )
+                    session.commit()
+                mark_week_closed(session, league_id=league.id, week_num=prior_wk)
+                session.commit()
+
+            # 3) avg-compare
+            print(f"Step 3: Running avg-compare for Week {curr_wk}...")
+            from application.avg_compare import compare_averages as run_avg_compare
+            run_avg_compare(
+                league_key=league_key,
+                current_week=curr_wk,
+                team_id=team_id,
+                opp_team_id=opp_id,
+            )
+        finally:
+            session.close()
+        
+        print("--- Weekly Workflow Complete ---")
+
     elif cmd == "nst":
         run_nst(
             refresh_prior=getattr(args, "refresh_prior", False),

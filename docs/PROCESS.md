@@ -12,18 +12,28 @@ Inputs and sources:
 - Local normalization helpers for names/teams/positions (helpers/normalization.py).
 
 Process (via CLI):
+- `init-weeks`: population of the local database `Week` table with start and end dates for a given league and season. This is required for all subsequent database-backed commands.
+  - `python -m app.cli init-weeks --league-key nhl.p.2526 --season 2025`
+- `sync-rosters`: synchronizes the current Yahoo league rosters to the local database `CurrentRoster` table. This creates a local snapshot that reduces Yahoo API overhead.
+  - `python -m app.cli sync-rosters --league-key nhl.p.2526`
 - `nst`: fetch/refresh NST skater and goalie datasets; compute scored outputs for skaters and goalies.
   - Produces `data/skaters_scored.csv` and `data/goalies_scored.csv`.
   - Prior-season caching: if both `data/skaters_scored_prior.csv` and `data/goalies_scored_prior.csv` already exist, the prior-season fetch/scoring is skipped by default since last-year stats do not change during the current season.
     - Use `python -m app.cli nst --refresh-prior` to force a re-fetch/re-score of the prior season.
     - Use `python -m app.cli nst --skip-prior` to explicitly skip the prior-season step regardless of cache state.
-- `yahoo`: fetch or refresh Yahoo roster data.
+- `yahoo`: fetch or refresh Yahoo roster data (produces `data/all_rosters.csv`).
 - `merge`: merge NST stats with Yahoo ownership using local normalization helpers, producing per‑player rows with `team_name` attribution.
-- `all`: convenience orchestration that runs `yahoo` and `nst` and `merge`.
+  - **Note**: The merge process now prefers loading roster information from the local database if available, falling back to `data/all_rosters.csv` only if the database is empty.
+- `all`: convenience orchestration that runs `yahoo`, `nst`, and `merge`.
+
+### Composite Workflows
+- `daily`: runs `sync-rosters`, `all`, and `schedule-lookup`. Prompts for `current-week`.
+- `weekly`: runs `fetch-daily-gp`, `backfill-gp`, and `avg-compare` for the prior week. Prompts for `current-week`, `team-id`, and `opp-team-id`.
 
 Key outputs:
 - `data/merged_skaters.csv` (and analogous outputs for goalies, if applicable).
 - Data quality artifacts (see next section) such as unmatched players and merge reports.
+- Local SQLite database `data/app.db` containing synced rosters, weeks, and historical GP data.
 
 Notes on metrics and scoring (see also [SCORING.md](./SCORING.md)):
 - Actuals tracked for both season‑to‑date (Szn) and last‑7 games (L7).
@@ -143,8 +153,36 @@ CLI:
 Outputs:
 - `data/eval/metrics_by_position.csv`, `data/eval/season_total_eval.xlsx`, and plots under `data/eval/_plots`.
 
+## 7) League Analytics & Backfilling (Database-backed)
+
+Purpose: Perform advanced analytics such as team vs. opponent comparisons and backfill historical games played (GP) data from Yahoo to the local database.
+
+See also: [docs/AVG_COMPARE_AND_BACKFILL_GP.md](./AVG_COMPARE_AND_BACKFILL_GP.md)
+
+### avg-compare
+- `python -m app.cli avg-compare --league-key nhl.p.2526 --current-week 9 --team-id 4 --opp-team-id 8`
+- Computes average stat comparisons for a given team vs. a specific opponent and vs. the league average.
+
+### fetch-daily-gp
+- `python -m app.cli fetch-daily-gp --league-key nhl.p.2526 --start-week 1 --end-week 8`
+- Populates `RosterSlotDaily` by fetching team rosters and per‑date player stats from Yahoo.
+
+### backfill-gp
+- `python -m app.cli backfill-gp --league-key nhl.p.2526 --start-week 1 --end-week 8`
+- Aggregates daily roster slots into weekly totals per player (`WeeklyPlayerGP`).
+
+### waiver-agent
+- `python -m app.cli waiver-agent --team-name "Your Team Name" --current-week 12`
+- Recommends waiver-wire streamers versus your current roster based on forecasts and position needs.
+
 ## Command Summary (Quick Start)
 
+- Initialize Database:
+  - `python -m app.cli init-weeks --league-key nhl.p.2526`
+  - `python -m app.cli sync-rosters --league-key nhl.p.2526`
+- Composite Workflows (Recommended):
+  - `python -m app.cli daily` (Run Monday-Sunday)
+  - `python -m app.cli weekly` (Run Mondays to finalize prior week)
 - End‑to‑end refresh (inputs):
   - `python -m app.cli all`
   - then `python -m app.cli merge`
@@ -158,6 +196,8 @@ Outputs:
   - `python -m app.cli analyze`
 - Diagnostics (distributions):
   - `python -m app.cli dq --windows szn l7 --metrics G A PPP SOG FOW HIT BLK PIM`
+- Waiver Recommendations:
+  - `python -m app.cli waiver-agent --team-name "Trocheck Backcheck Paycheque" --current-week 12`
 
 ## Key Files and Directories
 
@@ -186,18 +226,29 @@ Outputs:
 If helpful, you can capture this visually with a Mermaid diagram in Markdown (PyCharm supports Mermaid diagrams):
 
 ```mermaid
-flowchart LR
+flowchart TD
   subgraph Inputs
     NST[NST skaters/goalies Szn & L7 per60]
-    Yahoo[Yahoo rosters]
+    Yahoo[Yahoo API / rosters]
     SchedSrc[NHL schedule inputs]
   end
 
-  NST --> Merge
-  Yahoo --> Merge
+  subgraph Database
+    DB[(data/app.db)]
+  end
+
+  Yahoo -- sync-rosters --> DB
+  Yahoo -- yahoo --> RosterCSV[data/all_rosters.csv]
+
+  NST -- nst --> Scored[data/skaters_scored.csv]
+  
+  DB -- merge --> Merge
+  RosterCSV -- fallback --> Merge
+  Scored --> Merge
+  
   Merge --> Merged[data/merged_skaters.csv]
 
-  SchedSrc --> Sched[Schedule Lookup]
+  SchedSrc -- schedule-lookup --> Sched[Schedule Lookup]
   Sched --> Lookup[data/lookup_table.csv]
 
   Merged --> Forecast
@@ -212,6 +263,9 @@ flowchart LR
   Analyze --> Eval[data/eval/*]
 
   Merge -. DQ reports .-> DQ[data/dq/*]
+  
+  DB -- avg-compare --> Analytics
+  DB -- fetch/backfill --> DB
 ```
 
 ## PyCharm Tips for Documenting/Presenting the Workflow
