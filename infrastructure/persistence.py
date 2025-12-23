@@ -55,6 +55,7 @@ class Player(Base):
     player_key: Mapped[str] = mapped_column(String(64), primary_key=True)
     name: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
     positions: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+    status: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     last_synced: Mapped[Optional[_dt.datetime]] = mapped_column(nullable=True)
 
 class CurrentRoster(Base):
@@ -252,7 +253,7 @@ def upsert_team(session, league_id: int, team_key: str, team_name: str):
     session.execute(stmt, {"league_id": league_id, "team_key": team_key, "team_name": team_name})
     return session.query(Team).filter(Team.team_key == team_key).one()
 
-def upsert_player(session, player_key: str, name: str, positions: str):
+def upsert_player(session, player_key: str, name: str, positions: str, status: Optional[str] = None):
     """Update or create a player record with current metadata."""
     player = session.query(Player).filter(Player.player_key == player_key).one_or_none()
     if not player:
@@ -260,6 +261,7 @@ def upsert_player(session, player_key: str, name: str, positions: str):
         session.add(player)
     player.name = name
     player.positions = positions
+    player.status = status
     player.last_synced = _dt.datetime.now()
     return player
 

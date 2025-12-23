@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="fixed unmatched issues in merge">
+    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="new composite workflows for daily and weekly plus doc updates">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/merger.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/merger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/orchestrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/orchestrator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/all_rosters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_rosters.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/app.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/persistence.py" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/persistence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yahoo/yfs_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahoo/yfs_client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="442" />
+    <option name="cachedIndexableFilesCount" value="443" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -193,7 +197,7 @@
       <workItem from="1764940376552" duration="34121000" />
       <workItem from="1765489692041" duration="1833000" />
       <workItem from="1766153455337" duration="18735000" />
-      <workItem from="1766256940497" duration="24038000" />
+      <workItem from="1766256940497" duration="30151000" />
     </task>
     <task id="LOCAL-00001" summary="with Pipelines">
       <option name="closed" value="true" />
@@ -443,15 +447,29 @@
       <option name="project" value="LOCAL" />
       <updated>1766429021252</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="more cli fixes and testing">
+      <option name="closed" value="true" />
+      <created>1766436930555</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1766436930555</updated>
+    </task>
+    <task id="LOCAL-00033" summary="new composite workflows for daily and weekly plus doc updates">
+      <option name="closed" value="true" />
+      <created>1766440321358</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1766440321358</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="output changes" />
-    <MESSAGE value="merge checks" />
     <MESSAGE value="added diagnostics" />
     <MESSAGE value="pre new branch to integrate NHLschedule" />
     <MESSAGE value="added ly and ag projections and compare to forecast" />
@@ -475,7 +493,9 @@
     <MESSAGE value="checkpoint before reworking merge" />
     <MESSAGE value="integrate roster to db" />
     <MESSAGE value="fixed unmatched issues in merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed unmatched issues in merge" />
+    <MESSAGE value="more cli fixes and testing" />
+    <MESSAGE value="new composite workflows for daily and weekly plus doc updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="new composite workflows for daily and weekly plus doc updates" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NSTstats$main.coverage" NAME="main Coverage Results" MODIFIED="1761609118434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

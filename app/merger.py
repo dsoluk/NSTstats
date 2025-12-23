@@ -24,6 +24,7 @@ def _load_yahoo_rosters_from_db() -> pd.DataFrame:
             session.query(
                 Player.name,
                 Player.positions,
+                Player.status,
                 Team.team_name,
                 CurrentRoster.team_key
             )
@@ -31,16 +32,33 @@ def _load_yahoo_rosters_from_db() -> pd.DataFrame:
             .join(Team, CurrentRoster.team_key == Team.team_key)
         )
         rows = []
-        for p_name, p_pos, t_name, t_key in q.all():
+        for p_name, p_pos, p_status, t_name, t_key in q.all():
             rows.append({
                 'name': p_name,
                 'positions': p_pos,
+                'status': p_status,
                 'team_name': t_name,
                 'team_key': t_key
             })
+        
+        # Also include unowned players that have a status (IR, IR+, etc.)
+        unowned_q = (
+            session.query(Player.name, Player.positions, Player.status)
+            .filter(Player.status.isnot(None))
+            .filter(~Player.player_key.in_(session.query(CurrentRoster.player_key)))
+        )
+        for p_name, p_pos, p_status in unowned_q.all():
+            rows.append({
+                'name': p_name,
+                'positions': p_pos,
+                'status': p_status,
+                'team_name': None,
+                'team_key': None
+            })
+
         ydf = pd.DataFrame(rows)
         if ydf.empty:
-            return pd.DataFrame(columns=['cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name'])
+            return pd.DataFrame(columns=['cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name', 'status'])
         
         # Normalize as before
         ydf['cname'] = ydf['name'].fillna('').apply(normalize_name)
@@ -87,7 +105,8 @@ def _load_yahoo_rosters_from_db() -> pd.DataFrame:
                .groupby(['cname', 'ypos', 'fpos'], as_index=False)
                .agg(yahoo_name=('yahoo_name', first_non_null),
                     yahoo_positions=('yahoo_positions', agg_positions),
-                    team_name=('team_name', first_non_null))
+                    team_name=('team_name', first_non_null),
+                    status=('status', first_non_null))
         )
         return agg
     finally:
@@ -104,8 +123,10 @@ def _load_yahoo_all_rosters(csv_path: str) -> pd.DataFrame:
     
     print(f"[Info] Database rosters empty, falling back to {csv_path}")
     if not os.path.exists(csv_path):
-        return pd.DataFrame(columns=['cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name'])
+        return pd.DataFrame(columns=['cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name', 'status'])
     ydf = pd.read_csv(csv_path)
+    if 'status' not in ydf.columns:
+        ydf['status'] = None
     # Normalize name to cname
     ydf['cname'] = ydf['name'].fillna('').apply(normalize_name)
 
@@ -173,7 +194,8 @@ def _load_yahoo_all_rosters(csv_path: str) -> pd.DataFrame:
                .groupby(['cname', 'ypos', 'fpos'], as_index=False)
                .agg(yahoo_name=('yahoo_name', first_non_null),
                     yahoo_positions=('yahoo_positions', agg_positions),
-                    team_name=('team_name', first_non_null))
+                    team_name=('team_name', first_non_null),
+                    status=('status', first_non_null))
         )
         return agg
 
@@ -270,7 +292,7 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
     if not yinfo.empty:
         # Exact match on (cname, exact position)
         merged = merged.merge(
-            yinfo,
+            yinfo[['cname', 'ypos', 'team_name', 'yahoo_positions', 'yahoo_name', 'status']],
             left_on=['cname', 'pos_code'],
             right_on=['cname', 'ypos'],
             how='left'
@@ -286,7 +308,7 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
         merged['fpos'] = merged['pos_code'].apply(_to_fpos)
         need_fallback = merged['team_name'].isna()
         if need_fallback.any():
-            y_fg = yinfo[['cname', 'fpos', 'team_name', 'yahoo_positions', 'yahoo_name']].copy()
+            y_fg = yinfo[['cname', 'fpos', 'team_name', 'yahoo_positions', 'yahoo_name', 'status']].copy()
             y_fg = y_fg.dropna(subset=['fpos'])
             merged = merged.merge(
                 y_fg,
@@ -295,11 +317,11 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
                 how='left',
                 suffixes=('', '_fg')
             )
-            for col in ['team_name', 'yahoo_positions', 'yahoo_name']:
+            for col in ['team_name', 'yahoo_positions', 'yahoo_name', 'status']:
                 alt = f"{col}_fg"
                 if alt in merged.columns:
                     merged[col] = merged[col].fillna(merged[alt])
-            drop_alt = [c for c in ['team_name_fg', 'yahoo_positions_fg', 'yahoo_name_fg'] if c in merged.columns]
+            drop_alt = [c for c in ['team_name_fg', 'yahoo_positions_fg', 'yahoo_name_fg', 'status_fg'] if c in merged.columns]
             if drop_alt:
                 merged.drop(columns=drop_alt, inplace=True)
         # Final fallback: match on cname only (may be ambiguous for duplicate names)
@@ -309,7 +331,8 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
                 yinfo.groupby('cname', as_index=False)
                      .agg(team_name=('team_name', 'first'),
                           yahoo_positions=('yahoo_positions', 'first'),
-                          yahoo_name=('yahoo_name', 'first'))
+                          yahoo_name=('yahoo_name', 'first'),
+                          status=('status', 'first'))
             )
             merged = merged.merge(
                 y_by_name,
@@ -317,11 +340,11 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
                 how='left',
                 suffixes=('', '_byname')
             )
-            for col in ['team_name', 'yahoo_positions', 'yahoo_name']:
+            for col in ['team_name', 'yahoo_positions', 'yahoo_name', 'status']:
                 alt = f"{col}_byname"
                 if alt in merged.columns:
                     merged[col] = merged[col].fillna(merged[alt])
-            drop_alt = [c for c in ['team_name_byname', 'yahoo_positions_byname', 'yahoo_name_byname'] if c in merged.columns]
+            drop_alt = [c for c in ['team_name_byname', 'yahoo_positions_byname', 'yahoo_name_byname', 'status_byname'] if c in merged.columns]
             if drop_alt:
                 merged.drop(columns=drop_alt, inplace=True)
         # Remove merge helpers
@@ -351,7 +374,7 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
         merged.drop(columns=existing_drops, inplace=True)
 
     # Reorder to surface key fields near front
-    front = [c for c in ['Player', 'Team', 'team_name', 'Elig_Pos'] if c in merged.columns]
+    front = [c for c in ['Player', 'Team', 'team_name', 'Elig_Pos', 'status'] if c in merged.columns]
     others = [c for c in merged.columns if c not in front]
     merged = merged[front + others]
 

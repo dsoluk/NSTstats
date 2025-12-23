@@ -236,13 +236,29 @@ def run_roster_sync(league_key: str):
                 
                 for p in roster.get("players", []):
                     pkey = f"{game_key}.p.{p['player_id']}"
-                    upsert_player(session, pkey, p.get("name"), ";".join(p.get("positions", [])))
+                    upsert_player(session, pkey, p.get("name"), ";".join(p.get("positions", [])), status=p.get("status"))
                     session.add(CurrentRoster(league_id=league.id, player_key=pkey, team_key=tkey))
                 
                 print(f"  Synced {team_name}")
                 session.commit()
             except Exception as e:
                 print(f"  [Warn] Failed {tkey}: {e}")
+                session.rollback()
+
+        # Fetch Free Agents with IR/IR+ status
+        print("Syncing IR/IR+ free agents...")
+        for status_to_fetch in ["IR", "IR+"]:
+            try:
+                # Yahoo API allows fetching available players with a status filter
+                payload = client.get_league_players(league_key, status=status_to_fetch)
+                roster = parse_roster_xml(payload.get("_raw_xml", ""))
+                for p in roster.get("players", []):
+                    pkey = f"{game_key}.p.{p['player_id']}"
+                    upsert_player(session, pkey, p.get("name"), ";".join(p.get("positions", [])), status=p.get("status"))
+                session.commit()
+                print(f"  Synced {len(roster.get('players', []))} players with {status_to_fetch} status")
+            except Exception as e:
+                print(f"  [Warn] Failed to sync {status_to_fetch} free agents: {e}")
                 session.rollback()
     finally:
         session.close()
