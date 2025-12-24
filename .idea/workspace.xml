@@ -4,13 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="new composite workflows for daily and weekly plus doc updates">
+    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="added lookup of IR status for waiver wire">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/merger.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/merger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/cli.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/orchestrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/orchestrator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/all_rosters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_rosters.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/app.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/goalies_scored.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies_scored.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lookup_table.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/lookup_table.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/merged_goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_goalies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/merged_goalies_prior.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_goalies_prior.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/merged_skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/merged_skaters_prior.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters_prior.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/opponent_offense_lookup.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/opponent_offense_lookup.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/skaters.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/skaters_scored.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/skaters_scored.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/unmatched_in_merged.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/unmatched_in_merged.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infrastructure/persistence.py" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/persistence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yahoo/yahoo_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahoo/yahoo_auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yahoo/yfs_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahoo/yfs_client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +31,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="443" />
+    <option name="cachedIndexableFilesCount" value="444" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -61,36 +73,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.cli.executor": "Debug",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "rework-merge",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "junie.project.settings",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.cli.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;rework-merge&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;junie.project.settings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1767268826882" />
     <option name="spentUsd" value="0.0423144" />
@@ -197,7 +209,8 @@
       <workItem from="1764940376552" duration="34121000" />
       <workItem from="1765489692041" duration="1833000" />
       <workItem from="1766153455337" duration="18735000" />
-      <workItem from="1766256940497" duration="30151000" />
+      <workItem from="1766256940497" duration="30533000" />
+      <workItem from="1766500912715" duration="4787000" />
     </task>
     <task id="LOCAL-00001" summary="with Pipelines">
       <option name="closed" value="true" />
@@ -463,14 +476,21 @@
       <option name="project" value="LOCAL" />
       <updated>1766440321358</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="added lookup of IR status for waiver wire">
+      <option name="closed" value="true" />
+      <created>1766457856684</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1766457856684</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added diagnostics" />
     <MESSAGE value="pre new branch to integrate NHLschedule" />
     <MESSAGE value="added ly and ag projections and compare to forecast" />
     <MESSAGE value="added analysis...note. no ly yet" />
@@ -495,7 +515,8 @@
     <MESSAGE value="fixed unmatched issues in merge" />
     <MESSAGE value="more cli fixes and testing" />
     <MESSAGE value="new composite workflows for daily and weekly plus doc updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="new composite workflows for daily and weekly plus doc updates" />
+    <MESSAGE value="added lookup of IR status for waiver wire" />
+    <option name="LAST_COMMIT_MESSAGE" value="added lookup of IR status for waiver wire" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NSTstats$main.coverage" NAME="main Coverage Results" MODIFIED="1761609118434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

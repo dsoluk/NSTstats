@@ -100,15 +100,16 @@ class YahooFantasyClient:
         path = f"/team/{team_key}/stats;type=week;week={week}"
         return self.get(path)
 
-    def get_league_players(self, league_key: str, status: Optional[str] = None, search: Optional[str] = None, position: Optional[str] = None, sort: Optional[str] = None, start: int = 0, count: int = 25) -> Dict[str, Any]:
+    def get_league_players(self, league_key: str, status: Optional[str] = None, search: Optional[str] = None, position: Optional[str] = None, sort: Optional[str] = None, sort_type: Optional[str] = None, start: int = 0, count: int = 25) -> Dict[str, Any]:
         """Fetch players for a league (available, all, etc).
-        Endpoint pattern: /league/{league_key}/players;status={status};search={search};position={position};sort={sort};start={start};count={count}
+        Endpoint pattern: /league/{league_key}/players;status={status};search={search};position={position};sort={sort};sort_type={sort_type};start={start};count={count}
         """
         filters = []
         if status: filters.append(f"status={status}")
         if search: filters.append(f"search={search}")
         if position: filters.append(f"position={position}")
         if sort: filters.append(f"sort={sort}")
+        if sort_type: filters.append(f"sort_type={sort_type}")
         if start: filters.append(f"start={start}")
         if count: filters.append(f"count={count}")
         

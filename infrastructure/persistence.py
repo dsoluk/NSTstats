@@ -180,8 +180,26 @@ def init_session_factory() -> sessionmaker:
     global _SessionLocal
     if _SessionLocal is None:
         engine = get_engine(echo=False)
-        # Fallback: create tables if Alembic wasn't run
-        Base.metadata.create_all(engine)
+        # Try to run Alembic migrations automatically
+        try:
+            import alembic.config
+            import alembic.command
+            import os
+            
+            # Find alembic.ini in project root
+            root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            ini_path = os.path.join(root_dir, "alembic.ini")
+            
+            if os.path.exists(ini_path):
+                cfg = alembic.config.Config(ini_path)
+                # Ensure the engine URL matches
+                cfg.set_main_option("sqlalchemy.url", get_engine_url())
+                alembic.command.upgrade(cfg, "head")
+        except Exception as e:
+            # Fallback: create tables if Alembic isn't available or fails
+            print(f"[Warn] Auto-migration failed: {e}. Falling back to metadata.create_all()")
+            Base.metadata.create_all(engine)
+            
         _SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False, future=True)
     return _SessionLocal
 

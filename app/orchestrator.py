@@ -245,21 +245,49 @@ def run_roster_sync(league_key: str):
                 print(f"  [Warn] Failed {tkey}: {e}")
                 session.rollback()
 
-        # Fetch Free Agents with IR/IR+ status
-        print("Syncing IR/IR+ free agents...")
-        for status_to_fetch in ["IR", "IR+"]:
-            try:
-                # Yahoo API allows fetching available players with a status filter
-                payload = client.get_league_players(league_key, status=status_to_fetch)
-                roster = parse_roster_xml(payload.get("_raw_xml", ""))
-                for p in roster.get("players", []):
-                    pkey = f"{game_key}.p.{p['player_id']}"
-                    upsert_player(session, pkey, p.get("name"), ";".join(p.get("positions", [])), status=p.get("status"))
-                session.commit()
-                print(f"  Synced {len(roster.get('players', []))} players with {status_to_fetch} status")
-            except Exception as e:
-                print(f"  [Warn] Failed to sync {status_to_fetch} free agents: {e}")
-                session.rollback()
+        # Fetch Free Agents and Waiver players with potential IR/IR+ status
+        # Using two-pass approach as requested:
+        # Pass 1: sort=AR, sort_type=season (Top 25 skaters, 5 goalies)
+        # Pass 2: sort=AR, sort_type=lastweek (Top 10 skaters, 2 goalies)
+        print("Syncing Free Agents and Waiver players...")
+        
+        fa_configs = [
+            {"sort_type": "season", "skater_count": 25, "goalie_count": 5},
+            {"sort_type": "lastweek", "skater_count": 10, "goalie_count": 2},
+        ]
+
+        for cfg in fa_configs:
+            sort_type = cfg["sort_type"]
+            for pos_type, count in [("P", cfg["skater_count"]), ("G", cfg["goalie_count"])]:
+                for status_filter in ["FA", "W"]:
+                    try:
+                        print(f"  Fetching {status_filter} {pos_type} (Top {count} by {sort_type})...")
+                        payload = client.get_league_players(
+                            league_key, 
+                            status=status_filter, 
+                            position=pos_type, 
+                            sort="AR", 
+                            sort_type=sort_type,
+                            count=count
+                        )
+                        roster = parse_roster_xml(payload.get("_raw_xml", ""))
+                        players_synced = 0
+                        for p in roster.get("players", []):
+                            pkey = f"{game_key}.p.{p['player_id']}"
+                            # Only upsert if we have a name (avoid incomplete records)
+                            if p.get("name"):
+                                upsert_player(
+                                    session, pkey, p.get("name"), 
+                                    ";".join(p.get("positions", [])), 
+                                    status=p.get("status")
+                                )
+                                players_synced += 1
+                        session.commit()
+                        if players_synced > 0:
+                            print(f"    Synced {players_synced} players")
+                    except Exception as e:
+                        print(f"    [Warn] Failed to sync {status_filter} {pos_type} ({sort_type}): {e}")
+                        session.rollback()
     finally:
         session.close()
 

@@ -30,64 +30,9 @@ def run_roster_sync(league_key: str):
     Fetches latest rosters from Yahoo and persists to local DB.
     This eliminates redundant API calls in 'merge' and 'avg-compare'.
     """
-    session = get_session()
-    try:
-        league = session.query(League).filter(League.league_key == league_key).one_or_none()
-        if not league:
-            print(f"League {league_key} not found. Run init-weeks first.")
-            return
+    from app.orchestrator import run_roster_sync as _run_sync
+    _run_sync(league_key)
 
-        client_id = os.getenv("YAHOO_CLIENT_ID")
-        client_secret = os.getenv("YAHOO_CLIENT_SECRET")
-        client = YahooFantasyClient(get_oauth(client_id, client_secret))
-
-        # Get total teams for this league
-        league_json = client.get_league(league_key)
-        num_teams = extract_num_teams(league_json) or 12
-        game_key = league_key.split('.l.')[0]
-
-        print(f"Syncing rosters for {num_teams} teams in {league_key}...")
-        
-        # Clear current mapping for this league before rebuilding
-        session.query(CurrentRoster).filter(CurrentRoster.league_id == league.id).delete()
-
-        for i in range(1, num_teams + 1):
-            tkey = make_team_key(game_key, league_key.split('.l.')[1], i)
-            try:
-                payload = client.get_team_roster(tkey)
-                if not payload.get("_raw_xml"):
-                    continue
-                
-                roster = parse_roster_xml(payload["_raw_xml"])
-                team_name = roster.get("team_name")
-                
-                # Update local Team record
-                upsert_team(session, league_id=league.id, team_key=tkey, team_name=team_name)
-                
-                for p in roster.get("players", []):
-                    pid = p.get("player_id")
-                    if not pid: continue
-                    pkey = f"{game_key}.p.{pid}"
-                    
-                    # Update Player metadata
-                    upsert_player(session, pkey, p.get("name"), ";".join(p.get("positions", [])))
-                    
-                    # Create the current mapping
-                    mapping = CurrentRoster(
-                        league_id=league.id,
-                        player_key=pkey,
-                        team_key=tkey
-                    )
-                    session.add(mapping)
-                
-                print(f"  Synced: {team_name}")
-                session.commit()
-            except Exception as e:
-                print(f"  [Warn] Failed sync for {tkey}: {e}")
-                session.rollback()
-
-    finally:
-        session.close()
 
 # def run_all():
 
