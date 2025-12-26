@@ -49,9 +49,11 @@ def basic_filtering(df: pd.DataFrame):
         # print(f"Dropping unnamed columns: {unnamed_cols}")
         df.drop(columns=unnamed_cols, inplace=True)
 
-    if "TOI/GP" in df.columns:
-        toi = _coerce_toi_to_timedelta(df["TOI/GP"])  # idempotent if already timedelta
-        df = df[toi >= pd.Timedelta(minutes=1)]
+    # if "TOI/GP" in df.columns:
+    #     toi = _coerce_toi_to_timedelta(df["TOI/GP"])  # idempotent if already timedelta
+    #     # Relaxed from 1 minute to 1 second to avoid dropping players with split team records
+    #     # that might have minimal placeholder ice time on one of their team stints.
+    #     df = df[toi >= pd.Timedelta(seconds=1)]
     return df
 
 

@@ -35,6 +35,46 @@ python -m app.cli avg-compare \
   --opp-team-id 8
 ```
 
+#### daily (Composite)
+Purpose:
+- Run the daily pipeline: `sync-rosters`, `all` (Yahoo, NST, Merge), and `schedule-lookup`.
+- Prompts for `current-week`.
+
+#### weekly (Composite)
+Purpose:
+- Finalize the prior week: `fetch-daily-gp`, `backfill-gp`, and `avg-compare`.
+- Automatically processes the prior week based on the prompted `current-week`.
+- Prompts for `current-week`, `team-id`, and `opp-team-id`.
+
+#### sync-rosters
+Purpose:
+- Synchronize current Yahoo league rosters to the local database `CurrentRoster` table.
+- This creates a local snapshot of ownership, which is used by the `merge` command and `avg-compare`.
+- Reduces reliance on repetitive Yahoo API calls and `all_rosters.csv`.
+
+Inputs:
+- `--league-key` (required) — Yahoo league key (e.g., `nhl.p.2526`).
+
+Example:
+```
+python -m app.cli sync-rosters --league-key nhl.p.2526
+```
+
+#### init-weeks
+Purpose:
+- Populates the `Week` table with start and end dates for a given league and season.
+- This is a prerequisite for `fetch-daily-gp`, `backfill-gp`, and any command that needs to resolve week date windows.
+
+Inputs:
+- `--league-key` (required)
+- `--season` (optional, defaults to .env)
+- `--start-week` / `--end-week` (optional defaults)
+
+Example:
+```
+python -m app.cli init-weeks --league-key nhl.p.2526 --season 2025
+```
+
 #### backfill-gp
 Purpose:
 - Aggregate per‑date roster appearances (`RosterSlotDaily.gp`) into weekly totals per player (`WeeklyPlayerGP`) for a week range, optionally marking weeks closed.

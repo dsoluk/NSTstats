@@ -18,8 +18,11 @@ Common CLI commands (see details in `docs/PROCESS.md`):
 
 ```bash
 # End-to-end input refresh, then merge
-python -m app.cli all
-python -m app.cli merge
+python -m app.cli daily
+python -m app.cli weekly
+
+# Individual commands (advanced)
+python -m app.cli init-weeks --league-key nhl.p.2526
 
 # Build or refresh schedule lookup
 python -m app.cli --schedule-lookup

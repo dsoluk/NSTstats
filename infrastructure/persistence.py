@@ -54,7 +54,16 @@ class Player(Base):
     __tablename__ = "players"
     player_key: Mapped[str] = mapped_column(String(64), primary_key=True)
     name: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
+    positions: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+    status: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
+    last_synced: Mapped[Optional[_dt.datetime]] = mapped_column(nullable=True)
 
+class CurrentRoster(Base):
+    """Stores the current ownership state for the merge and avg-compare processes."""
+    __tablename__ = "current_rosters"
+    league_id: Mapped[int] = mapped_column(ForeignKey("leagues.id", ondelete="CASCADE"), primary_key=True)
+    player_key: Mapped[str] = mapped_column(ForeignKey("players.player_key", ondelete="CASCADE"), primary_key=True)
+    team_key: Mapped[str] = mapped_column(ForeignKey("teams.team_key", ondelete="CASCADE"), nullable=False)
 
 class PlayerPosition(Base):
     __tablename__ = "player_positions"
@@ -171,8 +180,26 @@ def init_session_factory() -> sessionmaker:
     global _SessionLocal
     if _SessionLocal is None:
         engine = get_engine(echo=False)
-        # Fallback: create tables if Alembic wasn't run
-        Base.metadata.create_all(engine)
+        # Try to run Alembic migrations automatically
+        try:
+            import alembic.config
+            import alembic.command
+            import os
+            
+            # Find alembic.ini in project root
+            root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            ini_path = os.path.join(root_dir, "alembic.ini")
+            
+            if os.path.exists(ini_path):
+                cfg = alembic.config.Config(ini_path)
+                # Ensure the engine URL matches
+                cfg.set_main_option("sqlalchemy.url", get_engine_url())
+                alembic.command.upgrade(cfg, "head")
+        except Exception as e:
+            # Fallback: create tables if Alembic isn't available or fails
+            print(f"[Warn] Auto-migration failed: {e}. Falling back to metadata.create_all()")
+            Base.metadata.create_all(engine)
+            
         _SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False, future=True)
     return _SessionLocal
 
@@ -232,35 +259,29 @@ def is_week_closed(session: Session, *, league_id: int, week_num: int) -> bool:
     return (obj is not None) and (obj.status == "closed")
 
 
-def upsert_team(session: Session, *, league_id: int, team_key: str, team_name: Optional[str]) -> Team:
-    obj = session.query(Team).filter_by(team_key=team_key).one_or_none()
-    if obj is None:
-        obj = Team(team_key=team_key, league_id=league_id, team_name=team_name)
-        session.add(obj)
-        session.flush()
-    else:
-        changed = False
-        if obj.league_id != league_id:
-            obj.league_id = league_id; changed = True
-        if (team_name is not None) and obj.team_name != team_name:
-            obj.team_name = team_name; changed = True
-        if changed:
-            session.flush()
-    return obj
+def upsert_team(session, league_id: int, team_key: str, team_name: str):
+    # upsert statement on conflict do update set
+    stmt = text("""
+        INSERT INTO teams (league_id, team_key, team_name)
+        VALUES (:league_id, :team_key, :team_name)
+        ON CONFLICT (team_key) DO UPDATE SET
+            league_id = :league_id,
+            team_name = :team_name
+    """)
+    session.execute(stmt, {"league_id": league_id, "team_key": team_key, "team_name": team_name})
+    return session.query(Team).filter(Team.team_key == team_key).one()
 
-
-def upsert_player(session: Session, *, player_key: str, name: Optional[str]) -> Player:
-    obj = session.query(Player).filter_by(player_key=player_key).one_or_none()
-    if obj is None:
-        obj = Player(player_key=player_key, name=name)
-        session.add(obj)
-        session.flush()
-    else:
-        if (name is not None) and obj.name != name:
-            obj.name = name
-            session.flush()
-    return obj
-
+def upsert_player(session, player_key: str, name: str, positions: str, status: Optional[str] = None):
+    """Update or create a player record with current metadata."""
+    player = session.query(Player).filter(Player.player_key == player_key).one_or_none()
+    if not player:
+        player = Player(player_key=player_key)
+        session.add(player)
+    player.name = name
+    player.positions = positions
+    player.status = status
+    player.last_synced = _dt.datetime.now()
+    return player
 
 def set_player_positions(session: Session, *, player_key: str, positions: Iterable[str]) -> None:
     # Upsert unique set
@@ -329,7 +350,7 @@ def upsert_weekly_player_gp(session: Session, *, league_id: int, week_num: int, 
                             player_key: str, gp: int, source: Optional[str] = None,
                             player_name: Optional[str] = None, positions: Optional[str] = None) -> WeeklyPlayerGP:
     # ensure team, player rows exist (team must already be created by caller)
-    upsert_player(session, player_key=player_key, name=player_name)
+    upsert_player(session, player_key=player_key, name=player_name, positions=positions)
     if positions:
         set_player_positions(session, player_key=player_key, positions=[p.strip() for p in str(positions).split(',') if p.strip()])
     obj = session.query(WeeklyPlayerGP).filter_by(league_id=league_id, week_num=week_num, team_key=team_key, player_key=player_key).one_or_none()
@@ -360,7 +381,7 @@ def upsert_roster_slot_daily(session: Session, *, date: _dt.date, league_id: int
     """
     # Ensure player exists and positions are current (best-effort; ignore errors)
     try:
-        upsert_player(session, player_key=player_key, name=player_name)
+        upsert_player(session, player_key=player_key, name=player_name, positions=positions)
         if positions:
             set_player_positions(session, player_key=player_key,
                                  positions=[p.strip() for p in str(positions).split(',') if p.strip()])
@@ -397,4 +418,3 @@ def upsert_roster_slot_daily(session: Session, *, date: _dt.date, league_id: int
         if changed:
             session.flush()
     return obj
-

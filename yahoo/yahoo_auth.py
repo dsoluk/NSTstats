@@ -3,11 +3,17 @@ from typing import Optional
 from yahoo_oauth import OAuth2
 
 
+_cached_oauth: Optional[OAuth2] = None
+
 def get_oauth(client_id: Optional[str], client_secret: Optional[str]) -> OAuth2:
     """
     Initialize Yahoo OAuth2 using yahoo_oauth. First run will open a browser to authorize.
     The library will cache tokens in tokens.json in the working directory.
     """
+    global _cached_oauth
+    if _cached_oauth is not None:
+        return _cached_oauth
+
     if not client_id or not client_secret:
         raise RuntimeError(
             "YAHOO_CLIENT_ID and YAHOO_CLIENT_SECRET are required. Set them in your .env file."
@@ -15,6 +21,8 @@ def get_oauth(client_id: Optional[str], client_secret: Optional[str]) -> OAuth2:
     oauth = OAuth2(client_id, client_secret)
     if not oauth.token_is_valid():
         oauth.refresh_access_token()
+    
+    _cached_oauth = oauth
     return oauth
 
 

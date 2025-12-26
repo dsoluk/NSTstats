@@ -100,6 +100,25 @@ class YahooFantasyClient:
         path = f"/team/{team_key}/stats;type=week;week={week}"
         return self.get(path)
 
+    def get_league_players(self, league_key: str, status: Optional[str] = None, search: Optional[str] = None, position: Optional[str] = None, sort: Optional[str] = None, sort_type: Optional[str] = None, start: int = 0, count: int = 25) -> Dict[str, Any]:
+        """Fetch players for a league (available, all, etc).
+        Endpoint pattern: /league/{league_key}/players;status={status};search={search};position={position};sort={sort};sort_type={sort_type};start={start};count={count}
+        """
+        filters = []
+        if status: filters.append(f"status={status}")
+        if search: filters.append(f"search={search}")
+        if position: filters.append(f"position={position}")
+        if sort: filters.append(f"sort={sort}")
+        if sort_type: filters.append(f"sort_type={sort_type}")
+        if start: filters.append(f"start={start}")
+        if count: filters.append(f"count={count}")
+        
+        filter_str = ";".join(filters)
+        path = f"/league/{league_key}/players"
+        if filter_str:
+            path += f";{filter_str}"
+        return self.get(path)
+
     def get_players_week_stats(self, player_keys: list[str], week: int) -> Dict[str, Any]:
         """Batch-fetch weekly stats for up to 25 players.
         Endpoint: /players;player_keys=K1,K2,.../stats;type=week;week=N
@@ -330,11 +349,19 @@ def parse_roster_xml(raw_xml: str) -> Dict[str, Any]:
                 sp = sel_pos_tag.find(lambda t: hasattr(t, 'name') and t.name and t.name.lower().endswith("position"))
                 if sp and sp.text:
                     selected_position = sp.text.strip()
+            
+            # Status (IR, IR+, etc.)
+            status = None
+            status_tag = p.find(lambda t: hasattr(t, 'name') and t.name and t.name.lower().endswith("status"))
+            if status_tag and status_tag.text:
+                status = status_tag.text.strip()
+
             players.append({
                 "player_id": pid_tag.text.strip() if pid_tag and pid_tag.text else None,
                 "name": name_full,
                 "positions": positions,
                 "selected_position": selected_position,
+                "status": status,
             })
         result["players"] = players
         result["count"] = len(players)
@@ -373,6 +400,7 @@ def parse_roster_xml(raw_xml: str) -> Dict[str, Any]:
             name_full = None
             positions: list[str] = []
             selected_position = None
+            status = None
             for c in p.iter():
                 nm = strip(c.tag).lower()
                 if nm == 'player_id' and c.text:
@@ -381,6 +409,8 @@ def parse_roster_xml(raw_xml: str) -> Dict[str, Any]:
                     name_full = c.text.strip()
                 elif nm == 'name_full' and c.text and not name_full:
                     name_full = c.text.strip()
+                elif nm == 'status' and c.text:
+                    status = c.text.strip()
                 elif nm == 'position' and c.text:
                     # Distinguish eligible vs selected by parent chain when possible
                     parent_nm = strip(getattr(getattr(c, 'getparent', lambda: None)(), 'tag', '')) if hasattr(c, 'getparent') else ''
@@ -395,6 +425,7 @@ def parse_roster_xml(raw_xml: str) -> Dict[str, Any]:
                 'name': name_full,
                 'positions': positions,
                 'selected_position': selected_position,
+                'status': status
             })
     result['players'] = players
     result['count'] = len(players)
