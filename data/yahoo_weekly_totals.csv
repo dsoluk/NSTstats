@@ -1,1837 +1,817 @@
 week,matchup_index,team_key,team_name,stat_id,stat,value
-1,1,465.l.83511.t.1,Jagrbombs,1,G,5
-1,1,465.l.83511.t.1,Jagrbombs,2,A,15
-1,1,465.l.83511.t.1,Jagrbombs,4,+/-,0
-1,1,465.l.83511.t.1,Jagrbombs,5,PIM,20
-1,1,465.l.83511.t.1,Jagrbombs,8,PPP,6
-1,1,465.l.83511.t.1,Jagrbombs,11,SHP,1
-1,1,465.l.83511.t.1,Jagrbombs,14,SOG,55
-1,1,465.l.83511.t.1,Jagrbombs,16,FW,98
-1,1,465.l.83511.t.1,Jagrbombs,31,HIT,33
-1,1,465.l.83511.t.1,Jagrbombs,32,BLK,34
-1,1,465.l.83511.t.1,Jagrbombs,19,W,1
-1,1,465.l.83511.t.1,Jagrbombs,22,GA,6
-1,1,465.l.83511.t.1,Jagrbombs,23,GAA,2.03
-1,1,465.l.83511.t.1,Jagrbombs,25,SV,87
-1,1,465.l.83511.t.1,Jagrbombs,24,SA,93
-1,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.935
-1,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
-1,1,465.l.83511.t.12,The Epstein Islanders,1,G,8
-1,1,465.l.83511.t.12,The Epstein Islanders,2,A,12
-1,1,465.l.83511.t.12,The Epstein Islanders,4,+/-,0
-1,1,465.l.83511.t.12,The Epstein Islanders,5,PIM,26
-1,1,465.l.83511.t.12,The Epstein Islanders,8,PPP,7
-1,1,465.l.83511.t.12,The Epstein Islanders,11,SHP,1
-1,1,465.l.83511.t.12,The Epstein Islanders,14,SOG,92
-1,1,465.l.83511.t.12,The Epstein Islanders,16,FW,50
-1,1,465.l.83511.t.12,The Epstein Islanders,31,HIT,71
-1,1,465.l.83511.t.12,The Epstein Islanders,32,BLK,36
-1,1,465.l.83511.t.12,The Epstein Islanders,19,W,1
-1,1,465.l.83511.t.12,The Epstein Islanders,22,GA,9
-1,1,465.l.83511.t.12,The Epstein Islanders,23,GAA,2.95
-1,1,465.l.83511.t.12,The Epstein Islanders,25,SV,77
-1,1,465.l.83511.t.12,The Epstein Islanders,24,SA,86
-1,1,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.895
-1,1,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
-1,2,465.l.83511.t.2,Bar Down Beauties,1,G,10
-1,2,465.l.83511.t.2,Bar Down Beauties,2,A,13
-1,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,2
-1,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,16
-1,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,8
-1,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,3
-1,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,86
-1,2,465.l.83511.t.2,Bar Down Beauties,16,FW,22
-1,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,42
-1,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,22
-1,2,465.l.83511.t.2,Bar Down Beauties,19,W,1
-1,2,465.l.83511.t.2,Bar Down Beauties,22,GA,11
-1,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,2.82
-1,2,465.l.83511.t.2,Bar Down Beauties,25,SV,96
-1,2,465.l.83511.t.2,Bar Down Beauties,24,SA,107
-1,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.897
-1,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,0
-1,2,465.l.83511.t.10,robert's Fabulous Team,1,G,5
-1,2,465.l.83511.t.10,robert's Fabulous Team,2,A,13
-1,2,465.l.83511.t.10,robert's Fabulous Team,4,+/-,2
-1,2,465.l.83511.t.10,robert's Fabulous Team,5,PIM,12
-1,2,465.l.83511.t.10,robert's Fabulous Team,8,PPP,4
-1,2,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
-1,2,465.l.83511.t.10,robert's Fabulous Team,14,SOG,44
-1,2,465.l.83511.t.10,robert's Fabulous Team,16,FW,38
-1,2,465.l.83511.t.10,robert's Fabulous Team,31,HIT,21
-1,2,465.l.83511.t.10,robert's Fabulous Team,32,BLK,18
-1,2,465.l.83511.t.10,robert's Fabulous Team,19,W,1
-1,2,465.l.83511.t.10,robert's Fabulous Team,22,GA,13
-1,2,465.l.83511.t.10,robert's Fabulous Team,23,GAA,4.36
-1,2,465.l.83511.t.10,robert's Fabulous Team,25,SV,57
-1,2,465.l.83511.t.10,robert's Fabulous Team,24,SA,70
-1,2,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.814
-1,2,465.l.83511.t.10,robert's Fabulous Team,27,SHO,0
-1,3,465.l.83511.t.3,Autodraft Anomalies,1,G,13
-1,3,465.l.83511.t.3,Autodraft Anomalies,2,A,14
-1,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,-3
-1,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,10
-1,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,11
-1,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,0
-1,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,72
-1,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,78
-1,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,24
-1,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,35
-1,3,465.l.83511.t.3,Autodraft Anomalies,19,W,3
-1,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,18
-1,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,3.59
-1,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,133
-1,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,151
-1,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.881
-1,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,0
-1,3,465.l.83511.t.11,P Diddlers,1,G,11
-1,3,465.l.83511.t.11,P Diddlers,2,A,21
-1,3,465.l.83511.t.11,P Diddlers,4,+/-,-6
-1,3,465.l.83511.t.11,P Diddlers,5,PIM,12
-1,3,465.l.83511.t.11,P Diddlers,8,PPP,12
-1,3,465.l.83511.t.11,P Diddlers,11,SHP,1
-1,3,465.l.83511.t.11,P Diddlers,14,SOG,78
-1,3,465.l.83511.t.11,P Diddlers,16,FW,62
-1,3,465.l.83511.t.11,P Diddlers,31,HIT,37
-1,3,465.l.83511.t.11,P Diddlers,32,BLK,32
-1,3,465.l.83511.t.11,P Diddlers,19,W,2
-1,3,465.l.83511.t.11,P Diddlers,22,GA,5
-1,3,465.l.83511.t.11,P Diddlers,23,GAA,1.66
-1,3,465.l.83511.t.11,P Diddlers,25,SV,80
-1,3,465.l.83511.t.11,P Diddlers,24,SA,85
-1,3,465.l.83511.t.11,P Diddlers,26,SV%,0.941
-1,3,465.l.83511.t.11,P Diddlers,27,SHO,0
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,10
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,20
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,17
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,21
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,7
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,0
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,71
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,110
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,62
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,49
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,2
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,6
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,2.02
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,67
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,73
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.918
-1,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,0
-1,4,465.l.83511.t.5,Hughes your daddy,1,G,4
-1,4,465.l.83511.t.5,Hughes your daddy,2,A,12
-1,4,465.l.83511.t.5,Hughes your daddy,4,+/-,0
-1,4,465.l.83511.t.5,Hughes your daddy,5,PIM,18
-1,4,465.l.83511.t.5,Hughes your daddy,8,PPP,6
-1,4,465.l.83511.t.5,Hughes your daddy,11,SHP,0
-1,4,465.l.83511.t.5,Hughes your daddy,14,SOG,82
-1,4,465.l.83511.t.5,Hughes your daddy,16,FW,98
-1,4,465.l.83511.t.5,Hughes your daddy,31,HIT,36
-1,4,465.l.83511.t.5,Hughes your daddy,32,BLK,26
-1,4,465.l.83511.t.5,Hughes your daddy,19,W,2
-1,4,465.l.83511.t.5,Hughes your daddy,22,GA,8
-1,4,465.l.83511.t.5,Hughes your daddy,23,GAA,2.03
-1,4,465.l.83511.t.5,Hughes your daddy,25,SV,88
-1,4,465.l.83511.t.5,Hughes your daddy,24,SA,96
-1,4,465.l.83511.t.5,Hughes your daddy,26,SV%,0.917
-1,4,465.l.83511.t.5,Hughes your daddy,27,SHO,1
-1,5,465.l.83511.t.6,Sask Squatches,1,G,2
-1,5,465.l.83511.t.6,Sask Squatches,2,A,16
-1,5,465.l.83511.t.6,Sask Squatches,4,+/-,9
-1,5,465.l.83511.t.6,Sask Squatches,5,PIM,14
-1,5,465.l.83511.t.6,Sask Squatches,8,PPP,6
-1,5,465.l.83511.t.6,Sask Squatches,11,SHP,1
-1,5,465.l.83511.t.6,Sask Squatches,14,SOG,69
-1,5,465.l.83511.t.6,Sask Squatches,16,FW,64
-1,5,465.l.83511.t.6,Sask Squatches,31,HIT,45
-1,5,465.l.83511.t.6,Sask Squatches,32,BLK,18
-1,5,465.l.83511.t.6,Sask Squatches,19,W,2
-1,5,465.l.83511.t.6,Sask Squatches,22,GA,16
-1,5,465.l.83511.t.6,Sask Squatches,23,GAA,3.17
-1,5,465.l.83511.t.6,Sask Squatches,25,SV,135
-1,5,465.l.83511.t.6,Sask Squatches,24,SA,151
-1,5,465.l.83511.t.6,Sask Squatches,26,SV%,0.894
-1,5,465.l.83511.t.6,Sask Squatches,27,SHO,0
-1,5,465.l.83511.t.7,Boats and Ahos,1,G,3
-1,5,465.l.83511.t.7,Boats and Ahos,2,A,20
-1,5,465.l.83511.t.7,Boats and Ahos,4,+/-,-1
-1,5,465.l.83511.t.7,Boats and Ahos,5,PIM,14
-1,5,465.l.83511.t.7,Boats and Ahos,8,PPP,9
-1,5,465.l.83511.t.7,Boats and Ahos,11,SHP,0
-1,5,465.l.83511.t.7,Boats and Ahos,14,SOG,49
-1,5,465.l.83511.t.7,Boats and Ahos,16,FW,77
-1,5,465.l.83511.t.7,Boats and Ahos,31,HIT,32
-1,5,465.l.83511.t.7,Boats and Ahos,32,BLK,38
-1,5,465.l.83511.t.7,Boats and Ahos,19,W,2
-1,5,465.l.83511.t.7,Boats and Ahos,22,GA,16
-1,5,465.l.83511.t.7,Boats and Ahos,23,GAA,3.84
-1,5,465.l.83511.t.7,Boats and Ahos,25,SV,78
-1,5,465.l.83511.t.7,Boats and Ahos,24,SA,94
-1,5,465.l.83511.t.7,Boats and Ahos,26,SV%,0.83
-1,5,465.l.83511.t.7,Boats and Ahos,27,SHO,0
-1,6,465.l.83511.t.8,Bros before Ahos,1,G,9
-1,6,465.l.83511.t.8,Bros before Ahos,2,A,7
-1,6,465.l.83511.t.8,Bros before Ahos,4,+/-,1
-1,6,465.l.83511.t.8,Bros before Ahos,5,PIM,28
-1,6,465.l.83511.t.8,Bros before Ahos,8,PPP,7
-1,6,465.l.83511.t.8,Bros before Ahos,11,SHP,1
-1,6,465.l.83511.t.8,Bros before Ahos,14,SOG,87
-1,6,465.l.83511.t.8,Bros before Ahos,16,FW,121
-1,6,465.l.83511.t.8,Bros before Ahos,31,HIT,68
-1,6,465.l.83511.t.8,Bros before Ahos,32,BLK,35
-1,6,465.l.83511.t.8,Bros before Ahos,19,W,1
-1,6,465.l.83511.t.8,Bros before Ahos,22,GA,13
-1,6,465.l.83511.t.8,Bros before Ahos,23,GAA,4.36
-1,6,465.l.83511.t.8,Bros before Ahos,25,SV,76
-1,6,465.l.83511.t.8,Bros before Ahos,24,SA,89
-1,6,465.l.83511.t.8,Bros before Ahos,26,SV%,0.854
-1,6,465.l.83511.t.8,Bros before Ahos,27,SHO,0
-1,6,465.l.83511.t.9,Dan's Dazzling Team,1,G,6
-1,6,465.l.83511.t.9,Dan's Dazzling Team,2,A,12
-1,6,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,-6
-1,6,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,6
-1,6,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,8
-1,6,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
-1,6,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,70
-1,6,465.l.83511.t.9,Dan's Dazzling Team,16,FW,79
-1,6,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,16
-1,6,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,14
-1,6,465.l.83511.t.9,Dan's Dazzling Team,19,W,4
-1,6,465.l.83511.t.9,Dan's Dazzling Team,22,GA,15
-1,6,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,2.97
-1,6,465.l.83511.t.9,Dan's Dazzling Team,25,SV,118
-1,6,465.l.83511.t.9,Dan's Dazzling Team,24,SA,133
-1,6,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.887
-1,6,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
-2,1,465.l.83511.t.1,Jagrbombs,1,G,19
-2,1,465.l.83511.t.1,Jagrbombs,2,A,26
-2,1,465.l.83511.t.1,Jagrbombs,4,+/-,-4
-2,1,465.l.83511.t.1,Jagrbombs,5,PIM,43
-2,1,465.l.83511.t.1,Jagrbombs,8,PPP,15
-2,1,465.l.83511.t.1,Jagrbombs,11,SHP,0
-2,1,465.l.83511.t.1,Jagrbombs,14,SOG,114
-2,1,465.l.83511.t.1,Jagrbombs,16,FW,136
-2,1,465.l.83511.t.1,Jagrbombs,31,HIT,72
-2,1,465.l.83511.t.1,Jagrbombs,32,BLK,36
-2,1,465.l.83511.t.1,Jagrbombs,19,W,1
-2,1,465.l.83511.t.1,Jagrbombs,22,GA,7
-2,1,465.l.83511.t.1,Jagrbombs,23,GAA,2.33
-2,1,465.l.83511.t.1,Jagrbombs,25,SV,71
-2,1,465.l.83511.t.1,Jagrbombs,24,SA,78
-2,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.91
-2,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
-2,1,465.l.83511.t.5,Hughes your daddy,1,G,19
-2,1,465.l.83511.t.5,Hughes your daddy,2,A,14
-2,1,465.l.83511.t.5,Hughes your daddy,4,+/-,-1
-2,1,465.l.83511.t.5,Hughes your daddy,5,PIM,30
-2,1,465.l.83511.t.5,Hughes your daddy,8,PPP,12
-2,1,465.l.83511.t.5,Hughes your daddy,11,SHP,0
-2,1,465.l.83511.t.5,Hughes your daddy,14,SOG,101
-2,1,465.l.83511.t.5,Hughes your daddy,16,FW,168
-2,1,465.l.83511.t.5,Hughes your daddy,31,HIT,47
-2,1,465.l.83511.t.5,Hughes your daddy,32,BLK,45
-2,1,465.l.83511.t.5,Hughes your daddy,19,W,2
-2,1,465.l.83511.t.5,Hughes your daddy,22,GA,14
-2,1,465.l.83511.t.5,Hughes your daddy,23,GAA,3.54
-2,1,465.l.83511.t.5,Hughes your daddy,25,SV,116
-2,1,465.l.83511.t.5,Hughes your daddy,24,SA,130
-2,1,465.l.83511.t.5,Hughes your daddy,26,SV%,0.892
-2,1,465.l.83511.t.5,Hughes your daddy,27,SHO,0
-2,2,465.l.83511.t.2,Bar Down Beauties,1,G,12
-2,2,465.l.83511.t.2,Bar Down Beauties,2,A,25
-2,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,-9
-2,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,22
-2,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,12
-2,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,2
-2,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,105
-2,2,465.l.83511.t.2,Bar Down Beauties,16,FW,105
-2,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,47
-2,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,42
-2,2,465.l.83511.t.2,Bar Down Beauties,19,W,2
-2,2,465.l.83511.t.2,Bar Down Beauties,22,GA,6
-2,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,1.95
-2,2,465.l.83511.t.2,Bar Down Beauties,25,SV,53
-2,2,465.l.83511.t.2,Bar Down Beauties,24,SA,59
-2,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.898
-2,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,0
-2,2,465.l.83511.t.7,Boats and Ahos,1,G,10
-2,2,465.l.83511.t.7,Boats and Ahos,2,A,24
-2,2,465.l.83511.t.7,Boats and Ahos,4,+/-,-3
-2,2,465.l.83511.t.7,Boats and Ahos,5,PIM,44
-2,2,465.l.83511.t.7,Boats and Ahos,8,PPP,11
-2,2,465.l.83511.t.7,Boats and Ahos,11,SHP,0
-2,2,465.l.83511.t.7,Boats and Ahos,14,SOG,111
-2,2,465.l.83511.t.7,Boats and Ahos,16,FW,120
-2,2,465.l.83511.t.7,Boats and Ahos,31,HIT,76
-2,2,465.l.83511.t.7,Boats and Ahos,32,BLK,48
-2,2,465.l.83511.t.7,Boats and Ahos,19,W,3
-2,2,465.l.83511.t.7,Boats and Ahos,22,GA,11
-2,2,465.l.83511.t.7,Boats and Ahos,23,GAA,2.48
-2,2,465.l.83511.t.7,Boats and Ahos,25,SV,96
-2,2,465.l.83511.t.7,Boats and Ahos,24,SA,107
-2,2,465.l.83511.t.7,Boats and Ahos,26,SV%,0.897
-2,2,465.l.83511.t.7,Boats and Ahos,27,SHO,0
-2,3,465.l.83511.t.3,Autodraft Anomalies,1,G,14
-2,3,465.l.83511.t.3,Autodraft Anomalies,2,A,21
-2,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,6
-2,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,28
-2,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,11
-2,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,1
-2,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,97
-2,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,146
-2,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,63
-2,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,42
-2,3,465.l.83511.t.3,Autodraft Anomalies,19,W,3
-2,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,7
-2,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,1.75
-2,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,104
-2,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,111
-2,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.937
-2,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,0
-2,3,465.l.83511.t.9,Dan's Dazzling Team,1,G,11
-2,3,465.l.83511.t.9,Dan's Dazzling Team,2,A,24
-2,3,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,2
-2,3,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,14
-2,3,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,12
-2,3,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,1
-2,3,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,112
-2,3,465.l.83511.t.9,Dan's Dazzling Team,16,FW,101
-2,3,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,23
-2,3,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,22
-2,3,465.l.83511.t.9,Dan's Dazzling Team,19,W,3
-2,3,465.l.83511.t.9,Dan's Dazzling Team,22,GA,4
-2,3,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,1.33
-2,3,465.l.83511.t.9,Dan's Dazzling Team,25,SV,68
-2,3,465.l.83511.t.9,Dan's Dazzling Team,24,SA,72
-2,3,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.944
-2,3,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,15
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,18
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,17
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,18
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,9
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,0
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,106
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,124
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,83
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,50
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,2
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,22
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,3.15
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,163
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,185
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.881
-2,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,0
-2,4,465.l.83511.t.10,robert's Fabulous Team,1,G,7
-2,4,465.l.83511.t.10,robert's Fabulous Team,2,A,22
-2,4,465.l.83511.t.10,robert's Fabulous Team,4,+/-,9
-2,4,465.l.83511.t.10,robert's Fabulous Team,5,PIM,20
-2,4,465.l.83511.t.10,robert's Fabulous Team,8,PPP,11
-2,4,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
-2,4,465.l.83511.t.10,robert's Fabulous Team,14,SOG,83
-2,4,465.l.83511.t.10,robert's Fabulous Team,16,FW,61
-2,4,465.l.83511.t.10,robert's Fabulous Team,31,HIT,40
-2,4,465.l.83511.t.10,robert's Fabulous Team,32,BLK,27
-2,4,465.l.83511.t.10,robert's Fabulous Team,19,W,4
-2,4,465.l.83511.t.10,robert's Fabulous Team,22,GA,6
-2,4,465.l.83511.t.10,robert's Fabulous Team,23,GAA,1.68
-2,4,465.l.83511.t.10,robert's Fabulous Team,25,SV,97
-2,4,465.l.83511.t.10,robert's Fabulous Team,24,SA,103
-2,4,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.942
-2,4,465.l.83511.t.10,robert's Fabulous Team,27,SHO,0
-2,5,465.l.83511.t.6,Sask Squatches,1,G,10
-2,5,465.l.83511.t.6,Sask Squatches,2,A,17
-2,5,465.l.83511.t.6,Sask Squatches,4,+/-,-7
-2,5,465.l.83511.t.6,Sask Squatches,5,PIM,32
-2,5,465.l.83511.t.6,Sask Squatches,8,PPP,6
-2,5,465.l.83511.t.6,Sask Squatches,11,SHP,2
-2,5,465.l.83511.t.6,Sask Squatches,14,SOG,112
-2,5,465.l.83511.t.6,Sask Squatches,16,FW,81
-2,5,465.l.83511.t.6,Sask Squatches,31,HIT,60
-2,5,465.l.83511.t.6,Sask Squatches,32,BLK,37
-2,5,465.l.83511.t.6,Sask Squatches,19,W,2
-2,5,465.l.83511.t.6,Sask Squatches,22,GA,18
-2,5,465.l.83511.t.6,Sask Squatches,23,GAA,3.16
-2,5,465.l.83511.t.6,Sask Squatches,25,SV,148
-2,5,465.l.83511.t.6,Sask Squatches,24,SA,166
-2,5,465.l.83511.t.6,Sask Squatches,26,SV%,0.892
-2,5,465.l.83511.t.6,Sask Squatches,27,SHO,0
-2,5,465.l.83511.t.11,P Diddlers,1,G,15
-2,5,465.l.83511.t.11,P Diddlers,2,A,17
-2,5,465.l.83511.t.11,P Diddlers,4,+/-,0
-2,5,465.l.83511.t.11,P Diddlers,5,PIM,26
-2,5,465.l.83511.t.11,P Diddlers,8,PPP,15
-2,5,465.l.83511.t.11,P Diddlers,11,SHP,2
-2,5,465.l.83511.t.11,P Diddlers,14,SOG,118
-2,5,465.l.83511.t.11,P Diddlers,16,FW,98
-2,5,465.l.83511.t.11,P Diddlers,31,HIT,48
-2,5,465.l.83511.t.11,P Diddlers,32,BLK,44
-2,5,465.l.83511.t.11,P Diddlers,19,W,2
-2,5,465.l.83511.t.11,P Diddlers,22,GA,9
-2,5,465.l.83511.t.11,P Diddlers,23,GAA,2.95
-2,5,465.l.83511.t.11,P Diddlers,25,SV,54
-2,5,465.l.83511.t.11,P Diddlers,24,SA,63
-2,5,465.l.83511.t.11,P Diddlers,26,SV%,0.857
-2,5,465.l.83511.t.11,P Diddlers,27,SHO,0
-2,6,465.l.83511.t.8,Bros before Ahos,1,G,20
-2,6,465.l.83511.t.8,Bros before Ahos,2,A,26
-2,6,465.l.83511.t.8,Bros before Ahos,4,+/-,-10
-2,6,465.l.83511.t.8,Bros before Ahos,5,PIM,32
-2,6,465.l.83511.t.8,Bros before Ahos,8,PPP,13
-2,6,465.l.83511.t.8,Bros before Ahos,11,SHP,0
-2,6,465.l.83511.t.8,Bros before Ahos,14,SOG,141
-2,6,465.l.83511.t.8,Bros before Ahos,16,FW,161
-2,6,465.l.83511.t.8,Bros before Ahos,31,HIT,51
-2,6,465.l.83511.t.8,Bros before Ahos,32,BLK,80
-2,6,465.l.83511.t.8,Bros before Ahos,19,W,1
-2,6,465.l.83511.t.8,Bros before Ahos,22,GA,10
-2,6,465.l.83511.t.8,Bros before Ahos,23,GAA,3.32
-2,6,465.l.83511.t.8,Bros before Ahos,25,SV,70
-2,6,465.l.83511.t.8,Bros before Ahos,24,SA,80
-2,6,465.l.83511.t.8,Bros before Ahos,26,SV%,0.875
-2,6,465.l.83511.t.8,Bros before Ahos,27,SHO,0
-2,6,465.l.83511.t.12,The Epstein Islanders,1,G,12
-2,6,465.l.83511.t.12,The Epstein Islanders,2,A,17
-2,6,465.l.83511.t.12,The Epstein Islanders,4,+/-,-15
-2,6,465.l.83511.t.12,The Epstein Islanders,5,PIM,24
-2,6,465.l.83511.t.12,The Epstein Islanders,8,PPP,7
-2,6,465.l.83511.t.12,The Epstein Islanders,11,SHP,0
-2,6,465.l.83511.t.12,The Epstein Islanders,14,SOG,129
-2,6,465.l.83511.t.12,The Epstein Islanders,16,FW,123
-2,6,465.l.83511.t.12,The Epstein Islanders,31,HIT,89
-2,6,465.l.83511.t.12,The Epstein Islanders,32,BLK,52
-2,6,465.l.83511.t.12,The Epstein Islanders,19,W,2
-2,6,465.l.83511.t.12,The Epstein Islanders,22,GA,10
-2,6,465.l.83511.t.12,The Epstein Islanders,23,GAA,2.02
-2,6,465.l.83511.t.12,The Epstein Islanders,25,SV,111
-2,6,465.l.83511.t.12,The Epstein Islanders,24,SA,121
-2,6,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.917
-2,6,465.l.83511.t.12,The Epstein Islanders,27,SHO,1
-3,1,465.l.83511.t.1,Jagrbombs,1,G,6
-3,1,465.l.83511.t.1,Jagrbombs,2,A,25
-3,1,465.l.83511.t.1,Jagrbombs,4,+/-,8
-3,1,465.l.83511.t.1,Jagrbombs,5,PIM,23
-3,1,465.l.83511.t.1,Jagrbombs,8,PPP,7
-3,1,465.l.83511.t.1,Jagrbombs,11,SHP,0
-3,1,465.l.83511.t.1,Jagrbombs,14,SOG,86
-3,1,465.l.83511.t.1,Jagrbombs,16,FW,108
-3,1,465.l.83511.t.1,Jagrbombs,31,HIT,45
-3,1,465.l.83511.t.1,Jagrbombs,32,BLK,43
-3,1,465.l.83511.t.1,Jagrbombs,19,W,2
-3,1,465.l.83511.t.1,Jagrbombs,22,GA,25
-3,1,465.l.83511.t.1,Jagrbombs,23,GAA,3.54
-3,1,465.l.83511.t.1,Jagrbombs,25,SV,178
-3,1,465.l.83511.t.1,Jagrbombs,24,SA,203
-3,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.877
-3,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
-3,1,465.l.83511.t.10,robert's Fabulous Team,1,G,8
-3,1,465.l.83511.t.10,robert's Fabulous Team,2,A,21
-3,1,465.l.83511.t.10,robert's Fabulous Team,4,+/-,4
-3,1,465.l.83511.t.10,robert's Fabulous Team,5,PIM,14
-3,1,465.l.83511.t.10,robert's Fabulous Team,8,PPP,11
-3,1,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
-3,1,465.l.83511.t.10,robert's Fabulous Team,14,SOG,59
-3,1,465.l.83511.t.10,robert's Fabulous Team,16,FW,47
-3,1,465.l.83511.t.10,robert's Fabulous Team,31,HIT,42
-3,1,465.l.83511.t.10,robert's Fabulous Team,32,BLK,22
-3,1,465.l.83511.t.10,robert's Fabulous Team,19,W,1
-3,1,465.l.83511.t.10,robert's Fabulous Team,22,GA,12
-3,1,465.l.83511.t.10,robert's Fabulous Team,23,GAA,3.09
-3,1,465.l.83511.t.10,robert's Fabulous Team,25,SV,92
-3,1,465.l.83511.t.10,robert's Fabulous Team,24,SA,104
-3,1,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.885
-3,1,465.l.83511.t.10,robert's Fabulous Team,27,SHO,0
-3,2,465.l.83511.t.2,Bar Down Beauties,1,G,16
-3,2,465.l.83511.t.2,Bar Down Beauties,2,A,28
-3,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,11
-3,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,16
-3,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,17
-3,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,0
-3,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,118
-3,2,465.l.83511.t.2,Bar Down Beauties,16,FW,121
-3,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,41
-3,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,51
-3,2,465.l.83511.t.2,Bar Down Beauties,19,W,3
-3,2,465.l.83511.t.2,Bar Down Beauties,22,GA,4
-3,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,1.33
-3,2,465.l.83511.t.2,Bar Down Beauties,25,SV,81
-3,2,465.l.83511.t.2,Bar Down Beauties,24,SA,85
-3,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.953
-3,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,0
-3,2,465.l.83511.t.11,P Diddlers,1,G,10
-3,2,465.l.83511.t.11,P Diddlers,2,A,19
-3,2,465.l.83511.t.11,P Diddlers,4,+/-,-16
-3,2,465.l.83511.t.11,P Diddlers,5,PIM,24
-3,2,465.l.83511.t.11,P Diddlers,8,PPP,12
-3,2,465.l.83511.t.11,P Diddlers,11,SHP,0
-3,2,465.l.83511.t.11,P Diddlers,14,SOG,123
-3,2,465.l.83511.t.11,P Diddlers,16,FW,135
-3,2,465.l.83511.t.11,P Diddlers,31,HIT,44
-3,2,465.l.83511.t.11,P Diddlers,32,BLK,47
-3,2,465.l.83511.t.11,P Diddlers,19,W,5
-3,2,465.l.83511.t.11,P Diddlers,22,GA,16
-3,2,465.l.83511.t.11,P Diddlers,23,GAA,2.82
-3,2,465.l.83511.t.11,P Diddlers,25,SV,158
-3,2,465.l.83511.t.11,P Diddlers,24,SA,174
-3,2,465.l.83511.t.11,P Diddlers,26,SV%,0.908
-3,2,465.l.83511.t.11,P Diddlers,27,SHO,1
-3,3,465.l.83511.t.3,Autodraft Anomalies,1,G,12
-3,3,465.l.83511.t.3,Autodraft Anomalies,2,A,28
-3,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,12
-3,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,28
-3,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,16
-3,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,0
-3,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,119
-3,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,135
-3,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,57
-3,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,46
-3,3,465.l.83511.t.3,Autodraft Anomalies,19,W,2
-3,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,17
-3,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,2.84
-3,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,141
-3,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,158
-3,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.892
-3,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,0
-3,3,465.l.83511.t.8,Bros before Ahos,1,G,17
-3,3,465.l.83511.t.8,Bros before Ahos,2,A,25
-3,3,465.l.83511.t.8,Bros before Ahos,4,+/-,-9
-3,3,465.l.83511.t.8,Bros before Ahos,5,PIM,59
-3,3,465.l.83511.t.8,Bros before Ahos,8,PPP,17
-3,3,465.l.83511.t.8,Bros before Ahos,11,SHP,2
-3,3,465.l.83511.t.8,Bros before Ahos,14,SOG,114
-3,3,465.l.83511.t.8,Bros before Ahos,16,FW,180
-3,3,465.l.83511.t.8,Bros before Ahos,31,HIT,63
-3,3,465.l.83511.t.8,Bros before Ahos,32,BLK,76
-3,3,465.l.83511.t.8,Bros before Ahos,19,W,2
-3,3,465.l.83511.t.8,Bros before Ahos,22,GA,5
-3,3,465.l.83511.t.8,Bros before Ahos,23,GAA,1.65
-3,3,465.l.83511.t.8,Bros before Ahos,25,SV,56
-3,3,465.l.83511.t.8,Bros before Ahos,24,SA,61
-3,3,465.l.83511.t.8,Bros before Ahos,26,SV%,0.918
-3,3,465.l.83511.t.8,Bros before Ahos,27,SHO,0
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,11
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,27
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,1
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,31
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,10
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,0
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,133
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,151
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,81
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,62
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,3
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,10
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,2.55
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,83
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,93
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.892
-3,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,1
-3,4,465.l.83511.t.7,Boats and Ahos,1,G,14
-3,4,465.l.83511.t.7,Boats and Ahos,2,A,27
-3,4,465.l.83511.t.7,Boats and Ahos,4,+/-,-6
-3,4,465.l.83511.t.7,Boats and Ahos,5,PIM,23
-3,4,465.l.83511.t.7,Boats and Ahos,8,PPP,14
-3,4,465.l.83511.t.7,Boats and Ahos,11,SHP,0
-3,4,465.l.83511.t.7,Boats and Ahos,14,SOG,99
-3,4,465.l.83511.t.7,Boats and Ahos,16,FW,177
-3,4,465.l.83511.t.7,Boats and Ahos,31,HIT,57
-3,4,465.l.83511.t.7,Boats and Ahos,32,BLK,33
-3,4,465.l.83511.t.7,Boats and Ahos,19,W,2
-3,4,465.l.83511.t.7,Boats and Ahos,22,GA,3
-3,4,465.l.83511.t.7,Boats and Ahos,23,GAA,1.39
-3,4,465.l.83511.t.7,Boats and Ahos,25,SV,43
-3,4,465.l.83511.t.7,Boats and Ahos,24,SA,46
-3,4,465.l.83511.t.7,Boats and Ahos,26,SV%,0.935
-3,4,465.l.83511.t.7,Boats and Ahos,27,SHO,0
-3,5,465.l.83511.t.5,Hughes your daddy,1,G,17
-3,5,465.l.83511.t.5,Hughes your daddy,2,A,21
-3,5,465.l.83511.t.5,Hughes your daddy,4,+/-,10
-3,5,465.l.83511.t.5,Hughes your daddy,5,PIM,18
-3,5,465.l.83511.t.5,Hughes your daddy,8,PPP,16
-3,5,465.l.83511.t.5,Hughes your daddy,11,SHP,0
-3,5,465.l.83511.t.5,Hughes your daddy,14,SOG,122
-3,5,465.l.83511.t.5,Hughes your daddy,16,FW,108
-3,5,465.l.83511.t.5,Hughes your daddy,31,HIT,49
-3,5,465.l.83511.t.5,Hughes your daddy,32,BLK,47
-3,5,465.l.83511.t.5,Hughes your daddy,19,W,1
-3,5,465.l.83511.t.5,Hughes your daddy,22,GA,6
-3,5,465.l.83511.t.5,Hughes your daddy,23,GAA,2.03
-3,5,465.l.83511.t.5,Hughes your daddy,25,SV,87
-3,5,465.l.83511.t.5,Hughes your daddy,24,SA,93
-3,5,465.l.83511.t.5,Hughes your daddy,26,SV%,0.935
-3,5,465.l.83511.t.5,Hughes your daddy,27,SHO,0
-3,5,465.l.83511.t.12,The Epstein Islanders,1,G,15
-3,5,465.l.83511.t.12,The Epstein Islanders,2,A,20
-3,5,465.l.83511.t.12,The Epstein Islanders,4,+/-,5
-3,5,465.l.83511.t.12,The Epstein Islanders,5,PIM,29
-3,5,465.l.83511.t.12,The Epstein Islanders,8,PPP,10
-3,5,465.l.83511.t.12,The Epstein Islanders,11,SHP,1
-3,5,465.l.83511.t.12,The Epstein Islanders,14,SOG,113
-3,5,465.l.83511.t.12,The Epstein Islanders,16,FW,59
-3,5,465.l.83511.t.12,The Epstein Islanders,31,HIT,65
-3,5,465.l.83511.t.12,The Epstein Islanders,32,BLK,45
-3,5,465.l.83511.t.12,The Epstein Islanders,19,W,1
-3,5,465.l.83511.t.12,The Epstein Islanders,22,GA,14
-3,5,465.l.83511.t.12,The Epstein Islanders,23,GAA,3.56
-3,5,465.l.83511.t.12,The Epstein Islanders,25,SV,94
-3,5,465.l.83511.t.12,The Epstein Islanders,24,SA,108
-3,5,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.87
-3,5,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
-3,6,465.l.83511.t.6,Sask Squatches,1,G,17
-3,6,465.l.83511.t.6,Sask Squatches,2,A,19
-3,6,465.l.83511.t.6,Sask Squatches,4,+/-,8
-3,6,465.l.83511.t.6,Sask Squatches,5,PIM,12
-3,6,465.l.83511.t.6,Sask Squatches,8,PPP,10
-3,6,465.l.83511.t.6,Sask Squatches,11,SHP,1
-3,6,465.l.83511.t.6,Sask Squatches,14,SOG,108
-3,6,465.l.83511.t.6,Sask Squatches,16,FW,93
-3,6,465.l.83511.t.6,Sask Squatches,31,HIT,60
-3,6,465.l.83511.t.6,Sask Squatches,32,BLK,45
-3,6,465.l.83511.t.6,Sask Squatches,19,W,3
-3,6,465.l.83511.t.6,Sask Squatches,22,GA,19
-3,6,465.l.83511.t.6,Sask Squatches,23,GAA,2.65
-3,6,465.l.83511.t.6,Sask Squatches,25,SV,195
-3,6,465.l.83511.t.6,Sask Squatches,24,SA,214
-3,6,465.l.83511.t.6,Sask Squatches,26,SV%,0.911
-3,6,465.l.83511.t.6,Sask Squatches,27,SHO,0
-3,6,465.l.83511.t.9,Dan's Dazzling Team,1,G,14
-3,6,465.l.83511.t.9,Dan's Dazzling Team,2,A,15
-3,6,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,8
-3,6,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,9
-3,6,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,10
-3,6,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
-3,6,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,90
-3,6,465.l.83511.t.9,Dan's Dazzling Team,16,FW,92
-3,6,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,23
-3,6,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,20
-3,6,465.l.83511.t.9,Dan's Dazzling Team,19,W,2
-3,6,465.l.83511.t.9,Dan's Dazzling Team,22,GA,16
-3,6,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,2.64
-3,6,465.l.83511.t.9,Dan's Dazzling Team,25,SV,175
-3,6,465.l.83511.t.9,Dan's Dazzling Team,24,SA,191
-3,6,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.916
-3,6,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
-4,1,465.l.83511.t.1,Jagrbombs,1,G,7
-4,1,465.l.83511.t.1,Jagrbombs,2,A,19
-4,1,465.l.83511.t.1,Jagrbombs,4,+/-,-10
-4,1,465.l.83511.t.1,Jagrbombs,5,PIM,16
-4,1,465.l.83511.t.1,Jagrbombs,8,PPP,9
-4,1,465.l.83511.t.1,Jagrbombs,11,SHP,0
-4,1,465.l.83511.t.1,Jagrbombs,14,SOG,76
-4,1,465.l.83511.t.1,Jagrbombs,16,FW,118
-4,1,465.l.83511.t.1,Jagrbombs,31,HIT,39
-4,1,465.l.83511.t.1,Jagrbombs,32,BLK,32
-4,1,465.l.83511.t.1,Jagrbombs,19,W,4
-4,1,465.l.83511.t.1,Jagrbombs,22,GA,18
-4,1,465.l.83511.t.1,Jagrbombs,23,GAA,2.97
-4,1,465.l.83511.t.1,Jagrbombs,25,SV,127
-4,1,465.l.83511.t.1,Jagrbombs,24,SA,145
-4,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.876
-4,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
-4,1,465.l.83511.t.7,Boats and Ahos,1,G,9
-4,1,465.l.83511.t.7,Boats and Ahos,2,A,18
-4,1,465.l.83511.t.7,Boats and Ahos,4,+/-,-7
-4,1,465.l.83511.t.7,Boats and Ahos,5,PIM,16
-4,1,465.l.83511.t.7,Boats and Ahos,8,PPP,8
-4,1,465.l.83511.t.7,Boats and Ahos,11,SHP,0
-4,1,465.l.83511.t.7,Boats and Ahos,14,SOG,95
-4,1,465.l.83511.t.7,Boats and Ahos,16,FW,117
-4,1,465.l.83511.t.7,Boats and Ahos,31,HIT,47
-4,1,465.l.83511.t.7,Boats and Ahos,32,BLK,29
-4,1,465.l.83511.t.7,Boats and Ahos,19,W,1
-4,1,465.l.83511.t.7,Boats and Ahos,22,GA,11
-4,1,465.l.83511.t.7,Boats and Ahos,23,GAA,3.69
-4,1,465.l.83511.t.7,Boats and Ahos,25,SV,66
-4,1,465.l.83511.t.7,Boats and Ahos,24,SA,77
-4,1,465.l.83511.t.7,Boats and Ahos,26,SV%,0.857
-4,1,465.l.83511.t.7,Boats and Ahos,27,SHO,0
-4,2,465.l.83511.t.2,Bar Down Beauties,1,G,12
-4,2,465.l.83511.t.2,Bar Down Beauties,2,A,26
-4,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,16
-4,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,12
-4,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,8
-4,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,2
-4,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,90
-4,2,465.l.83511.t.2,Bar Down Beauties,16,FW,117
-4,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,20
-4,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,39
-4,2,465.l.83511.t.2,Bar Down Beauties,19,W,1
-4,2,465.l.83511.t.2,Bar Down Beauties,22,GA,12
-4,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,2.41
-4,2,465.l.83511.t.2,Bar Down Beauties,25,SV,117
-4,2,465.l.83511.t.2,Bar Down Beauties,24,SA,129
-4,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.907
-4,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,0
-4,2,465.l.83511.t.9,Dan's Dazzling Team,1,G,9
-4,2,465.l.83511.t.9,Dan's Dazzling Team,2,A,8
-4,2,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,-15
-4,2,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,2
-4,2,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,6
-4,2,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
-4,2,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,64
-4,2,465.l.83511.t.9,Dan's Dazzling Team,16,FW,38
-4,2,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,8
-4,2,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,21
-4,2,465.l.83511.t.9,Dan's Dazzling Team,19,W,2
-4,2,465.l.83511.t.9,Dan's Dazzling Team,22,GA,6
-4,2,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,2.98
-4,2,465.l.83511.t.9,Dan's Dazzling Team,25,SV,53
-4,2,465.l.83511.t.9,Dan's Dazzling Team,24,SA,59
-4,2,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.898
-4,2,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
-4,3,465.l.83511.t.3,Autodraft Anomalies,1,G,8
-4,3,465.l.83511.t.3,Autodraft Anomalies,2,A,21
-4,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,-9
-4,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,20
-4,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,7
-4,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,0
-4,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,119
-4,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,99
-4,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,44
-4,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,38
-4,3,465.l.83511.t.3,Autodraft Anomalies,19,W,3
-4,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,5
-4,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,1.23
-4,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,93
-4,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,98
-4,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.949
-4,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,1
-4,3,465.l.83511.t.6,Sask Squatches,1,G,8
-4,3,465.l.83511.t.6,Sask Squatches,2,A,16
-4,3,465.l.83511.t.6,Sask Squatches,4,+/-,-4
-4,3,465.l.83511.t.6,Sask Squatches,5,PIM,16
-4,3,465.l.83511.t.6,Sask Squatches,8,PPP,7
-4,3,465.l.83511.t.6,Sask Squatches,11,SHP,0
-4,3,465.l.83511.t.6,Sask Squatches,14,SOG,94
-4,3,465.l.83511.t.6,Sask Squatches,16,FW,110
-4,3,465.l.83511.t.6,Sask Squatches,31,HIT,49
-4,3,465.l.83511.t.6,Sask Squatches,32,BLK,34
-4,3,465.l.83511.t.6,Sask Squatches,19,W,2
-4,3,465.l.83511.t.6,Sask Squatches,22,GA,16
-4,3,465.l.83511.t.6,Sask Squatches,23,GAA,2.67
-4,3,465.l.83511.t.6,Sask Squatches,25,SV,152
-4,3,465.l.83511.t.6,Sask Squatches,24,SA,168
-4,3,465.l.83511.t.6,Sask Squatches,26,SV%,0.905
-4,3,465.l.83511.t.6,Sask Squatches,27,SHO,0
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,21
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,18
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,1
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,18
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,15
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,0
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,118
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,102
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,49
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,42
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,4
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,9
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,2.19
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,93
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,102
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.912
-4,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,0
-4,4,465.l.83511.t.11,P Diddlers,1,G,8
-4,4,465.l.83511.t.11,P Diddlers,2,A,19
-4,4,465.l.83511.t.11,P Diddlers,4,+/-,-5
-4,4,465.l.83511.t.11,P Diddlers,5,PIM,8
-4,4,465.l.83511.t.11,P Diddlers,8,PPP,3
-4,4,465.l.83511.t.11,P Diddlers,11,SHP,1
-4,4,465.l.83511.t.11,P Diddlers,14,SOG,75
-4,4,465.l.83511.t.11,P Diddlers,16,FW,69
-4,4,465.l.83511.t.11,P Diddlers,31,HIT,24
-4,4,465.l.83511.t.11,P Diddlers,32,BLK,37
-4,4,465.l.83511.t.11,P Diddlers,19,W,0
-4,4,465.l.83511.t.11,P Diddlers,22,GA,15
-4,4,465.l.83511.t.11,P Diddlers,23,GAA,3.75
-4,4,465.l.83511.t.11,P Diddlers,25,SV,81
-4,4,465.l.83511.t.11,P Diddlers,24,SA,96
-4,4,465.l.83511.t.11,P Diddlers,26,SV%,0.844
-4,4,465.l.83511.t.11,P Diddlers,27,SHO,0
-4,5,465.l.83511.t.5,Hughes your daddy,1,G,12
-4,5,465.l.83511.t.5,Hughes your daddy,2,A,22
-4,5,465.l.83511.t.5,Hughes your daddy,4,+/-,2
-4,5,465.l.83511.t.5,Hughes your daddy,5,PIM,14
-4,5,465.l.83511.t.5,Hughes your daddy,8,PPP,12
-4,5,465.l.83511.t.5,Hughes your daddy,11,SHP,2
-4,5,465.l.83511.t.5,Hughes your daddy,14,SOG,100
-4,5,465.l.83511.t.5,Hughes your daddy,16,FW,135
-4,5,465.l.83511.t.5,Hughes your daddy,31,HIT,34
-4,5,465.l.83511.t.5,Hughes your daddy,32,BLK,42
-4,5,465.l.83511.t.5,Hughes your daddy,19,W,1
-4,5,465.l.83511.t.5,Hughes your daddy,22,GA,14
-4,5,465.l.83511.t.5,Hughes your daddy,23,GAA,2.83
-4,5,465.l.83511.t.5,Hughes your daddy,25,SV,118
-4,5,465.l.83511.t.5,Hughes your daddy,24,SA,132
-4,5,465.l.83511.t.5,Hughes your daddy,26,SV%,0.894
-4,5,465.l.83511.t.5,Hughes your daddy,27,SHO,0
-4,5,465.l.83511.t.8,Bros before Ahos,1,G,15
-4,5,465.l.83511.t.8,Bros before Ahos,2,A,18
-4,5,465.l.83511.t.8,Bros before Ahos,4,+/-,2
-4,5,465.l.83511.t.8,Bros before Ahos,5,PIM,22
-4,5,465.l.83511.t.8,Bros before Ahos,8,PPP,7
-4,5,465.l.83511.t.8,Bros before Ahos,11,SHP,0
-4,5,465.l.83511.t.8,Bros before Ahos,14,SOG,95
-4,5,465.l.83511.t.8,Bros before Ahos,16,FW,119
-4,5,465.l.83511.t.8,Bros before Ahos,31,HIT,40
-4,5,465.l.83511.t.8,Bros before Ahos,32,BLK,45
-4,5,465.l.83511.t.8,Bros before Ahos,19,W,2
-4,5,465.l.83511.t.8,Bros before Ahos,22,GA,18
-4,5,465.l.83511.t.8,Bros before Ahos,23,GAA,3.46
-4,5,465.l.83511.t.8,Bros before Ahos,25,SV,104
-4,5,465.l.83511.t.8,Bros before Ahos,24,SA,122
-4,5,465.l.83511.t.8,Bros before Ahos,26,SV%,0.852
-4,5,465.l.83511.t.8,Bros before Ahos,27,SHO,0
-4,6,465.l.83511.t.10,robert's Fabulous Team,1,G,9
-4,6,465.l.83511.t.10,robert's Fabulous Team,2,A,12
-4,6,465.l.83511.t.10,robert's Fabulous Team,4,+/-,4
-4,6,465.l.83511.t.10,robert's Fabulous Team,5,PIM,12
-4,6,465.l.83511.t.10,robert's Fabulous Team,8,PPP,2
-4,6,465.l.83511.t.10,robert's Fabulous Team,11,SHP,1
-4,6,465.l.83511.t.10,robert's Fabulous Team,14,SOG,73
-4,6,465.l.83511.t.10,robert's Fabulous Team,16,FW,44
-4,6,465.l.83511.t.10,robert's Fabulous Team,31,HIT,34
-4,6,465.l.83511.t.10,robert's Fabulous Team,32,BLK,16
-4,6,465.l.83511.t.10,robert's Fabulous Team,19,W,1
-4,6,465.l.83511.t.10,robert's Fabulous Team,22,GA,19
-4,6,465.l.83511.t.10,robert's Fabulous Team,23,GAA,3.76
-4,6,465.l.83511.t.10,robert's Fabulous Team,25,SV,104
-4,6,465.l.83511.t.10,robert's Fabulous Team,24,SA,123
-4,6,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.846
-4,6,465.l.83511.t.10,robert's Fabulous Team,27,SHO,0
-4,6,465.l.83511.t.12,The Epstein Islanders,1,G,11
-4,6,465.l.83511.t.12,The Epstein Islanders,2,A,24
-4,6,465.l.83511.t.12,The Epstein Islanders,4,+/-,8
-4,6,465.l.83511.t.12,The Epstein Islanders,5,PIM,45
-4,6,465.l.83511.t.12,The Epstein Islanders,8,PPP,9
-4,6,465.l.83511.t.12,The Epstein Islanders,11,SHP,1
-4,6,465.l.83511.t.12,The Epstein Islanders,14,SOG,75
-4,6,465.l.83511.t.12,The Epstein Islanders,16,FW,86
-4,6,465.l.83511.t.12,The Epstein Islanders,31,HIT,65
-4,6,465.l.83511.t.12,The Epstein Islanders,32,BLK,46
-4,6,465.l.83511.t.12,The Epstein Islanders,19,W,4
-4,6,465.l.83511.t.12,The Epstein Islanders,22,GA,14
-4,6,465.l.83511.t.12,The Epstein Islanders,23,GAA,2.75
-4,6,465.l.83511.t.12,The Epstein Islanders,25,SV,135
-4,6,465.l.83511.t.12,The Epstein Islanders,24,SA,149
-4,6,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.906
-4,6,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
-5,1,465.l.83511.t.1,Jagrbombs,1,G,16
-5,1,465.l.83511.t.1,Jagrbombs,2,A,21
-5,1,465.l.83511.t.1,Jagrbombs,4,+/-,0
-5,1,465.l.83511.t.1,Jagrbombs,5,PIM,28
-5,1,465.l.83511.t.1,Jagrbombs,8,PPP,13
-5,1,465.l.83511.t.1,Jagrbombs,11,SHP,0
-5,1,465.l.83511.t.1,Jagrbombs,14,SOG,120
-5,1,465.l.83511.t.1,Jagrbombs,16,FW,119
-5,1,465.l.83511.t.1,Jagrbombs,31,HIT,44
-5,1,465.l.83511.t.1,Jagrbombs,32,BLK,48
-5,1,465.l.83511.t.1,Jagrbombs,19,W,0
-5,1,465.l.83511.t.1,Jagrbombs,22,GA,9
-5,1,465.l.83511.t.1,Jagrbombs,23,GAA,2.99
-5,1,465.l.83511.t.1,Jagrbombs,25,SV,74
-5,1,465.l.83511.t.1,Jagrbombs,24,SA,83
-5,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.892
-5,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
-5,1,465.l.83511.t.11,P Diddlers,1,G,12
-5,1,465.l.83511.t.11,P Diddlers,2,A,28
-5,1,465.l.83511.t.11,P Diddlers,4,+/-,5
-5,1,465.l.83511.t.11,P Diddlers,5,PIM,31
-5,1,465.l.83511.t.11,P Diddlers,8,PPP,11
-5,1,465.l.83511.t.11,P Diddlers,11,SHP,0
-5,1,465.l.83511.t.11,P Diddlers,14,SOG,99
-5,1,465.l.83511.t.11,P Diddlers,16,FW,95
-5,1,465.l.83511.t.11,P Diddlers,31,HIT,54
-5,1,465.l.83511.t.11,P Diddlers,32,BLK,70
-5,1,465.l.83511.t.11,P Diddlers,19,W,2
-5,1,465.l.83511.t.11,P Diddlers,22,GA,13
-5,1,465.l.83511.t.11,P Diddlers,23,GAA,3.48
-5,1,465.l.83511.t.11,P Diddlers,25,SV,78
-5,1,465.l.83511.t.11,P Diddlers,24,SA,91
-5,1,465.l.83511.t.11,P Diddlers,26,SV%,0.857
-5,1,465.l.83511.t.11,P Diddlers,27,SHO,0
-5,2,465.l.83511.t.2,Bar Down Beauties,1,G,27
-5,2,465.l.83511.t.2,Bar Down Beauties,2,A,18
-5,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,-3
-5,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,44
-5,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,13
-5,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,1
-5,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,108
-5,2,465.l.83511.t.2,Bar Down Beauties,16,FW,137
-5,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,44
-5,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,37
-5,2,465.l.83511.t.2,Bar Down Beauties,19,W,2
-5,2,465.l.83511.t.2,Bar Down Beauties,22,GA,4
-5,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,1.35
-5,2,465.l.83511.t.2,Bar Down Beauties,25,SV,62
-5,2,465.l.83511.t.2,Bar Down Beauties,24,SA,66
-5,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.939
-5,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,1
-5,2,465.l.83511.t.3,Autodraft Anomalies,1,G,15
-5,2,465.l.83511.t.3,Autodraft Anomalies,2,A,23
-5,2,465.l.83511.t.3,Autodraft Anomalies,4,+/-,-1
-5,2,465.l.83511.t.3,Autodraft Anomalies,5,PIM,22
-5,2,465.l.83511.t.3,Autodraft Anomalies,8,PPP,16
-5,2,465.l.83511.t.3,Autodraft Anomalies,11,SHP,1
-5,2,465.l.83511.t.3,Autodraft Anomalies,14,SOG,108
-5,2,465.l.83511.t.3,Autodraft Anomalies,16,FW,160
-5,2,465.l.83511.t.3,Autodraft Anomalies,31,HIT,54
-5,2,465.l.83511.t.3,Autodraft Anomalies,32,BLK,42
-5,2,465.l.83511.t.3,Autodraft Anomalies,19,W,4
-5,2,465.l.83511.t.3,Autodraft Anomalies,22,GA,14
-5,2,465.l.83511.t.3,Autodraft Anomalies,23,GAA,2.83
-5,2,465.l.83511.t.3,Autodraft Anomalies,25,SV,126
-5,2,465.l.83511.t.3,Autodraft Anomalies,24,SA,140
-5,2,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.9
-5,2,465.l.83511.t.3,Autodraft Anomalies,27,SHO,0
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,21
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,22
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,2
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,29
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,9
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,0
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,122
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,98
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,39
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,41
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,4
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,18
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,3.62
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,111
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,129
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.86
-5,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,0
-5,3,465.l.83511.t.9,Dan's Dazzling Team,1,G,5
-5,3,465.l.83511.t.9,Dan's Dazzling Team,2,A,19
-5,3,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,-5
-5,3,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,4
-5,3,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,8
-5,3,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
-5,3,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,103
-5,3,465.l.83511.t.9,Dan's Dazzling Team,16,FW,73
-5,3,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,18
-5,3,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,18
-5,3,465.l.83511.t.9,Dan's Dazzling Team,19,W,0
-5,3,465.l.83511.t.9,Dan's Dazzling Team,22,GA,12
-5,3,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,3.5
-5,3,465.l.83511.t.9,Dan's Dazzling Team,25,SV,83
-5,3,465.l.83511.t.9,Dan's Dazzling Team,24,SA,95
-5,3,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.874
-5,3,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
-5,4,465.l.83511.t.5,Hughes your daddy,1,G,7
-5,4,465.l.83511.t.5,Hughes your daddy,2,A,26
-5,4,465.l.83511.t.5,Hughes your daddy,4,+/-,0
-5,4,465.l.83511.t.5,Hughes your daddy,5,PIM,21
-5,4,465.l.83511.t.5,Hughes your daddy,8,PPP,10
-5,4,465.l.83511.t.5,Hughes your daddy,11,SHP,1
-5,4,465.l.83511.t.5,Hughes your daddy,14,SOG,125
-5,4,465.l.83511.t.5,Hughes your daddy,16,FW,123
-5,4,465.l.83511.t.5,Hughes your daddy,31,HIT,30
-5,4,465.l.83511.t.5,Hughes your daddy,32,BLK,39
-5,4,465.l.83511.t.5,Hughes your daddy,19,W,3
-5,4,465.l.83511.t.5,Hughes your daddy,22,GA,12
-5,4,465.l.83511.t.5,Hughes your daddy,23,GAA,2.37
-5,4,465.l.83511.t.5,Hughes your daddy,25,SV,136
-5,4,465.l.83511.t.5,Hughes your daddy,24,SA,148
-5,4,465.l.83511.t.5,Hughes your daddy,26,SV%,0.919
-5,4,465.l.83511.t.5,Hughes your daddy,27,SHO,1
-5,4,465.l.83511.t.10,robert's Fabulous Team,1,G,9
-5,4,465.l.83511.t.10,robert's Fabulous Team,2,A,17
-5,4,465.l.83511.t.10,robert's Fabulous Team,4,+/-,19
-5,4,465.l.83511.t.10,robert's Fabulous Team,5,PIM,10
-5,4,465.l.83511.t.10,robert's Fabulous Team,8,PPP,7
-5,4,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
-5,4,465.l.83511.t.10,robert's Fabulous Team,14,SOG,78
-5,4,465.l.83511.t.10,robert's Fabulous Team,16,FW,30
-5,4,465.l.83511.t.10,robert's Fabulous Team,31,HIT,39
-5,4,465.l.83511.t.10,robert's Fabulous Team,32,BLK,25
-5,4,465.l.83511.t.10,robert's Fabulous Team,19,W,3
-5,4,465.l.83511.t.10,robert's Fabulous Team,22,GA,8
-5,4,465.l.83511.t.10,robert's Fabulous Team,23,GAA,2.29
-5,4,465.l.83511.t.10,robert's Fabulous Team,25,SV,111
-5,4,465.l.83511.t.10,robert's Fabulous Team,24,SA,119
-5,4,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.933
-5,4,465.l.83511.t.10,robert's Fabulous Team,27,SHO,1
-5,5,465.l.83511.t.6,Sask Squatches,1,G,15
-5,5,465.l.83511.t.6,Sask Squatches,2,A,24
-5,5,465.l.83511.t.6,Sask Squatches,4,+/-,9
-5,5,465.l.83511.t.6,Sask Squatches,5,PIM,22
-5,5,465.l.83511.t.6,Sask Squatches,8,PPP,14
-5,5,465.l.83511.t.6,Sask Squatches,11,SHP,0
-5,5,465.l.83511.t.6,Sask Squatches,14,SOG,117
-5,5,465.l.83511.t.6,Sask Squatches,16,FW,127
-5,5,465.l.83511.t.6,Sask Squatches,31,HIT,48
-5,5,465.l.83511.t.6,Sask Squatches,32,BLK,53
-5,5,465.l.83511.t.6,Sask Squatches,19,W,2
-5,5,465.l.83511.t.6,Sask Squatches,22,GA,11
-5,5,465.l.83511.t.6,Sask Squatches,23,GAA,2.19
-5,5,465.l.83511.t.6,Sask Squatches,25,SV,138
-5,5,465.l.83511.t.6,Sask Squatches,24,SA,149
-5,5,465.l.83511.t.6,Sask Squatches,26,SV%,0.926
-5,5,465.l.83511.t.6,Sask Squatches,27,SHO,0
-5,5,465.l.83511.t.8,Bros before Ahos,1,G,13
-5,5,465.l.83511.t.8,Bros before Ahos,2,A,15
-5,5,465.l.83511.t.8,Bros before Ahos,4,+/-,-26
-5,5,465.l.83511.t.8,Bros before Ahos,5,PIM,19
-5,5,465.l.83511.t.8,Bros before Ahos,8,PPP,9
-5,5,465.l.83511.t.8,Bros before Ahos,11,SHP,0
-5,5,465.l.83511.t.8,Bros before Ahos,14,SOG,116
-5,5,465.l.83511.t.8,Bros before Ahos,16,FW,139
-5,5,465.l.83511.t.8,Bros before Ahos,31,HIT,58
-5,5,465.l.83511.t.8,Bros before Ahos,32,BLK,64
-5,5,465.l.83511.t.8,Bros before Ahos,19,W,2
-5,5,465.l.83511.t.8,Bros before Ahos,22,GA,9
-5,5,465.l.83511.t.8,Bros before Ahos,23,GAA,2.85
-5,5,465.l.83511.t.8,Bros before Ahos,25,SV,71
-5,5,465.l.83511.t.8,Bros before Ahos,24,SA,80
-5,5,465.l.83511.t.8,Bros before Ahos,26,SV%,0.888
-5,5,465.l.83511.t.8,Bros before Ahos,27,SHO,0
-5,6,465.l.83511.t.7,Boats and Ahos,1,G,13
-5,6,465.l.83511.t.7,Boats and Ahos,2,A,21
-5,6,465.l.83511.t.7,Boats and Ahos,4,+/-,6
-5,6,465.l.83511.t.7,Boats and Ahos,5,PIM,16
-5,6,465.l.83511.t.7,Boats and Ahos,8,PPP,8
-5,6,465.l.83511.t.7,Boats and Ahos,11,SHP,1
-5,6,465.l.83511.t.7,Boats and Ahos,14,SOG,106
-5,6,465.l.83511.t.7,Boats and Ahos,16,FW,113
-5,6,465.l.83511.t.7,Boats and Ahos,31,HIT,47
-5,6,465.l.83511.t.7,Boats and Ahos,32,BLK,41
-5,6,465.l.83511.t.7,Boats and Ahos,19,W,2
-5,6,465.l.83511.t.7,Boats and Ahos,22,GA,7
-5,6,465.l.83511.t.7,Boats and Ahos,23,GAA,2.33
-5,6,465.l.83511.t.7,Boats and Ahos,25,SV,69
-5,6,465.l.83511.t.7,Boats and Ahos,24,SA,76
-5,6,465.l.83511.t.7,Boats and Ahos,26,SV%,0.908
-5,6,465.l.83511.t.7,Boats and Ahos,27,SHO,1
-5,6,465.l.83511.t.12,The Epstein Islanders,1,G,14
-5,6,465.l.83511.t.12,The Epstein Islanders,2,A,16
-5,6,465.l.83511.t.12,The Epstein Islanders,4,+/-,3
-5,6,465.l.83511.t.12,The Epstein Islanders,5,PIM,40
-5,6,465.l.83511.t.12,The Epstein Islanders,8,PPP,7
-5,6,465.l.83511.t.12,The Epstein Islanders,11,SHP,1
-5,6,465.l.83511.t.12,The Epstein Islanders,14,SOG,111
-5,6,465.l.83511.t.12,The Epstein Islanders,16,FW,70
-5,6,465.l.83511.t.12,The Epstein Islanders,31,HIT,68
-5,6,465.l.83511.t.12,The Epstein Islanders,32,BLK,47
-5,6,465.l.83511.t.12,The Epstein Islanders,19,W,2
-5,6,465.l.83511.t.12,The Epstein Islanders,22,GA,17
-5,6,465.l.83511.t.12,The Epstein Islanders,23,GAA,4.3
-5,6,465.l.83511.t.12,The Epstein Islanders,25,SV,103
-5,6,465.l.83511.t.12,The Epstein Islanders,24,SA,120
-5,6,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.858
-5,6,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
-6,1,465.l.83511.t.1,Jagrbombs,1,G,12
-6,1,465.l.83511.t.1,Jagrbombs,2,A,19
-6,1,465.l.83511.t.1,Jagrbombs,4,+/-,7
-6,1,465.l.83511.t.1,Jagrbombs,5,PIM,18
-6,1,465.l.83511.t.1,Jagrbombs,8,PPP,6
-6,1,465.l.83511.t.1,Jagrbombs,11,SHP,0
-6,1,465.l.83511.t.1,Jagrbombs,14,SOG,102
-6,1,465.l.83511.t.1,Jagrbombs,16,FW,101
-6,1,465.l.83511.t.1,Jagrbombs,31,HIT,44
-6,1,465.l.83511.t.1,Jagrbombs,32,BLK,45
-6,1,465.l.83511.t.1,Jagrbombs,19,W,3
-6,1,465.l.83511.t.1,Jagrbombs,22,GA,8
-6,1,465.l.83511.t.1,Jagrbombs,23,GAA,2.65
-6,1,465.l.83511.t.1,Jagrbombs,25,SV,90
-6,1,465.l.83511.t.1,Jagrbombs,24,SA,98
-6,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.918
-6,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
-6,1,465.l.83511.t.9,Dan's Dazzling Team,1,G,17
-6,1,465.l.83511.t.9,Dan's Dazzling Team,2,A,13
-6,1,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,3
-6,1,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,15
-6,1,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,11
-6,1,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
-6,1,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,94
-6,1,465.l.83511.t.9,Dan's Dazzling Team,16,FW,40
-6,1,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,31
-6,1,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,27
-6,1,465.l.83511.t.9,Dan's Dazzling Team,19,W,2
-6,1,465.l.83511.t.9,Dan's Dazzling Team,22,GA,15
-6,1,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,3.73
-6,1,465.l.83511.t.9,Dan's Dazzling Team,25,SV,94
-6,1,465.l.83511.t.9,Dan's Dazzling Team,24,SA,109
-6,1,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.862
-6,1,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
-6,2,465.l.83511.t.2,Bar Down Beauties,1,G,15
-6,2,465.l.83511.t.2,Bar Down Beauties,2,A,27
-6,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,1
-6,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,10
-6,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,17
-6,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,1
-6,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,89
-6,2,465.l.83511.t.2,Bar Down Beauties,16,FW,161
-6,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,30
-6,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,31
-6,2,465.l.83511.t.2,Bar Down Beauties,19,W,3
-6,2,465.l.83511.t.2,Bar Down Beauties,22,GA,12
-6,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,2.37
-6,2,465.l.83511.t.2,Bar Down Beauties,25,SV,114
-6,2,465.l.83511.t.2,Bar Down Beauties,24,SA,126
-6,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.905
-6,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,0
-6,2,465.l.83511.t.6,Sask Squatches,1,G,13
-6,2,465.l.83511.t.6,Sask Squatches,2,A,24
-6,2,465.l.83511.t.6,Sask Squatches,4,+/-,4
-6,2,465.l.83511.t.6,Sask Squatches,5,PIM,10
-6,2,465.l.83511.t.6,Sask Squatches,8,PPP,10
-6,2,465.l.83511.t.6,Sask Squatches,11,SHP,1
-6,2,465.l.83511.t.6,Sask Squatches,14,SOG,106
-6,2,465.l.83511.t.6,Sask Squatches,16,FW,98
-6,2,465.l.83511.t.6,Sask Squatches,31,HIT,39
-6,2,465.l.83511.t.6,Sask Squatches,32,BLK,42
-6,2,465.l.83511.t.6,Sask Squatches,19,W,2
-6,2,465.l.83511.t.6,Sask Squatches,22,GA,15
-6,2,465.l.83511.t.6,Sask Squatches,23,GAA,2.63
-6,2,465.l.83511.t.6,Sask Squatches,25,SV,106
-6,2,465.l.83511.t.6,Sask Squatches,24,SA,121
-6,2,465.l.83511.t.6,Sask Squatches,26,SV%,0.876
-6,2,465.l.83511.t.6,Sask Squatches,27,SHO,1
-6,3,465.l.83511.t.3,Autodraft Anomalies,1,G,14
-6,3,465.l.83511.t.3,Autodraft Anomalies,2,A,22
-6,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,6
-6,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,19
-6,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,10
-6,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,0
-6,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,107
-6,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,137
-6,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,65
-6,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,36
-6,3,465.l.83511.t.3,Autodraft Anomalies,19,W,5
-6,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,11
-6,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,1.92
-6,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,140
-6,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,151
-6,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.927
-6,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,0
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,8
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,24
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,0
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,21
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,13
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,0
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,120
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,111
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,63
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,45
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,1
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,7
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,2.38
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,79
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,86
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.919
-6,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,0
-6,4,465.l.83511.t.5,Hughes your daddy,1,G,13
-6,4,465.l.83511.t.5,Hughes your daddy,2,A,21
-6,4,465.l.83511.t.5,Hughes your daddy,4,+/-,1
-6,4,465.l.83511.t.5,Hughes your daddy,5,PIM,22
-6,4,465.l.83511.t.5,Hughes your daddy,8,PPP,9
-6,4,465.l.83511.t.5,Hughes your daddy,11,SHP,0
-6,4,465.l.83511.t.5,Hughes your daddy,14,SOG,119
-6,4,465.l.83511.t.5,Hughes your daddy,16,FW,144
-6,4,465.l.83511.t.5,Hughes your daddy,31,HIT,37
-6,4,465.l.83511.t.5,Hughes your daddy,32,BLK,28
-6,4,465.l.83511.t.5,Hughes your daddy,19,W,0
-6,4,465.l.83511.t.5,Hughes your daddy,22,GA,6
-6,4,465.l.83511.t.5,Hughes your daddy,23,GAA,2.55
-6,4,465.l.83511.t.5,Hughes your daddy,25,SV,55
-6,4,465.l.83511.t.5,Hughes your daddy,24,SA,61
-6,4,465.l.83511.t.5,Hughes your daddy,26,SV%,0.902
-6,4,465.l.83511.t.5,Hughes your daddy,27,SHO,0
-6,4,465.l.83511.t.7,Boats and Ahos,1,G,9
-6,4,465.l.83511.t.7,Boats and Ahos,2,A,20
-6,4,465.l.83511.t.7,Boats and Ahos,4,+/-,0
-6,4,465.l.83511.t.7,Boats and Ahos,5,PIM,12
-6,4,465.l.83511.t.7,Boats and Ahos,8,PPP,4
-6,4,465.l.83511.t.7,Boats and Ahos,11,SHP,0
-6,4,465.l.83511.t.7,Boats and Ahos,14,SOG,121
-6,4,465.l.83511.t.7,Boats and Ahos,16,FW,101
-6,4,465.l.83511.t.7,Boats and Ahos,31,HIT,56
-6,4,465.l.83511.t.7,Boats and Ahos,32,BLK,43
-6,4,465.l.83511.t.7,Boats and Ahos,19,W,1
-6,4,465.l.83511.t.7,Boats and Ahos,22,GA,8
-6,4,465.l.83511.t.7,Boats and Ahos,23,GAA,4.44
-6,4,465.l.83511.t.7,Boats and Ahos,25,SV,22
-6,4,465.l.83511.t.7,Boats and Ahos,24,SA,30
-6,4,465.l.83511.t.7,Boats and Ahos,26,SV%,0.733
-6,4,465.l.83511.t.7,Boats and Ahos,27,SHO,0
-6,5,465.l.83511.t.8,Bros before Ahos,1,G,11
-6,5,465.l.83511.t.8,Bros before Ahos,2,A,15
-6,5,465.l.83511.t.8,Bros before Ahos,4,+/-,-3
-6,5,465.l.83511.t.8,Bros before Ahos,5,PIM,23
-6,5,465.l.83511.t.8,Bros before Ahos,8,PPP,3
-6,5,465.l.83511.t.8,Bros before Ahos,11,SHP,0
-6,5,465.l.83511.t.8,Bros before Ahos,14,SOG,90
-6,5,465.l.83511.t.8,Bros before Ahos,16,FW,102
-6,5,465.l.83511.t.8,Bros before Ahos,31,HIT,63
-6,5,465.l.83511.t.8,Bros before Ahos,32,BLK,40
-6,5,465.l.83511.t.8,Bros before Ahos,19,W,1
-6,5,465.l.83511.t.8,Bros before Ahos,22,GA,7
-6,5,465.l.83511.t.8,Bros before Ahos,23,GAA,2.32
-6,5,465.l.83511.t.8,Bros before Ahos,25,SV,65
-6,5,465.l.83511.t.8,Bros before Ahos,24,SA,72
-6,5,465.l.83511.t.8,Bros before Ahos,26,SV%,0.903
-6,5,465.l.83511.t.8,Bros before Ahos,27,SHO,0
-6,5,465.l.83511.t.10,robert's Fabulous Team,1,G,8
-6,5,465.l.83511.t.10,robert's Fabulous Team,2,A,16
-6,5,465.l.83511.t.10,robert's Fabulous Team,4,+/-,-5
-6,5,465.l.83511.t.10,robert's Fabulous Team,5,PIM,27
-6,5,465.l.83511.t.10,robert's Fabulous Team,8,PPP,9
-6,5,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
-6,5,465.l.83511.t.10,robert's Fabulous Team,14,SOG,68
-6,5,465.l.83511.t.10,robert's Fabulous Team,16,FW,43
-6,5,465.l.83511.t.10,robert's Fabulous Team,31,HIT,24
-6,5,465.l.83511.t.10,robert's Fabulous Team,32,BLK,14
-6,5,465.l.83511.t.10,robert's Fabulous Team,19,W,2
-6,5,465.l.83511.t.10,robert's Fabulous Team,22,GA,13
-6,5,465.l.83511.t.10,robert's Fabulous Team,23,GAA,3.14
-6,5,465.l.83511.t.10,robert's Fabulous Team,25,SV,128
-6,5,465.l.83511.t.10,robert's Fabulous Team,24,SA,141
-6,5,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.908
-6,5,465.l.83511.t.10,robert's Fabulous Team,27,SHO,0
-6,6,465.l.83511.t.11,P Diddlers,1,G,17
-6,6,465.l.83511.t.11,P Diddlers,2,A,28
-6,6,465.l.83511.t.11,P Diddlers,4,+/-,17
-6,6,465.l.83511.t.11,P Diddlers,5,PIM,25
-6,6,465.l.83511.t.11,P Diddlers,8,PPP,16
-6,6,465.l.83511.t.11,P Diddlers,11,SHP,0
-6,6,465.l.83511.t.11,P Diddlers,14,SOG,111
-6,6,465.l.83511.t.11,P Diddlers,16,FW,83
-6,6,465.l.83511.t.11,P Diddlers,31,HIT,29
-6,6,465.l.83511.t.11,P Diddlers,32,BLK,37
-6,6,465.l.83511.t.11,P Diddlers,19,W,1
-6,6,465.l.83511.t.11,P Diddlers,22,GA,13
-6,6,465.l.83511.t.11,P Diddlers,23,GAA,3.24
-6,6,465.l.83511.t.11,P Diddlers,25,SV,74
-6,6,465.l.83511.t.11,P Diddlers,24,SA,87
-6,6,465.l.83511.t.11,P Diddlers,26,SV%,0.851
-6,6,465.l.83511.t.11,P Diddlers,27,SHO,0
-6,6,465.l.83511.t.12,The Epstein Islanders,1,G,12
-6,6,465.l.83511.t.12,The Epstein Islanders,2,A,20
-6,6,465.l.83511.t.12,The Epstein Islanders,4,+/-,-1
-6,6,465.l.83511.t.12,The Epstein Islanders,5,PIM,16
-6,6,465.l.83511.t.12,The Epstein Islanders,8,PPP,11
-6,6,465.l.83511.t.12,The Epstein Islanders,11,SHP,1
-6,6,465.l.83511.t.12,The Epstein Islanders,14,SOG,103
-6,6,465.l.83511.t.12,The Epstein Islanders,16,FW,63
-6,6,465.l.83511.t.12,The Epstein Islanders,31,HIT,58
-6,6,465.l.83511.t.12,The Epstein Islanders,32,BLK,43
-6,6,465.l.83511.t.12,The Epstein Islanders,19,W,2
-6,6,465.l.83511.t.12,The Epstein Islanders,22,GA,13
-6,6,465.l.83511.t.12,The Epstein Islanders,23,GAA,3.86
-6,6,465.l.83511.t.12,The Epstein Islanders,25,SV,69
-6,6,465.l.83511.t.12,The Epstein Islanders,24,SA,82
-6,6,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.841
-6,6,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
-7,1,465.l.83511.t.1,Jagrbombs,1,G,12
-7,1,465.l.83511.t.1,Jagrbombs,2,A,17
-7,1,465.l.83511.t.1,Jagrbombs,4,+/-,-9
-7,1,465.l.83511.t.1,Jagrbombs,5,PIM,20
-7,1,465.l.83511.t.1,Jagrbombs,8,PPP,8
-7,1,465.l.83511.t.1,Jagrbombs,11,SHP,0
-7,1,465.l.83511.t.1,Jagrbombs,14,SOG,112
-7,1,465.l.83511.t.1,Jagrbombs,16,FW,100
-7,1,465.l.83511.t.1,Jagrbombs,31,HIT,50
-7,1,465.l.83511.t.1,Jagrbombs,32,BLK,40
-7,1,465.l.83511.t.1,Jagrbombs,19,W,1
-7,1,465.l.83511.t.1,Jagrbombs,22,GA,5
-7,1,465.l.83511.t.1,Jagrbombs,23,GAA,1.72
-7,1,465.l.83511.t.1,Jagrbombs,25,SV,72
-7,1,465.l.83511.t.1,Jagrbombs,24,SA,77
-7,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.935
-7,1,465.l.83511.t.1,Jagrbombs,27,SHO,1
-7,1,465.l.83511.t.3,Autodraft Anomalies,1,G,13
-7,1,465.l.83511.t.3,Autodraft Anomalies,2,A,25
-7,1,465.l.83511.t.3,Autodraft Anomalies,4,+/-,-7
-7,1,465.l.83511.t.3,Autodraft Anomalies,5,PIM,20
-7,1,465.l.83511.t.3,Autodraft Anomalies,8,PPP,10
-7,1,465.l.83511.t.3,Autodraft Anomalies,11,SHP,0
-7,1,465.l.83511.t.3,Autodraft Anomalies,14,SOG,125
-7,1,465.l.83511.t.3,Autodraft Anomalies,16,FW,138
-7,1,465.l.83511.t.3,Autodraft Anomalies,31,HIT,62
-7,1,465.l.83511.t.3,Autodraft Anomalies,32,BLK,45
-7,1,465.l.83511.t.3,Autodraft Anomalies,19,W,4
-7,1,465.l.83511.t.3,Autodraft Anomalies,22,GA,9
-7,1,465.l.83511.t.3,Autodraft Anomalies,23,GAA,1.81
-7,1,465.l.83511.t.3,Autodraft Anomalies,25,SV,122
-7,1,465.l.83511.t.3,Autodraft Anomalies,24,SA,131
-7,1,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.931
-7,1,465.l.83511.t.3,Autodraft Anomalies,27,SHO,1
-7,2,465.l.83511.t.2,Bar Down Beauties,1,G,14
-7,2,465.l.83511.t.2,Bar Down Beauties,2,A,25
-7,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,0
-7,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,12
-7,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,9
-7,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,1
-7,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,126
-7,2,465.l.83511.t.2,Bar Down Beauties,16,FW,182
-7,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,34
-7,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,46
-7,2,465.l.83511.t.2,Bar Down Beauties,19,W,1
-7,2,465.l.83511.t.2,Bar Down Beauties,22,GA,12
-7,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,3.62
-7,2,465.l.83511.t.2,Bar Down Beauties,25,SV,75
-7,2,465.l.83511.t.2,Bar Down Beauties,24,SA,87
-7,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.862
-7,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,0
-7,2,465.l.83511.t.8,Bros before Ahos,1,G,10
-7,2,465.l.83511.t.8,Bros before Ahos,2,A,26
-7,2,465.l.83511.t.8,Bros before Ahos,4,+/-,8
-7,2,465.l.83511.t.8,Bros before Ahos,5,PIM,35
-7,2,465.l.83511.t.8,Bros before Ahos,8,PPP,5
-7,2,465.l.83511.t.8,Bros before Ahos,11,SHP,2
-7,2,465.l.83511.t.8,Bros before Ahos,14,SOG,112
-7,2,465.l.83511.t.8,Bros before Ahos,16,FW,121
-7,2,465.l.83511.t.8,Bros before Ahos,31,HIT,70
-7,2,465.l.83511.t.8,Bros before Ahos,32,BLK,54
-7,2,465.l.83511.t.8,Bros before Ahos,19,W,3
-7,2,465.l.83511.t.8,Bros before Ahos,22,GA,4
-7,2,465.l.83511.t.8,Bros before Ahos,23,GAA,1.34
-7,2,465.l.83511.t.8,Bros before Ahos,25,SV,75
-7,2,465.l.83511.t.8,Bros before Ahos,24,SA,79
-7,2,465.l.83511.t.8,Bros before Ahos,26,SV%,0.949
-7,2,465.l.83511.t.8,Bros before Ahos,27,SHO,1
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,19
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,27
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,17
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,38
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,7
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,2
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,120
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,86
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,72
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,46
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,3
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,10
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,3.34
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,62
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,72
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.861
-7,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,0
-7,3,465.l.83511.t.6,Sask Squatches,1,G,19
-7,3,465.l.83511.t.6,Sask Squatches,2,A,20
-7,3,465.l.83511.t.6,Sask Squatches,4,+/-,5
-7,3,465.l.83511.t.6,Sask Squatches,5,PIM,40
-7,3,465.l.83511.t.6,Sask Squatches,8,PPP,8
-7,3,465.l.83511.t.6,Sask Squatches,11,SHP,0
-7,3,465.l.83511.t.6,Sask Squatches,14,SOG,104
-7,3,465.l.83511.t.6,Sask Squatches,16,FW,110
-7,3,465.l.83511.t.6,Sask Squatches,31,HIT,43
-7,3,465.l.83511.t.6,Sask Squatches,32,BLK,44
-7,3,465.l.83511.t.6,Sask Squatches,19,W,3
-7,3,465.l.83511.t.6,Sask Squatches,22,GA,14
-7,3,465.l.83511.t.6,Sask Squatches,23,GAA,2.61
-7,3,465.l.83511.t.6,Sask Squatches,25,SV,149
-7,3,465.l.83511.t.6,Sask Squatches,24,SA,163
-7,3,465.l.83511.t.6,Sask Squatches,26,SV%,0.914
-7,3,465.l.83511.t.6,Sask Squatches,27,SHO,1
-7,4,465.l.83511.t.5,Hughes your daddy,1,G,11
-7,4,465.l.83511.t.5,Hughes your daddy,2,A,23
-7,4,465.l.83511.t.5,Hughes your daddy,4,+/-,-4
-7,4,465.l.83511.t.5,Hughes your daddy,5,PIM,49
-7,4,465.l.83511.t.5,Hughes your daddy,8,PPP,8
-7,4,465.l.83511.t.5,Hughes your daddy,11,SHP,0
-7,4,465.l.83511.t.5,Hughes your daddy,14,SOG,118
-7,4,465.l.83511.t.5,Hughes your daddy,16,FW,127
-7,4,465.l.83511.t.5,Hughes your daddy,31,HIT,42
-7,4,465.l.83511.t.5,Hughes your daddy,32,BLK,28
-7,4,465.l.83511.t.5,Hughes your daddy,19,W,3
-7,4,465.l.83511.t.5,Hughes your daddy,22,GA,5
-7,4,465.l.83511.t.5,Hughes your daddy,23,GAA,1.6
-7,4,465.l.83511.t.5,Hughes your daddy,25,SV,74
-7,4,465.l.83511.t.5,Hughes your daddy,24,SA,79
-7,4,465.l.83511.t.5,Hughes your daddy,26,SV%,0.937
-7,4,465.l.83511.t.5,Hughes your daddy,27,SHO,1
-7,4,465.l.83511.t.11,P Diddlers,1,G,12
-7,4,465.l.83511.t.11,P Diddlers,2,A,16
-7,4,465.l.83511.t.11,P Diddlers,4,+/-,10
-7,4,465.l.83511.t.11,P Diddlers,5,PIM,16
-7,4,465.l.83511.t.11,P Diddlers,8,PPP,5
-7,4,465.l.83511.t.11,P Diddlers,11,SHP,1
-7,4,465.l.83511.t.11,P Diddlers,14,SOG,96
-7,4,465.l.83511.t.11,P Diddlers,16,FW,69
-7,4,465.l.83511.t.11,P Diddlers,31,HIT,51
-7,4,465.l.83511.t.11,P Diddlers,32,BLK,43
-7,4,465.l.83511.t.11,P Diddlers,19,W,1
-7,4,465.l.83511.t.11,P Diddlers,22,GA,9
-7,4,465.l.83511.t.11,P Diddlers,23,GAA,2.19
-7,4,465.l.83511.t.11,P Diddlers,25,SV,106
-7,4,465.l.83511.t.11,P Diddlers,24,SA,115
-7,4,465.l.83511.t.11,P Diddlers,26,SV%,0.922
-7,4,465.l.83511.t.11,P Diddlers,27,SHO,1
-7,5,465.l.83511.t.7,Boats and Ahos,1,G,9
-7,5,465.l.83511.t.7,Boats and Ahos,2,A,24
-7,5,465.l.83511.t.7,Boats and Ahos,4,+/-,4
-7,5,465.l.83511.t.7,Boats and Ahos,5,PIM,30
-7,5,465.l.83511.t.7,Boats and Ahos,8,PPP,10
-7,5,465.l.83511.t.7,Boats and Ahos,11,SHP,2
-7,5,465.l.83511.t.7,Boats and Ahos,14,SOG,114
-7,5,465.l.83511.t.7,Boats and Ahos,16,FW,140
-7,5,465.l.83511.t.7,Boats and Ahos,31,HIT,42
-7,5,465.l.83511.t.7,Boats and Ahos,32,BLK,29
-7,5,465.l.83511.t.7,Boats and Ahos,19,W,1
-7,5,465.l.83511.t.7,Boats and Ahos,22,GA,6
-7,5,465.l.83511.t.7,Boats and Ahos,23,GAA,1.9
-7,5,465.l.83511.t.7,Boats and Ahos,25,SV,80
-7,5,465.l.83511.t.7,Boats and Ahos,24,SA,86
-7,5,465.l.83511.t.7,Boats and Ahos,26,SV%,0.93
-7,5,465.l.83511.t.7,Boats and Ahos,27,SHO,0
-7,5,465.l.83511.t.10,robert's Fabulous Team,1,G,17
-7,5,465.l.83511.t.10,robert's Fabulous Team,2,A,20
-7,5,465.l.83511.t.10,robert's Fabulous Team,4,+/-,10
-7,5,465.l.83511.t.10,robert's Fabulous Team,5,PIM,22
-7,5,465.l.83511.t.10,robert's Fabulous Team,8,PPP,9
-7,5,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
-7,5,465.l.83511.t.10,robert's Fabulous Team,14,SOG,96
-7,5,465.l.83511.t.10,robert's Fabulous Team,16,FW,76
-7,5,465.l.83511.t.10,robert's Fabulous Team,31,HIT,27
-7,5,465.l.83511.t.10,robert's Fabulous Team,32,BLK,30
-7,5,465.l.83511.t.10,robert's Fabulous Team,19,W,1
-7,5,465.l.83511.t.10,robert's Fabulous Team,22,GA,8
-7,5,465.l.83511.t.10,robert's Fabulous Team,23,GAA,2.0
-7,5,465.l.83511.t.10,robert's Fabulous Team,25,SV,105
-7,5,465.l.83511.t.10,robert's Fabulous Team,24,SA,113
-7,5,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.929
-7,5,465.l.83511.t.10,robert's Fabulous Team,27,SHO,0
-7,6,465.l.83511.t.9,Dan's Dazzling Team,1,G,11
-7,6,465.l.83511.t.9,Dan's Dazzling Team,2,A,17
-7,6,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,11
-7,6,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,8
-7,6,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,7
-7,6,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
-7,6,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,79
-7,6,465.l.83511.t.9,Dan's Dazzling Team,16,FW,90
-7,6,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,24
-7,6,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,34
-7,6,465.l.83511.t.9,Dan's Dazzling Team,19,W,0
-7,6,465.l.83511.t.9,Dan's Dazzling Team,22,GA,2
-7,6,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,1.94
-7,6,465.l.83511.t.9,Dan's Dazzling Team,25,SV,33
-7,6,465.l.83511.t.9,Dan's Dazzling Team,24,SA,35
-7,6,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.943
-7,6,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
-7,6,465.l.83511.t.12,The Epstein Islanders,1,G,11
-7,6,465.l.83511.t.12,The Epstein Islanders,2,A,15
-7,6,465.l.83511.t.12,The Epstein Islanders,4,+/-,-2
-7,6,465.l.83511.t.12,The Epstein Islanders,5,PIM,41
-7,6,465.l.83511.t.12,The Epstein Islanders,8,PPP,9
-7,6,465.l.83511.t.12,The Epstein Islanders,11,SHP,1
-7,6,465.l.83511.t.12,The Epstein Islanders,14,SOG,86
-7,6,465.l.83511.t.12,The Epstein Islanders,16,FW,52
-7,6,465.l.83511.t.12,The Epstein Islanders,31,HIT,56
-7,6,465.l.83511.t.12,The Epstein Islanders,32,BLK,45
-7,6,465.l.83511.t.12,The Epstein Islanders,19,W,3
-7,6,465.l.83511.t.12,The Epstein Islanders,22,GA,23
-7,6,465.l.83511.t.12,The Epstein Islanders,23,GAA,3.44
-7,6,465.l.83511.t.12,The Epstein Islanders,25,SV,172
-7,6,465.l.83511.t.12,The Epstein Islanders,24,SA,195
-7,6,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.882
-7,6,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
-8,1,465.l.83511.t.1,Jagrbombs,1,G,10
-8,1,465.l.83511.t.1,Jagrbombs,2,A,20
-8,1,465.l.83511.t.1,Jagrbombs,4,+/-,10
-8,1,465.l.83511.t.1,Jagrbombs,5,PIM,38
-8,1,465.l.83511.t.1,Jagrbombs,8,PPP,5
-8,1,465.l.83511.t.1,Jagrbombs,11,SHP,0
-8,1,465.l.83511.t.1,Jagrbombs,14,SOG,80
-8,1,465.l.83511.t.1,Jagrbombs,16,FW,114
-8,1,465.l.83511.t.1,Jagrbombs,31,HIT,42
-8,1,465.l.83511.t.1,Jagrbombs,32,BLK,32
-8,1,465.l.83511.t.1,Jagrbombs,19,W,2
-8,1,465.l.83511.t.1,Jagrbombs,22,GA,6
-8,1,465.l.83511.t.1,Jagrbombs,23,GAA,2.05
-8,1,465.l.83511.t.1,Jagrbombs,25,SV,73
-8,1,465.l.83511.t.1,Jagrbombs,24,SA,79
-8,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.924
-8,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
-8,1,465.l.83511.t.6,Sask Squatches,1,G,15
-8,1,465.l.83511.t.6,Sask Squatches,2,A,21
-8,1,465.l.83511.t.6,Sask Squatches,4,+/-,1
-8,1,465.l.83511.t.6,Sask Squatches,5,PIM,32
-8,1,465.l.83511.t.6,Sask Squatches,8,PPP,9
-8,1,465.l.83511.t.6,Sask Squatches,11,SHP,0
-8,1,465.l.83511.t.6,Sask Squatches,14,SOG,98
-8,1,465.l.83511.t.6,Sask Squatches,16,FW,108
-8,1,465.l.83511.t.6,Sask Squatches,31,HIT,40
-8,1,465.l.83511.t.6,Sask Squatches,32,BLK,41
-8,1,465.l.83511.t.6,Sask Squatches,19,W,2
-8,1,465.l.83511.t.6,Sask Squatches,22,GA,14
-8,1,465.l.83511.t.6,Sask Squatches,23,GAA,4.92
-8,1,465.l.83511.t.6,Sask Squatches,25,SV,80
-8,1,465.l.83511.t.6,Sask Squatches,24,SA,94
-8,1,465.l.83511.t.6,Sask Squatches,26,SV%,0.851
-8,1,465.l.83511.t.6,Sask Squatches,27,SHO,0
-8,2,465.l.83511.t.2,Bar Down Beauties,1,G,9
-8,2,465.l.83511.t.2,Bar Down Beauties,2,A,23
-8,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,8
-8,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,21
-8,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,8
-8,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,0
-8,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,72
-8,2,465.l.83511.t.2,Bar Down Beauties,16,FW,71
-8,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,28
-8,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,25
-8,2,465.l.83511.t.2,Bar Down Beauties,19,W,3
-8,2,465.l.83511.t.2,Bar Down Beauties,22,GA,8
-8,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,1.96
-8,2,465.l.83511.t.2,Bar Down Beauties,25,SV,96
-8,2,465.l.83511.t.2,Bar Down Beauties,24,SA,104
-8,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.923
-8,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,0
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,16
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,26
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,11
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,20
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,7
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,0
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,118
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,102
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,78
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,39
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,1
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,8
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,2.71
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,69
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,77
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.896
-8,2,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,1
-8,3,465.l.83511.t.3,Autodraft Anomalies,1,G,15
-8,3,465.l.83511.t.3,Autodraft Anomalies,2,A,29
-8,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,-1
-8,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,23
-8,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,13
-8,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,1
-8,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,102
-8,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,120
-8,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,58
-8,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,39
-8,3,465.l.83511.t.3,Autodraft Anomalies,19,W,3
-8,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,4
-8,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,1.34
-8,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,73
-8,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,77
-8,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.948
-8,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,1
-8,3,465.l.83511.t.12,The Epstein Islanders,1,G,16
-8,3,465.l.83511.t.12,The Epstein Islanders,2,A,16
-8,3,465.l.83511.t.12,The Epstein Islanders,4,+/-,20
-8,3,465.l.83511.t.12,The Epstein Islanders,5,PIM,38
-8,3,465.l.83511.t.12,The Epstein Islanders,8,PPP,5
-8,3,465.l.83511.t.12,The Epstein Islanders,11,SHP,0
-8,3,465.l.83511.t.12,The Epstein Islanders,14,SOG,101
-8,3,465.l.83511.t.12,The Epstein Islanders,16,FW,58
-8,3,465.l.83511.t.12,The Epstein Islanders,31,HIT,74
-8,3,465.l.83511.t.12,The Epstein Islanders,32,BLK,47
-8,3,465.l.83511.t.12,The Epstein Islanders,19,W,4
-8,3,465.l.83511.t.12,The Epstein Islanders,22,GA,14
-8,3,465.l.83511.t.12,The Epstein Islanders,23,GAA,2.6
-8,3,465.l.83511.t.12,The Epstein Islanders,25,SV,138
-8,3,465.l.83511.t.12,The Epstein Islanders,24,SA,152
-8,3,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.908
-8,3,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
-8,4,465.l.83511.t.5,Hughes your daddy,1,G,14
-8,4,465.l.83511.t.5,Hughes your daddy,2,A,19
-8,4,465.l.83511.t.5,Hughes your daddy,4,+/-,-5
-8,4,465.l.83511.t.5,Hughes your daddy,5,PIM,16
-8,4,465.l.83511.t.5,Hughes your daddy,8,PPP,9
-8,4,465.l.83511.t.5,Hughes your daddy,11,SHP,0
-8,4,465.l.83511.t.5,Hughes your daddy,14,SOG,91
-8,4,465.l.83511.t.5,Hughes your daddy,16,FW,135
-8,4,465.l.83511.t.5,Hughes your daddy,31,HIT,45
-8,4,465.l.83511.t.5,Hughes your daddy,32,BLK,34
-8,4,465.l.83511.t.5,Hughes your daddy,19,W,2
-8,4,465.l.83511.t.5,Hughes your daddy,22,GA,11
-8,4,465.l.83511.t.5,Hughes your daddy,23,GAA,3.13
-8,4,465.l.83511.t.5,Hughes your daddy,25,SV,111
-8,4,465.l.83511.t.5,Hughes your daddy,24,SA,122
-8,4,465.l.83511.t.5,Hughes your daddy,26,SV%,0.91
-8,4,465.l.83511.t.5,Hughes your daddy,27,SHO,0
-8,4,465.l.83511.t.9,Dan's Dazzling Team,1,G,12
-8,4,465.l.83511.t.9,Dan's Dazzling Team,2,A,18
-8,4,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,-2
-8,4,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,14
-8,4,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,9
-8,4,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
-8,4,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,102
-8,4,465.l.83511.t.9,Dan's Dazzling Team,16,FW,88
-8,4,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,17
-8,4,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,27
-8,4,465.l.83511.t.9,Dan's Dazzling Team,19,W,0
-8,4,465.l.83511.t.9,Dan's Dazzling Team,22,GA,7
-8,4,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,4.28
-8,4,465.l.83511.t.9,Dan's Dazzling Team,25,SV,32
-8,4,465.l.83511.t.9,Dan's Dazzling Team,24,SA,39
-8,4,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.821
-8,4,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
-8,5,465.l.83511.t.7,Boats and Ahos,1,G,13
-8,5,465.l.83511.t.7,Boats and Ahos,2,A,23
-8,5,465.l.83511.t.7,Boats and Ahos,4,+/-,-7
-8,5,465.l.83511.t.7,Boats and Ahos,5,PIM,16
-8,5,465.l.83511.t.7,Boats and Ahos,8,PPP,11
-8,5,465.l.83511.t.7,Boats and Ahos,11,SHP,0
-8,5,465.l.83511.t.7,Boats and Ahos,14,SOG,93
-8,5,465.l.83511.t.7,Boats and Ahos,16,FW,128
-8,5,465.l.83511.t.7,Boats and Ahos,31,HIT,48
-8,5,465.l.83511.t.7,Boats and Ahos,32,BLK,24
-8,5,465.l.83511.t.7,Boats and Ahos,19,W,1
-8,5,465.l.83511.t.7,Boats and Ahos,22,GA,9
-8,5,465.l.83511.t.7,Boats and Ahos,23,GAA,2.95
-8,5,465.l.83511.t.7,Boats and Ahos,25,SV,70
-8,5,465.l.83511.t.7,Boats and Ahos,24,SA,79
-8,5,465.l.83511.t.7,Boats and Ahos,26,SV%,0.886
-8,5,465.l.83511.t.7,Boats and Ahos,27,SHO,0
-8,5,465.l.83511.t.8,Bros before Ahos,1,G,14
-8,5,465.l.83511.t.8,Bros before Ahos,2,A,17
-8,5,465.l.83511.t.8,Bros before Ahos,4,+/-,4
-8,5,465.l.83511.t.8,Bros before Ahos,5,PIM,30
-8,5,465.l.83511.t.8,Bros before Ahos,8,PPP,5
-8,5,465.l.83511.t.8,Bros before Ahos,11,SHP,0
-8,5,465.l.83511.t.8,Bros before Ahos,14,SOG,101
-8,5,465.l.83511.t.8,Bros before Ahos,16,FW,109
-8,5,465.l.83511.t.8,Bros before Ahos,31,HIT,57
-8,5,465.l.83511.t.8,Bros before Ahos,32,BLK,50
-8,5,465.l.83511.t.8,Bros before Ahos,19,W,3
-8,5,465.l.83511.t.8,Bros before Ahos,22,GA,5
-8,5,465.l.83511.t.8,Bros before Ahos,23,GAA,1.62
-8,5,465.l.83511.t.8,Bros before Ahos,25,SV,79
-8,5,465.l.83511.t.8,Bros before Ahos,24,SA,84
-8,5,465.l.83511.t.8,Bros before Ahos,26,SV%,0.94
-8,5,465.l.83511.t.8,Bros before Ahos,27,SHO,1
-8,6,465.l.83511.t.10,robert's Fabulous Team,1,G,10
-8,6,465.l.83511.t.10,robert's Fabulous Team,2,A,16
-8,6,465.l.83511.t.10,robert's Fabulous Team,4,+/-,2
-8,6,465.l.83511.t.10,robert's Fabulous Team,5,PIM,20
-8,6,465.l.83511.t.10,robert's Fabulous Team,8,PPP,9
-8,6,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
-8,6,465.l.83511.t.10,robert's Fabulous Team,14,SOG,76
-8,6,465.l.83511.t.10,robert's Fabulous Team,16,FW,50
-8,6,465.l.83511.t.10,robert's Fabulous Team,31,HIT,29
-8,6,465.l.83511.t.10,robert's Fabulous Team,32,BLK,28
-8,6,465.l.83511.t.10,robert's Fabulous Team,19,W,2
-8,6,465.l.83511.t.10,robert's Fabulous Team,22,GA,13
-8,6,465.l.83511.t.10,robert's Fabulous Team,23,GAA,3.21
-8,6,465.l.83511.t.10,robert's Fabulous Team,25,SV,94
-8,6,465.l.83511.t.10,robert's Fabulous Team,24,SA,107
-8,6,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.879
-8,6,465.l.83511.t.10,robert's Fabulous Team,27,SHO,0
-8,6,465.l.83511.t.11,P Diddlers,1,G,17
-8,6,465.l.83511.t.11,P Diddlers,2,A,22
-8,6,465.l.83511.t.11,P Diddlers,4,+/-,10
-8,6,465.l.83511.t.11,P Diddlers,5,PIM,20
-8,6,465.l.83511.t.11,P Diddlers,8,PPP,12
-8,6,465.l.83511.t.11,P Diddlers,11,SHP,0
-8,6,465.l.83511.t.11,P Diddlers,14,SOG,102
-8,6,465.l.83511.t.11,P Diddlers,16,FW,68
-8,6,465.l.83511.t.11,P Diddlers,31,HIT,44
-8,6,465.l.83511.t.11,P Diddlers,32,BLK,43
-8,6,465.l.83511.t.11,P Diddlers,19,W,1
-8,6,465.l.83511.t.11,P Diddlers,22,GA,13
-8,6,465.l.83511.t.11,P Diddlers,23,GAA,2.65
-8,6,465.l.83511.t.11,P Diddlers,25,SV,103
-8,6,465.l.83511.t.11,P Diddlers,24,SA,116
-8,6,465.l.83511.t.11,P Diddlers,26,SV%,0.888
-8,6,465.l.83511.t.11,P Diddlers,27,SHO,0
-9,1,465.l.83511.t.1,Jagrbombs,1,G,1
-9,1,465.l.83511.t.1,Jagrbombs,2,A,9
-9,1,465.l.83511.t.1,Jagrbombs,4,+/-,-14
-9,1,465.l.83511.t.1,Jagrbombs,5,PIM,4
-9,1,465.l.83511.t.1,Jagrbombs,8,PPP,6
-9,1,465.l.83511.t.1,Jagrbombs,11,SHP,0
-9,1,465.l.83511.t.1,Jagrbombs,14,SOG,38
-9,1,465.l.83511.t.1,Jagrbombs,16,FW,35
-9,1,465.l.83511.t.1,Jagrbombs,31,HIT,24
-9,1,465.l.83511.t.1,Jagrbombs,32,BLK,25
-9,1,465.l.83511.t.1,Jagrbombs,19,W,1
-9,1,465.l.83511.t.1,Jagrbombs,22,GA,7
-9,1,465.l.83511.t.1,Jagrbombs,23,GAA,4.01
-9,1,465.l.83511.t.1,Jagrbombs,25,SV,42
-9,1,465.l.83511.t.1,Jagrbombs,24,SA,49
-9,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.857
-9,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
-9,1,465.l.83511.t.2,Bar Down Beauties,1,G,2
-9,1,465.l.83511.t.2,Bar Down Beauties,2,A,7
-9,1,465.l.83511.t.2,Bar Down Beauties,4,+/-,-10
-9,1,465.l.83511.t.2,Bar Down Beauties,5,PIM,13
-9,1,465.l.83511.t.2,Bar Down Beauties,8,PPP,0
-9,1,465.l.83511.t.2,Bar Down Beauties,11,SHP,0
-9,1,465.l.83511.t.2,Bar Down Beauties,14,SOG,41
-9,1,465.l.83511.t.2,Bar Down Beauties,16,FW,46
-9,1,465.l.83511.t.2,Bar Down Beauties,31,HIT,13
-9,1,465.l.83511.t.2,Bar Down Beauties,32,BLK,12
-9,1,465.l.83511.t.2,Bar Down Beauties,19,W,1
-9,1,465.l.83511.t.2,Bar Down Beauties,22,GA,3
-9,1,465.l.83511.t.2,Bar Down Beauties,23,GAA,1.53
-9,1,465.l.83511.t.2,Bar Down Beauties,25,SV,46
-9,1,465.l.83511.t.2,Bar Down Beauties,24,SA,49
-9,1,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.939
-9,1,465.l.83511.t.2,Bar Down Beauties,27,SHO,0
-9,2,465.l.83511.t.3,Autodraft Anomalies,1,G,3
-9,2,465.l.83511.t.3,Autodraft Anomalies,2,A,15
-9,2,465.l.83511.t.3,Autodraft Anomalies,4,+/-,10
-9,2,465.l.83511.t.3,Autodraft Anomalies,5,PIM,8
-9,2,465.l.83511.t.3,Autodraft Anomalies,8,PPP,4
-9,2,465.l.83511.t.3,Autodraft Anomalies,11,SHP,1
-9,2,465.l.83511.t.3,Autodraft Anomalies,14,SOG,30
-9,2,465.l.83511.t.3,Autodraft Anomalies,16,FW,73
-9,2,465.l.83511.t.3,Autodraft Anomalies,31,HIT,21
-9,2,465.l.83511.t.3,Autodraft Anomalies,32,BLK,24
-9,2,465.l.83511.t.3,Autodraft Anomalies,19,W,1
-9,2,465.l.83511.t.3,Autodraft Anomalies,22,GA,3
-9,2,465.l.83511.t.3,Autodraft Anomalies,23,GAA,1.21
-9,2,465.l.83511.t.3,Autodraft Anomalies,25,SV,61
-9,2,465.l.83511.t.3,Autodraft Anomalies,24,SA,64
-9,2,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.953
-9,2,465.l.83511.t.3,Autodraft Anomalies,27,SHO,1
-9,2,465.l.83511.t.5,Hughes your daddy,1,G,6
-9,2,465.l.83511.t.5,Hughes your daddy,2,A,13
-9,2,465.l.83511.t.5,Hughes your daddy,4,+/-,-1
-9,2,465.l.83511.t.5,Hughes your daddy,5,PIM,24
-9,2,465.l.83511.t.5,Hughes your daddy,8,PPP,7
-9,2,465.l.83511.t.5,Hughes your daddy,11,SHP,1
-9,2,465.l.83511.t.5,Hughes your daddy,14,SOG,52
-9,2,465.l.83511.t.5,Hughes your daddy,16,FW,46
-9,2,465.l.83511.t.5,Hughes your daddy,31,HIT,17
-9,2,465.l.83511.t.5,Hughes your daddy,32,BLK,19
-9,2,465.l.83511.t.5,Hughes your daddy,19,W,1
-9,2,465.l.83511.t.5,Hughes your daddy,22,GA,7
-9,2,465.l.83511.t.5,Hughes your daddy,23,GAA,5.45
-9,2,465.l.83511.t.5,Hughes your daddy,25,SV,39
-9,2,465.l.83511.t.5,Hughes your daddy,24,SA,46
-9,2,465.l.83511.t.5,Hughes your daddy,26,SV%,0.848
-9,2,465.l.83511.t.5,Hughes your daddy,27,SHO,0
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,7
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,13
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,2
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,30
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,8
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,0
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,52
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,25
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,25
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,20
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,
-9,3,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,
-9,3,465.l.83511.t.8,Bros before Ahos,1,G,4
-9,3,465.l.83511.t.8,Bros before Ahos,2,A,5
-9,3,465.l.83511.t.8,Bros before Ahos,4,+/-,-2
-9,3,465.l.83511.t.8,Bros before Ahos,5,PIM,23
-9,3,465.l.83511.t.8,Bros before Ahos,8,PPP,0
-9,3,465.l.83511.t.8,Bros before Ahos,11,SHP,0
-9,3,465.l.83511.t.8,Bros before Ahos,14,SOG,38
-9,3,465.l.83511.t.8,Bros before Ahos,16,FW,65
-9,3,465.l.83511.t.8,Bros before Ahos,31,HIT,21
-9,3,465.l.83511.t.8,Bros before Ahos,32,BLK,28
-9,3,465.l.83511.t.8,Bros before Ahos,19,W,2
-9,3,465.l.83511.t.8,Bros before Ahos,22,GA,2
-9,3,465.l.83511.t.8,Bros before Ahos,23,GAA,1.38
-9,3,465.l.83511.t.8,Bros before Ahos,25,SV,29
-9,3,465.l.83511.t.8,Bros before Ahos,24,SA,31
-9,3,465.l.83511.t.8,Bros before Ahos,26,SV%,0.935
-9,3,465.l.83511.t.8,Bros before Ahos,27,SHO,0
-9,4,465.l.83511.t.6,Sask Squatches,1,G,3
-9,4,465.l.83511.t.6,Sask Squatches,2,A,3
-9,4,465.l.83511.t.6,Sask Squatches,4,+/-,-13
-9,4,465.l.83511.t.6,Sask Squatches,5,PIM,0
-9,4,465.l.83511.t.6,Sask Squatches,8,PPP,0
-9,4,465.l.83511.t.6,Sask Squatches,11,SHP,0
-9,4,465.l.83511.t.6,Sask Squatches,14,SOG,39
-9,4,465.l.83511.t.6,Sask Squatches,16,FW,25
-9,4,465.l.83511.t.6,Sask Squatches,31,HIT,18
-9,4,465.l.83511.t.6,Sask Squatches,32,BLK,18
-9,4,465.l.83511.t.6,Sask Squatches,19,W,2
-9,4,465.l.83511.t.6,Sask Squatches,22,GA,1
-9,4,465.l.83511.t.6,Sask Squatches,23,GAA,0.5
-9,4,465.l.83511.t.6,Sask Squatches,25,SV,60
-9,4,465.l.83511.t.6,Sask Squatches,24,SA,61
-9,4,465.l.83511.t.6,Sask Squatches,26,SV%,0.984
-9,4,465.l.83511.t.6,Sask Squatches,27,SHO,1
-9,4,465.l.83511.t.12,The Epstein Islanders,1,G,2
-9,4,465.l.83511.t.12,The Epstein Islanders,2,A,3
-9,4,465.l.83511.t.12,The Epstein Islanders,4,+/-,4
-9,4,465.l.83511.t.12,The Epstein Islanders,5,PIM,6
-9,4,465.l.83511.t.12,The Epstein Islanders,8,PPP,2
-9,4,465.l.83511.t.12,The Epstein Islanders,11,SHP,0
-9,4,465.l.83511.t.12,The Epstein Islanders,14,SOG,33
-9,4,465.l.83511.t.12,The Epstein Islanders,16,FW,22
-9,4,465.l.83511.t.12,The Epstein Islanders,31,HIT,23
-9,4,465.l.83511.t.12,The Epstein Islanders,32,BLK,17
-9,4,465.l.83511.t.12,The Epstein Islanders,19,W,1
-9,4,465.l.83511.t.12,The Epstein Islanders,22,GA,9
-9,4,465.l.83511.t.12,The Epstein Islanders,23,GAA,3.0
-9,4,465.l.83511.t.12,The Epstein Islanders,25,SV,86
-9,4,465.l.83511.t.12,The Epstein Islanders,24,SA,95
-9,4,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.905
-9,4,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
-9,5,465.l.83511.t.7,Boats and Ahos,1,G,9
-9,5,465.l.83511.t.7,Boats and Ahos,2,A,11
-9,5,465.l.83511.t.7,Boats and Ahos,4,+/-,3
-9,5,465.l.83511.t.7,Boats and Ahos,5,PIM,8
-9,5,465.l.83511.t.7,Boats and Ahos,8,PPP,6
-9,5,465.l.83511.t.7,Boats and Ahos,11,SHP,1
-9,5,465.l.83511.t.7,Boats and Ahos,14,SOG,61
-9,5,465.l.83511.t.7,Boats and Ahos,16,FW,41
-9,5,465.l.83511.t.7,Boats and Ahos,31,HIT,25
-9,5,465.l.83511.t.7,Boats and Ahos,32,BLK,12
-9,5,465.l.83511.t.7,Boats and Ahos,19,W,1
-9,5,465.l.83511.t.7,Boats and Ahos,22,GA,10
-9,5,465.l.83511.t.7,Boats and Ahos,23,GAA,3.88
-9,5,465.l.83511.t.7,Boats and Ahos,25,SV,54
-9,5,465.l.83511.t.7,Boats and Ahos,24,SA,64
-9,5,465.l.83511.t.7,Boats and Ahos,26,SV%,0.844
-9,5,465.l.83511.t.7,Boats and Ahos,27,SHO,0
-9,5,465.l.83511.t.11,P Diddlers,1,G,4
-9,5,465.l.83511.t.11,P Diddlers,2,A,7
-9,5,465.l.83511.t.11,P Diddlers,4,+/-,-4
-9,5,465.l.83511.t.11,P Diddlers,5,PIM,16
-9,5,465.l.83511.t.11,P Diddlers,8,PPP,2
-9,5,465.l.83511.t.11,P Diddlers,11,SHP,1
-9,5,465.l.83511.t.11,P Diddlers,14,SOG,42
-9,5,465.l.83511.t.11,P Diddlers,16,FW,43
-9,5,465.l.83511.t.11,P Diddlers,31,HIT,23
-9,5,465.l.83511.t.11,P Diddlers,32,BLK,15
-9,5,465.l.83511.t.11,P Diddlers,19,W,1
-9,5,465.l.83511.t.11,P Diddlers,22,GA,3
-9,5,465.l.83511.t.11,P Diddlers,23,GAA,2.47
-9,5,465.l.83511.t.11,P Diddlers,25,SV,33
-9,5,465.l.83511.t.11,P Diddlers,24,SA,36
-9,5,465.l.83511.t.11,P Diddlers,26,SV%,0.917
-9,5,465.l.83511.t.11,P Diddlers,27,SHO,1
-9,6,465.l.83511.t.9,Dan's Dazzling Team,1,G,6
-9,6,465.l.83511.t.9,Dan's Dazzling Team,2,A,4
-9,6,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,6
-9,6,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,11
-9,6,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,2
-9,6,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
-9,6,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,42
-9,6,465.l.83511.t.9,Dan's Dazzling Team,16,FW,61
-9,6,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,13
-9,6,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,16
-9,6,465.l.83511.t.9,Dan's Dazzling Team,19,W,
-9,6,465.l.83511.t.9,Dan's Dazzling Team,22,GA,
-9,6,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,
-9,6,465.l.83511.t.9,Dan's Dazzling Team,25,SV,
-9,6,465.l.83511.t.9,Dan's Dazzling Team,24,SA,
-9,6,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,
-9,6,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,
-9,6,465.l.83511.t.10,robert's Fabulous Team,1,G,4
-9,6,465.l.83511.t.10,robert's Fabulous Team,2,A,5
-9,6,465.l.83511.t.10,robert's Fabulous Team,4,+/-,1
-9,6,465.l.83511.t.10,robert's Fabulous Team,5,PIM,4
-9,6,465.l.83511.t.10,robert's Fabulous Team,8,PPP,5
-9,6,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
-9,6,465.l.83511.t.10,robert's Fabulous Team,14,SOG,28
-9,6,465.l.83511.t.10,robert's Fabulous Team,16,FW,21
-9,6,465.l.83511.t.10,robert's Fabulous Team,31,HIT,5
-9,6,465.l.83511.t.10,robert's Fabulous Team,32,BLK,7
-9,6,465.l.83511.t.10,robert's Fabulous Team,19,W,0
-9,6,465.l.83511.t.10,robert's Fabulous Team,22,GA,5
-9,6,465.l.83511.t.10,robert's Fabulous Team,23,GAA,3.98
-9,6,465.l.83511.t.10,robert's Fabulous Team,25,SV,28
-9,6,465.l.83511.t.10,robert's Fabulous Team,24,SA,33
-9,6,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.848
-9,6,465.l.83511.t.10,robert's Fabulous Team,27,SHO,0
+10,1,465.l.83511.t.1,Jagrbombs,1,G,18
+10,1,465.l.83511.t.1,Jagrbombs,2,A,17
+10,1,465.l.83511.t.1,Jagrbombs,4,+/-,26
+10,1,465.l.83511.t.1,Jagrbombs,5,PIM,20
+10,1,465.l.83511.t.1,Jagrbombs,8,PPP,6
+10,1,465.l.83511.t.1,Jagrbombs,11,SHP,0
+10,1,465.l.83511.t.1,Jagrbombs,14,SOG,102
+10,1,465.l.83511.t.1,Jagrbombs,16,FW,112
+10,1,465.l.83511.t.1,Jagrbombs,31,HIT,42
+10,1,465.l.83511.t.1,Jagrbombs,32,BLK,45
+10,1,465.l.83511.t.1,Jagrbombs,19,W,4
+10,1,465.l.83511.t.1,Jagrbombs,22,GA,21
+10,1,465.l.83511.t.1,Jagrbombs,23,GAA,3.39
+10,1,465.l.83511.t.1,Jagrbombs,25,SV,149
+10,1,465.l.83511.t.1,Jagrbombs,24,SA,170
+10,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.876
+10,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,15
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,36
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,5
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,18
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,16
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,0
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,117
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,86
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,60
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,57
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,2
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,8
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,2.68
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,78
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,86
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.907
+10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,0
+10,2,465.l.83511.t.2,Bar Down Beauties,1,G,16
+10,2,465.l.83511.t.2,Bar Down Beauties,2,A,25
+10,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,9
+10,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,18
+10,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,12
+10,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,0
+10,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,125
+10,2,465.l.83511.t.2,Bar Down Beauties,16,FW,107
+10,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,13
+10,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,45
+10,2,465.l.83511.t.2,Bar Down Beauties,19,W,1
+10,2,465.l.83511.t.2,Bar Down Beauties,22,GA,9
+10,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,2.92
+10,2,465.l.83511.t.2,Bar Down Beauties,25,SV,86
+10,2,465.l.83511.t.2,Bar Down Beauties,24,SA,95
+10,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.905
+10,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,0
+10,2,465.l.83511.t.12,The Epstein Islanders,1,G,9
+10,2,465.l.83511.t.12,The Epstein Islanders,2,A,18
+10,2,465.l.83511.t.12,The Epstein Islanders,4,+/-,5
+10,2,465.l.83511.t.12,The Epstein Islanders,5,PIM,14
+10,2,465.l.83511.t.12,The Epstein Islanders,8,PPP,13
+10,2,465.l.83511.t.12,The Epstein Islanders,11,SHP,0
+10,2,465.l.83511.t.12,The Epstein Islanders,14,SOG,89
+10,2,465.l.83511.t.12,The Epstein Islanders,16,FW,51
+10,2,465.l.83511.t.12,The Epstein Islanders,31,HIT,46
+10,2,465.l.83511.t.12,The Epstein Islanders,32,BLK,31
+10,2,465.l.83511.t.12,The Epstein Islanders,19,W,3
+10,2,465.l.83511.t.12,The Epstein Islanders,22,GA,13
+10,2,465.l.83511.t.12,The Epstein Islanders,23,GAA,2.55
+10,2,465.l.83511.t.12,The Epstein Islanders,25,SV,121
+10,2,465.l.83511.t.12,The Epstein Islanders,24,SA,134
+10,2,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.903
+10,2,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
+10,3,465.l.83511.t.3,Autodraft Anomalies,1,G,10
+10,3,465.l.83511.t.3,Autodraft Anomalies,2,A,21
+10,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,-10
+10,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,8
+10,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,12
+10,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,0
+10,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,84
+10,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,152
+10,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,66
+10,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,46
+10,3,465.l.83511.t.3,Autodraft Anomalies,19,W,0
+10,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,9
+10,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,2.94
+10,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,84
+10,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,93
+10,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.903
+10,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,0
+10,3,465.l.83511.t.10,robert's Fabulous Team,1,G,8
+10,3,465.l.83511.t.10,robert's Fabulous Team,2,A,28
+10,3,465.l.83511.t.10,robert's Fabulous Team,4,+/-,1
+10,3,465.l.83511.t.10,robert's Fabulous Team,5,PIM,8
+10,3,465.l.83511.t.10,robert's Fabulous Team,8,PPP,16
+10,3,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
+10,3,465.l.83511.t.10,robert's Fabulous Team,14,SOG,90
+10,3,465.l.83511.t.10,robert's Fabulous Team,16,FW,61
+10,3,465.l.83511.t.10,robert's Fabulous Team,31,HIT,30
+10,3,465.l.83511.t.10,robert's Fabulous Team,32,BLK,31
+10,3,465.l.83511.t.10,robert's Fabulous Team,19,W,1
+10,3,465.l.83511.t.10,robert's Fabulous Team,22,GA,9
+10,3,465.l.83511.t.10,robert's Fabulous Team,23,GAA,3.42
+10,3,465.l.83511.t.10,robert's Fabulous Team,25,SV,63
+10,3,465.l.83511.t.10,robert's Fabulous Team,24,SA,72
+10,3,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.875
+10,3,465.l.83511.t.10,robert's Fabulous Team,27,SHO,1
+10,4,465.l.83511.t.5,Hughes your daddy,1,G,11
+10,4,465.l.83511.t.5,Hughes your daddy,2,A,19
+10,4,465.l.83511.t.5,Hughes your daddy,4,+/-,-21
+10,4,465.l.83511.t.5,Hughes your daddy,5,PIM,14
+10,4,465.l.83511.t.5,Hughes your daddy,8,PPP,14
+10,4,465.l.83511.t.5,Hughes your daddy,11,SHP,1
+10,4,465.l.83511.t.5,Hughes your daddy,14,SOG,92
+10,4,465.l.83511.t.5,Hughes your daddy,16,FW,122
+10,4,465.l.83511.t.5,Hughes your daddy,31,HIT,37
+10,4,465.l.83511.t.5,Hughes your daddy,32,BLK,34
+10,4,465.l.83511.t.5,Hughes your daddy,19,W,3
+10,4,465.l.83511.t.5,Hughes your daddy,22,GA,8
+10,4,465.l.83511.t.5,Hughes your daddy,23,GAA,2.65
+10,4,465.l.83511.t.5,Hughes your daddy,25,SV,77
+10,4,465.l.83511.t.5,Hughes your daddy,24,SA,85
+10,4,465.l.83511.t.5,Hughes your daddy,26,SV%,0.906
+10,4,465.l.83511.t.5,Hughes your daddy,27,SHO,0
+10,4,465.l.83511.t.6,Sask Squatches,1,G,18
+10,4,465.l.83511.t.6,Sask Squatches,2,A,25
+10,4,465.l.83511.t.6,Sask Squatches,4,+/-,1
+10,4,465.l.83511.t.6,Sask Squatches,5,PIM,18
+10,4,465.l.83511.t.6,Sask Squatches,8,PPP,11
+10,4,465.l.83511.t.6,Sask Squatches,11,SHP,2
+10,4,465.l.83511.t.6,Sask Squatches,14,SOG,123
+10,4,465.l.83511.t.6,Sask Squatches,16,FW,116
+10,4,465.l.83511.t.6,Sask Squatches,31,HIT,41
+10,4,465.l.83511.t.6,Sask Squatches,32,BLK,44
+10,4,465.l.83511.t.6,Sask Squatches,19,W,2
+10,4,465.l.83511.t.6,Sask Squatches,22,GA,13
+10,4,465.l.83511.t.6,Sask Squatches,23,GAA,3.1
+10,4,465.l.83511.t.6,Sask Squatches,25,SV,111
+10,4,465.l.83511.t.6,Sask Squatches,24,SA,124
+10,4,465.l.83511.t.6,Sask Squatches,26,SV%,0.895
+10,4,465.l.83511.t.6,Sask Squatches,27,SHO,0
+10,5,465.l.83511.t.7,Boats and Ahos,1,G,9
+10,5,465.l.83511.t.7,Boats and Ahos,2,A,17
+10,5,465.l.83511.t.7,Boats and Ahos,4,+/-,1
+10,5,465.l.83511.t.7,Boats and Ahos,5,PIM,22
+10,5,465.l.83511.t.7,Boats and Ahos,8,PPP,12
+10,5,465.l.83511.t.7,Boats and Ahos,11,SHP,0
+10,5,465.l.83511.t.7,Boats and Ahos,14,SOG,103
+10,5,465.l.83511.t.7,Boats and Ahos,16,FW,141
+10,5,465.l.83511.t.7,Boats and Ahos,31,HIT,40
+10,5,465.l.83511.t.7,Boats and Ahos,32,BLK,33
+10,5,465.l.83511.t.7,Boats and Ahos,19,W,4
+10,5,465.l.83511.t.7,Boats and Ahos,22,GA,8
+10,5,465.l.83511.t.7,Boats and Ahos,23,GAA,1.88
+10,5,465.l.83511.t.7,Boats and Ahos,25,SV,85
+10,5,465.l.83511.t.7,Boats and Ahos,24,SA,93
+10,5,465.l.83511.t.7,Boats and Ahos,26,SV%,0.914
+10,5,465.l.83511.t.7,Boats and Ahos,27,SHO,0
+10,5,465.l.83511.t.9,Dan's Dazzling Team,1,G,10
+10,5,465.l.83511.t.9,Dan's Dazzling Team,2,A,15
+10,5,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,-11
+10,5,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,6
+10,5,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,9
+10,5,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
+10,5,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,87
+10,5,465.l.83511.t.9,Dan's Dazzling Team,16,FW,108
+10,5,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,26
+10,5,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,27
+10,5,465.l.83511.t.9,Dan's Dazzling Team,19,W,0
+10,5,465.l.83511.t.9,Dan's Dazzling Team,22,GA,4
+10,5,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,4.32
+10,5,465.l.83511.t.9,Dan's Dazzling Team,25,SV,23
+10,5,465.l.83511.t.9,Dan's Dazzling Team,24,SA,27
+10,5,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.852
+10,5,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
+10,6,465.l.83511.t.8,Bros before Ahos,1,G,16
+10,6,465.l.83511.t.8,Bros before Ahos,2,A,22
+10,6,465.l.83511.t.8,Bros before Ahos,4,+/-,12
+10,6,465.l.83511.t.8,Bros before Ahos,5,PIM,24
+10,6,465.l.83511.t.8,Bros before Ahos,8,PPP,8
+10,6,465.l.83511.t.8,Bros before Ahos,11,SHP,0
+10,6,465.l.83511.t.8,Bros before Ahos,14,SOG,136
+10,6,465.l.83511.t.8,Bros before Ahos,16,FW,151
+10,6,465.l.83511.t.8,Bros before Ahos,31,HIT,59
+10,6,465.l.83511.t.8,Bros before Ahos,32,BLK,52
+10,6,465.l.83511.t.8,Bros before Ahos,19,W,3
+10,6,465.l.83511.t.8,Bros before Ahos,22,GA,12
+10,6,465.l.83511.t.8,Bros before Ahos,23,GAA,3.03
+10,6,465.l.83511.t.8,Bros before Ahos,25,SV,100
+10,6,465.l.83511.t.8,Bros before Ahos,24,SA,112
+10,6,465.l.83511.t.8,Bros before Ahos,26,SV%,0.893
+10,6,465.l.83511.t.8,Bros before Ahos,27,SHO,0
+10,6,465.l.83511.t.11,P Diddlers,1,G,13
+10,6,465.l.83511.t.11,P Diddlers,2,A,22
+10,6,465.l.83511.t.11,P Diddlers,4,+/-,13
+10,6,465.l.83511.t.11,P Diddlers,5,PIM,15
+10,6,465.l.83511.t.11,P Diddlers,8,PPP,5
+10,6,465.l.83511.t.11,P Diddlers,11,SHP,1
+10,6,465.l.83511.t.11,P Diddlers,14,SOG,92
+10,6,465.l.83511.t.11,P Diddlers,16,FW,96
+10,6,465.l.83511.t.11,P Diddlers,31,HIT,38
+10,6,465.l.83511.t.11,P Diddlers,32,BLK,50
+10,6,465.l.83511.t.11,P Diddlers,19,W,3
+10,6,465.l.83511.t.11,P Diddlers,22,GA,18
+10,6,465.l.83511.t.11,P Diddlers,23,GAA,3.03
+10,6,465.l.83511.t.11,P Diddlers,25,SV,144
+10,6,465.l.83511.t.11,P Diddlers,24,SA,162
+10,6,465.l.83511.t.11,P Diddlers,26,SV%,0.889
+10,6,465.l.83511.t.11,P Diddlers,27,SHO,0
+11,1,465.l.83511.t.1,Jagrbombs,1,G,12
+11,1,465.l.83511.t.1,Jagrbombs,2,A,21
+11,1,465.l.83511.t.1,Jagrbombs,4,+/-,-6
+11,1,465.l.83511.t.1,Jagrbombs,5,PIM,50
+11,1,465.l.83511.t.1,Jagrbombs,8,PPP,11
+11,1,465.l.83511.t.1,Jagrbombs,11,SHP,1
+11,1,465.l.83511.t.1,Jagrbombs,14,SOG,112
+11,1,465.l.83511.t.1,Jagrbombs,16,FW,131
+11,1,465.l.83511.t.1,Jagrbombs,31,HIT,63
+11,1,465.l.83511.t.1,Jagrbombs,32,BLK,48
+11,1,465.l.83511.t.1,Jagrbombs,19,W,1
+11,1,465.l.83511.t.1,Jagrbombs,22,GA,7
+11,1,465.l.83511.t.1,Jagrbombs,23,GAA,2.38
+11,1,465.l.83511.t.1,Jagrbombs,25,SV,60
+11,1,465.l.83511.t.1,Jagrbombs,24,SA,67
+11,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.896
+11,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
+11,1,465.l.83511.t.8,Bros before Ahos,1,G,13
+11,1,465.l.83511.t.8,Bros before Ahos,2,A,33
+11,1,465.l.83511.t.8,Bros before Ahos,4,+/-,0
+11,1,465.l.83511.t.8,Bros before Ahos,5,PIM,42
+11,1,465.l.83511.t.8,Bros before Ahos,8,PPP,19
+11,1,465.l.83511.t.8,Bros before Ahos,11,SHP,4
+11,1,465.l.83511.t.8,Bros before Ahos,14,SOG,116
+11,1,465.l.83511.t.8,Bros before Ahos,16,FW,186
+11,1,465.l.83511.t.8,Bros before Ahos,31,HIT,61
+11,1,465.l.83511.t.8,Bros before Ahos,32,BLK,65
+11,1,465.l.83511.t.8,Bros before Ahos,19,W,3
+11,1,465.l.83511.t.8,Bros before Ahos,22,GA,9
+11,1,465.l.83511.t.8,Bros before Ahos,23,GAA,2.98
+11,1,465.l.83511.t.8,Bros before Ahos,25,SV,84
+11,1,465.l.83511.t.8,Bros before Ahos,24,SA,93
+11,1,465.l.83511.t.8,Bros before Ahos,26,SV%,0.903
+11,1,465.l.83511.t.8,Bros before Ahos,27,SHO,0
+11,2,465.l.83511.t.2,Bar Down Beauties,1,G,8
+11,2,465.l.83511.t.2,Bar Down Beauties,2,A,29
+11,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,-8
+11,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,28
+11,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,14
+11,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,0
+11,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,107
+11,2,465.l.83511.t.2,Bar Down Beauties,16,FW,149
+11,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,34
+11,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,31
+11,2,465.l.83511.t.2,Bar Down Beauties,19,W,1
+11,2,465.l.83511.t.2,Bar Down Beauties,22,GA,4
+11,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,1.78
+11,2,465.l.83511.t.2,Bar Down Beauties,25,SV,63
+11,2,465.l.83511.t.2,Bar Down Beauties,24,SA,67
+11,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.94
+11,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,1
+11,2,465.l.83511.t.5,Hughes your daddy,1,G,8
+11,2,465.l.83511.t.5,Hughes your daddy,2,A,26
+11,2,465.l.83511.t.5,Hughes your daddy,4,+/-,5
+11,2,465.l.83511.t.5,Hughes your daddy,5,PIM,30
+11,2,465.l.83511.t.5,Hughes your daddy,8,PPP,11
+11,2,465.l.83511.t.5,Hughes your daddy,11,SHP,1
+11,2,465.l.83511.t.5,Hughes your daddy,14,SOG,106
+11,2,465.l.83511.t.5,Hughes your daddy,16,FW,138
+11,2,465.l.83511.t.5,Hughes your daddy,31,HIT,56
+11,2,465.l.83511.t.5,Hughes your daddy,32,BLK,47
+11,2,465.l.83511.t.5,Hughes your daddy,19,W,2
+11,2,465.l.83511.t.5,Hughes your daddy,22,GA,7
+11,2,465.l.83511.t.5,Hughes your daddy,23,GAA,1.77
+11,2,465.l.83511.t.5,Hughes your daddy,25,SV,110
+11,2,465.l.83511.t.5,Hughes your daddy,24,SA,117
+11,2,465.l.83511.t.5,Hughes your daddy,26,SV%,0.94
+11,2,465.l.83511.t.5,Hughes your daddy,27,SHO,1
+11,3,465.l.83511.t.3,Autodraft Anomalies,1,G,22
+11,3,465.l.83511.t.3,Autodraft Anomalies,2,A,21
+11,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,-9
+11,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,36
+11,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,12
+11,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,0
+11,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,142
+11,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,160
+11,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,88
+11,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,55
+11,3,465.l.83511.t.3,Autodraft Anomalies,19,W,2
+11,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,9
+11,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,3.05
+11,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,70
+11,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,79
+11,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.886
+11,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,0
+11,3,465.l.83511.t.7,Boats and Ahos,1,G,18
+11,3,465.l.83511.t.7,Boats and Ahos,2,A,22
+11,3,465.l.83511.t.7,Boats and Ahos,4,+/-,8
+11,3,465.l.83511.t.7,Boats and Ahos,5,PIM,14
+11,3,465.l.83511.t.7,Boats and Ahos,8,PPP,7
+11,3,465.l.83511.t.7,Boats and Ahos,11,SHP,0
+11,3,465.l.83511.t.7,Boats and Ahos,14,SOG,137
+11,3,465.l.83511.t.7,Boats and Ahos,16,FW,147
+11,3,465.l.83511.t.7,Boats and Ahos,31,HIT,76
+11,3,465.l.83511.t.7,Boats and Ahos,32,BLK,51
+11,3,465.l.83511.t.7,Boats and Ahos,19,W,1
+11,3,465.l.83511.t.7,Boats and Ahos,22,GA,9
+11,3,465.l.83511.t.7,Boats and Ahos,23,GAA,2.93
+11,3,465.l.83511.t.7,Boats and Ahos,25,SV,86
+11,3,465.l.83511.t.7,Boats and Ahos,24,SA,95
+11,3,465.l.83511.t.7,Boats and Ahos,26,SV%,0.905
+11,3,465.l.83511.t.7,Boats and Ahos,27,SHO,0
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,18
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,22
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,13
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,26
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,8
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,1
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,122
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,124
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,58
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,55
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,3
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,6
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,2.0
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,75
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,81
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.926
+11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,0
+11,4,465.l.83511.t.12,The Epstein Islanders,1,G,12
+11,4,465.l.83511.t.12,The Epstein Islanders,2,A,23
+11,4,465.l.83511.t.12,The Epstein Islanders,4,+/-,1
+11,4,465.l.83511.t.12,The Epstein Islanders,5,PIM,22
+11,4,465.l.83511.t.12,The Epstein Islanders,8,PPP,9
+11,4,465.l.83511.t.12,The Epstein Islanders,11,SHP,0
+11,4,465.l.83511.t.12,The Epstein Islanders,14,SOG,120
+11,4,465.l.83511.t.12,The Epstein Islanders,16,FW,75
+11,4,465.l.83511.t.12,The Epstein Islanders,31,HIT,82
+11,4,465.l.83511.t.12,The Epstein Islanders,32,BLK,35
+11,4,465.l.83511.t.12,The Epstein Islanders,19,W,4
+11,4,465.l.83511.t.12,The Epstein Islanders,22,GA,12
+11,4,465.l.83511.t.12,The Epstein Islanders,23,GAA,2.42
+11,4,465.l.83511.t.12,The Epstein Islanders,25,SV,111
+11,4,465.l.83511.t.12,The Epstein Islanders,24,SA,123
+11,4,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.902
+11,4,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
+11,5,465.l.83511.t.6,Sask Squatches,1,G,22
+11,5,465.l.83511.t.6,Sask Squatches,2,A,21
+11,5,465.l.83511.t.6,Sask Squatches,4,+/-,8
+11,5,465.l.83511.t.6,Sask Squatches,5,PIM,29
+11,5,465.l.83511.t.6,Sask Squatches,8,PPP,11
+11,5,465.l.83511.t.6,Sask Squatches,11,SHP,3
+11,5,465.l.83511.t.6,Sask Squatches,14,SOG,128
+11,5,465.l.83511.t.6,Sask Squatches,16,FW,65
+11,5,465.l.83511.t.6,Sask Squatches,31,HIT,51
+11,5,465.l.83511.t.6,Sask Squatches,32,BLK,41
+11,5,465.l.83511.t.6,Sask Squatches,19,W,3
+11,5,465.l.83511.t.6,Sask Squatches,22,GA,12
+11,5,465.l.83511.t.6,Sask Squatches,23,GAA,2.43
+11,5,465.l.83511.t.6,Sask Squatches,25,SV,123
+11,5,465.l.83511.t.6,Sask Squatches,24,SA,135
+11,5,465.l.83511.t.6,Sask Squatches,26,SV%,0.911
+11,5,465.l.83511.t.6,Sask Squatches,27,SHO,0
+11,5,465.l.83511.t.10,robert's Fabulous Team,1,G,10
+11,5,465.l.83511.t.10,robert's Fabulous Team,2,A,26
+11,5,465.l.83511.t.10,robert's Fabulous Team,4,+/-,-7
+11,5,465.l.83511.t.10,robert's Fabulous Team,5,PIM,8
+11,5,465.l.83511.t.10,robert's Fabulous Team,8,PPP,8
+11,5,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
+11,5,465.l.83511.t.10,robert's Fabulous Team,14,SOG,110
+11,5,465.l.83511.t.10,robert's Fabulous Team,16,FW,51
+11,5,465.l.83511.t.10,robert's Fabulous Team,31,HIT,42
+11,5,465.l.83511.t.10,robert's Fabulous Team,32,BLK,33
+11,5,465.l.83511.t.10,robert's Fabulous Team,19,W,0
+11,5,465.l.83511.t.10,robert's Fabulous Team,22,GA,8
+11,5,465.l.83511.t.10,robert's Fabulous Team,23,GAA,2.66
+11,5,465.l.83511.t.10,robert's Fabulous Team,25,SV,84
+11,5,465.l.83511.t.10,robert's Fabulous Team,24,SA,92
+11,5,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.913
+11,5,465.l.83511.t.10,robert's Fabulous Team,27,SHO,0
+11,6,465.l.83511.t.9,Dan's Dazzling Team,1,G,6
+11,6,465.l.83511.t.9,Dan's Dazzling Team,2,A,15
+11,6,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,-4
+11,6,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,14
+11,6,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,8
+11,6,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
+11,6,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,76
+11,6,465.l.83511.t.9,Dan's Dazzling Team,16,FW,82
+11,6,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,32
+11,6,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,38
+11,6,465.l.83511.t.9,Dan's Dazzling Team,19,W,0
+11,6,465.l.83511.t.9,Dan's Dazzling Team,22,GA,4
+11,6,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,2.94
+11,6,465.l.83511.t.9,Dan's Dazzling Team,25,SV,45
+11,6,465.l.83511.t.9,Dan's Dazzling Team,24,SA,49
+11,6,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.918
+11,6,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
+11,6,465.l.83511.t.11,P Diddlers,1,G,17
+11,6,465.l.83511.t.11,P Diddlers,2,A,29
+11,6,465.l.83511.t.11,P Diddlers,4,+/-,4
+11,6,465.l.83511.t.11,P Diddlers,5,PIM,43
+11,6,465.l.83511.t.11,P Diddlers,8,PPP,14
+11,6,465.l.83511.t.11,P Diddlers,11,SHP,2
+11,6,465.l.83511.t.11,P Diddlers,14,SOG,124
+11,6,465.l.83511.t.11,P Diddlers,16,FW,108
+11,6,465.l.83511.t.11,P Diddlers,31,HIT,61
+11,6,465.l.83511.t.11,P Diddlers,32,BLK,56
+11,6,465.l.83511.t.11,P Diddlers,19,W,3
+11,6,465.l.83511.t.11,P Diddlers,22,GA,11
+11,6,465.l.83511.t.11,P Diddlers,23,GAA,2.23
+11,6,465.l.83511.t.11,P Diddlers,25,SV,146
+11,6,465.l.83511.t.11,P Diddlers,24,SA,157
+11,6,465.l.83511.t.11,P Diddlers,26,SV%,0.93
+11,6,465.l.83511.t.11,P Diddlers,27,SHO,0
+12,1,465.l.83511.t.1,Jagrbombs,1,G,9
+12,1,465.l.83511.t.1,Jagrbombs,2,A,15
+12,1,465.l.83511.t.1,Jagrbombs,4,+/-,-15
+12,1,465.l.83511.t.1,Jagrbombs,5,PIM,46
+12,1,465.l.83511.t.1,Jagrbombs,8,PPP,9
+12,1,465.l.83511.t.1,Jagrbombs,11,SHP,0
+12,1,465.l.83511.t.1,Jagrbombs,14,SOG,61
+12,1,465.l.83511.t.1,Jagrbombs,16,FW,95
+12,1,465.l.83511.t.1,Jagrbombs,31,HIT,28
+12,1,465.l.83511.t.1,Jagrbombs,32,BLK,21
+12,1,465.l.83511.t.1,Jagrbombs,19,W,1
+12,1,465.l.83511.t.1,Jagrbombs,22,GA,10
+12,1,465.l.83511.t.1,Jagrbombs,23,GAA,3.37
+12,1,465.l.83511.t.1,Jagrbombs,25,SV,76
+12,1,465.l.83511.t.1,Jagrbombs,24,SA,86
+12,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.884
+12,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
+12,1,465.l.83511.t.12,The Epstein Islanders,1,G,6
+12,1,465.l.83511.t.12,The Epstein Islanders,2,A,6
+12,1,465.l.83511.t.12,The Epstein Islanders,4,+/-,-15
+12,1,465.l.83511.t.12,The Epstein Islanders,5,PIM,8
+12,1,465.l.83511.t.12,The Epstein Islanders,8,PPP,6
+12,1,465.l.83511.t.12,The Epstein Islanders,11,SHP,0
+12,1,465.l.83511.t.12,The Epstein Islanders,14,SOG,40
+12,1,465.l.83511.t.12,The Epstein Islanders,16,FW,38
+12,1,465.l.83511.t.12,The Epstein Islanders,31,HIT,50
+12,1,465.l.83511.t.12,The Epstein Islanders,32,BLK,36
+12,1,465.l.83511.t.12,The Epstein Islanders,19,W,2
+12,1,465.l.83511.t.12,The Epstein Islanders,22,GA,14
+12,1,465.l.83511.t.12,The Epstein Islanders,23,GAA,3.53
+12,1,465.l.83511.t.12,The Epstein Islanders,25,SV,92
+12,1,465.l.83511.t.12,The Epstein Islanders,24,SA,106
+12,1,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.868
+12,1,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
+12,2,465.l.83511.t.2,Bar Down Beauties,1,G,10
+12,2,465.l.83511.t.2,Bar Down Beauties,2,A,11
+12,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,-5
+12,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,10
+12,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,9
+12,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,0
+12,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,60
+12,2,465.l.83511.t.2,Bar Down Beauties,16,FW,102
+12,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,19
+12,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,23
+12,2,465.l.83511.t.2,Bar Down Beauties,19,W,2
+12,2,465.l.83511.t.2,Bar Down Beauties,22,GA,13
+12,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,3.26
+12,2,465.l.83511.t.2,Bar Down Beauties,25,SV,101
+12,2,465.l.83511.t.2,Bar Down Beauties,24,SA,114
+12,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.886
+12,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,0
+12,2,465.l.83511.t.10,robert's Fabulous Team,1,G,8
+12,2,465.l.83511.t.10,robert's Fabulous Team,2,A,11
+12,2,465.l.83511.t.10,robert's Fabulous Team,4,+/-,3
+12,2,465.l.83511.t.10,robert's Fabulous Team,5,PIM,23
+12,2,465.l.83511.t.10,robert's Fabulous Team,8,PPP,2
+12,2,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
+12,2,465.l.83511.t.10,robert's Fabulous Team,14,SOG,76
+12,2,465.l.83511.t.10,robert's Fabulous Team,16,FW,39
+12,2,465.l.83511.t.10,robert's Fabulous Team,31,HIT,29
+12,2,465.l.83511.t.10,robert's Fabulous Team,32,BLK,8
+12,2,465.l.83511.t.10,robert's Fabulous Team,19,W,0
+12,2,465.l.83511.t.10,robert's Fabulous Team,22,GA,10
+12,2,465.l.83511.t.10,robert's Fabulous Team,23,GAA,3.99
+12,2,465.l.83511.t.10,robert's Fabulous Team,25,SV,41
+12,2,465.l.83511.t.10,robert's Fabulous Team,24,SA,51
+12,2,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.804
+12,2,465.l.83511.t.10,robert's Fabulous Team,27,SHO,0
+12,3,465.l.83511.t.3,Autodraft Anomalies,1,G,12
+12,3,465.l.83511.t.3,Autodraft Anomalies,2,A,21
+12,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,21
+12,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,16
+12,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,5
+12,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,0
+12,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,76
+12,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,91
+12,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,54
+12,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,22
+12,3,465.l.83511.t.3,Autodraft Anomalies,19,W,3
+12,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,6
+12,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,1.47
+12,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,109
+12,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,115
+12,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.948
+12,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,1
+12,3,465.l.83511.t.11,P Diddlers,1,G,8
+12,3,465.l.83511.t.11,P Diddlers,2,A,12
+12,3,465.l.83511.t.11,P Diddlers,4,+/-,-7
+12,3,465.l.83511.t.11,P Diddlers,5,PIM,4
+12,3,465.l.83511.t.11,P Diddlers,8,PPP,6
+12,3,465.l.83511.t.11,P Diddlers,11,SHP,0
+12,3,465.l.83511.t.11,P Diddlers,14,SOG,61
+12,3,465.l.83511.t.11,P Diddlers,16,FW,52
+12,3,465.l.83511.t.11,P Diddlers,31,HIT,30
+12,3,465.l.83511.t.11,P Diddlers,32,BLK,18
+12,3,465.l.83511.t.11,P Diddlers,19,W,1
+12,3,465.l.83511.t.11,P Diddlers,22,GA,8
+12,3,465.l.83511.t.11,P Diddlers,23,GAA,2.7
+12,3,465.l.83511.t.11,P Diddlers,25,SV,95
+12,3,465.l.83511.t.11,P Diddlers,24,SA,103
+12,3,465.l.83511.t.11,P Diddlers,26,SV%,0.922
+12,3,465.l.83511.t.11,P Diddlers,27,SHO,0
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,15
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,10
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,8
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,12
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,5
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,0
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,70
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,78
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,29
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,23
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,1
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,4
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,2.03
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,35
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,39
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.897
+12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,0
+12,4,465.l.83511.t.5,Hughes your daddy,1,G,6
+12,4,465.l.83511.t.5,Hughes your daddy,2,A,15
+12,4,465.l.83511.t.5,Hughes your daddy,4,+/-,-1
+12,4,465.l.83511.t.5,Hughes your daddy,5,PIM,6
+12,4,465.l.83511.t.5,Hughes your daddy,8,PPP,4
+12,4,465.l.83511.t.5,Hughes your daddy,11,SHP,0
+12,4,465.l.83511.t.5,Hughes your daddy,14,SOG,70
+12,4,465.l.83511.t.5,Hughes your daddy,16,FW,87
+12,4,465.l.83511.t.5,Hughes your daddy,31,HIT,24
+12,4,465.l.83511.t.5,Hughes your daddy,32,BLK,27
+12,4,465.l.83511.t.5,Hughes your daddy,19,W,1
+12,4,465.l.83511.t.5,Hughes your daddy,22,GA,14
+12,4,465.l.83511.t.5,Hughes your daddy,23,GAA,4.22
+12,4,465.l.83511.t.5,Hughes your daddy,25,SV,80
+12,4,465.l.83511.t.5,Hughes your daddy,24,SA,94
+12,4,465.l.83511.t.5,Hughes your daddy,26,SV%,0.851
+12,4,465.l.83511.t.5,Hughes your daddy,27,SHO,0
+12,5,465.l.83511.t.6,Sask Squatches,1,G,5
+12,5,465.l.83511.t.6,Sask Squatches,2,A,15
+12,5,465.l.83511.t.6,Sask Squatches,4,+/-,-4
+12,5,465.l.83511.t.6,Sask Squatches,5,PIM,22
+12,5,465.l.83511.t.6,Sask Squatches,8,PPP,5
+12,5,465.l.83511.t.6,Sask Squatches,11,SHP,1
+12,5,465.l.83511.t.6,Sask Squatches,14,SOG,68
+12,5,465.l.83511.t.6,Sask Squatches,16,FW,41
+12,5,465.l.83511.t.6,Sask Squatches,31,HIT,49
+12,5,465.l.83511.t.6,Sask Squatches,32,BLK,27
+12,5,465.l.83511.t.6,Sask Squatches,19,W,2
+12,5,465.l.83511.t.6,Sask Squatches,22,GA,12
+12,5,465.l.83511.t.6,Sask Squatches,23,GAA,3.05
+12,5,465.l.83511.t.6,Sask Squatches,25,SV,104
+12,5,465.l.83511.t.6,Sask Squatches,24,SA,116
+12,5,465.l.83511.t.6,Sask Squatches,26,SV%,0.897
+12,5,465.l.83511.t.6,Sask Squatches,27,SHO,0
+12,5,465.l.83511.t.7,Boats and Ahos,1,G,7
+12,5,465.l.83511.t.7,Boats and Ahos,2,A,10
+12,5,465.l.83511.t.7,Boats and Ahos,4,+/-,-4
+12,5,465.l.83511.t.7,Boats and Ahos,5,PIM,14
+12,5,465.l.83511.t.7,Boats and Ahos,8,PPP,4
+12,5,465.l.83511.t.7,Boats and Ahos,11,SHP,0
+12,5,465.l.83511.t.7,Boats and Ahos,14,SOG,83
+12,5,465.l.83511.t.7,Boats and Ahos,16,FW,77
+12,5,465.l.83511.t.7,Boats and Ahos,31,HIT,46
+12,5,465.l.83511.t.7,Boats and Ahos,32,BLK,34
+12,5,465.l.83511.t.7,Boats and Ahos,19,W,1
+12,5,465.l.83511.t.7,Boats and Ahos,22,GA,2
+12,5,465.l.83511.t.7,Boats and Ahos,23,GAA,2.0
+12,5,465.l.83511.t.7,Boats and Ahos,25,SV,18
+12,5,465.l.83511.t.7,Boats and Ahos,24,SA,20
+12,5,465.l.83511.t.7,Boats and Ahos,26,SV%,0.9
+12,5,465.l.83511.t.7,Boats and Ahos,27,SHO,0
+12,6,465.l.83511.t.8,Bros before Ahos,1,G,6
+12,6,465.l.83511.t.8,Bros before Ahos,2,A,11
+12,6,465.l.83511.t.8,Bros before Ahos,4,+/-,-1
+12,6,465.l.83511.t.8,Bros before Ahos,5,PIM,44
+12,6,465.l.83511.t.8,Bros before Ahos,8,PPP,6
+12,6,465.l.83511.t.8,Bros before Ahos,11,SHP,0
+12,6,465.l.83511.t.8,Bros before Ahos,14,SOG,74
+12,6,465.l.83511.t.8,Bros before Ahos,16,FW,88
+12,6,465.l.83511.t.8,Bros before Ahos,31,HIT,24
+12,6,465.l.83511.t.8,Bros before Ahos,32,BLK,38
+12,6,465.l.83511.t.8,Bros before Ahos,19,W,0
+12,6,465.l.83511.t.8,Bros before Ahos,22,GA,7
+12,6,465.l.83511.t.8,Bros before Ahos,23,GAA,4.77
+12,6,465.l.83511.t.8,Bros before Ahos,25,SV,32
+12,6,465.l.83511.t.8,Bros before Ahos,24,SA,39
+12,6,465.l.83511.t.8,Bros before Ahos,26,SV%,0.821
+12,6,465.l.83511.t.8,Bros before Ahos,27,SHO,0
+12,6,465.l.83511.t.9,Dan's Dazzling Team,1,G,0
+12,6,465.l.83511.t.9,Dan's Dazzling Team,2,A,8
+12,6,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,0
+12,6,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,6
+12,6,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,2
+12,6,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
+12,6,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,43
+12,6,465.l.83511.t.9,Dan's Dazzling Team,16,FW,34
+12,6,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,26
+12,6,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,24
+12,6,465.l.83511.t.9,Dan's Dazzling Team,19,W,0
+12,6,465.l.83511.t.9,Dan's Dazzling Team,22,GA,5
+12,6,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,5.0
+12,6,465.l.83511.t.9,Dan's Dazzling Team,25,SV,17
+12,6,465.l.83511.t.9,Dan's Dazzling Team,24,SA,22
+12,6,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.773
+12,6,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
+13,1,465.l.83511.t.1,Jagrbombs,1,G,
+13,1,465.l.83511.t.1,Jagrbombs,2,A,
+13,1,465.l.83511.t.1,Jagrbombs,4,+/-,
+13,1,465.l.83511.t.1,Jagrbombs,5,PIM,
+13,1,465.l.83511.t.1,Jagrbombs,8,PPP,
+13,1,465.l.83511.t.1,Jagrbombs,11,SHP,
+13,1,465.l.83511.t.1,Jagrbombs,14,SOG,
+13,1,465.l.83511.t.1,Jagrbombs,16,FW,
+13,1,465.l.83511.t.1,Jagrbombs,31,HIT,
+13,1,465.l.83511.t.1,Jagrbombs,32,BLK,
+13,1,465.l.83511.t.1,Jagrbombs,19,W,
+13,1,465.l.83511.t.1,Jagrbombs,22,GA,
+13,1,465.l.83511.t.1,Jagrbombs,23,GAA,
+13,1,465.l.83511.t.1,Jagrbombs,25,SV,
+13,1,465.l.83511.t.1,Jagrbombs,24,SA,
+13,1,465.l.83511.t.1,Jagrbombs,26,SV%,
+13,1,465.l.83511.t.1,Jagrbombs,27,SHO,
+13,1,465.l.83511.t.5,Hughes your daddy,1,G,
+13,1,465.l.83511.t.5,Hughes your daddy,2,A,
+13,1,465.l.83511.t.5,Hughes your daddy,4,+/-,
+13,1,465.l.83511.t.5,Hughes your daddy,5,PIM,
+13,1,465.l.83511.t.5,Hughes your daddy,8,PPP,
+13,1,465.l.83511.t.5,Hughes your daddy,11,SHP,
+13,1,465.l.83511.t.5,Hughes your daddy,14,SOG,
+13,1,465.l.83511.t.5,Hughes your daddy,16,FW,
+13,1,465.l.83511.t.5,Hughes your daddy,31,HIT,
+13,1,465.l.83511.t.5,Hughes your daddy,32,BLK,
+13,1,465.l.83511.t.5,Hughes your daddy,19,W,
+13,1,465.l.83511.t.5,Hughes your daddy,22,GA,
+13,1,465.l.83511.t.5,Hughes your daddy,23,GAA,
+13,1,465.l.83511.t.5,Hughes your daddy,25,SV,
+13,1,465.l.83511.t.5,Hughes your daddy,24,SA,
+13,1,465.l.83511.t.5,Hughes your daddy,26,SV%,
+13,1,465.l.83511.t.5,Hughes your daddy,27,SHO,
+13,2,465.l.83511.t.2,Bar Down Beauties,1,G,
+13,2,465.l.83511.t.2,Bar Down Beauties,2,A,
+13,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,
+13,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,
+13,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,
+13,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,
+13,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,
+13,2,465.l.83511.t.2,Bar Down Beauties,16,FW,
+13,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,
+13,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,
+13,2,465.l.83511.t.2,Bar Down Beauties,19,W,
+13,2,465.l.83511.t.2,Bar Down Beauties,22,GA,
+13,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,
+13,2,465.l.83511.t.2,Bar Down Beauties,25,SV,
+13,2,465.l.83511.t.2,Bar Down Beauties,24,SA,
+13,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,
+13,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,
+13,2,465.l.83511.t.7,Boats and Ahos,1,G,
+13,2,465.l.83511.t.7,Boats and Ahos,2,A,
+13,2,465.l.83511.t.7,Boats and Ahos,4,+/-,
+13,2,465.l.83511.t.7,Boats and Ahos,5,PIM,
+13,2,465.l.83511.t.7,Boats and Ahos,8,PPP,
+13,2,465.l.83511.t.7,Boats and Ahos,11,SHP,
+13,2,465.l.83511.t.7,Boats and Ahos,14,SOG,
+13,2,465.l.83511.t.7,Boats and Ahos,16,FW,
+13,2,465.l.83511.t.7,Boats and Ahos,31,HIT,
+13,2,465.l.83511.t.7,Boats and Ahos,32,BLK,
+13,2,465.l.83511.t.7,Boats and Ahos,19,W,
+13,2,465.l.83511.t.7,Boats and Ahos,22,GA,
+13,2,465.l.83511.t.7,Boats and Ahos,23,GAA,
+13,2,465.l.83511.t.7,Boats and Ahos,25,SV,
+13,2,465.l.83511.t.7,Boats and Ahos,24,SA,
+13,2,465.l.83511.t.7,Boats and Ahos,26,SV%,
+13,2,465.l.83511.t.7,Boats and Ahos,27,SHO,
+13,3,465.l.83511.t.3,Autodraft Anomalies,1,G,
+13,3,465.l.83511.t.3,Autodraft Anomalies,2,A,
+13,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,
+13,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,
+13,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,
+13,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,
+13,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,
+13,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,
+13,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,
+13,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,
+13,3,465.l.83511.t.3,Autodraft Anomalies,19,W,
+13,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,
+13,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,
+13,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,
+13,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,
+13,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,
+13,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,1,G,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,2,A,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,16,FW,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,19,W,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,22,GA,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,25,SV,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,24,SA,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,
+13,3,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,
+13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,
+13,4,465.l.83511.t.10,robert's Fabulous Team,1,G,
+13,4,465.l.83511.t.10,robert's Fabulous Team,2,A,
+13,4,465.l.83511.t.10,robert's Fabulous Team,4,+/-,
+13,4,465.l.83511.t.10,robert's Fabulous Team,5,PIM,
+13,4,465.l.83511.t.10,robert's Fabulous Team,8,PPP,
+13,4,465.l.83511.t.10,robert's Fabulous Team,11,SHP,
+13,4,465.l.83511.t.10,robert's Fabulous Team,14,SOG,
+13,4,465.l.83511.t.10,robert's Fabulous Team,16,FW,
+13,4,465.l.83511.t.10,robert's Fabulous Team,31,HIT,
+13,4,465.l.83511.t.10,robert's Fabulous Team,32,BLK,
+13,4,465.l.83511.t.10,robert's Fabulous Team,19,W,
+13,4,465.l.83511.t.10,robert's Fabulous Team,22,GA,
+13,4,465.l.83511.t.10,robert's Fabulous Team,23,GAA,
+13,4,465.l.83511.t.10,robert's Fabulous Team,25,SV,
+13,4,465.l.83511.t.10,robert's Fabulous Team,24,SA,
+13,4,465.l.83511.t.10,robert's Fabulous Team,26,SV%,
+13,4,465.l.83511.t.10,robert's Fabulous Team,27,SHO,
+13,5,465.l.83511.t.6,Sask Squatches,1,G,
+13,5,465.l.83511.t.6,Sask Squatches,2,A,
+13,5,465.l.83511.t.6,Sask Squatches,4,+/-,
+13,5,465.l.83511.t.6,Sask Squatches,5,PIM,
+13,5,465.l.83511.t.6,Sask Squatches,8,PPP,
+13,5,465.l.83511.t.6,Sask Squatches,11,SHP,
+13,5,465.l.83511.t.6,Sask Squatches,14,SOG,
+13,5,465.l.83511.t.6,Sask Squatches,16,FW,
+13,5,465.l.83511.t.6,Sask Squatches,31,HIT,
+13,5,465.l.83511.t.6,Sask Squatches,32,BLK,
+13,5,465.l.83511.t.6,Sask Squatches,19,W,
+13,5,465.l.83511.t.6,Sask Squatches,22,GA,
+13,5,465.l.83511.t.6,Sask Squatches,23,GAA,
+13,5,465.l.83511.t.6,Sask Squatches,25,SV,
+13,5,465.l.83511.t.6,Sask Squatches,24,SA,
+13,5,465.l.83511.t.6,Sask Squatches,26,SV%,
+13,5,465.l.83511.t.6,Sask Squatches,27,SHO,
+13,5,465.l.83511.t.11,P Diddlers,1,G,
+13,5,465.l.83511.t.11,P Diddlers,2,A,
+13,5,465.l.83511.t.11,P Diddlers,4,+/-,
+13,5,465.l.83511.t.11,P Diddlers,5,PIM,
+13,5,465.l.83511.t.11,P Diddlers,8,PPP,
+13,5,465.l.83511.t.11,P Diddlers,11,SHP,
+13,5,465.l.83511.t.11,P Diddlers,14,SOG,
+13,5,465.l.83511.t.11,P Diddlers,16,FW,
+13,5,465.l.83511.t.11,P Diddlers,31,HIT,
+13,5,465.l.83511.t.11,P Diddlers,32,BLK,
+13,5,465.l.83511.t.11,P Diddlers,19,W,
+13,5,465.l.83511.t.11,P Diddlers,22,GA,
+13,5,465.l.83511.t.11,P Diddlers,23,GAA,
+13,5,465.l.83511.t.11,P Diddlers,25,SV,
+13,5,465.l.83511.t.11,P Diddlers,24,SA,
+13,5,465.l.83511.t.11,P Diddlers,26,SV%,
+13,5,465.l.83511.t.11,P Diddlers,27,SHO,
+13,6,465.l.83511.t.8,Bros before Ahos,1,G,
+13,6,465.l.83511.t.8,Bros before Ahos,2,A,
+13,6,465.l.83511.t.8,Bros before Ahos,4,+/-,
+13,6,465.l.83511.t.8,Bros before Ahos,5,PIM,
+13,6,465.l.83511.t.8,Bros before Ahos,8,PPP,
+13,6,465.l.83511.t.8,Bros before Ahos,11,SHP,
+13,6,465.l.83511.t.8,Bros before Ahos,14,SOG,
+13,6,465.l.83511.t.8,Bros before Ahos,16,FW,
+13,6,465.l.83511.t.8,Bros before Ahos,31,HIT,
+13,6,465.l.83511.t.8,Bros before Ahos,32,BLK,
+13,6,465.l.83511.t.8,Bros before Ahos,19,W,
+13,6,465.l.83511.t.8,Bros before Ahos,22,GA,
+13,6,465.l.83511.t.8,Bros before Ahos,23,GAA,
+13,6,465.l.83511.t.8,Bros before Ahos,25,SV,
+13,6,465.l.83511.t.8,Bros before Ahos,24,SA,
+13,6,465.l.83511.t.8,Bros before Ahos,26,SV%,
+13,6,465.l.83511.t.8,Bros before Ahos,27,SHO,
+13,6,465.l.83511.t.12,The Epstein Islanders,1,G,
+13,6,465.l.83511.t.12,The Epstein Islanders,2,A,
+13,6,465.l.83511.t.12,The Epstein Islanders,4,+/-,
+13,6,465.l.83511.t.12,The Epstein Islanders,5,PIM,
+13,6,465.l.83511.t.12,The Epstein Islanders,8,PPP,
+13,6,465.l.83511.t.12,The Epstein Islanders,11,SHP,
+13,6,465.l.83511.t.12,The Epstein Islanders,14,SOG,
+13,6,465.l.83511.t.12,The Epstein Islanders,16,FW,
+13,6,465.l.83511.t.12,The Epstein Islanders,31,HIT,
+13,6,465.l.83511.t.12,The Epstein Islanders,32,BLK,
+13,6,465.l.83511.t.12,The Epstein Islanders,19,W,
+13,6,465.l.83511.t.12,The Epstein Islanders,22,GA,
+13,6,465.l.83511.t.12,The Epstein Islanders,23,GAA,
+13,6,465.l.83511.t.12,The Epstein Islanders,25,SV,
+13,6,465.l.83511.t.12,The Epstein Islanders,24,SA,
+13,6,465.l.83511.t.12,The Epstein Islanders,26,SV%,
+13,6,465.l.83511.t.12,The Epstein Islanders,27,SHO,

@@ -353,7 +353,10 @@ def main():
             # 2) backfill-gp
             print(f"Step 2: Backfilling weekly GP for Week {prior_wk}...")
             from sqlalchemy import func
-            from infrastructure.persistence import RosterSlotDaily, WeeklyPlayerGP, upsert_weekly_player_gp, mark_week_closed
+            from infrastructure.persistence import (
+                RosterSlotDaily, WeeklyPlayerGP, WeeklyTotal, 
+                upsert_weekly_player_gp, mark_week_closed
+            )
             
             if wk_row and wk_row.start_date and wk_row.end_date:
                 for t in teams:
@@ -373,8 +376,19 @@ def main():
                             player_key=str(pkey), gp=int(gp_sum or 0), source="daily_agg"
                         )
                     session.commit()
-                mark_week_closed(session, league_id=league.id, week_num=prior_wk)
-                session.commit()
+                
+                # Safety check: only close if weekly_totals has data
+                has_totals = session.query(WeeklyTotal).filter(
+                    WeeklyTotal.league_id == league.id, 
+                    WeeklyTotal.week_num == prior_wk
+                ).first() is not None
+                
+                if has_totals:
+                    mark_week_closed(session, league_id=league.id, week_num=prior_wk)
+                    session.commit()
+                    print(f"  Week {prior_wk} marked closed.")
+                else:
+                    print(f"  [Warn] Week {prior_wk} has no weekly_totals; NOT marking closed. Run 'yahoo' command first.")
 
             # 3) avg-compare
             print(f"Step 3: Running avg-compare for Week {curr_wk}...")
@@ -752,9 +766,18 @@ def main():
 
                 if not no_close and not dry_run:
                     try:
-                        mark_week_closed(session, league_id=league.id, week_num=int(wk))
-                        session.commit()
-                        print(f"  Week {wk} marked closed")
+                        from infrastructure.persistence import WeeklyTotal
+                        has_totals = session.query(WeeklyTotal).filter(
+                            WeeklyTotal.league_id == league.id, 
+                            WeeklyTotal.week_num == int(wk)
+                        ).first() is not None
+                        
+                        if has_totals:
+                            mark_week_closed(session, league_id=league.id, week_num=int(wk))
+                            session.commit()
+                            print(f"  Week {wk} marked closed")
+                        else:
+                            print(f"  [Warn] Week {wk} has no weekly_totals; NOT marking closed. Run 'yahoo' command first.")
                     except Exception as _e:
                         session.rollback()
                         print(f"  [Warn] Failed to mark week {wk} closed: {_e}")

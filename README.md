@@ -14,45 +14,33 @@ High-level documentation for the project now lives under the `docs/` folder.
 
 ## Quick start
 
-Common CLI commands (see details in `docs/PROCESS.md`):
+The project has been migrated to Django. You can now use the interactive menu or standard Django management commands.
+
+### Interactive Menu
+```bash
+python manage.py menu
+```
+
+### Django Management Commands
+The original CLI is still available via the `nststats` management command:
 
 ```bash
 # End-to-end input refresh, then merge
-python -m app.cli daily
-python -m app.cli weekly
+python manage.py nststats daily
+python manage.py nststats weekly
 
-# Individual commands (advanced)
-python -m app.cli init-weeks --league-key nhl.p.2526
-
-# Build or refresh schedule lookup
-python -m app.cli --schedule-lookup
-
-# If you are actively editing the NHLschedule project in a different repo and want those edits to be used immediately
-# (without reinstalling), either use an editable install or provide the path at runtime:
-
-# Option A: one-time editable install into your active venv
-pip install -e C:\Users\soluk\PycharmProjects\NHLschedule
-
-# Option B: point NSTstats to your local NHLschedule path just for this run
-python -m app.cli --schedule-lookup --nhl-schedule-path C:\Users\soluk\PycharmProjects\NHLschedule
-
-# Option C: set an environment variable so you don't need to pass the flag each time
-# (PowerShell)
-$env:NHL_SCHEDULE_PATH = "C:\\Users\\soluk\\PycharmProjects\\NHLschedule"
-python -m app.cli --schedule-lookup
-
-# Forecasts
-python -m app.cli forecast --current-week 12
-
-# Compare forecasts to external projections
-python -m app.cli compare --current-week 12
-
-# Analyze season-total metrics
-python -m app.cli analyze
-
-# Distribution diagnostics (data quality)
-python -m app.cli dq --windows szn l7 --metrics G A PPP SOG FOW HIT BLK PIM
+# Run original CLI commands
+python manage.py nststats forecast --current-week 12
 ```
+
+### Maintenance Interface (Django Admin)
+You can maintain parameters and view data via the Django Admin interface:
+1. Start the server: `python manage.py runserver`
+2. Open `http://127.0.0.1:8000/admin/`
+3. Login with `admin` / `admin123`
+
+### Common CLI commands (Legacy)
+The old way of running commands still works if `.env` is populated, but using `python manage.py nststats` is preferred as it uses the database for parameters.
 
 Note: On Windows/PowerShell, the above commands work the same; ensure your virtual environment is activated.
 

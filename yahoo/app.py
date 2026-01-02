@@ -141,6 +141,8 @@ class YahooFantasyApp:
             session.commit()
             return session, league_row
         except Exception as e:
+            if 'session' in locals() and session: 
+                session.rollback()
             print(f"[Warn] DB initialization failed: {e}")
             return None, None
 
@@ -153,6 +155,9 @@ class YahooFantasyApp:
             settings = parse_settings_xml(raw_xml)
             if settings.get("current_week"):
                 context['current_week'] = settings["current_week"]
+                print(f"[Diag] Yahoo current_week: {context['current_week']}")
+            else:
+                print(f"[Diag] No current_week in Yahoo settings; defaulting to 9")
             
             for s in settings.get("stat_categories", []):
                 sid = int(s["id"])
@@ -163,7 +168,11 @@ class YahooFantasyApp:
                                              abbr=s.get("display"), name=s.get("name"), 
                                              position_type=s.get("position_type"))
                     except Exception: pass
-            if session: session.commit()
+            try:
+                if session: session.commit()
+            except Exception as e:
+                if session: session.rollback()
+                print(f"[Warn] Failed to commit league context: {e}")
         return context
 
     def _export_weekly_totals(self, league_key, context, session, league_row):
@@ -171,7 +180,9 @@ class YahooFantasyApp:
             return
         
         weeks_in_season = int(self._env("WEEKS_IN_SEASON", "24") or 24)
-        current_week = max(1, min(context['current_week'], weeks_in_season))
+        # Allow override of current week via env
+        current_week = int(self._env("YAHOO_CURRENT_WEEK") or context.get('current_week') or 9)
+        current_week = max(1, min(current_week, weeks_in_season))
         stat_map = context['stat_map']
 
         print(f"\nExporting weekly totals for weeks 1..{current_week}...")
@@ -179,15 +190,22 @@ class YahooFantasyApp:
         for wk in range(1, int(current_week) + 1):
             try:
                 if session and league_row and is_week_closed(session, league_id=league_row.id, week_num=wk):
+                    print(f"[Diag] Week {wk} is closed in DB; skipping.")
                     continue
 
+                print(f"[Diag] Fetching scoreboard for week {wk}...")
                 sb_payload = self.client.get_league_scoreboard(league_key, wk)
                 sb_xml = sb_payload.get("_raw_xml")
-                if not sb_xml: continue
+                if not sb_xml:
+                    print(f"[Diag] No XML returned for week {wk} scoreboard.")
+                    continue
                 
                 parsed = parse_scoreboard_xml(sb_xml, week=wk)
+                matchups = parsed.get("matchups", [])
+                print(f"[Diag] Week {wk}: parsed {len(matchups)} matchups.")
+                
                 # Logic for persisting scoreboard data
-                for m in parsed.get("matchups", []):
+                for m in matchups:
                     midx = m.get("matchup_index")
                     matchup_id_db = None
                     if session and league_row and midx is not None:
@@ -200,6 +218,7 @@ class YahooFantasyApp:
                         if session and league_row and tkey:
                             upsert_team(session, league_id=league_row.id, team_key=str(tkey), team_name=tname)
                         
+                        stats_count = 0
                         for sid, val in t.get("stats", {}).items():
                             rows.append({
                                 "week": wk, "matchup_index": midx, "team_key": tkey,
@@ -209,8 +228,11 @@ class YahooFantasyApp:
                                 upsert_weekly_total(session, league_id=league_row.id, week_num=wk, 
                                                     matchup_id=matchup_id_db, team_key=str(tkey), 
                                                     stat_id=int(sid), stat_abbr=stat_map.get(int(sid)), value=val)
+                                stats_count += 1
+                        print(f"[Diag] Week {wk}, Team {tkey}: saved {stats_count} stats.")
                 if session: session.commit()
             except Exception as e:
+                if session: session.rollback()
                 print(f"[Warn] Failed week {wk} totals: {e}")
 
         self._write_csv("yahoo_weekly_totals.csv", ["week", "matchup_index", "team_key", "team_name", "stat_id", "stat", "value"], rows)
@@ -265,6 +287,7 @@ class YahooFantasyApp:
                                                     player_name=p.get('name'))
                     if session: session.commit()
                 except Exception as e:
+                    if session: session.rollback()
                     print(f"[Warn] GP Export failed for wk {wk} team {tid}: {e}")
 
         self._write_csv("yahoo_weekly_player_gp.csv", ["week", "player_name", "team_name", "positions", "GP"], gp_rows)

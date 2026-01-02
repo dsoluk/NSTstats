@@ -1,6 +1,6 @@
 import os
 import datetime as _dt
-from typing import Optional, Iterable
+from typing import Optional, Iterable, Any
 
 from sqlalchemy import (
     create_engine, Integer, String, Date, Boolean, Enum, ForeignKey, UniqueConstraint,
@@ -325,11 +325,19 @@ def upsert_matchup(session: Session, *, league_id: int, week_num: int, matchup_i
 
 
 def upsert_weekly_total(session: Session, *, league_id: int, week_num: int, matchup_id: Optional[int], team_key: str,
-                        stat_id: int, stat_abbr: Optional[str], value: Optional[float]) -> WeeklyTotal:
+                        stat_id: int, stat_abbr: Optional[str], value: Any) -> WeeklyTotal:
+    # Safely convert value to float or None
+    safe_value = None
+    if value is not None and str(value).strip() != "":
+        try:
+            safe_value = float(value)
+        except (ValueError, TypeError):
+            safe_value = None
+
     obj = session.query(WeeklyTotal).filter_by(league_id=league_id, week_num=week_num, team_key=team_key, stat_id=stat_id).one_or_none()
     if obj is None:
         obj = WeeklyTotal(league_id=league_id, week_num=week_num, matchup_id=matchup_id, team_key=team_key,
-                          stat_id=stat_id, stat_abbr=stat_abbr, value=value)
+                          stat_id=stat_id, stat_abbr=stat_abbr, value=safe_value)
         session.add(obj)
         session.flush()
     else:
@@ -338,9 +346,12 @@ def upsert_weekly_total(session: Session, *, league_id: int, week_num: int, matc
             obj.matchup_id = matchup_id; changed = True
         if obj.stat_abbr != stat_abbr:
             obj.stat_abbr = stat_abbr; changed = True
-        # Treat None and float equivalently where possible
-        if (value is not None and float(obj.value or 0) != float(value)) or (value is None and obj.value is not None):
-            obj.value = value; changed = True
+        
+        # Numeric comparison
+        curr_val = float(obj.value) if obj.value is not None else None
+        if curr_val != safe_value:
+            obj.value = safe_value; changed = True
+            
         if changed:
             session.flush()
     return obj
