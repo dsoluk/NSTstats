@@ -1,817 +1,1561 @@
 week,matchup_index,team_key,team_name,stat_id,stat,value
-10,1,465.l.83511.t.1,Jagrbombs,1,G,18
-10,1,465.l.83511.t.1,Jagrbombs,2,A,17
-10,1,465.l.83511.t.1,Jagrbombs,4,+/-,26
-10,1,465.l.83511.t.1,Jagrbombs,5,PIM,20
-10,1,465.l.83511.t.1,Jagrbombs,8,PPP,6
-10,1,465.l.83511.t.1,Jagrbombs,11,SHP,0
-10,1,465.l.83511.t.1,Jagrbombs,14,SOG,102
-10,1,465.l.83511.t.1,Jagrbombs,16,FW,112
-10,1,465.l.83511.t.1,Jagrbombs,31,HIT,42
-10,1,465.l.83511.t.1,Jagrbombs,32,BLK,45
-10,1,465.l.83511.t.1,Jagrbombs,19,W,4
-10,1,465.l.83511.t.1,Jagrbombs,22,GA,21
-10,1,465.l.83511.t.1,Jagrbombs,23,GAA,3.39
-10,1,465.l.83511.t.1,Jagrbombs,25,SV,149
-10,1,465.l.83511.t.1,Jagrbombs,24,SA,170
-10,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.876
-10,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,15
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,36
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,5
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,18
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,16
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,0
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,117
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,86
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,60
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,57
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,2
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,8
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,2.68
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,78
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,86
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.907
-10,1,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,0
-10,2,465.l.83511.t.2,Bar Down Beauties,1,G,16
-10,2,465.l.83511.t.2,Bar Down Beauties,2,A,25
-10,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,9
-10,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,18
-10,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,12
-10,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,0
-10,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,125
-10,2,465.l.83511.t.2,Bar Down Beauties,16,FW,107
-10,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,13
-10,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,45
-10,2,465.l.83511.t.2,Bar Down Beauties,19,W,1
-10,2,465.l.83511.t.2,Bar Down Beauties,22,GA,9
-10,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,2.92
-10,2,465.l.83511.t.2,Bar Down Beauties,25,SV,86
-10,2,465.l.83511.t.2,Bar Down Beauties,24,SA,95
-10,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.905
-10,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,0
-10,2,465.l.83511.t.12,The Epstein Islanders,1,G,9
-10,2,465.l.83511.t.12,The Epstein Islanders,2,A,18
-10,2,465.l.83511.t.12,The Epstein Islanders,4,+/-,5
-10,2,465.l.83511.t.12,The Epstein Islanders,5,PIM,14
-10,2,465.l.83511.t.12,The Epstein Islanders,8,PPP,13
-10,2,465.l.83511.t.12,The Epstein Islanders,11,SHP,0
-10,2,465.l.83511.t.12,The Epstein Islanders,14,SOG,89
-10,2,465.l.83511.t.12,The Epstein Islanders,16,FW,51
-10,2,465.l.83511.t.12,The Epstein Islanders,31,HIT,46
-10,2,465.l.83511.t.12,The Epstein Islanders,32,BLK,31
-10,2,465.l.83511.t.12,The Epstein Islanders,19,W,3
-10,2,465.l.83511.t.12,The Epstein Islanders,22,GA,13
-10,2,465.l.83511.t.12,The Epstein Islanders,23,GAA,2.55
-10,2,465.l.83511.t.12,The Epstein Islanders,25,SV,121
-10,2,465.l.83511.t.12,The Epstein Islanders,24,SA,134
-10,2,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.903
-10,2,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
-10,3,465.l.83511.t.3,Autodraft Anomalies,1,G,10
-10,3,465.l.83511.t.3,Autodraft Anomalies,2,A,21
-10,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,-10
-10,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,8
-10,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,12
-10,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,0
-10,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,84
-10,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,152
-10,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,66
-10,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,46
-10,3,465.l.83511.t.3,Autodraft Anomalies,19,W,0
-10,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,9
-10,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,2.94
-10,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,84
-10,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,93
-10,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.903
-10,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,0
-10,3,465.l.83511.t.10,robert's Fabulous Team,1,G,8
-10,3,465.l.83511.t.10,robert's Fabulous Team,2,A,28
-10,3,465.l.83511.t.10,robert's Fabulous Team,4,+/-,1
-10,3,465.l.83511.t.10,robert's Fabulous Team,5,PIM,8
-10,3,465.l.83511.t.10,robert's Fabulous Team,8,PPP,16
-10,3,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
-10,3,465.l.83511.t.10,robert's Fabulous Team,14,SOG,90
-10,3,465.l.83511.t.10,robert's Fabulous Team,16,FW,61
-10,3,465.l.83511.t.10,robert's Fabulous Team,31,HIT,30
-10,3,465.l.83511.t.10,robert's Fabulous Team,32,BLK,31
-10,3,465.l.83511.t.10,robert's Fabulous Team,19,W,1
-10,3,465.l.83511.t.10,robert's Fabulous Team,22,GA,9
-10,3,465.l.83511.t.10,robert's Fabulous Team,23,GAA,3.42
-10,3,465.l.83511.t.10,robert's Fabulous Team,25,SV,63
-10,3,465.l.83511.t.10,robert's Fabulous Team,24,SA,72
-10,3,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.875
-10,3,465.l.83511.t.10,robert's Fabulous Team,27,SHO,1
-10,4,465.l.83511.t.5,Hughes your daddy,1,G,11
-10,4,465.l.83511.t.5,Hughes your daddy,2,A,19
-10,4,465.l.83511.t.5,Hughes your daddy,4,+/-,-21
-10,4,465.l.83511.t.5,Hughes your daddy,5,PIM,14
-10,4,465.l.83511.t.5,Hughes your daddy,8,PPP,14
-10,4,465.l.83511.t.5,Hughes your daddy,11,SHP,1
-10,4,465.l.83511.t.5,Hughes your daddy,14,SOG,92
-10,4,465.l.83511.t.5,Hughes your daddy,16,FW,122
-10,4,465.l.83511.t.5,Hughes your daddy,31,HIT,37
-10,4,465.l.83511.t.5,Hughes your daddy,32,BLK,34
-10,4,465.l.83511.t.5,Hughes your daddy,19,W,3
-10,4,465.l.83511.t.5,Hughes your daddy,22,GA,8
-10,4,465.l.83511.t.5,Hughes your daddy,23,GAA,2.65
-10,4,465.l.83511.t.5,Hughes your daddy,25,SV,77
-10,4,465.l.83511.t.5,Hughes your daddy,24,SA,85
-10,4,465.l.83511.t.5,Hughes your daddy,26,SV%,0.906
-10,4,465.l.83511.t.5,Hughes your daddy,27,SHO,0
-10,4,465.l.83511.t.6,Sask Squatches,1,G,18
-10,4,465.l.83511.t.6,Sask Squatches,2,A,25
-10,4,465.l.83511.t.6,Sask Squatches,4,+/-,1
-10,4,465.l.83511.t.6,Sask Squatches,5,PIM,18
-10,4,465.l.83511.t.6,Sask Squatches,8,PPP,11
-10,4,465.l.83511.t.6,Sask Squatches,11,SHP,2
-10,4,465.l.83511.t.6,Sask Squatches,14,SOG,123
-10,4,465.l.83511.t.6,Sask Squatches,16,FW,116
-10,4,465.l.83511.t.6,Sask Squatches,31,HIT,41
-10,4,465.l.83511.t.6,Sask Squatches,32,BLK,44
-10,4,465.l.83511.t.6,Sask Squatches,19,W,2
-10,4,465.l.83511.t.6,Sask Squatches,22,GA,13
-10,4,465.l.83511.t.6,Sask Squatches,23,GAA,3.1
-10,4,465.l.83511.t.6,Sask Squatches,25,SV,111
-10,4,465.l.83511.t.6,Sask Squatches,24,SA,124
-10,4,465.l.83511.t.6,Sask Squatches,26,SV%,0.895
-10,4,465.l.83511.t.6,Sask Squatches,27,SHO,0
-10,5,465.l.83511.t.7,Boats and Ahos,1,G,9
-10,5,465.l.83511.t.7,Boats and Ahos,2,A,17
-10,5,465.l.83511.t.7,Boats and Ahos,4,+/-,1
-10,5,465.l.83511.t.7,Boats and Ahos,5,PIM,22
-10,5,465.l.83511.t.7,Boats and Ahos,8,PPP,12
-10,5,465.l.83511.t.7,Boats and Ahos,11,SHP,0
-10,5,465.l.83511.t.7,Boats and Ahos,14,SOG,103
-10,5,465.l.83511.t.7,Boats and Ahos,16,FW,141
-10,5,465.l.83511.t.7,Boats and Ahos,31,HIT,40
-10,5,465.l.83511.t.7,Boats and Ahos,32,BLK,33
-10,5,465.l.83511.t.7,Boats and Ahos,19,W,4
-10,5,465.l.83511.t.7,Boats and Ahos,22,GA,8
-10,5,465.l.83511.t.7,Boats and Ahos,23,GAA,1.88
-10,5,465.l.83511.t.7,Boats and Ahos,25,SV,85
-10,5,465.l.83511.t.7,Boats and Ahos,24,SA,93
-10,5,465.l.83511.t.7,Boats and Ahos,26,SV%,0.914
-10,5,465.l.83511.t.7,Boats and Ahos,27,SHO,0
-10,5,465.l.83511.t.9,Dan's Dazzling Team,1,G,10
-10,5,465.l.83511.t.9,Dan's Dazzling Team,2,A,15
-10,5,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,-11
-10,5,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,6
-10,5,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,9
-10,5,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
-10,5,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,87
-10,5,465.l.83511.t.9,Dan's Dazzling Team,16,FW,108
-10,5,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,26
-10,5,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,27
-10,5,465.l.83511.t.9,Dan's Dazzling Team,19,W,0
-10,5,465.l.83511.t.9,Dan's Dazzling Team,22,GA,4
-10,5,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,4.32
-10,5,465.l.83511.t.9,Dan's Dazzling Team,25,SV,23
-10,5,465.l.83511.t.9,Dan's Dazzling Team,24,SA,27
-10,5,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.852
-10,5,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
-10,6,465.l.83511.t.8,Bros before Ahos,1,G,16
-10,6,465.l.83511.t.8,Bros before Ahos,2,A,22
-10,6,465.l.83511.t.8,Bros before Ahos,4,+/-,12
-10,6,465.l.83511.t.8,Bros before Ahos,5,PIM,24
-10,6,465.l.83511.t.8,Bros before Ahos,8,PPP,8
-10,6,465.l.83511.t.8,Bros before Ahos,11,SHP,0
-10,6,465.l.83511.t.8,Bros before Ahos,14,SOG,136
-10,6,465.l.83511.t.8,Bros before Ahos,16,FW,151
-10,6,465.l.83511.t.8,Bros before Ahos,31,HIT,59
-10,6,465.l.83511.t.8,Bros before Ahos,32,BLK,52
-10,6,465.l.83511.t.8,Bros before Ahos,19,W,3
-10,6,465.l.83511.t.8,Bros before Ahos,22,GA,12
-10,6,465.l.83511.t.8,Bros before Ahos,23,GAA,3.03
-10,6,465.l.83511.t.8,Bros before Ahos,25,SV,100
-10,6,465.l.83511.t.8,Bros before Ahos,24,SA,112
-10,6,465.l.83511.t.8,Bros before Ahos,26,SV%,0.893
-10,6,465.l.83511.t.8,Bros before Ahos,27,SHO,0
-10,6,465.l.83511.t.11,P Diddlers,1,G,13
-10,6,465.l.83511.t.11,P Diddlers,2,A,22
-10,6,465.l.83511.t.11,P Diddlers,4,+/-,13
-10,6,465.l.83511.t.11,P Diddlers,5,PIM,15
-10,6,465.l.83511.t.11,P Diddlers,8,PPP,5
-10,6,465.l.83511.t.11,P Diddlers,11,SHP,1
-10,6,465.l.83511.t.11,P Diddlers,14,SOG,92
-10,6,465.l.83511.t.11,P Diddlers,16,FW,96
-10,6,465.l.83511.t.11,P Diddlers,31,HIT,38
-10,6,465.l.83511.t.11,P Diddlers,32,BLK,50
-10,6,465.l.83511.t.11,P Diddlers,19,W,3
-10,6,465.l.83511.t.11,P Diddlers,22,GA,18
-10,6,465.l.83511.t.11,P Diddlers,23,GAA,3.03
-10,6,465.l.83511.t.11,P Diddlers,25,SV,144
-10,6,465.l.83511.t.11,P Diddlers,24,SA,162
-10,6,465.l.83511.t.11,P Diddlers,26,SV%,0.889
-10,6,465.l.83511.t.11,P Diddlers,27,SHO,0
-11,1,465.l.83511.t.1,Jagrbombs,1,G,12
-11,1,465.l.83511.t.1,Jagrbombs,2,A,21
-11,1,465.l.83511.t.1,Jagrbombs,4,+/-,-6
-11,1,465.l.83511.t.1,Jagrbombs,5,PIM,50
-11,1,465.l.83511.t.1,Jagrbombs,8,PPP,11
-11,1,465.l.83511.t.1,Jagrbombs,11,SHP,1
-11,1,465.l.83511.t.1,Jagrbombs,14,SOG,112
-11,1,465.l.83511.t.1,Jagrbombs,16,FW,131
-11,1,465.l.83511.t.1,Jagrbombs,31,HIT,63
-11,1,465.l.83511.t.1,Jagrbombs,32,BLK,48
-11,1,465.l.83511.t.1,Jagrbombs,19,W,1
-11,1,465.l.83511.t.1,Jagrbombs,22,GA,7
-11,1,465.l.83511.t.1,Jagrbombs,23,GAA,2.38
-11,1,465.l.83511.t.1,Jagrbombs,25,SV,60
-11,1,465.l.83511.t.1,Jagrbombs,24,SA,67
-11,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.896
-11,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
-11,1,465.l.83511.t.8,Bros before Ahos,1,G,13
-11,1,465.l.83511.t.8,Bros before Ahos,2,A,33
-11,1,465.l.83511.t.8,Bros before Ahos,4,+/-,0
-11,1,465.l.83511.t.8,Bros before Ahos,5,PIM,42
-11,1,465.l.83511.t.8,Bros before Ahos,8,PPP,19
-11,1,465.l.83511.t.8,Bros before Ahos,11,SHP,4
-11,1,465.l.83511.t.8,Bros before Ahos,14,SOG,116
-11,1,465.l.83511.t.8,Bros before Ahos,16,FW,186
-11,1,465.l.83511.t.8,Bros before Ahos,31,HIT,61
-11,1,465.l.83511.t.8,Bros before Ahos,32,BLK,65
-11,1,465.l.83511.t.8,Bros before Ahos,19,W,3
-11,1,465.l.83511.t.8,Bros before Ahos,22,GA,9
-11,1,465.l.83511.t.8,Bros before Ahos,23,GAA,2.98
-11,1,465.l.83511.t.8,Bros before Ahos,25,SV,84
-11,1,465.l.83511.t.8,Bros before Ahos,24,SA,93
-11,1,465.l.83511.t.8,Bros before Ahos,26,SV%,0.903
-11,1,465.l.83511.t.8,Bros before Ahos,27,SHO,0
-11,2,465.l.83511.t.2,Bar Down Beauties,1,G,8
-11,2,465.l.83511.t.2,Bar Down Beauties,2,A,29
-11,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,-8
-11,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,28
-11,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,14
-11,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,0
-11,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,107
-11,2,465.l.83511.t.2,Bar Down Beauties,16,FW,149
-11,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,34
-11,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,31
-11,2,465.l.83511.t.2,Bar Down Beauties,19,W,1
-11,2,465.l.83511.t.2,Bar Down Beauties,22,GA,4
-11,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,1.78
-11,2,465.l.83511.t.2,Bar Down Beauties,25,SV,63
-11,2,465.l.83511.t.2,Bar Down Beauties,24,SA,67
-11,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.94
-11,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,1
-11,2,465.l.83511.t.5,Hughes your daddy,1,G,8
-11,2,465.l.83511.t.5,Hughes your daddy,2,A,26
-11,2,465.l.83511.t.5,Hughes your daddy,4,+/-,5
-11,2,465.l.83511.t.5,Hughes your daddy,5,PIM,30
-11,2,465.l.83511.t.5,Hughes your daddy,8,PPP,11
-11,2,465.l.83511.t.5,Hughes your daddy,11,SHP,1
-11,2,465.l.83511.t.5,Hughes your daddy,14,SOG,106
-11,2,465.l.83511.t.5,Hughes your daddy,16,FW,138
-11,2,465.l.83511.t.5,Hughes your daddy,31,HIT,56
-11,2,465.l.83511.t.5,Hughes your daddy,32,BLK,47
-11,2,465.l.83511.t.5,Hughes your daddy,19,W,2
-11,2,465.l.83511.t.5,Hughes your daddy,22,GA,7
-11,2,465.l.83511.t.5,Hughes your daddy,23,GAA,1.77
-11,2,465.l.83511.t.5,Hughes your daddy,25,SV,110
-11,2,465.l.83511.t.5,Hughes your daddy,24,SA,117
-11,2,465.l.83511.t.5,Hughes your daddy,26,SV%,0.94
-11,2,465.l.83511.t.5,Hughes your daddy,27,SHO,1
-11,3,465.l.83511.t.3,Autodraft Anomalies,1,G,22
-11,3,465.l.83511.t.3,Autodraft Anomalies,2,A,21
-11,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,-9
-11,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,36
-11,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,12
-11,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,0
-11,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,142
-11,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,160
-11,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,88
-11,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,55
-11,3,465.l.83511.t.3,Autodraft Anomalies,19,W,2
-11,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,9
-11,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,3.05
-11,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,70
-11,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,79
-11,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.886
-11,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,0
-11,3,465.l.83511.t.7,Boats and Ahos,1,G,18
-11,3,465.l.83511.t.7,Boats and Ahos,2,A,22
-11,3,465.l.83511.t.7,Boats and Ahos,4,+/-,8
-11,3,465.l.83511.t.7,Boats and Ahos,5,PIM,14
-11,3,465.l.83511.t.7,Boats and Ahos,8,PPP,7
-11,3,465.l.83511.t.7,Boats and Ahos,11,SHP,0
-11,3,465.l.83511.t.7,Boats and Ahos,14,SOG,137
-11,3,465.l.83511.t.7,Boats and Ahos,16,FW,147
-11,3,465.l.83511.t.7,Boats and Ahos,31,HIT,76
-11,3,465.l.83511.t.7,Boats and Ahos,32,BLK,51
-11,3,465.l.83511.t.7,Boats and Ahos,19,W,1
-11,3,465.l.83511.t.7,Boats and Ahos,22,GA,9
-11,3,465.l.83511.t.7,Boats and Ahos,23,GAA,2.93
-11,3,465.l.83511.t.7,Boats and Ahos,25,SV,86
-11,3,465.l.83511.t.7,Boats and Ahos,24,SA,95
-11,3,465.l.83511.t.7,Boats and Ahos,26,SV%,0.905
-11,3,465.l.83511.t.7,Boats and Ahos,27,SHO,0
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,18
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,22
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,13
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,26
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,8
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,1
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,122
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,124
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,58
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,55
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,3
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,6
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,2.0
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,75
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,81
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.926
-11,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,0
-11,4,465.l.83511.t.12,The Epstein Islanders,1,G,12
-11,4,465.l.83511.t.12,The Epstein Islanders,2,A,23
-11,4,465.l.83511.t.12,The Epstein Islanders,4,+/-,1
-11,4,465.l.83511.t.12,The Epstein Islanders,5,PIM,22
-11,4,465.l.83511.t.12,The Epstein Islanders,8,PPP,9
-11,4,465.l.83511.t.12,The Epstein Islanders,11,SHP,0
-11,4,465.l.83511.t.12,The Epstein Islanders,14,SOG,120
-11,4,465.l.83511.t.12,The Epstein Islanders,16,FW,75
-11,4,465.l.83511.t.12,The Epstein Islanders,31,HIT,82
-11,4,465.l.83511.t.12,The Epstein Islanders,32,BLK,35
-11,4,465.l.83511.t.12,The Epstein Islanders,19,W,4
-11,4,465.l.83511.t.12,The Epstein Islanders,22,GA,12
-11,4,465.l.83511.t.12,The Epstein Islanders,23,GAA,2.42
-11,4,465.l.83511.t.12,The Epstein Islanders,25,SV,111
-11,4,465.l.83511.t.12,The Epstein Islanders,24,SA,123
-11,4,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.902
-11,4,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
-11,5,465.l.83511.t.6,Sask Squatches,1,G,22
-11,5,465.l.83511.t.6,Sask Squatches,2,A,21
-11,5,465.l.83511.t.6,Sask Squatches,4,+/-,8
-11,5,465.l.83511.t.6,Sask Squatches,5,PIM,29
-11,5,465.l.83511.t.6,Sask Squatches,8,PPP,11
-11,5,465.l.83511.t.6,Sask Squatches,11,SHP,3
-11,5,465.l.83511.t.6,Sask Squatches,14,SOG,128
-11,5,465.l.83511.t.6,Sask Squatches,16,FW,65
-11,5,465.l.83511.t.6,Sask Squatches,31,HIT,51
-11,5,465.l.83511.t.6,Sask Squatches,32,BLK,41
-11,5,465.l.83511.t.6,Sask Squatches,19,W,3
-11,5,465.l.83511.t.6,Sask Squatches,22,GA,12
-11,5,465.l.83511.t.6,Sask Squatches,23,GAA,2.43
-11,5,465.l.83511.t.6,Sask Squatches,25,SV,123
-11,5,465.l.83511.t.6,Sask Squatches,24,SA,135
-11,5,465.l.83511.t.6,Sask Squatches,26,SV%,0.911
-11,5,465.l.83511.t.6,Sask Squatches,27,SHO,0
-11,5,465.l.83511.t.10,robert's Fabulous Team,1,G,10
-11,5,465.l.83511.t.10,robert's Fabulous Team,2,A,26
-11,5,465.l.83511.t.10,robert's Fabulous Team,4,+/-,-7
-11,5,465.l.83511.t.10,robert's Fabulous Team,5,PIM,8
-11,5,465.l.83511.t.10,robert's Fabulous Team,8,PPP,8
-11,5,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
-11,5,465.l.83511.t.10,robert's Fabulous Team,14,SOG,110
-11,5,465.l.83511.t.10,robert's Fabulous Team,16,FW,51
-11,5,465.l.83511.t.10,robert's Fabulous Team,31,HIT,42
-11,5,465.l.83511.t.10,robert's Fabulous Team,32,BLK,33
-11,5,465.l.83511.t.10,robert's Fabulous Team,19,W,0
-11,5,465.l.83511.t.10,robert's Fabulous Team,22,GA,8
-11,5,465.l.83511.t.10,robert's Fabulous Team,23,GAA,2.66
-11,5,465.l.83511.t.10,robert's Fabulous Team,25,SV,84
-11,5,465.l.83511.t.10,robert's Fabulous Team,24,SA,92
-11,5,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.913
-11,5,465.l.83511.t.10,robert's Fabulous Team,27,SHO,0
-11,6,465.l.83511.t.9,Dan's Dazzling Team,1,G,6
-11,6,465.l.83511.t.9,Dan's Dazzling Team,2,A,15
-11,6,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,-4
-11,6,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,14
-11,6,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,8
-11,6,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
-11,6,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,76
-11,6,465.l.83511.t.9,Dan's Dazzling Team,16,FW,82
-11,6,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,32
-11,6,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,38
-11,6,465.l.83511.t.9,Dan's Dazzling Team,19,W,0
-11,6,465.l.83511.t.9,Dan's Dazzling Team,22,GA,4
-11,6,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,2.94
-11,6,465.l.83511.t.9,Dan's Dazzling Team,25,SV,45
-11,6,465.l.83511.t.9,Dan's Dazzling Team,24,SA,49
-11,6,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.918
-11,6,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
-11,6,465.l.83511.t.11,P Diddlers,1,G,17
-11,6,465.l.83511.t.11,P Diddlers,2,A,29
-11,6,465.l.83511.t.11,P Diddlers,4,+/-,4
-11,6,465.l.83511.t.11,P Diddlers,5,PIM,43
-11,6,465.l.83511.t.11,P Diddlers,8,PPP,14
-11,6,465.l.83511.t.11,P Diddlers,11,SHP,2
-11,6,465.l.83511.t.11,P Diddlers,14,SOG,124
-11,6,465.l.83511.t.11,P Diddlers,16,FW,108
-11,6,465.l.83511.t.11,P Diddlers,31,HIT,61
-11,6,465.l.83511.t.11,P Diddlers,32,BLK,56
-11,6,465.l.83511.t.11,P Diddlers,19,W,3
-11,6,465.l.83511.t.11,P Diddlers,22,GA,11
-11,6,465.l.83511.t.11,P Diddlers,23,GAA,2.23
-11,6,465.l.83511.t.11,P Diddlers,25,SV,146
-11,6,465.l.83511.t.11,P Diddlers,24,SA,157
-11,6,465.l.83511.t.11,P Diddlers,26,SV%,0.93
-11,6,465.l.83511.t.11,P Diddlers,27,SHO,0
-12,1,465.l.83511.t.1,Jagrbombs,1,G,9
-12,1,465.l.83511.t.1,Jagrbombs,2,A,15
-12,1,465.l.83511.t.1,Jagrbombs,4,+/-,-15
-12,1,465.l.83511.t.1,Jagrbombs,5,PIM,46
-12,1,465.l.83511.t.1,Jagrbombs,8,PPP,9
-12,1,465.l.83511.t.1,Jagrbombs,11,SHP,0
-12,1,465.l.83511.t.1,Jagrbombs,14,SOG,61
-12,1,465.l.83511.t.1,Jagrbombs,16,FW,95
-12,1,465.l.83511.t.1,Jagrbombs,31,HIT,28
-12,1,465.l.83511.t.1,Jagrbombs,32,BLK,21
-12,1,465.l.83511.t.1,Jagrbombs,19,W,1
-12,1,465.l.83511.t.1,Jagrbombs,22,GA,10
-12,1,465.l.83511.t.1,Jagrbombs,23,GAA,3.37
-12,1,465.l.83511.t.1,Jagrbombs,25,SV,76
-12,1,465.l.83511.t.1,Jagrbombs,24,SA,86
-12,1,465.l.83511.t.1,Jagrbombs,26,SV%,0.884
-12,1,465.l.83511.t.1,Jagrbombs,27,SHO,0
-12,1,465.l.83511.t.12,The Epstein Islanders,1,G,6
-12,1,465.l.83511.t.12,The Epstein Islanders,2,A,6
-12,1,465.l.83511.t.12,The Epstein Islanders,4,+/-,-15
-12,1,465.l.83511.t.12,The Epstein Islanders,5,PIM,8
-12,1,465.l.83511.t.12,The Epstein Islanders,8,PPP,6
-12,1,465.l.83511.t.12,The Epstein Islanders,11,SHP,0
-12,1,465.l.83511.t.12,The Epstein Islanders,14,SOG,40
-12,1,465.l.83511.t.12,The Epstein Islanders,16,FW,38
-12,1,465.l.83511.t.12,The Epstein Islanders,31,HIT,50
-12,1,465.l.83511.t.12,The Epstein Islanders,32,BLK,36
-12,1,465.l.83511.t.12,The Epstein Islanders,19,W,2
-12,1,465.l.83511.t.12,The Epstein Islanders,22,GA,14
-12,1,465.l.83511.t.12,The Epstein Islanders,23,GAA,3.53
-12,1,465.l.83511.t.12,The Epstein Islanders,25,SV,92
-12,1,465.l.83511.t.12,The Epstein Islanders,24,SA,106
-12,1,465.l.83511.t.12,The Epstein Islanders,26,SV%,0.868
-12,1,465.l.83511.t.12,The Epstein Islanders,27,SHO,0
-12,2,465.l.83511.t.2,Bar Down Beauties,1,G,10
-12,2,465.l.83511.t.2,Bar Down Beauties,2,A,11
-12,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,-5
-12,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,10
-12,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,9
-12,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,0
-12,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,60
-12,2,465.l.83511.t.2,Bar Down Beauties,16,FW,102
-12,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,19
-12,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,23
-12,2,465.l.83511.t.2,Bar Down Beauties,19,W,2
-12,2,465.l.83511.t.2,Bar Down Beauties,22,GA,13
-12,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,3.26
-12,2,465.l.83511.t.2,Bar Down Beauties,25,SV,101
-12,2,465.l.83511.t.2,Bar Down Beauties,24,SA,114
-12,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,0.886
-12,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,0
-12,2,465.l.83511.t.10,robert's Fabulous Team,1,G,8
-12,2,465.l.83511.t.10,robert's Fabulous Team,2,A,11
-12,2,465.l.83511.t.10,robert's Fabulous Team,4,+/-,3
-12,2,465.l.83511.t.10,robert's Fabulous Team,5,PIM,23
-12,2,465.l.83511.t.10,robert's Fabulous Team,8,PPP,2
-12,2,465.l.83511.t.10,robert's Fabulous Team,11,SHP,0
-12,2,465.l.83511.t.10,robert's Fabulous Team,14,SOG,76
-12,2,465.l.83511.t.10,robert's Fabulous Team,16,FW,39
-12,2,465.l.83511.t.10,robert's Fabulous Team,31,HIT,29
-12,2,465.l.83511.t.10,robert's Fabulous Team,32,BLK,8
-12,2,465.l.83511.t.10,robert's Fabulous Team,19,W,0
-12,2,465.l.83511.t.10,robert's Fabulous Team,22,GA,10
-12,2,465.l.83511.t.10,robert's Fabulous Team,23,GAA,3.99
-12,2,465.l.83511.t.10,robert's Fabulous Team,25,SV,41
-12,2,465.l.83511.t.10,robert's Fabulous Team,24,SA,51
-12,2,465.l.83511.t.10,robert's Fabulous Team,26,SV%,0.804
-12,2,465.l.83511.t.10,robert's Fabulous Team,27,SHO,0
-12,3,465.l.83511.t.3,Autodraft Anomalies,1,G,12
-12,3,465.l.83511.t.3,Autodraft Anomalies,2,A,21
-12,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,21
-12,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,16
-12,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,5
-12,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,0
-12,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,76
-12,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,91
-12,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,54
-12,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,22
-12,3,465.l.83511.t.3,Autodraft Anomalies,19,W,3
-12,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,6
-12,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,1.47
-12,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,109
-12,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,115
-12,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,0.948
-12,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,1
-12,3,465.l.83511.t.11,P Diddlers,1,G,8
-12,3,465.l.83511.t.11,P Diddlers,2,A,12
-12,3,465.l.83511.t.11,P Diddlers,4,+/-,-7
-12,3,465.l.83511.t.11,P Diddlers,5,PIM,4
-12,3,465.l.83511.t.11,P Diddlers,8,PPP,6
-12,3,465.l.83511.t.11,P Diddlers,11,SHP,0
-12,3,465.l.83511.t.11,P Diddlers,14,SOG,61
-12,3,465.l.83511.t.11,P Diddlers,16,FW,52
-12,3,465.l.83511.t.11,P Diddlers,31,HIT,30
-12,3,465.l.83511.t.11,P Diddlers,32,BLK,18
-12,3,465.l.83511.t.11,P Diddlers,19,W,1
-12,3,465.l.83511.t.11,P Diddlers,22,GA,8
-12,3,465.l.83511.t.11,P Diddlers,23,GAA,2.7
-12,3,465.l.83511.t.11,P Diddlers,25,SV,95
-12,3,465.l.83511.t.11,P Diddlers,24,SA,103
-12,3,465.l.83511.t.11,P Diddlers,26,SV%,0.922
-12,3,465.l.83511.t.11,P Diddlers,27,SHO,0
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,15
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,10
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,8
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,12
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,5
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,0
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,70
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,78
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,29
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,23
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,1
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,4
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,2.03
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,35
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,39
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,0.897
-12,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,0
-12,4,465.l.83511.t.5,Hughes your daddy,1,G,6
-12,4,465.l.83511.t.5,Hughes your daddy,2,A,15
-12,4,465.l.83511.t.5,Hughes your daddy,4,+/-,-1
-12,4,465.l.83511.t.5,Hughes your daddy,5,PIM,6
-12,4,465.l.83511.t.5,Hughes your daddy,8,PPP,4
-12,4,465.l.83511.t.5,Hughes your daddy,11,SHP,0
-12,4,465.l.83511.t.5,Hughes your daddy,14,SOG,70
-12,4,465.l.83511.t.5,Hughes your daddy,16,FW,87
-12,4,465.l.83511.t.5,Hughes your daddy,31,HIT,24
-12,4,465.l.83511.t.5,Hughes your daddy,32,BLK,27
-12,4,465.l.83511.t.5,Hughes your daddy,19,W,1
-12,4,465.l.83511.t.5,Hughes your daddy,22,GA,14
-12,4,465.l.83511.t.5,Hughes your daddy,23,GAA,4.22
-12,4,465.l.83511.t.5,Hughes your daddy,25,SV,80
-12,4,465.l.83511.t.5,Hughes your daddy,24,SA,94
-12,4,465.l.83511.t.5,Hughes your daddy,26,SV%,0.851
-12,4,465.l.83511.t.5,Hughes your daddy,27,SHO,0
-12,5,465.l.83511.t.6,Sask Squatches,1,G,5
-12,5,465.l.83511.t.6,Sask Squatches,2,A,15
-12,5,465.l.83511.t.6,Sask Squatches,4,+/-,-4
-12,5,465.l.83511.t.6,Sask Squatches,5,PIM,22
-12,5,465.l.83511.t.6,Sask Squatches,8,PPP,5
-12,5,465.l.83511.t.6,Sask Squatches,11,SHP,1
-12,5,465.l.83511.t.6,Sask Squatches,14,SOG,68
-12,5,465.l.83511.t.6,Sask Squatches,16,FW,41
-12,5,465.l.83511.t.6,Sask Squatches,31,HIT,49
-12,5,465.l.83511.t.6,Sask Squatches,32,BLK,27
-12,5,465.l.83511.t.6,Sask Squatches,19,W,2
-12,5,465.l.83511.t.6,Sask Squatches,22,GA,12
-12,5,465.l.83511.t.6,Sask Squatches,23,GAA,3.05
-12,5,465.l.83511.t.6,Sask Squatches,25,SV,104
-12,5,465.l.83511.t.6,Sask Squatches,24,SA,116
-12,5,465.l.83511.t.6,Sask Squatches,26,SV%,0.897
-12,5,465.l.83511.t.6,Sask Squatches,27,SHO,0
-12,5,465.l.83511.t.7,Boats and Ahos,1,G,7
-12,5,465.l.83511.t.7,Boats and Ahos,2,A,10
-12,5,465.l.83511.t.7,Boats and Ahos,4,+/-,-4
-12,5,465.l.83511.t.7,Boats and Ahos,5,PIM,14
-12,5,465.l.83511.t.7,Boats and Ahos,8,PPP,4
-12,5,465.l.83511.t.7,Boats and Ahos,11,SHP,0
-12,5,465.l.83511.t.7,Boats and Ahos,14,SOG,83
-12,5,465.l.83511.t.7,Boats and Ahos,16,FW,77
-12,5,465.l.83511.t.7,Boats and Ahos,31,HIT,46
-12,5,465.l.83511.t.7,Boats and Ahos,32,BLK,34
-12,5,465.l.83511.t.7,Boats and Ahos,19,W,1
-12,5,465.l.83511.t.7,Boats and Ahos,22,GA,2
-12,5,465.l.83511.t.7,Boats and Ahos,23,GAA,2.0
-12,5,465.l.83511.t.7,Boats and Ahos,25,SV,18
-12,5,465.l.83511.t.7,Boats and Ahos,24,SA,20
-12,5,465.l.83511.t.7,Boats and Ahos,26,SV%,0.9
-12,5,465.l.83511.t.7,Boats and Ahos,27,SHO,0
-12,6,465.l.83511.t.8,Bros before Ahos,1,G,6
-12,6,465.l.83511.t.8,Bros before Ahos,2,A,11
-12,6,465.l.83511.t.8,Bros before Ahos,4,+/-,-1
-12,6,465.l.83511.t.8,Bros before Ahos,5,PIM,44
-12,6,465.l.83511.t.8,Bros before Ahos,8,PPP,6
-12,6,465.l.83511.t.8,Bros before Ahos,11,SHP,0
-12,6,465.l.83511.t.8,Bros before Ahos,14,SOG,74
-12,6,465.l.83511.t.8,Bros before Ahos,16,FW,88
-12,6,465.l.83511.t.8,Bros before Ahos,31,HIT,24
-12,6,465.l.83511.t.8,Bros before Ahos,32,BLK,38
-12,6,465.l.83511.t.8,Bros before Ahos,19,W,0
-12,6,465.l.83511.t.8,Bros before Ahos,22,GA,7
-12,6,465.l.83511.t.8,Bros before Ahos,23,GAA,4.77
-12,6,465.l.83511.t.8,Bros before Ahos,25,SV,32
-12,6,465.l.83511.t.8,Bros before Ahos,24,SA,39
-12,6,465.l.83511.t.8,Bros before Ahos,26,SV%,0.821
-12,6,465.l.83511.t.8,Bros before Ahos,27,SHO,0
-12,6,465.l.83511.t.9,Dan's Dazzling Team,1,G,0
-12,6,465.l.83511.t.9,Dan's Dazzling Team,2,A,8
-12,6,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,0
-12,6,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,6
-12,6,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,2
-12,6,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,0
-12,6,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,43
-12,6,465.l.83511.t.9,Dan's Dazzling Team,16,FW,34
-12,6,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,26
-12,6,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,24
-12,6,465.l.83511.t.9,Dan's Dazzling Team,19,W,0
-12,6,465.l.83511.t.9,Dan's Dazzling Team,22,GA,5
-12,6,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,5.0
-12,6,465.l.83511.t.9,Dan's Dazzling Team,25,SV,17
-12,6,465.l.83511.t.9,Dan's Dazzling Team,24,SA,22
-12,6,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,0.773
-12,6,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,0
-13,1,465.l.83511.t.1,Jagrbombs,1,G,
-13,1,465.l.83511.t.1,Jagrbombs,2,A,
-13,1,465.l.83511.t.1,Jagrbombs,4,+/-,
-13,1,465.l.83511.t.1,Jagrbombs,5,PIM,
-13,1,465.l.83511.t.1,Jagrbombs,8,PPP,
-13,1,465.l.83511.t.1,Jagrbombs,11,SHP,
-13,1,465.l.83511.t.1,Jagrbombs,14,SOG,
-13,1,465.l.83511.t.1,Jagrbombs,16,FW,
-13,1,465.l.83511.t.1,Jagrbombs,31,HIT,
-13,1,465.l.83511.t.1,Jagrbombs,32,BLK,
-13,1,465.l.83511.t.1,Jagrbombs,19,W,
-13,1,465.l.83511.t.1,Jagrbombs,22,GA,
-13,1,465.l.83511.t.1,Jagrbombs,23,GAA,
-13,1,465.l.83511.t.1,Jagrbombs,25,SV,
-13,1,465.l.83511.t.1,Jagrbombs,24,SA,
-13,1,465.l.83511.t.1,Jagrbombs,26,SV%,
-13,1,465.l.83511.t.1,Jagrbombs,27,SHO,
-13,1,465.l.83511.t.5,Hughes your daddy,1,G,
-13,1,465.l.83511.t.5,Hughes your daddy,2,A,
-13,1,465.l.83511.t.5,Hughes your daddy,4,+/-,
-13,1,465.l.83511.t.5,Hughes your daddy,5,PIM,
-13,1,465.l.83511.t.5,Hughes your daddy,8,PPP,
-13,1,465.l.83511.t.5,Hughes your daddy,11,SHP,
-13,1,465.l.83511.t.5,Hughes your daddy,14,SOG,
-13,1,465.l.83511.t.5,Hughes your daddy,16,FW,
-13,1,465.l.83511.t.5,Hughes your daddy,31,HIT,
-13,1,465.l.83511.t.5,Hughes your daddy,32,BLK,
-13,1,465.l.83511.t.5,Hughes your daddy,19,W,
-13,1,465.l.83511.t.5,Hughes your daddy,22,GA,
-13,1,465.l.83511.t.5,Hughes your daddy,23,GAA,
-13,1,465.l.83511.t.5,Hughes your daddy,25,SV,
-13,1,465.l.83511.t.5,Hughes your daddy,24,SA,
-13,1,465.l.83511.t.5,Hughes your daddy,26,SV%,
-13,1,465.l.83511.t.5,Hughes your daddy,27,SHO,
-13,2,465.l.83511.t.2,Bar Down Beauties,1,G,
-13,2,465.l.83511.t.2,Bar Down Beauties,2,A,
-13,2,465.l.83511.t.2,Bar Down Beauties,4,+/-,
-13,2,465.l.83511.t.2,Bar Down Beauties,5,PIM,
-13,2,465.l.83511.t.2,Bar Down Beauties,8,PPP,
-13,2,465.l.83511.t.2,Bar Down Beauties,11,SHP,
-13,2,465.l.83511.t.2,Bar Down Beauties,14,SOG,
-13,2,465.l.83511.t.2,Bar Down Beauties,16,FW,
-13,2,465.l.83511.t.2,Bar Down Beauties,31,HIT,
-13,2,465.l.83511.t.2,Bar Down Beauties,32,BLK,
-13,2,465.l.83511.t.2,Bar Down Beauties,19,W,
-13,2,465.l.83511.t.2,Bar Down Beauties,22,GA,
-13,2,465.l.83511.t.2,Bar Down Beauties,23,GAA,
-13,2,465.l.83511.t.2,Bar Down Beauties,25,SV,
-13,2,465.l.83511.t.2,Bar Down Beauties,24,SA,
-13,2,465.l.83511.t.2,Bar Down Beauties,26,SV%,
-13,2,465.l.83511.t.2,Bar Down Beauties,27,SHO,
-13,2,465.l.83511.t.7,Boats and Ahos,1,G,
-13,2,465.l.83511.t.7,Boats and Ahos,2,A,
-13,2,465.l.83511.t.7,Boats and Ahos,4,+/-,
-13,2,465.l.83511.t.7,Boats and Ahos,5,PIM,
-13,2,465.l.83511.t.7,Boats and Ahos,8,PPP,
-13,2,465.l.83511.t.7,Boats and Ahos,11,SHP,
-13,2,465.l.83511.t.7,Boats and Ahos,14,SOG,
-13,2,465.l.83511.t.7,Boats and Ahos,16,FW,
-13,2,465.l.83511.t.7,Boats and Ahos,31,HIT,
-13,2,465.l.83511.t.7,Boats and Ahos,32,BLK,
-13,2,465.l.83511.t.7,Boats and Ahos,19,W,
-13,2,465.l.83511.t.7,Boats and Ahos,22,GA,
-13,2,465.l.83511.t.7,Boats and Ahos,23,GAA,
-13,2,465.l.83511.t.7,Boats and Ahos,25,SV,
-13,2,465.l.83511.t.7,Boats and Ahos,24,SA,
-13,2,465.l.83511.t.7,Boats and Ahos,26,SV%,
-13,2,465.l.83511.t.7,Boats and Ahos,27,SHO,
-13,3,465.l.83511.t.3,Autodraft Anomalies,1,G,
-13,3,465.l.83511.t.3,Autodraft Anomalies,2,A,
-13,3,465.l.83511.t.3,Autodraft Anomalies,4,+/-,
-13,3,465.l.83511.t.3,Autodraft Anomalies,5,PIM,
-13,3,465.l.83511.t.3,Autodraft Anomalies,8,PPP,
-13,3,465.l.83511.t.3,Autodraft Anomalies,11,SHP,
-13,3,465.l.83511.t.3,Autodraft Anomalies,14,SOG,
-13,3,465.l.83511.t.3,Autodraft Anomalies,16,FW,
-13,3,465.l.83511.t.3,Autodraft Anomalies,31,HIT,
-13,3,465.l.83511.t.3,Autodraft Anomalies,32,BLK,
-13,3,465.l.83511.t.3,Autodraft Anomalies,19,W,
-13,3,465.l.83511.t.3,Autodraft Anomalies,22,GA,
-13,3,465.l.83511.t.3,Autodraft Anomalies,23,GAA,
-13,3,465.l.83511.t.3,Autodraft Anomalies,25,SV,
-13,3,465.l.83511.t.3,Autodraft Anomalies,24,SA,
-13,3,465.l.83511.t.3,Autodraft Anomalies,26,SV%,
-13,3,465.l.83511.t.3,Autodraft Anomalies,27,SHO,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,1,G,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,2,A,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,4,+/-,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,5,PIM,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,8,PPP,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,11,SHP,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,14,SOG,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,16,FW,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,31,HIT,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,32,BLK,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,19,W,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,22,GA,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,23,GAA,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,25,SV,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,24,SA,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,26,SV%,
-13,3,465.l.83511.t.9,Dan's Dazzling Team,27,SHO,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,1,G,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,2,A,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,4,+/-,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,5,PIM,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,8,PPP,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,11,SHP,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,14,SOG,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,16,FW,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,31,HIT,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,32,BLK,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,19,W,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,22,GA,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,23,GAA,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,25,SV,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,24,SA,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,26,SV%,
-13,4,465.l.83511.t.4,Trocheck Backcheck Paycheque,27,SHO,
-13,4,465.l.83511.t.10,robert's Fabulous Team,1,G,
-13,4,465.l.83511.t.10,robert's Fabulous Team,2,A,
-13,4,465.l.83511.t.10,robert's Fabulous Team,4,+/-,
-13,4,465.l.83511.t.10,robert's Fabulous Team,5,PIM,
-13,4,465.l.83511.t.10,robert's Fabulous Team,8,PPP,
-13,4,465.l.83511.t.10,robert's Fabulous Team,11,SHP,
-13,4,465.l.83511.t.10,robert's Fabulous Team,14,SOG,
-13,4,465.l.83511.t.10,robert's Fabulous Team,16,FW,
-13,4,465.l.83511.t.10,robert's Fabulous Team,31,HIT,
-13,4,465.l.83511.t.10,robert's Fabulous Team,32,BLK,
-13,4,465.l.83511.t.10,robert's Fabulous Team,19,W,
-13,4,465.l.83511.t.10,robert's Fabulous Team,22,GA,
-13,4,465.l.83511.t.10,robert's Fabulous Team,23,GAA,
-13,4,465.l.83511.t.10,robert's Fabulous Team,25,SV,
-13,4,465.l.83511.t.10,robert's Fabulous Team,24,SA,
-13,4,465.l.83511.t.10,robert's Fabulous Team,26,SV%,
-13,4,465.l.83511.t.10,robert's Fabulous Team,27,SHO,
-13,5,465.l.83511.t.6,Sask Squatches,1,G,
-13,5,465.l.83511.t.6,Sask Squatches,2,A,
-13,5,465.l.83511.t.6,Sask Squatches,4,+/-,
-13,5,465.l.83511.t.6,Sask Squatches,5,PIM,
-13,5,465.l.83511.t.6,Sask Squatches,8,PPP,
-13,5,465.l.83511.t.6,Sask Squatches,11,SHP,
-13,5,465.l.83511.t.6,Sask Squatches,14,SOG,
-13,5,465.l.83511.t.6,Sask Squatches,16,FW,
-13,5,465.l.83511.t.6,Sask Squatches,31,HIT,
-13,5,465.l.83511.t.6,Sask Squatches,32,BLK,
-13,5,465.l.83511.t.6,Sask Squatches,19,W,
-13,5,465.l.83511.t.6,Sask Squatches,22,GA,
-13,5,465.l.83511.t.6,Sask Squatches,23,GAA,
-13,5,465.l.83511.t.6,Sask Squatches,25,SV,
-13,5,465.l.83511.t.6,Sask Squatches,24,SA,
-13,5,465.l.83511.t.6,Sask Squatches,26,SV%,
-13,5,465.l.83511.t.6,Sask Squatches,27,SHO,
-13,5,465.l.83511.t.11,P Diddlers,1,G,
-13,5,465.l.83511.t.11,P Diddlers,2,A,
-13,5,465.l.83511.t.11,P Diddlers,4,+/-,
-13,5,465.l.83511.t.11,P Diddlers,5,PIM,
-13,5,465.l.83511.t.11,P Diddlers,8,PPP,
-13,5,465.l.83511.t.11,P Diddlers,11,SHP,
-13,5,465.l.83511.t.11,P Diddlers,14,SOG,
-13,5,465.l.83511.t.11,P Diddlers,16,FW,
-13,5,465.l.83511.t.11,P Diddlers,31,HIT,
-13,5,465.l.83511.t.11,P Diddlers,32,BLK,
-13,5,465.l.83511.t.11,P Diddlers,19,W,
-13,5,465.l.83511.t.11,P Diddlers,22,GA,
-13,5,465.l.83511.t.11,P Diddlers,23,GAA,
-13,5,465.l.83511.t.11,P Diddlers,25,SV,
-13,5,465.l.83511.t.11,P Diddlers,24,SA,
-13,5,465.l.83511.t.11,P Diddlers,26,SV%,
-13,5,465.l.83511.t.11,P Diddlers,27,SHO,
-13,6,465.l.83511.t.8,Bros before Ahos,1,G,
-13,6,465.l.83511.t.8,Bros before Ahos,2,A,
-13,6,465.l.83511.t.8,Bros before Ahos,4,+/-,
-13,6,465.l.83511.t.8,Bros before Ahos,5,PIM,
-13,6,465.l.83511.t.8,Bros before Ahos,8,PPP,
-13,6,465.l.83511.t.8,Bros before Ahos,11,SHP,
-13,6,465.l.83511.t.8,Bros before Ahos,14,SOG,
-13,6,465.l.83511.t.8,Bros before Ahos,16,FW,
-13,6,465.l.83511.t.8,Bros before Ahos,31,HIT,
-13,6,465.l.83511.t.8,Bros before Ahos,32,BLK,
-13,6,465.l.83511.t.8,Bros before Ahos,19,W,
-13,6,465.l.83511.t.8,Bros before Ahos,22,GA,
-13,6,465.l.83511.t.8,Bros before Ahos,23,GAA,
-13,6,465.l.83511.t.8,Bros before Ahos,25,SV,
-13,6,465.l.83511.t.8,Bros before Ahos,24,SA,
-13,6,465.l.83511.t.8,Bros before Ahos,26,SV%,
-13,6,465.l.83511.t.8,Bros before Ahos,27,SHO,
-13,6,465.l.83511.t.12,The Epstein Islanders,1,G,
-13,6,465.l.83511.t.12,The Epstein Islanders,2,A,
-13,6,465.l.83511.t.12,The Epstein Islanders,4,+/-,
-13,6,465.l.83511.t.12,The Epstein Islanders,5,PIM,
-13,6,465.l.83511.t.12,The Epstein Islanders,8,PPP,
-13,6,465.l.83511.t.12,The Epstein Islanders,11,SHP,
-13,6,465.l.83511.t.12,The Epstein Islanders,14,SOG,
-13,6,465.l.83511.t.12,The Epstein Islanders,16,FW,
-13,6,465.l.83511.t.12,The Epstein Islanders,31,HIT,
-13,6,465.l.83511.t.12,The Epstein Islanders,32,BLK,
-13,6,465.l.83511.t.12,The Epstein Islanders,19,W,
-13,6,465.l.83511.t.12,The Epstein Islanders,22,GA,
-13,6,465.l.83511.t.12,The Epstein Islanders,23,GAA,
-13,6,465.l.83511.t.12,The Epstein Islanders,25,SV,
-13,6,465.l.83511.t.12,The Epstein Islanders,24,SA,
-13,6,465.l.83511.t.12,The Epstein Islanders,26,SV%,
-13,6,465.l.83511.t.12,The Epstein Islanders,27,SHO,
+1,1,465.l.105618.t.1,Winless without Bakov,1,G,11
+1,1,465.l.105618.t.1,Winless without Bakov,2,A,15
+1,1,465.l.105618.t.1,Winless without Bakov,8,PPP,6
+1,1,465.l.105618.t.1,Winless without Bakov,14,SOG,107
+1,1,465.l.105618.t.1,Winless without Bakov,31,HIT,48
+1,1,465.l.105618.t.1,Winless without Bakov,32,BLK,26
+1,1,465.l.105618.t.1,Winless without Bakov,19,W,2
+1,1,465.l.105618.t.1,Winless without Bakov,22,GA,11
+1,1,465.l.105618.t.1,Winless without Bakov,25,SV,108
+1,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+1,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,15
+1,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,23
+1,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,14
+1,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,97
+1,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,60
+1,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,38
+1,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,2
+1,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,15
+1,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,103
+1,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,0
+1,2,465.l.105618.t.2,Triple Headed Monster,1,G,6
+1,2,465.l.105618.t.2,Triple Headed Monster,2,A,20
+1,2,465.l.105618.t.2,Triple Headed Monster,8,PPP,10
+1,2,465.l.105618.t.2,Triple Headed Monster,14,SOG,74
+1,2,465.l.105618.t.2,Triple Headed Monster,31,HIT,14
+1,2,465.l.105618.t.2,Triple Headed Monster,32,BLK,13
+1,2,465.l.105618.t.2,Triple Headed Monster,19,W,0
+1,2,465.l.105618.t.2,Triple Headed Monster,22,GA,15
+1,2,465.l.105618.t.2,Triple Headed Monster,25,SV,71
+1,2,465.l.105618.t.2,Triple Headed Monster,27,SHO,0
+1,2,465.l.105618.t.6,Bad Tape Hockey,1,G,10
+1,2,465.l.105618.t.6,Bad Tape Hockey,2,A,20
+1,2,465.l.105618.t.6,Bad Tape Hockey,8,PPP,7
+1,2,465.l.105618.t.6,Bad Tape Hockey,14,SOG,102
+1,2,465.l.105618.t.6,Bad Tape Hockey,31,HIT,55
+1,2,465.l.105618.t.6,Bad Tape Hockey,32,BLK,29
+1,2,465.l.105618.t.6,Bad Tape Hockey,19,W,1
+1,2,465.l.105618.t.6,Bad Tape Hockey,22,GA,19
+1,2,465.l.105618.t.6,Bad Tape Hockey,25,SV,118
+1,2,465.l.105618.t.6,Bad Tape Hockey,27,SHO,0
+1,3,465.l.105618.t.3,The Nephilim,1,G,2
+1,3,465.l.105618.t.3,The Nephilim,2,A,27
+1,3,465.l.105618.t.3,The Nephilim,8,PPP,7
+1,3,465.l.105618.t.3,The Nephilim,14,SOG,73
+1,3,465.l.105618.t.3,The Nephilim,31,HIT,43
+1,3,465.l.105618.t.3,The Nephilim,32,BLK,29
+1,3,465.l.105618.t.3,The Nephilim,19,W,3
+1,3,465.l.105618.t.3,The Nephilim,22,GA,9
+1,3,465.l.105618.t.3,The Nephilim,25,SV,144
+1,3,465.l.105618.t.3,The Nephilim,27,SHO,0
+1,3,465.l.105618.t.11,The Dark Side,1,G,10
+1,3,465.l.105618.t.11,The Dark Side,2,A,8
+1,3,465.l.105618.t.11,The Dark Side,8,PPP,9
+1,3,465.l.105618.t.11,The Dark Side,14,SOG,84
+1,3,465.l.105618.t.11,The Dark Side,31,HIT,64
+1,3,465.l.105618.t.11,The Dark Side,32,BLK,38
+1,3,465.l.105618.t.11,The Dark Side,19,W,1
+1,3,465.l.105618.t.11,The Dark Side,22,GA,15
+1,3,465.l.105618.t.11,The Dark Side,25,SV,104
+1,3,465.l.105618.t.11,The Dark Side,27,SHO,1
+1,4,465.l.105618.t.4,Candy Kanes,1,G,11
+1,4,465.l.105618.t.4,Candy Kanes,2,A,18
+1,4,465.l.105618.t.4,Candy Kanes,8,PPP,17
+1,4,465.l.105618.t.4,Candy Kanes,14,SOG,105
+1,4,465.l.105618.t.4,Candy Kanes,31,HIT,42
+1,4,465.l.105618.t.4,Candy Kanes,32,BLK,29
+1,4,465.l.105618.t.4,Candy Kanes,19,W,1
+1,4,465.l.105618.t.4,Candy Kanes,22,GA,13
+1,4,465.l.105618.t.4,Candy Kanes,25,SV,92
+1,4,465.l.105618.t.4,Candy Kanes,27,SHO,0
+1,4,465.l.105618.t.12,Fantasy Reaper,1,G,11
+1,4,465.l.105618.t.12,Fantasy Reaper,2,A,13
+1,4,465.l.105618.t.12,Fantasy Reaper,8,PPP,5
+1,4,465.l.105618.t.12,Fantasy Reaper,14,SOG,93
+1,4,465.l.105618.t.12,Fantasy Reaper,31,HIT,54
+1,4,465.l.105618.t.12,Fantasy Reaper,32,BLK,40
+1,4,465.l.105618.t.12,Fantasy Reaper,19,W,1
+1,4,465.l.105618.t.12,Fantasy Reaper,22,GA,14
+1,4,465.l.105618.t.12,Fantasy Reaper,25,SV,136
+1,4,465.l.105618.t.12,Fantasy Reaper,27,SHO,0
+1,5,465.l.105618.t.7,bridaaaag,1,G,13
+1,5,465.l.105618.t.7,bridaaaag,2,A,23
+1,5,465.l.105618.t.7,bridaaaag,8,PPP,15
+1,5,465.l.105618.t.7,bridaaaag,14,SOG,92
+1,5,465.l.105618.t.7,bridaaaag,31,HIT,32
+1,5,465.l.105618.t.7,bridaaaag,32,BLK,48
+1,5,465.l.105618.t.7,bridaaaag,19,W,3
+1,5,465.l.105618.t.7,bridaaaag,22,GA,12
+1,5,465.l.105618.t.7,bridaaaag,25,SV,98
+1,5,465.l.105618.t.7,bridaaaag,27,SHO,0
+1,5,465.l.105618.t.10,Puck Shiesty,1,G,7
+1,5,465.l.105618.t.10,Puck Shiesty,2,A,18
+1,5,465.l.105618.t.10,Puck Shiesty,8,PPP,12
+1,5,465.l.105618.t.10,Puck Shiesty,14,SOG,65
+1,5,465.l.105618.t.10,Puck Shiesty,31,HIT,31
+1,5,465.l.105618.t.10,Puck Shiesty,32,BLK,20
+1,5,465.l.105618.t.10,Puck Shiesty,19,W,3
+1,5,465.l.105618.t.10,Puck Shiesty,22,GA,5
+1,5,465.l.105618.t.10,Puck Shiesty,25,SV,147
+1,5,465.l.105618.t.10,Puck Shiesty,27,SHO,1
+1,6,465.l.105618.t.8,hnahm,1,G,9
+1,6,465.l.105618.t.8,hnahm,2,A,21
+1,6,465.l.105618.t.8,hnahm,8,PPP,8
+1,6,465.l.105618.t.8,hnahm,14,SOG,80
+1,6,465.l.105618.t.8,hnahm,31,HIT,57
+1,6,465.l.105618.t.8,hnahm,32,BLK,33
+1,6,465.l.105618.t.8,hnahm,19,W,3
+1,6,465.l.105618.t.8,hnahm,22,GA,12
+1,6,465.l.105618.t.8,hnahm,25,SV,118
+1,6,465.l.105618.t.8,hnahm,27,SHO,1
+1,6,465.l.105618.t.9,Murray Ploppins,1,G,8
+1,6,465.l.105618.t.9,Murray Ploppins,2,A,21
+1,6,465.l.105618.t.9,Murray Ploppins,8,PPP,4
+1,6,465.l.105618.t.9,Murray Ploppins,14,SOG,72
+1,6,465.l.105618.t.9,Murray Ploppins,31,HIT,43
+1,6,465.l.105618.t.9,Murray Ploppins,32,BLK,29
+1,6,465.l.105618.t.9,Murray Ploppins,19,W,4
+1,6,465.l.105618.t.9,Murray Ploppins,22,GA,9
+1,6,465.l.105618.t.9,Murray Ploppins,25,SV,107
+1,6,465.l.105618.t.9,Murray Ploppins,27,SHO,0
+2,1,465.l.105618.t.1,Winless without Bakov,1,G,8
+2,1,465.l.105618.t.1,Winless without Bakov,2,A,28
+2,1,465.l.105618.t.1,Winless without Bakov,8,PPP,14
+2,1,465.l.105618.t.1,Winless without Bakov,14,SOG,113
+2,1,465.l.105618.t.1,Winless without Bakov,31,HIT,68
+2,1,465.l.105618.t.1,Winless without Bakov,32,BLK,44
+2,1,465.l.105618.t.1,Winless without Bakov,19,W,3
+2,1,465.l.105618.t.1,Winless without Bakov,22,GA,15
+2,1,465.l.105618.t.1,Winless without Bakov,25,SV,125
+2,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+2,1,465.l.105618.t.3,The Nephilim,1,G,13
+2,1,465.l.105618.t.3,The Nephilim,2,A,39
+2,1,465.l.105618.t.3,The Nephilim,8,PPP,21
+2,1,465.l.105618.t.3,The Nephilim,14,SOG,135
+2,1,465.l.105618.t.3,The Nephilim,31,HIT,30
+2,1,465.l.105618.t.3,The Nephilim,32,BLK,27
+2,1,465.l.105618.t.3,The Nephilim,19,W,2
+2,1,465.l.105618.t.3,The Nephilim,22,GA,19
+2,1,465.l.105618.t.3,The Nephilim,25,SV,135
+2,1,465.l.105618.t.3,The Nephilim,27,SHO,0
+2,2,465.l.105618.t.2,Triple Headed Monster,1,G,9
+2,2,465.l.105618.t.2,Triple Headed Monster,2,A,21
+2,2,465.l.105618.t.2,Triple Headed Monster,8,PPP,10
+2,2,465.l.105618.t.2,Triple Headed Monster,14,SOG,133
+2,2,465.l.105618.t.2,Triple Headed Monster,31,HIT,36
+2,2,465.l.105618.t.2,Triple Headed Monster,32,BLK,20
+2,2,465.l.105618.t.2,Triple Headed Monster,19,W,3
+2,2,465.l.105618.t.2,Triple Headed Monster,22,GA,16
+2,2,465.l.105618.t.2,Triple Headed Monster,25,SV,150
+2,2,465.l.105618.t.2,Triple Headed Monster,27,SHO,1
+2,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,14
+2,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,34
+2,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,13
+2,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,108
+2,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,63
+2,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,54
+2,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,5
+2,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,9
+2,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,99
+2,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,0
+2,3,465.l.105618.t.4,Candy Kanes,1,G,14
+2,3,465.l.105618.t.4,Candy Kanes,2,A,24
+2,3,465.l.105618.t.4,Candy Kanes,8,PPP,14
+2,3,465.l.105618.t.4,Candy Kanes,14,SOG,131
+2,3,465.l.105618.t.4,Candy Kanes,31,HIT,41
+2,3,465.l.105618.t.4,Candy Kanes,32,BLK,42
+2,3,465.l.105618.t.4,Candy Kanes,19,W,5
+2,3,465.l.105618.t.4,Candy Kanes,22,GA,14
+2,3,465.l.105618.t.4,Candy Kanes,25,SV,131
+2,3,465.l.105618.t.4,Candy Kanes,27,SHO,0
+2,3,465.l.105618.t.6,Bad Tape Hockey,1,G,10
+2,3,465.l.105618.t.6,Bad Tape Hockey,2,A,16
+2,3,465.l.105618.t.6,Bad Tape Hockey,8,PPP,6
+2,3,465.l.105618.t.6,Bad Tape Hockey,14,SOG,110
+2,3,465.l.105618.t.6,Bad Tape Hockey,31,HIT,69
+2,3,465.l.105618.t.6,Bad Tape Hockey,32,BLK,53
+2,3,465.l.105618.t.6,Bad Tape Hockey,19,W,1
+2,3,465.l.105618.t.6,Bad Tape Hockey,22,GA,11
+2,3,465.l.105618.t.6,Bad Tape Hockey,25,SV,74
+2,3,465.l.105618.t.6,Bad Tape Hockey,27,SHO,0
+2,4,465.l.105618.t.7,bridaaaag,1,G,13
+2,4,465.l.105618.t.7,bridaaaag,2,A,26
+2,4,465.l.105618.t.7,bridaaaag,8,PPP,9
+2,4,465.l.105618.t.7,bridaaaag,14,SOG,121
+2,4,465.l.105618.t.7,bridaaaag,31,HIT,45
+2,4,465.l.105618.t.7,bridaaaag,32,BLK,44
+2,4,465.l.105618.t.7,bridaaaag,19,W,3
+2,4,465.l.105618.t.7,bridaaaag,22,GA,12
+2,4,465.l.105618.t.7,bridaaaag,25,SV,116
+2,4,465.l.105618.t.7,bridaaaag,27,SHO,0
+2,4,465.l.105618.t.8,hnahm,1,G,25
+2,4,465.l.105618.t.8,hnahm,2,A,27
+2,4,465.l.105618.t.8,hnahm,8,PPP,25
+2,4,465.l.105618.t.8,hnahm,14,SOG,145
+2,4,465.l.105618.t.8,hnahm,31,HIT,48
+2,4,465.l.105618.t.8,hnahm,32,BLK,54
+2,4,465.l.105618.t.8,hnahm,19,W,1
+2,4,465.l.105618.t.8,hnahm,22,GA,23
+2,4,465.l.105618.t.8,hnahm,25,SV,155
+2,4,465.l.105618.t.8,hnahm,27,SHO,0
+2,5,465.l.105618.t.9,Murray Ploppins,1,G,19
+2,5,465.l.105618.t.9,Murray Ploppins,2,A,22
+2,5,465.l.105618.t.9,Murray Ploppins,8,PPP,13
+2,5,465.l.105618.t.9,Murray Ploppins,14,SOG,147
+2,5,465.l.105618.t.9,Murray Ploppins,31,HIT,91
+2,5,465.l.105618.t.9,Murray Ploppins,32,BLK,41
+2,5,465.l.105618.t.9,Murray Ploppins,19,W,2
+2,5,465.l.105618.t.9,Murray Ploppins,22,GA,9
+2,5,465.l.105618.t.9,Murray Ploppins,25,SV,86
+2,5,465.l.105618.t.9,Murray Ploppins,27,SHO,0
+2,5,465.l.105618.t.12,Fantasy Reaper,1,G,16
+2,5,465.l.105618.t.12,Fantasy Reaper,2,A,32
+2,5,465.l.105618.t.12,Fantasy Reaper,8,PPP,16
+2,5,465.l.105618.t.12,Fantasy Reaper,14,SOG,117
+2,5,465.l.105618.t.12,Fantasy Reaper,31,HIT,82
+2,5,465.l.105618.t.12,Fantasy Reaper,32,BLK,44
+2,5,465.l.105618.t.12,Fantasy Reaper,19,W,4
+2,5,465.l.105618.t.12,Fantasy Reaper,22,GA,11
+2,5,465.l.105618.t.12,Fantasy Reaper,25,SV,140
+2,5,465.l.105618.t.12,Fantasy Reaper,27,SHO,0
+2,6,465.l.105618.t.10,Puck Shiesty,1,G,22
+2,6,465.l.105618.t.10,Puck Shiesty,2,A,20
+2,6,465.l.105618.t.10,Puck Shiesty,8,PPP,10
+2,6,465.l.105618.t.10,Puck Shiesty,14,SOG,116
+2,6,465.l.105618.t.10,Puck Shiesty,31,HIT,52
+2,6,465.l.105618.t.10,Puck Shiesty,32,BLK,44
+2,6,465.l.105618.t.10,Puck Shiesty,19,W,2
+2,6,465.l.105618.t.10,Puck Shiesty,22,GA,8
+2,6,465.l.105618.t.10,Puck Shiesty,25,SV,87
+2,6,465.l.105618.t.10,Puck Shiesty,27,SHO,0
+2,6,465.l.105618.t.11,The Dark Side,1,G,13
+2,6,465.l.105618.t.11,The Dark Side,2,A,15
+2,6,465.l.105618.t.11,The Dark Side,8,PPP,6
+2,6,465.l.105618.t.11,The Dark Side,14,SOG,108
+2,6,465.l.105618.t.11,The Dark Side,31,HIT,74
+2,6,465.l.105618.t.11,The Dark Side,32,BLK,37
+2,6,465.l.105618.t.11,The Dark Side,19,W,0
+2,6,465.l.105618.t.11,The Dark Side,22,GA,13
+2,6,465.l.105618.t.11,The Dark Side,25,SV,114
+2,6,465.l.105618.t.11,The Dark Side,27,SHO,0
+3,1,465.l.105618.t.1,Winless without Bakov,1,G,15
+3,1,465.l.105618.t.1,Winless without Bakov,2,A,21
+3,1,465.l.105618.t.1,Winless without Bakov,8,PPP,12
+3,1,465.l.105618.t.1,Winless without Bakov,14,SOG,135
+3,1,465.l.105618.t.1,Winless without Bakov,31,HIT,80
+3,1,465.l.105618.t.1,Winless without Bakov,32,BLK,48
+3,1,465.l.105618.t.1,Winless without Bakov,19,W,6
+3,1,465.l.105618.t.1,Winless without Bakov,22,GA,31
+3,1,465.l.105618.t.1,Winless without Bakov,25,SV,272
+3,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+3,1,465.l.105618.t.10,Puck Shiesty,1,G,13
+3,1,465.l.105618.t.10,Puck Shiesty,2,A,39
+3,1,465.l.105618.t.10,Puck Shiesty,8,PPP,23
+3,1,465.l.105618.t.10,Puck Shiesty,14,SOG,120
+3,1,465.l.105618.t.10,Puck Shiesty,31,HIT,44
+3,1,465.l.105618.t.10,Puck Shiesty,32,BLK,47
+3,1,465.l.105618.t.10,Puck Shiesty,19,W,3
+3,1,465.l.105618.t.10,Puck Shiesty,22,GA,21
+3,1,465.l.105618.t.10,Puck Shiesty,25,SV,197
+3,1,465.l.105618.t.10,Puck Shiesty,27,SHO,0
+3,2,465.l.105618.t.2,Triple Headed Monster,1,G,16
+3,2,465.l.105618.t.2,Triple Headed Monster,2,A,25
+3,2,465.l.105618.t.2,Triple Headed Monster,8,PPP,14
+3,2,465.l.105618.t.2,Triple Headed Monster,14,SOG,132
+3,2,465.l.105618.t.2,Triple Headed Monster,31,HIT,20
+3,2,465.l.105618.t.2,Triple Headed Monster,32,BLK,38
+3,2,465.l.105618.t.2,Triple Headed Monster,19,W,2
+3,2,465.l.105618.t.2,Triple Headed Monster,22,GA,24
+3,2,465.l.105618.t.2,Triple Headed Monster,25,SV,153
+3,2,465.l.105618.t.2,Triple Headed Monster,27,SHO,0
+3,2,465.l.105618.t.3,The Nephilim,1,G,22
+3,2,465.l.105618.t.3,The Nephilim,2,A,18
+3,2,465.l.105618.t.3,The Nephilim,8,PPP,11
+3,2,465.l.105618.t.3,The Nephilim,14,SOG,107
+3,2,465.l.105618.t.3,The Nephilim,31,HIT,37
+3,2,465.l.105618.t.3,The Nephilim,32,BLK,26
+3,2,465.l.105618.t.3,The Nephilim,19,W,3
+3,2,465.l.105618.t.3,The Nephilim,22,GA,19
+3,2,465.l.105618.t.3,The Nephilim,25,SV,167
+3,2,465.l.105618.t.3,The Nephilim,27,SHO,1
+3,3,465.l.105618.t.4,Candy Kanes,1,G,17
+3,3,465.l.105618.t.4,Candy Kanes,2,A,23
+3,3,465.l.105618.t.4,Candy Kanes,8,PPP,14
+3,3,465.l.105618.t.4,Candy Kanes,14,SOG,141
+3,3,465.l.105618.t.4,Candy Kanes,31,HIT,49
+3,3,465.l.105618.t.4,Candy Kanes,32,BLK,39
+3,3,465.l.105618.t.4,Candy Kanes,19,W,2
+3,3,465.l.105618.t.4,Candy Kanes,22,GA,18
+3,3,465.l.105618.t.4,Candy Kanes,25,SV,119
+3,3,465.l.105618.t.4,Candy Kanes,27,SHO,0
+3,3,465.l.105618.t.9,Murray Ploppins,1,G,13
+3,3,465.l.105618.t.9,Murray Ploppins,2,A,32
+3,3,465.l.105618.t.9,Murray Ploppins,8,PPP,16
+3,3,465.l.105618.t.9,Murray Ploppins,14,SOG,114
+3,3,465.l.105618.t.9,Murray Ploppins,31,HIT,73
+3,3,465.l.105618.t.9,Murray Ploppins,32,BLK,55
+3,3,465.l.105618.t.9,Murray Ploppins,19,W,5
+3,3,465.l.105618.t.9,Murray Ploppins,22,GA,22
+3,3,465.l.105618.t.9,Murray Ploppins,25,SV,161
+3,3,465.l.105618.t.9,Murray Ploppins,27,SHO,1
+3,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,19
+3,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,39
+3,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,20
+3,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,151
+3,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,50
+3,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,60
+3,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,1
+3,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,12
+3,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,109
+3,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,0
+3,4,465.l.105618.t.6,Bad Tape Hockey,1,G,15
+3,4,465.l.105618.t.6,Bad Tape Hockey,2,A,28
+3,4,465.l.105618.t.6,Bad Tape Hockey,8,PPP,13
+3,4,465.l.105618.t.6,Bad Tape Hockey,14,SOG,128
+3,4,465.l.105618.t.6,Bad Tape Hockey,31,HIT,61
+3,4,465.l.105618.t.6,Bad Tape Hockey,32,BLK,67
+3,4,465.l.105618.t.6,Bad Tape Hockey,19,W,1
+3,4,465.l.105618.t.6,Bad Tape Hockey,22,GA,9
+3,4,465.l.105618.t.6,Bad Tape Hockey,25,SV,112
+3,4,465.l.105618.t.6,Bad Tape Hockey,27,SHO,0
+3,5,465.l.105618.t.7,bridaaaag,1,G,17
+3,5,465.l.105618.t.7,bridaaaag,2,A,24
+3,5,465.l.105618.t.7,bridaaaag,8,PPP,13
+3,5,465.l.105618.t.7,bridaaaag,14,SOG,114
+3,5,465.l.105618.t.7,bridaaaag,31,HIT,55
+3,5,465.l.105618.t.7,bridaaaag,32,BLK,43
+3,5,465.l.105618.t.7,bridaaaag,19,W,2
+3,5,465.l.105618.t.7,bridaaaag,22,GA,20
+3,5,465.l.105618.t.7,bridaaaag,25,SV,158
+3,5,465.l.105618.t.7,bridaaaag,27,SHO,0
+3,5,465.l.105618.t.12,Fantasy Reaper,1,G,16
+3,5,465.l.105618.t.12,Fantasy Reaper,2,A,25
+3,5,465.l.105618.t.12,Fantasy Reaper,8,PPP,12
+3,5,465.l.105618.t.12,Fantasy Reaper,14,SOG,135
+3,5,465.l.105618.t.12,Fantasy Reaper,31,HIT,53
+3,5,465.l.105618.t.12,Fantasy Reaper,32,BLK,58
+3,5,465.l.105618.t.12,Fantasy Reaper,19,W,3
+3,5,465.l.105618.t.12,Fantasy Reaper,22,GA,4
+3,5,465.l.105618.t.12,Fantasy Reaper,25,SV,81
+3,5,465.l.105618.t.12,Fantasy Reaper,27,SHO,0
+3,6,465.l.105618.t.8,hnahm,1,G,20
+3,6,465.l.105618.t.8,hnahm,2,A,30
+3,6,465.l.105618.t.8,hnahm,8,PPP,18
+3,6,465.l.105618.t.8,hnahm,14,SOG,153
+3,6,465.l.105618.t.8,hnahm,31,HIT,46
+3,6,465.l.105618.t.8,hnahm,32,BLK,59
+3,6,465.l.105618.t.8,hnahm,19,W,3
+3,6,465.l.105618.t.8,hnahm,22,GA,13
+3,6,465.l.105618.t.8,hnahm,25,SV,132
+3,6,465.l.105618.t.8,hnahm,27,SHO,0
+3,6,465.l.105618.t.11,The Dark Side,1,G,14
+3,6,465.l.105618.t.11,The Dark Side,2,A,18
+3,6,465.l.105618.t.11,The Dark Side,8,PPP,7
+3,6,465.l.105618.t.11,The Dark Side,14,SOG,118
+3,6,465.l.105618.t.11,The Dark Side,31,HIT,54
+3,6,465.l.105618.t.11,The Dark Side,32,BLK,30
+3,6,465.l.105618.t.11,The Dark Side,19,W,2
+3,6,465.l.105618.t.11,The Dark Side,22,GA,13
+3,6,465.l.105618.t.11,The Dark Side,25,SV,129
+3,6,465.l.105618.t.11,The Dark Side,27,SHO,0
+4,1,465.l.105618.t.1,Winless without Bakov,1,G,6
+4,1,465.l.105618.t.1,Winless without Bakov,2,A,16
+4,1,465.l.105618.t.1,Winless without Bakov,8,PPP,7
+4,1,465.l.105618.t.1,Winless without Bakov,14,SOG,111
+4,1,465.l.105618.t.1,Winless without Bakov,31,HIT,44
+4,1,465.l.105618.t.1,Winless without Bakov,32,BLK,40
+4,1,465.l.105618.t.1,Winless without Bakov,19,W,1
+4,1,465.l.105618.t.1,Winless without Bakov,22,GA,20
+4,1,465.l.105618.t.1,Winless without Bakov,25,SV,137
+4,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+4,1,465.l.105618.t.8,hnahm,1,G,16
+4,1,465.l.105618.t.8,hnahm,2,A,29
+4,1,465.l.105618.t.8,hnahm,8,PPP,9
+4,1,465.l.105618.t.8,hnahm,14,SOG,134
+4,1,465.l.105618.t.8,hnahm,31,HIT,39
+4,1,465.l.105618.t.8,hnahm,32,BLK,61
+4,1,465.l.105618.t.8,hnahm,19,W,3
+4,1,465.l.105618.t.8,hnahm,22,GA,24
+4,1,465.l.105618.t.8,hnahm,25,SV,145
+4,1,465.l.105618.t.8,hnahm,27,SHO,0
+4,2,465.l.105618.t.2,Triple Headed Monster,1,G,16
+4,2,465.l.105618.t.2,Triple Headed Monster,2,A,26
+4,2,465.l.105618.t.2,Triple Headed Monster,8,PPP,13
+4,2,465.l.105618.t.2,Triple Headed Monster,14,SOG,124
+4,2,465.l.105618.t.2,Triple Headed Monster,31,HIT,20
+4,2,465.l.105618.t.2,Triple Headed Monster,32,BLK,34
+4,2,465.l.105618.t.2,Triple Headed Monster,19,W,3
+4,2,465.l.105618.t.2,Triple Headed Monster,22,GA,18
+4,2,465.l.105618.t.2,Triple Headed Monster,25,SV,139
+4,2,465.l.105618.t.2,Triple Headed Monster,27,SHO,0
+4,2,465.l.105618.t.10,Puck Shiesty,1,G,14
+4,2,465.l.105618.t.10,Puck Shiesty,2,A,19
+4,2,465.l.105618.t.10,Puck Shiesty,8,PPP,9
+4,2,465.l.105618.t.10,Puck Shiesty,14,SOG,101
+4,2,465.l.105618.t.10,Puck Shiesty,31,HIT,43
+4,2,465.l.105618.t.10,Puck Shiesty,32,BLK,44
+4,2,465.l.105618.t.10,Puck Shiesty,19,W,3
+4,2,465.l.105618.t.10,Puck Shiesty,22,GA,13
+4,2,465.l.105618.t.10,Puck Shiesty,25,SV,107
+4,2,465.l.105618.t.10,Puck Shiesty,27,SHO,0
+4,3,465.l.105618.t.3,The Nephilim,1,G,9
+4,3,465.l.105618.t.3,The Nephilim,2,A,21
+4,3,465.l.105618.t.3,The Nephilim,8,PPP,11
+4,3,465.l.105618.t.3,The Nephilim,14,SOG,101
+4,3,465.l.105618.t.3,The Nephilim,31,HIT,36
+4,3,465.l.105618.t.3,The Nephilim,32,BLK,37
+4,3,465.l.105618.t.3,The Nephilim,19,W,2
+4,3,465.l.105618.t.3,The Nephilim,22,GA,14
+4,3,465.l.105618.t.3,The Nephilim,25,SV,111
+4,3,465.l.105618.t.3,The Nephilim,27,SHO,0
+4,3,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,23
+4,3,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,37
+4,3,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,17
+4,3,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,106
+4,3,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,55
+4,3,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,41
+4,3,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,3
+4,3,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,15
+4,3,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,130
+4,3,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,0
+4,4,465.l.105618.t.4,Candy Kanes,1,G,14
+4,4,465.l.105618.t.4,Candy Kanes,2,A,28
+4,4,465.l.105618.t.4,Candy Kanes,8,PPP,13
+4,4,465.l.105618.t.4,Candy Kanes,14,SOG,123
+4,4,465.l.105618.t.4,Candy Kanes,31,HIT,50
+4,4,465.l.105618.t.4,Candy Kanes,32,BLK,28
+4,4,465.l.105618.t.4,Candy Kanes,19,W,3
+4,4,465.l.105618.t.4,Candy Kanes,22,GA,18
+4,4,465.l.105618.t.4,Candy Kanes,25,SV,146
+4,4,465.l.105618.t.4,Candy Kanes,27,SHO,0
+4,4,465.l.105618.t.7,bridaaaag,1,G,19
+4,4,465.l.105618.t.7,bridaaaag,2,A,15
+4,4,465.l.105618.t.7,bridaaaag,8,PPP,7
+4,4,465.l.105618.t.7,bridaaaag,14,SOG,121
+4,4,465.l.105618.t.7,bridaaaag,31,HIT,33
+4,4,465.l.105618.t.7,bridaaaag,32,BLK,37
+4,4,465.l.105618.t.7,bridaaaag,19,W,6
+4,4,465.l.105618.t.7,bridaaaag,22,GA,13
+4,4,465.l.105618.t.7,bridaaaag,25,SV,193
+4,4,465.l.105618.t.7,bridaaaag,27,SHO,0
+4,5,465.l.105618.t.6,Bad Tape Hockey,1,G,19
+4,5,465.l.105618.t.6,Bad Tape Hockey,2,A,25
+4,5,465.l.105618.t.6,Bad Tape Hockey,8,PPP,6
+4,5,465.l.105618.t.6,Bad Tape Hockey,14,SOG,116
+4,5,465.l.105618.t.6,Bad Tape Hockey,31,HIT,56
+4,5,465.l.105618.t.6,Bad Tape Hockey,32,BLK,42
+4,5,465.l.105618.t.6,Bad Tape Hockey,19,W,1
+4,5,465.l.105618.t.6,Bad Tape Hockey,22,GA,8
+4,5,465.l.105618.t.6,Bad Tape Hockey,25,SV,58
+4,5,465.l.105618.t.6,Bad Tape Hockey,27,SHO,0
+4,5,465.l.105618.t.9,Murray Ploppins,1,G,17
+4,5,465.l.105618.t.9,Murray Ploppins,2,A,25
+4,5,465.l.105618.t.9,Murray Ploppins,8,PPP,10
+4,5,465.l.105618.t.9,Murray Ploppins,14,SOG,105
+4,5,465.l.105618.t.9,Murray Ploppins,31,HIT,61
+4,5,465.l.105618.t.9,Murray Ploppins,32,BLK,39
+4,5,465.l.105618.t.9,Murray Ploppins,19,W,3
+4,5,465.l.105618.t.9,Murray Ploppins,22,GA,11
+4,5,465.l.105618.t.9,Murray Ploppins,25,SV,113
+4,5,465.l.105618.t.9,Murray Ploppins,27,SHO,0
+4,6,465.l.105618.t.11,The Dark Side,1,G,7
+4,6,465.l.105618.t.11,The Dark Side,2,A,16
+4,6,465.l.105618.t.11,The Dark Side,8,PPP,8
+4,6,465.l.105618.t.11,The Dark Side,14,SOG,80
+4,6,465.l.105618.t.11,The Dark Side,31,HIT,42
+4,6,465.l.105618.t.11,The Dark Side,32,BLK,40
+4,6,465.l.105618.t.11,The Dark Side,19,W,3
+4,6,465.l.105618.t.11,The Dark Side,22,GA,12
+4,6,465.l.105618.t.11,The Dark Side,25,SV,111
+4,6,465.l.105618.t.11,The Dark Side,27,SHO,0
+4,6,465.l.105618.t.12,Fantasy Reaper,1,G,16
+4,6,465.l.105618.t.12,Fantasy Reaper,2,A,27
+4,6,465.l.105618.t.12,Fantasy Reaper,8,PPP,11
+4,6,465.l.105618.t.12,Fantasy Reaper,14,SOG,125
+4,6,465.l.105618.t.12,Fantasy Reaper,31,HIT,39
+4,6,465.l.105618.t.12,Fantasy Reaper,32,BLK,44
+4,6,465.l.105618.t.12,Fantasy Reaper,19,W,1
+4,6,465.l.105618.t.12,Fantasy Reaper,22,GA,15
+4,6,465.l.105618.t.12,Fantasy Reaper,25,SV,112
+4,6,465.l.105618.t.12,Fantasy Reaper,27,SHO,0
+5,1,465.l.105618.t.1,Winless without Bakov,1,G,13
+5,1,465.l.105618.t.1,Winless without Bakov,2,A,20
+5,1,465.l.105618.t.1,Winless without Bakov,8,PPP,8
+5,1,465.l.105618.t.1,Winless without Bakov,14,SOG,124
+5,1,465.l.105618.t.1,Winless without Bakov,31,HIT,57
+5,1,465.l.105618.t.1,Winless without Bakov,32,BLK,42
+5,1,465.l.105618.t.1,Winless without Bakov,19,W,1
+5,1,465.l.105618.t.1,Winless without Bakov,22,GA,16
+5,1,465.l.105618.t.1,Winless without Bakov,25,SV,122
+5,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+5,1,465.l.105618.t.12,Fantasy Reaper,1,G,13
+5,1,465.l.105618.t.12,Fantasy Reaper,2,A,31
+5,1,465.l.105618.t.12,Fantasy Reaper,8,PPP,12
+5,1,465.l.105618.t.12,Fantasy Reaper,14,SOG,112
+5,1,465.l.105618.t.12,Fantasy Reaper,31,HIT,63
+5,1,465.l.105618.t.12,Fantasy Reaper,32,BLK,39
+5,1,465.l.105618.t.12,Fantasy Reaper,19,W,3
+5,1,465.l.105618.t.12,Fantasy Reaper,22,GA,6
+5,1,465.l.105618.t.12,Fantasy Reaper,25,SV,115
+5,1,465.l.105618.t.12,Fantasy Reaper,27,SHO,1
+5,2,465.l.105618.t.2,Triple Headed Monster,1,G,22
+5,2,465.l.105618.t.2,Triple Headed Monster,2,A,35
+5,2,465.l.105618.t.2,Triple Headed Monster,8,PPP,19
+5,2,465.l.105618.t.2,Triple Headed Monster,14,SOG,157
+5,2,465.l.105618.t.2,Triple Headed Monster,31,HIT,25
+5,2,465.l.105618.t.2,Triple Headed Monster,32,BLK,40
+5,2,465.l.105618.t.2,Triple Headed Monster,19,W,3
+5,2,465.l.105618.t.2,Triple Headed Monster,22,GA,15
+5,2,465.l.105618.t.2,Triple Headed Monster,25,SV,135
+5,2,465.l.105618.t.2,Triple Headed Monster,27,SHO,0
+5,2,465.l.105618.t.8,hnahm,1,G,19
+5,2,465.l.105618.t.8,hnahm,2,A,23
+5,2,465.l.105618.t.8,hnahm,8,PPP,16
+5,2,465.l.105618.t.8,hnahm,14,SOG,143
+5,2,465.l.105618.t.8,hnahm,31,HIT,47
+5,2,465.l.105618.t.8,hnahm,32,BLK,53
+5,2,465.l.105618.t.8,hnahm,19,W,3
+5,2,465.l.105618.t.8,hnahm,22,GA,15
+5,2,465.l.105618.t.8,hnahm,25,SV,117
+5,2,465.l.105618.t.8,hnahm,27,SHO,0
+5,3,465.l.105618.t.3,The Nephilim,1,G,17
+5,3,465.l.105618.t.3,The Nephilim,2,A,33
+5,3,465.l.105618.t.3,The Nephilim,8,PPP,20
+5,3,465.l.105618.t.3,The Nephilim,14,SOG,146
+5,3,465.l.105618.t.3,The Nephilim,31,HIT,21
+5,3,465.l.105618.t.3,The Nephilim,32,BLK,37
+5,3,465.l.105618.t.3,The Nephilim,19,W,4
+5,3,465.l.105618.t.3,The Nephilim,22,GA,19
+5,3,465.l.105618.t.3,The Nephilim,25,SV,171
+5,3,465.l.105618.t.3,The Nephilim,27,SHO,1
+5,3,465.l.105618.t.6,Bad Tape Hockey,1,G,11
+5,3,465.l.105618.t.6,Bad Tape Hockey,2,A,22
+5,3,465.l.105618.t.6,Bad Tape Hockey,8,PPP,7
+5,3,465.l.105618.t.6,Bad Tape Hockey,14,SOG,103
+5,3,465.l.105618.t.6,Bad Tape Hockey,31,HIT,51
+5,3,465.l.105618.t.6,Bad Tape Hockey,32,BLK,49
+5,3,465.l.105618.t.6,Bad Tape Hockey,19,W,3
+5,3,465.l.105618.t.6,Bad Tape Hockey,22,GA,7
+5,3,465.l.105618.t.6,Bad Tape Hockey,25,SV,126
+5,3,465.l.105618.t.6,Bad Tape Hockey,27,SHO,1
+5,4,465.l.105618.t.4,Candy Kanes,1,G,9
+5,4,465.l.105618.t.4,Candy Kanes,2,A,24
+5,4,465.l.105618.t.4,Candy Kanes,8,PPP,13
+5,4,465.l.105618.t.4,Candy Kanes,14,SOG,141
+5,4,465.l.105618.t.4,Candy Kanes,31,HIT,28
+5,4,465.l.105618.t.4,Candy Kanes,32,BLK,29
+5,4,465.l.105618.t.4,Candy Kanes,19,W,5
+5,4,465.l.105618.t.4,Candy Kanes,22,GA,9
+5,4,465.l.105618.t.4,Candy Kanes,25,SV,128
+5,4,465.l.105618.t.4,Candy Kanes,27,SHO,1
+5,4,465.l.105618.t.11,The Dark Side,1,G,20
+5,4,465.l.105618.t.11,The Dark Side,2,A,15
+5,4,465.l.105618.t.11,The Dark Side,8,PPP,8
+5,4,465.l.105618.t.11,The Dark Side,14,SOG,132
+5,4,465.l.105618.t.11,The Dark Side,31,HIT,53
+5,4,465.l.105618.t.11,The Dark Side,32,BLK,47
+5,4,465.l.105618.t.11,The Dark Side,19,W,3
+5,4,465.l.105618.t.11,The Dark Side,22,GA,14
+5,4,465.l.105618.t.11,The Dark Side,25,SV,142
+5,4,465.l.105618.t.11,The Dark Side,27,SHO,0
+5,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,18
+5,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,20
+5,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,13
+5,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,146
+5,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,45
+5,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,52
+5,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,3
+5,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,11
+5,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,113
+5,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,0
+5,5,465.l.105618.t.10,Puck Shiesty,1,G,10
+5,5,465.l.105618.t.10,Puck Shiesty,2,A,25
+5,5,465.l.105618.t.10,Puck Shiesty,8,PPP,7
+5,5,465.l.105618.t.10,Puck Shiesty,14,SOG,98
+5,5,465.l.105618.t.10,Puck Shiesty,31,HIT,33
+5,5,465.l.105618.t.10,Puck Shiesty,32,BLK,38
+5,5,465.l.105618.t.10,Puck Shiesty,19,W,1
+5,5,465.l.105618.t.10,Puck Shiesty,22,GA,14
+5,5,465.l.105618.t.10,Puck Shiesty,25,SV,99
+5,5,465.l.105618.t.10,Puck Shiesty,27,SHO,0
+5,6,465.l.105618.t.7,bridaaaag,1,G,19
+5,6,465.l.105618.t.7,bridaaaag,2,A,23
+5,6,465.l.105618.t.7,bridaaaag,8,PPP,14
+5,6,465.l.105618.t.7,bridaaaag,14,SOG,129
+5,6,465.l.105618.t.7,bridaaaag,31,HIT,32
+5,6,465.l.105618.t.7,bridaaaag,32,BLK,56
+5,6,465.l.105618.t.7,bridaaaag,19,W,3
+5,6,465.l.105618.t.7,bridaaaag,22,GA,31
+5,6,465.l.105618.t.7,bridaaaag,25,SV,159
+5,6,465.l.105618.t.7,bridaaaag,27,SHO,0
+5,6,465.l.105618.t.9,Murray Ploppins,1,G,21
+5,6,465.l.105618.t.9,Murray Ploppins,2,A,24
+5,6,465.l.105618.t.9,Murray Ploppins,8,PPP,11
+5,6,465.l.105618.t.9,Murray Ploppins,14,SOG,117
+5,6,465.l.105618.t.9,Murray Ploppins,31,HIT,52
+5,6,465.l.105618.t.9,Murray Ploppins,32,BLK,58
+5,6,465.l.105618.t.9,Murray Ploppins,19,W,2
+5,6,465.l.105618.t.9,Murray Ploppins,22,GA,20
+5,6,465.l.105618.t.9,Murray Ploppins,25,SV,104
+5,6,465.l.105618.t.9,Murray Ploppins,27,SHO,0
+6,1,465.l.105618.t.1,Winless without Bakov,1,G,13
+6,1,465.l.105618.t.1,Winless without Bakov,2,A,33
+6,1,465.l.105618.t.1,Winless without Bakov,8,PPP,13
+6,1,465.l.105618.t.1,Winless without Bakov,14,SOG,126
+6,1,465.l.105618.t.1,Winless without Bakov,31,HIT,41
+6,1,465.l.105618.t.1,Winless without Bakov,32,BLK,44
+6,1,465.l.105618.t.1,Winless without Bakov,19,W,2
+6,1,465.l.105618.t.1,Winless without Bakov,22,GA,19
+6,1,465.l.105618.t.1,Winless without Bakov,25,SV,112
+6,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+6,1,465.l.105618.t.4,Candy Kanes,1,G,17
+6,1,465.l.105618.t.4,Candy Kanes,2,A,31
+6,1,465.l.105618.t.4,Candy Kanes,8,PPP,16
+6,1,465.l.105618.t.4,Candy Kanes,14,SOG,141
+6,1,465.l.105618.t.4,Candy Kanes,31,HIT,43
+6,1,465.l.105618.t.4,Candy Kanes,32,BLK,38
+6,1,465.l.105618.t.4,Candy Kanes,19,W,5
+6,1,465.l.105618.t.4,Candy Kanes,22,GA,9
+6,1,465.l.105618.t.4,Candy Kanes,25,SV,114
+6,1,465.l.105618.t.4,Candy Kanes,27,SHO,0
+6,2,465.l.105618.t.2,Triple Headed Monster,1,G,17
+6,2,465.l.105618.t.2,Triple Headed Monster,2,A,17
+6,2,465.l.105618.t.2,Triple Headed Monster,8,PPP,11
+6,2,465.l.105618.t.2,Triple Headed Monster,14,SOG,116
+6,2,465.l.105618.t.2,Triple Headed Monster,31,HIT,36
+6,2,465.l.105618.t.2,Triple Headed Monster,32,BLK,43
+6,2,465.l.105618.t.2,Triple Headed Monster,19,W,5
+6,2,465.l.105618.t.2,Triple Headed Monster,22,GA,17
+6,2,465.l.105618.t.2,Triple Headed Monster,25,SV,197
+6,2,465.l.105618.t.2,Triple Headed Monster,27,SHO,0
+6,2,465.l.105618.t.12,Fantasy Reaper,1,G,17
+6,2,465.l.105618.t.12,Fantasy Reaper,2,A,25
+6,2,465.l.105618.t.12,Fantasy Reaper,8,PPP,11
+6,2,465.l.105618.t.12,Fantasy Reaper,14,SOG,131
+6,2,465.l.105618.t.12,Fantasy Reaper,31,HIT,39
+6,2,465.l.105618.t.12,Fantasy Reaper,32,BLK,46
+6,2,465.l.105618.t.12,Fantasy Reaper,19,W,3
+6,2,465.l.105618.t.12,Fantasy Reaper,22,GA,15
+6,2,465.l.105618.t.12,Fantasy Reaper,25,SV,130
+6,2,465.l.105618.t.12,Fantasy Reaper,27,SHO,0
+6,3,465.l.105618.t.3,The Nephilim,1,G,17
+6,3,465.l.105618.t.3,The Nephilim,2,A,31
+6,3,465.l.105618.t.3,The Nephilim,8,PPP,15
+6,3,465.l.105618.t.3,The Nephilim,14,SOG,160
+6,3,465.l.105618.t.3,The Nephilim,31,HIT,65
+6,3,465.l.105618.t.3,The Nephilim,32,BLK,35
+6,3,465.l.105618.t.3,The Nephilim,19,W,3
+6,3,465.l.105618.t.3,The Nephilim,22,GA,16
+6,3,465.l.105618.t.3,The Nephilim,25,SV,133
+6,3,465.l.105618.t.3,The Nephilim,27,SHO,0
+6,3,465.l.105618.t.10,Puck Shiesty,1,G,11
+6,3,465.l.105618.t.10,Puck Shiesty,2,A,29
+6,3,465.l.105618.t.10,Puck Shiesty,8,PPP,12
+6,3,465.l.105618.t.10,Puck Shiesty,14,SOG,95
+6,3,465.l.105618.t.10,Puck Shiesty,31,HIT,35
+6,3,465.l.105618.t.10,Puck Shiesty,32,BLK,47
+6,3,465.l.105618.t.10,Puck Shiesty,19,W,3
+6,3,465.l.105618.t.10,Puck Shiesty,22,GA,12
+6,3,465.l.105618.t.10,Puck Shiesty,25,SV,92
+6,3,465.l.105618.t.10,Puck Shiesty,27,SHO,0
+6,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,12
+6,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,18
+6,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,9
+6,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,132
+6,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,59
+6,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,52
+6,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,3
+6,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,16
+6,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,112
+6,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,0
+6,4,465.l.105618.t.8,hnahm,1,G,12
+6,4,465.l.105618.t.8,hnahm,2,A,23
+6,4,465.l.105618.t.8,hnahm,8,PPP,8
+6,4,465.l.105618.t.8,hnahm,14,SOG,109
+6,4,465.l.105618.t.8,hnahm,31,HIT,44
+6,4,465.l.105618.t.8,hnahm,32,BLK,44
+6,4,465.l.105618.t.8,hnahm,19,W,2
+6,4,465.l.105618.t.8,hnahm,22,GA,14
+6,4,465.l.105618.t.8,hnahm,25,SV,139
+6,4,465.l.105618.t.8,hnahm,27,SHO,0
+6,5,465.l.105618.t.6,Bad Tape Hockey,1,G,20
+6,5,465.l.105618.t.6,Bad Tape Hockey,2,A,22
+6,5,465.l.105618.t.6,Bad Tape Hockey,8,PPP,10
+6,5,465.l.105618.t.6,Bad Tape Hockey,14,SOG,121
+6,5,465.l.105618.t.6,Bad Tape Hockey,31,HIT,51
+6,5,465.l.105618.t.6,Bad Tape Hockey,32,BLK,36
+6,5,465.l.105618.t.6,Bad Tape Hockey,19,W,2
+6,5,465.l.105618.t.6,Bad Tape Hockey,22,GA,6
+6,5,465.l.105618.t.6,Bad Tape Hockey,25,SV,93
+6,5,465.l.105618.t.6,Bad Tape Hockey,27,SHO,2
+6,5,465.l.105618.t.7,bridaaaag,1,G,11
+6,5,465.l.105618.t.7,bridaaaag,2,A,19
+6,5,465.l.105618.t.7,bridaaaag,8,PPP,5
+6,5,465.l.105618.t.7,bridaaaag,14,SOG,91
+6,5,465.l.105618.t.7,bridaaaag,31,HIT,37
+6,5,465.l.105618.t.7,bridaaaag,32,BLK,26
+6,5,465.l.105618.t.7,bridaaaag,19,W,2
+6,5,465.l.105618.t.7,bridaaaag,22,GA,11
+6,5,465.l.105618.t.7,bridaaaag,25,SV,106
+6,5,465.l.105618.t.7,bridaaaag,27,SHO,0
+6,6,465.l.105618.t.9,Murray Ploppins,1,G,17
+6,6,465.l.105618.t.9,Murray Ploppins,2,A,18
+6,6,465.l.105618.t.9,Murray Ploppins,8,PPP,10
+6,6,465.l.105618.t.9,Murray Ploppins,14,SOG,123
+6,6,465.l.105618.t.9,Murray Ploppins,31,HIT,60
+6,6,465.l.105618.t.9,Murray Ploppins,32,BLK,44
+6,6,465.l.105618.t.9,Murray Ploppins,19,W,2
+6,6,465.l.105618.t.9,Murray Ploppins,22,GA,9
+6,6,465.l.105618.t.9,Murray Ploppins,25,SV,82
+6,6,465.l.105618.t.9,Murray Ploppins,27,SHO,0
+6,6,465.l.105618.t.11,The Dark Side,1,G,12
+6,6,465.l.105618.t.11,The Dark Side,2,A,23
+6,6,465.l.105618.t.11,The Dark Side,8,PPP,14
+6,6,465.l.105618.t.11,The Dark Side,14,SOG,83
+6,6,465.l.105618.t.11,The Dark Side,31,HIT,55
+6,6,465.l.105618.t.11,The Dark Side,32,BLK,46
+6,6,465.l.105618.t.11,The Dark Side,19,W,2
+6,6,465.l.105618.t.11,The Dark Side,22,GA,10
+6,6,465.l.105618.t.11,The Dark Side,25,SV,69
+6,6,465.l.105618.t.11,The Dark Side,27,SHO,0
+7,1,465.l.105618.t.1,Winless without Bakov,1,G,17
+7,1,465.l.105618.t.1,Winless without Bakov,2,A,30
+7,1,465.l.105618.t.1,Winless without Bakov,8,PPP,17
+7,1,465.l.105618.t.1,Winless without Bakov,14,SOG,139
+7,1,465.l.105618.t.1,Winless without Bakov,31,HIT,84
+7,1,465.l.105618.t.1,Winless without Bakov,32,BLK,40
+7,1,465.l.105618.t.1,Winless without Bakov,19,W,2
+7,1,465.l.105618.t.1,Winless without Bakov,22,GA,21
+7,1,465.l.105618.t.1,Winless without Bakov,25,SV,152
+7,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+7,1,465.l.105618.t.9,Murray Ploppins,1,G,12
+7,1,465.l.105618.t.9,Murray Ploppins,2,A,20
+7,1,465.l.105618.t.9,Murray Ploppins,8,PPP,11
+7,1,465.l.105618.t.9,Murray Ploppins,14,SOG,126
+7,1,465.l.105618.t.9,Murray Ploppins,31,HIT,87
+7,1,465.l.105618.t.9,Murray Ploppins,32,BLK,50
+7,1,465.l.105618.t.9,Murray Ploppins,19,W,3
+7,1,465.l.105618.t.9,Murray Ploppins,22,GA,21
+7,1,465.l.105618.t.9,Murray Ploppins,25,SV,143
+7,1,465.l.105618.t.9,Murray Ploppins,27,SHO,1
+7,2,465.l.105618.t.2,Triple Headed Monster,1,G,24
+7,2,465.l.105618.t.2,Triple Headed Monster,2,A,28
+7,2,465.l.105618.t.2,Triple Headed Monster,8,PPP,14
+7,2,465.l.105618.t.2,Triple Headed Monster,14,SOG,159
+7,2,465.l.105618.t.2,Triple Headed Monster,31,HIT,28
+7,2,465.l.105618.t.2,Triple Headed Monster,32,BLK,42
+7,2,465.l.105618.t.2,Triple Headed Monster,19,W,5
+7,2,465.l.105618.t.2,Triple Headed Monster,22,GA,22
+7,2,465.l.105618.t.2,Triple Headed Monster,25,SV,218
+7,2,465.l.105618.t.2,Triple Headed Monster,27,SHO,0
+7,2,465.l.105618.t.4,Candy Kanes,1,G,16
+7,2,465.l.105618.t.4,Candy Kanes,2,A,33
+7,2,465.l.105618.t.4,Candy Kanes,8,PPP,13
+7,2,465.l.105618.t.4,Candy Kanes,14,SOG,125
+7,2,465.l.105618.t.4,Candy Kanes,31,HIT,26
+7,2,465.l.105618.t.4,Candy Kanes,32,BLK,40
+7,2,465.l.105618.t.4,Candy Kanes,19,W,3
+7,2,465.l.105618.t.4,Candy Kanes,22,GA,7
+7,2,465.l.105618.t.4,Candy Kanes,25,SV,120
+7,2,465.l.105618.t.4,Candy Kanes,27,SHO,2
+7,3,465.l.105618.t.3,The Nephilim,1,G,16
+7,3,465.l.105618.t.3,The Nephilim,2,A,27
+7,3,465.l.105618.t.3,The Nephilim,8,PPP,12
+7,3,465.l.105618.t.3,The Nephilim,14,SOG,138
+7,3,465.l.105618.t.3,The Nephilim,31,HIT,44
+7,3,465.l.105618.t.3,The Nephilim,32,BLK,44
+7,3,465.l.105618.t.3,The Nephilim,19,W,2
+7,3,465.l.105618.t.3,The Nephilim,22,GA,7
+7,3,465.l.105618.t.3,The Nephilim,25,SV,128
+7,3,465.l.105618.t.3,The Nephilim,27,SHO,2
+7,3,465.l.105618.t.8,hnahm,1,G,19
+7,3,465.l.105618.t.8,hnahm,2,A,30
+7,3,465.l.105618.t.8,hnahm,8,PPP,9
+7,3,465.l.105618.t.8,hnahm,14,SOG,145
+7,3,465.l.105618.t.8,hnahm,31,HIT,52
+7,3,465.l.105618.t.8,hnahm,32,BLK,52
+7,3,465.l.105618.t.8,hnahm,19,W,4
+7,3,465.l.105618.t.8,hnahm,22,GA,22
+7,3,465.l.105618.t.8,hnahm,25,SV,230
+7,3,465.l.105618.t.8,hnahm,27,SHO,0
+7,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,14
+7,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,23
+7,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,6
+7,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,117
+7,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,40
+7,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,49
+7,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,1
+7,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,13
+7,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,52
+7,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,0
+7,4,465.l.105618.t.12,Fantasy Reaper,1,G,21
+7,4,465.l.105618.t.12,Fantasy Reaper,2,A,29
+7,4,465.l.105618.t.12,Fantasy Reaper,8,PPP,9
+7,4,465.l.105618.t.12,Fantasy Reaper,14,SOG,140
+7,4,465.l.105618.t.12,Fantasy Reaper,31,HIT,49
+7,4,465.l.105618.t.12,Fantasy Reaper,32,BLK,44
+7,4,465.l.105618.t.12,Fantasy Reaper,19,W,1
+7,4,465.l.105618.t.12,Fantasy Reaper,22,GA,5
+7,4,465.l.105618.t.12,Fantasy Reaper,25,SV,78
+7,4,465.l.105618.t.12,Fantasy Reaper,27,SHO,0
+7,5,465.l.105618.t.6,Bad Tape Hockey,1,G,8
+7,5,465.l.105618.t.6,Bad Tape Hockey,2,A,17
+7,5,465.l.105618.t.6,Bad Tape Hockey,8,PPP,6
+7,5,465.l.105618.t.6,Bad Tape Hockey,14,SOG,98
+7,5,465.l.105618.t.6,Bad Tape Hockey,31,HIT,71
+7,5,465.l.105618.t.6,Bad Tape Hockey,32,BLK,33
+7,5,465.l.105618.t.6,Bad Tape Hockey,19,W,3
+7,5,465.l.105618.t.6,Bad Tape Hockey,22,GA,9
+7,5,465.l.105618.t.6,Bad Tape Hockey,25,SV,120
+7,5,465.l.105618.t.6,Bad Tape Hockey,27,SHO,1
+7,5,465.l.105618.t.10,Puck Shiesty,1,G,15
+7,5,465.l.105618.t.10,Puck Shiesty,2,A,24
+7,5,465.l.105618.t.10,Puck Shiesty,8,PPP,8
+7,5,465.l.105618.t.10,Puck Shiesty,14,SOG,106
+7,5,465.l.105618.t.10,Puck Shiesty,31,HIT,34
+7,5,465.l.105618.t.10,Puck Shiesty,32,BLK,45
+7,5,465.l.105618.t.10,Puck Shiesty,19,W,1
+7,5,465.l.105618.t.10,Puck Shiesty,22,GA,16
+7,5,465.l.105618.t.10,Puck Shiesty,25,SV,117
+7,5,465.l.105618.t.10,Puck Shiesty,27,SHO,0
+7,6,465.l.105618.t.7,bridaaaag,1,G,7
+7,6,465.l.105618.t.7,bridaaaag,2,A,25
+7,6,465.l.105618.t.7,bridaaaag,8,PPP,3
+7,6,465.l.105618.t.7,bridaaaag,14,SOG,88
+7,6,465.l.105618.t.7,bridaaaag,31,HIT,32
+7,6,465.l.105618.t.7,bridaaaag,32,BLK,34
+7,6,465.l.105618.t.7,bridaaaag,19,W,5
+7,6,465.l.105618.t.7,bridaaaag,22,GA,14
+7,6,465.l.105618.t.7,bridaaaag,25,SV,164
+7,6,465.l.105618.t.7,bridaaaag,27,SHO,0
+7,6,465.l.105618.t.11,The Dark Side,1,G,10
+7,6,465.l.105618.t.11,The Dark Side,2,A,20
+7,6,465.l.105618.t.11,The Dark Side,8,PPP,7
+7,6,465.l.105618.t.11,The Dark Side,14,SOG,112
+7,6,465.l.105618.t.11,The Dark Side,31,HIT,52
+7,6,465.l.105618.t.11,The Dark Side,32,BLK,39
+7,6,465.l.105618.t.11,The Dark Side,19,W,3
+7,6,465.l.105618.t.11,The Dark Side,22,GA,2
+7,6,465.l.105618.t.11,The Dark Side,25,SV,74
+7,6,465.l.105618.t.11,The Dark Side,27,SHO,1
+8,1,465.l.105618.t.1,Winless without Bakov,1,G,17
+8,1,465.l.105618.t.1,Winless without Bakov,2,A,34
+8,1,465.l.105618.t.1,Winless without Bakov,8,PPP,10
+8,1,465.l.105618.t.1,Winless without Bakov,14,SOG,133
+8,1,465.l.105618.t.1,Winless without Bakov,31,HIT,69
+8,1,465.l.105618.t.1,Winless without Bakov,32,BLK,42
+8,1,465.l.105618.t.1,Winless without Bakov,19,W,1
+8,1,465.l.105618.t.1,Winless without Bakov,22,GA,16
+8,1,465.l.105618.t.1,Winless without Bakov,25,SV,85
+8,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+8,1,465.l.105618.t.7,bridaaaag,1,G,9
+8,1,465.l.105618.t.7,bridaaaag,2,A,23
+8,1,465.l.105618.t.7,bridaaaag,8,PPP,5
+8,1,465.l.105618.t.7,bridaaaag,14,SOG,119
+8,1,465.l.105618.t.7,bridaaaag,31,HIT,39
+8,1,465.l.105618.t.7,bridaaaag,32,BLK,36
+8,1,465.l.105618.t.7,bridaaaag,19,W,5
+8,1,465.l.105618.t.7,bridaaaag,22,GA,16
+8,1,465.l.105618.t.7,bridaaaag,25,SV,140
+8,1,465.l.105618.t.7,bridaaaag,27,SHO,0
+8,2,465.l.105618.t.2,Triple Headed Monster,1,G,15
+8,2,465.l.105618.t.2,Triple Headed Monster,2,A,19
+8,2,465.l.105618.t.2,Triple Headed Monster,8,PPP,10
+8,2,465.l.105618.t.2,Triple Headed Monster,14,SOG,121
+8,2,465.l.105618.t.2,Triple Headed Monster,31,HIT,27
+8,2,465.l.105618.t.2,Triple Headed Monster,32,BLK,30
+8,2,465.l.105618.t.2,Triple Headed Monster,19,W,3
+8,2,465.l.105618.t.2,Triple Headed Monster,22,GA,16
+8,2,465.l.105618.t.2,Triple Headed Monster,25,SV,128
+8,2,465.l.105618.t.2,Triple Headed Monster,27,SHO,1
+8,2,465.l.105618.t.9,Murray Ploppins,1,G,8
+8,2,465.l.105618.t.9,Murray Ploppins,2,A,23
+8,2,465.l.105618.t.9,Murray Ploppins,8,PPP,6
+8,2,465.l.105618.t.9,Murray Ploppins,14,SOG,108
+8,2,465.l.105618.t.9,Murray Ploppins,31,HIT,74
+8,2,465.l.105618.t.9,Murray Ploppins,32,BLK,29
+8,2,465.l.105618.t.9,Murray Ploppins,19,W,1
+8,2,465.l.105618.t.9,Murray Ploppins,22,GA,10
+8,2,465.l.105618.t.9,Murray Ploppins,25,SV,78
+8,2,465.l.105618.t.9,Murray Ploppins,27,SHO,0
+8,3,465.l.105618.t.3,The Nephilim,1,G,17
+8,3,465.l.105618.t.3,The Nephilim,2,A,25
+8,3,465.l.105618.t.3,The Nephilim,8,PPP,8
+8,3,465.l.105618.t.3,The Nephilim,14,SOG,102
+8,3,465.l.105618.t.3,The Nephilim,31,HIT,38
+8,3,465.l.105618.t.3,The Nephilim,32,BLK,39
+8,3,465.l.105618.t.3,The Nephilim,19,W,0
+8,3,465.l.105618.t.3,The Nephilim,22,GA,12
+8,3,465.l.105618.t.3,The Nephilim,25,SV,64
+8,3,465.l.105618.t.3,The Nephilim,27,SHO,0
+8,3,465.l.105618.t.12,Fantasy Reaper,1,G,20
+8,3,465.l.105618.t.12,Fantasy Reaper,2,A,31
+8,3,465.l.105618.t.12,Fantasy Reaper,8,PPP,13
+8,3,465.l.105618.t.12,Fantasy Reaper,14,SOG,127
+8,3,465.l.105618.t.12,Fantasy Reaper,31,HIT,62
+8,3,465.l.105618.t.12,Fantasy Reaper,32,BLK,44
+8,3,465.l.105618.t.12,Fantasy Reaper,19,W,1
+8,3,465.l.105618.t.12,Fantasy Reaper,22,GA,13
+8,3,465.l.105618.t.12,Fantasy Reaper,25,SV,77
+8,3,465.l.105618.t.12,Fantasy Reaper,27,SHO,0
+8,4,465.l.105618.t.4,Candy Kanes,1,G,11
+8,4,465.l.105618.t.4,Candy Kanes,2,A,27
+8,4,465.l.105618.t.4,Candy Kanes,8,PPP,11
+8,4,465.l.105618.t.4,Candy Kanes,14,SOG,111
+8,4,465.l.105618.t.4,Candy Kanes,31,HIT,30
+8,4,465.l.105618.t.4,Candy Kanes,32,BLK,31
+8,4,465.l.105618.t.4,Candy Kanes,19,W,3
+8,4,465.l.105618.t.4,Candy Kanes,22,GA,9
+8,4,465.l.105618.t.4,Candy Kanes,25,SV,136
+8,4,465.l.105618.t.4,Candy Kanes,27,SHO,1
+8,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,25
+8,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,31
+8,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,10
+8,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,139
+8,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,45
+8,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,46
+8,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,5
+8,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,16
+8,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,167
+8,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,0
+8,5,465.l.105618.t.6,Bad Tape Hockey,1,G,10
+8,5,465.l.105618.t.6,Bad Tape Hockey,2,A,11
+8,5,465.l.105618.t.6,Bad Tape Hockey,8,PPP,4
+8,5,465.l.105618.t.6,Bad Tape Hockey,14,SOG,91
+8,5,465.l.105618.t.6,Bad Tape Hockey,31,HIT,71
+8,5,465.l.105618.t.6,Bad Tape Hockey,32,BLK,25
+8,5,465.l.105618.t.6,Bad Tape Hockey,19,W,1
+8,5,465.l.105618.t.6,Bad Tape Hockey,22,GA,5
+8,5,465.l.105618.t.6,Bad Tape Hockey,25,SV,40
+8,5,465.l.105618.t.6,Bad Tape Hockey,27,SHO,0
+8,5,465.l.105618.t.11,The Dark Side,1,G,13
+8,5,465.l.105618.t.11,The Dark Side,2,A,18
+8,5,465.l.105618.t.11,The Dark Side,8,PPP,1
+8,5,465.l.105618.t.11,The Dark Side,14,SOG,87
+8,5,465.l.105618.t.11,The Dark Side,31,HIT,62
+8,5,465.l.105618.t.11,The Dark Side,32,BLK,50
+8,5,465.l.105618.t.11,The Dark Side,19,W,4
+8,5,465.l.105618.t.11,The Dark Side,22,GA,9
+8,5,465.l.105618.t.11,The Dark Side,25,SV,148
+8,5,465.l.105618.t.11,The Dark Side,27,SHO,1
+8,6,465.l.105618.t.8,hnahm,1,G,23
+8,6,465.l.105618.t.8,hnahm,2,A,23
+8,6,465.l.105618.t.8,hnahm,8,PPP,8
+8,6,465.l.105618.t.8,hnahm,14,SOG,123
+8,6,465.l.105618.t.8,hnahm,31,HIT,59
+8,6,465.l.105618.t.8,hnahm,32,BLK,46
+8,6,465.l.105618.t.8,hnahm,19,W,4
+8,6,465.l.105618.t.8,hnahm,22,GA,12
+8,6,465.l.105618.t.8,hnahm,25,SV,170
+8,6,465.l.105618.t.8,hnahm,27,SHO,0
+8,6,465.l.105618.t.10,Puck Shiesty,1,G,17
+8,6,465.l.105618.t.10,Puck Shiesty,2,A,28
+8,6,465.l.105618.t.10,Puck Shiesty,8,PPP,14
+8,6,465.l.105618.t.10,Puck Shiesty,14,SOG,107
+8,6,465.l.105618.t.10,Puck Shiesty,31,HIT,46
+8,6,465.l.105618.t.10,Puck Shiesty,32,BLK,46
+8,6,465.l.105618.t.10,Puck Shiesty,19,W,4
+8,6,465.l.105618.t.10,Puck Shiesty,22,GA,19
+8,6,465.l.105618.t.10,Puck Shiesty,25,SV,165
+8,6,465.l.105618.t.10,Puck Shiesty,27,SHO,0
+9,1,465.l.105618.t.1,Winless without Bakov,1,G,15
+9,1,465.l.105618.t.1,Winless without Bakov,2,A,33
+9,1,465.l.105618.t.1,Winless without Bakov,8,PPP,11
+9,1,465.l.105618.t.1,Winless without Bakov,14,SOG,158
+9,1,465.l.105618.t.1,Winless without Bakov,31,HIT,75
+9,1,465.l.105618.t.1,Winless without Bakov,32,BLK,51
+9,1,465.l.105618.t.1,Winless without Bakov,19,W,4
+9,1,465.l.105618.t.1,Winless without Bakov,22,GA,24
+9,1,465.l.105618.t.1,Winless without Bakov,25,SV,176
+9,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+9,1,465.l.105618.t.11,The Dark Side,1,G,13
+9,1,465.l.105618.t.11,The Dark Side,2,A,17
+9,1,465.l.105618.t.11,The Dark Side,8,PPP,5
+9,1,465.l.105618.t.11,The Dark Side,14,SOG,127
+9,1,465.l.105618.t.11,The Dark Side,31,HIT,64
+9,1,465.l.105618.t.11,The Dark Side,32,BLK,57
+9,1,465.l.105618.t.11,The Dark Side,19,W,0
+9,1,465.l.105618.t.11,The Dark Side,22,GA,8
+9,1,465.l.105618.t.11,The Dark Side,25,SV,68
+9,1,465.l.105618.t.11,The Dark Side,27,SHO,0
+9,2,465.l.105618.t.2,Triple Headed Monster,1,G,15
+9,2,465.l.105618.t.2,Triple Headed Monster,2,A,30
+9,2,465.l.105618.t.2,Triple Headed Monster,8,PPP,13
+9,2,465.l.105618.t.2,Triple Headed Monster,14,SOG,133
+9,2,465.l.105618.t.2,Triple Headed Monster,31,HIT,38
+9,2,465.l.105618.t.2,Triple Headed Monster,32,BLK,40
+9,2,465.l.105618.t.2,Triple Headed Monster,19,W,3
+9,2,465.l.105618.t.2,Triple Headed Monster,22,GA,23
+9,2,465.l.105618.t.2,Triple Headed Monster,25,SV,149
+9,2,465.l.105618.t.2,Triple Headed Monster,27,SHO,0
+9,2,465.l.105618.t.7,bridaaaag,1,G,12
+9,2,465.l.105618.t.7,bridaaaag,2,A,22
+9,2,465.l.105618.t.7,bridaaaag,8,PPP,7
+9,2,465.l.105618.t.7,bridaaaag,14,SOG,125
+9,2,465.l.105618.t.7,bridaaaag,31,HIT,34
+9,2,465.l.105618.t.7,bridaaaag,32,BLK,52
+9,2,465.l.105618.t.7,bridaaaag,19,W,6
+9,2,465.l.105618.t.7,bridaaaag,22,GA,17
+9,2,465.l.105618.t.7,bridaaaag,25,SV,207
+9,2,465.l.105618.t.7,bridaaaag,27,SHO,1
+9,3,465.l.105618.t.3,The Nephilim,1,G,12
+9,3,465.l.105618.t.3,The Nephilim,2,A,28
+9,3,465.l.105618.t.3,The Nephilim,8,PPP,15
+9,3,465.l.105618.t.3,The Nephilim,14,SOG,132
+9,3,465.l.105618.t.3,The Nephilim,31,HIT,44
+9,3,465.l.105618.t.3,The Nephilim,32,BLK,40
+9,3,465.l.105618.t.3,The Nephilim,19,W,3
+9,3,465.l.105618.t.3,The Nephilim,22,GA,13
+9,3,465.l.105618.t.3,The Nephilim,25,SV,127
+9,3,465.l.105618.t.3,The Nephilim,27,SHO,1
+9,3,465.l.105618.t.4,Candy Kanes,1,G,19
+9,3,465.l.105618.t.4,Candy Kanes,2,A,36
+9,3,465.l.105618.t.4,Candy Kanes,8,PPP,18
+9,3,465.l.105618.t.4,Candy Kanes,14,SOG,133
+9,3,465.l.105618.t.4,Candy Kanes,31,HIT,43
+9,3,465.l.105618.t.4,Candy Kanes,32,BLK,48
+9,3,465.l.105618.t.4,Candy Kanes,19,W,3
+9,3,465.l.105618.t.4,Candy Kanes,22,GA,14
+9,3,465.l.105618.t.4,Candy Kanes,25,SV,172
+9,3,465.l.105618.t.4,Candy Kanes,27,SHO,1
+9,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,27
+9,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,23
+9,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,20
+9,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,157
+9,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,63
+9,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,50
+9,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,2
+9,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,10
+9,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,145
+9,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,1
+9,4,465.l.105618.t.9,Murray Ploppins,1,G,12
+9,4,465.l.105618.t.9,Murray Ploppins,2,A,16
+9,4,465.l.105618.t.9,Murray Ploppins,8,PPP,7
+9,4,465.l.105618.t.9,Murray Ploppins,14,SOG,129
+9,4,465.l.105618.t.9,Murray Ploppins,31,HIT,61
+9,4,465.l.105618.t.9,Murray Ploppins,32,BLK,33
+9,4,465.l.105618.t.9,Murray Ploppins,19,W,3
+9,4,465.l.105618.t.9,Murray Ploppins,22,GA,15
+9,4,465.l.105618.t.9,Murray Ploppins,25,SV,144
+9,4,465.l.105618.t.9,Murray Ploppins,27,SHO,1
+9,5,465.l.105618.t.6,Bad Tape Hockey,1,G,16
+9,5,465.l.105618.t.6,Bad Tape Hockey,2,A,20
+9,5,465.l.105618.t.6,Bad Tape Hockey,8,PPP,4
+9,5,465.l.105618.t.6,Bad Tape Hockey,14,SOG,101
+9,5,465.l.105618.t.6,Bad Tape Hockey,31,HIT,50
+9,5,465.l.105618.t.6,Bad Tape Hockey,32,BLK,52
+9,5,465.l.105618.t.6,Bad Tape Hockey,19,W,3
+9,5,465.l.105618.t.6,Bad Tape Hockey,22,GA,6
+9,5,465.l.105618.t.6,Bad Tape Hockey,25,SV,113
+9,5,465.l.105618.t.6,Bad Tape Hockey,27,SHO,2
+9,5,465.l.105618.t.8,hnahm,1,G,18
+9,5,465.l.105618.t.8,hnahm,2,A,37
+9,5,465.l.105618.t.8,hnahm,8,PPP,19
+9,5,465.l.105618.t.8,hnahm,14,SOG,161
+9,5,465.l.105618.t.8,hnahm,31,HIT,71
+9,5,465.l.105618.t.8,hnahm,32,BLK,60
+9,5,465.l.105618.t.8,hnahm,19,W,3
+9,5,465.l.105618.t.8,hnahm,22,GA,9
+9,5,465.l.105618.t.8,hnahm,25,SV,131
+9,5,465.l.105618.t.8,hnahm,27,SHO,0
+9,6,465.l.105618.t.10,Puck Shiesty,1,G,13
+9,6,465.l.105618.t.10,Puck Shiesty,2,A,30
+9,6,465.l.105618.t.10,Puck Shiesty,8,PPP,18
+9,6,465.l.105618.t.10,Puck Shiesty,14,SOG,133
+9,6,465.l.105618.t.10,Puck Shiesty,31,HIT,42
+9,6,465.l.105618.t.10,Puck Shiesty,32,BLK,39
+9,6,465.l.105618.t.10,Puck Shiesty,19,W,4
+9,6,465.l.105618.t.10,Puck Shiesty,22,GA,17
+9,6,465.l.105618.t.10,Puck Shiesty,25,SV,168
+9,6,465.l.105618.t.10,Puck Shiesty,27,SHO,0
+9,6,465.l.105618.t.12,Fantasy Reaper,1,G,15
+9,6,465.l.105618.t.12,Fantasy Reaper,2,A,30
+9,6,465.l.105618.t.12,Fantasy Reaper,8,PPP,10
+9,6,465.l.105618.t.12,Fantasy Reaper,14,SOG,149
+9,6,465.l.105618.t.12,Fantasy Reaper,31,HIT,50
+9,6,465.l.105618.t.12,Fantasy Reaper,32,BLK,63
+9,6,465.l.105618.t.12,Fantasy Reaper,19,W,1
+9,6,465.l.105618.t.12,Fantasy Reaper,22,GA,18
+9,6,465.l.105618.t.12,Fantasy Reaper,25,SV,140
+9,6,465.l.105618.t.12,Fantasy Reaper,27,SHO,0
+10,1,465.l.105618.t.1,Winless without Bakov,1,G,17
+10,1,465.l.105618.t.1,Winless without Bakov,2,A,24
+10,1,465.l.105618.t.1,Winless without Bakov,8,PPP,9
+10,1,465.l.105618.t.1,Winless without Bakov,14,SOG,136
+10,1,465.l.105618.t.1,Winless without Bakov,31,HIT,65
+10,1,465.l.105618.t.1,Winless without Bakov,32,BLK,52
+10,1,465.l.105618.t.1,Winless without Bakov,19,W,3
+10,1,465.l.105618.t.1,Winless without Bakov,22,GA,15
+10,1,465.l.105618.t.1,Winless without Bakov,25,SV,147
+10,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+10,1,465.l.105618.t.6,Bad Tape Hockey,1,G,17
+10,1,465.l.105618.t.6,Bad Tape Hockey,2,A,17
+10,1,465.l.105618.t.6,Bad Tape Hockey,8,PPP,9
+10,1,465.l.105618.t.6,Bad Tape Hockey,14,SOG,89
+10,1,465.l.105618.t.6,Bad Tape Hockey,31,HIT,40
+10,1,465.l.105618.t.6,Bad Tape Hockey,32,BLK,38
+10,1,465.l.105618.t.6,Bad Tape Hockey,19,W,3
+10,1,465.l.105618.t.6,Bad Tape Hockey,22,GA,7
+10,1,465.l.105618.t.6,Bad Tape Hockey,25,SV,79
+10,1,465.l.105618.t.6,Bad Tape Hockey,27,SHO,0
+10,2,465.l.105618.t.2,Triple Headed Monster,1,G,18
+10,2,465.l.105618.t.2,Triple Headed Monster,2,A,32
+10,2,465.l.105618.t.2,Triple Headed Monster,8,PPP,9
+10,2,465.l.105618.t.2,Triple Headed Monster,14,SOG,130
+10,2,465.l.105618.t.2,Triple Headed Monster,31,HIT,37
+10,2,465.l.105618.t.2,Triple Headed Monster,32,BLK,62
+10,2,465.l.105618.t.2,Triple Headed Monster,19,W,2
+10,2,465.l.105618.t.2,Triple Headed Monster,22,GA,16
+10,2,465.l.105618.t.2,Triple Headed Monster,25,SV,108
+10,2,465.l.105618.t.2,Triple Headed Monster,27,SHO,0
+10,2,465.l.105618.t.11,The Dark Side,1,G,9
+10,2,465.l.105618.t.11,The Dark Side,2,A,22
+10,2,465.l.105618.t.11,The Dark Side,8,PPP,9
+10,2,465.l.105618.t.11,The Dark Side,14,SOG,114
+10,2,465.l.105618.t.11,The Dark Side,31,HIT,57
+10,2,465.l.105618.t.11,The Dark Side,32,BLK,52
+10,2,465.l.105618.t.11,The Dark Side,19,W,3
+10,2,465.l.105618.t.11,The Dark Side,22,GA,10
+10,2,465.l.105618.t.11,The Dark Side,25,SV,85
+10,2,465.l.105618.t.11,The Dark Side,27,SHO,0
+10,3,465.l.105618.t.3,The Nephilim,1,G,19
+10,3,465.l.105618.t.3,The Nephilim,2,A,26
+10,3,465.l.105618.t.3,The Nephilim,8,PPP,14
+10,3,465.l.105618.t.3,The Nephilim,14,SOG,116
+10,3,465.l.105618.t.3,The Nephilim,31,HIT,49
+10,3,465.l.105618.t.3,The Nephilim,32,BLK,41
+10,3,465.l.105618.t.3,The Nephilim,19,W,3
+10,3,465.l.105618.t.3,The Nephilim,22,GA,10
+10,3,465.l.105618.t.3,The Nephilim,25,SV,109
+10,3,465.l.105618.t.3,The Nephilim,27,SHO,0
+10,3,465.l.105618.t.9,Murray Ploppins,1,G,13
+10,3,465.l.105618.t.9,Murray Ploppins,2,A,12
+10,3,465.l.105618.t.9,Murray Ploppins,8,PPP,13
+10,3,465.l.105618.t.9,Murray Ploppins,14,SOG,88
+10,3,465.l.105618.t.9,Murray Ploppins,31,HIT,57
+10,3,465.l.105618.t.9,Murray Ploppins,32,BLK,33
+10,3,465.l.105618.t.9,Murray Ploppins,19,W,4
+10,3,465.l.105618.t.9,Murray Ploppins,22,GA,17
+10,3,465.l.105618.t.9,Murray Ploppins,25,SV,142
+10,3,465.l.105618.t.9,Murray Ploppins,27,SHO,1
+10,4,465.l.105618.t.4,Candy Kanes,1,G,12
+10,4,465.l.105618.t.4,Candy Kanes,2,A,27
+10,4,465.l.105618.t.4,Candy Kanes,8,PPP,11
+10,4,465.l.105618.t.4,Candy Kanes,14,SOG,111
+10,4,465.l.105618.t.4,Candy Kanes,31,HIT,38
+10,4,465.l.105618.t.4,Candy Kanes,32,BLK,35
+10,4,465.l.105618.t.4,Candy Kanes,19,W,4
+10,4,465.l.105618.t.4,Candy Kanes,22,GA,13
+10,4,465.l.105618.t.4,Candy Kanes,25,SV,156
+10,4,465.l.105618.t.4,Candy Kanes,27,SHO,0
+10,4,465.l.105618.t.10,Puck Shiesty,1,G,14
+10,4,465.l.105618.t.10,Puck Shiesty,2,A,34
+10,4,465.l.105618.t.10,Puck Shiesty,8,PPP,16
+10,4,465.l.105618.t.10,Puck Shiesty,14,SOG,117
+10,4,465.l.105618.t.10,Puck Shiesty,31,HIT,32
+10,4,465.l.105618.t.10,Puck Shiesty,32,BLK,34
+10,4,465.l.105618.t.10,Puck Shiesty,19,W,2
+10,4,465.l.105618.t.10,Puck Shiesty,22,GA,11
+10,4,465.l.105618.t.10,Puck Shiesty,25,SV,73
+10,4,465.l.105618.t.10,Puck Shiesty,27,SHO,0
+10,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,18
+10,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,38
+10,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,20
+10,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,142
+10,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,47
+10,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,37
+10,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,1
+10,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,15
+10,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,119
+10,5,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,0
+10,5,465.l.105618.t.7,bridaaaag,1,G,15
+10,5,465.l.105618.t.7,bridaaaag,2,A,24
+10,5,465.l.105618.t.7,bridaaaag,8,PPP,18
+10,5,465.l.105618.t.7,bridaaaag,14,SOG,127
+10,5,465.l.105618.t.7,bridaaaag,31,HIT,36
+10,5,465.l.105618.t.7,bridaaaag,32,BLK,69
+10,5,465.l.105618.t.7,bridaaaag,19,W,1
+10,5,465.l.105618.t.7,bridaaaag,22,GA,13
+10,5,465.l.105618.t.7,bridaaaag,25,SV,96
+10,5,465.l.105618.t.7,bridaaaag,27,SHO,0
+10,6,465.l.105618.t.8,hnahm,1,G,18
+10,6,465.l.105618.t.8,hnahm,2,A,27
+10,6,465.l.105618.t.8,hnahm,8,PPP,21
+10,6,465.l.105618.t.8,hnahm,14,SOG,155
+10,6,465.l.105618.t.8,hnahm,31,HIT,61
+10,6,465.l.105618.t.8,hnahm,32,BLK,51
+10,6,465.l.105618.t.8,hnahm,19,W,2
+10,6,465.l.105618.t.8,hnahm,22,GA,20
+10,6,465.l.105618.t.8,hnahm,25,SV,177
+10,6,465.l.105618.t.8,hnahm,27,SHO,0
+10,6,465.l.105618.t.12,Fantasy Reaper,1,G,7
+10,6,465.l.105618.t.12,Fantasy Reaper,2,A,21
+10,6,465.l.105618.t.12,Fantasy Reaper,8,PPP,13
+10,6,465.l.105618.t.12,Fantasy Reaper,14,SOG,116
+10,6,465.l.105618.t.12,Fantasy Reaper,31,HIT,49
+10,6,465.l.105618.t.12,Fantasy Reaper,32,BLK,46
+10,6,465.l.105618.t.12,Fantasy Reaper,19,W,3
+10,6,465.l.105618.t.12,Fantasy Reaper,22,GA,15
+10,6,465.l.105618.t.12,Fantasy Reaper,25,SV,162
+10,6,465.l.105618.t.12,Fantasy Reaper,27,SHO,2
+11,1,465.l.105618.t.1,Winless without Bakov,1,G,23
+11,1,465.l.105618.t.1,Winless without Bakov,2,A,25
+11,1,465.l.105618.t.1,Winless without Bakov,8,PPP,11
+11,1,465.l.105618.t.1,Winless without Bakov,14,SOG,188
+11,1,465.l.105618.t.1,Winless without Bakov,31,HIT,100
+11,1,465.l.105618.t.1,Winless without Bakov,32,BLK,51
+11,1,465.l.105618.t.1,Winless without Bakov,19,W,4
+11,1,465.l.105618.t.1,Winless without Bakov,22,GA,18
+11,1,465.l.105618.t.1,Winless without Bakov,25,SV,144
+11,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+11,1,465.l.105618.t.2,Triple Headed Monster,1,G,23
+11,1,465.l.105618.t.2,Triple Headed Monster,2,A,33
+11,1,465.l.105618.t.2,Triple Headed Monster,8,PPP,17
+11,1,465.l.105618.t.2,Triple Headed Monster,14,SOG,141
+11,1,465.l.105618.t.2,Triple Headed Monster,31,HIT,37
+11,1,465.l.105618.t.2,Triple Headed Monster,32,BLK,42
+11,1,465.l.105618.t.2,Triple Headed Monster,19,W,4
+11,1,465.l.105618.t.2,Triple Headed Monster,22,GA,17
+11,1,465.l.105618.t.2,Triple Headed Monster,25,SV,167
+11,1,465.l.105618.t.2,Triple Headed Monster,27,SHO,1
+11,2,465.l.105618.t.3,The Nephilim,1,G,17
+11,2,465.l.105618.t.3,The Nephilim,2,A,16
+11,2,465.l.105618.t.3,The Nephilim,8,PPP,12
+11,2,465.l.105618.t.3,The Nephilim,14,SOG,110
+11,2,465.l.105618.t.3,The Nephilim,31,HIT,45
+11,2,465.l.105618.t.3,The Nephilim,32,BLK,53
+11,2,465.l.105618.t.3,The Nephilim,19,W,1
+11,2,465.l.105618.t.3,The Nephilim,22,GA,11
+11,2,465.l.105618.t.3,The Nephilim,25,SV,120
+11,2,465.l.105618.t.3,The Nephilim,27,SHO,0
+11,2,465.l.105618.t.7,bridaaaag,1,G,20
+11,2,465.l.105618.t.7,bridaaaag,2,A,27
+11,2,465.l.105618.t.7,bridaaaag,8,PPP,10
+11,2,465.l.105618.t.7,bridaaaag,14,SOG,140
+11,2,465.l.105618.t.7,bridaaaag,31,HIT,43
+11,2,465.l.105618.t.7,bridaaaag,32,BLK,52
+11,2,465.l.105618.t.7,bridaaaag,19,W,5
+11,2,465.l.105618.t.7,bridaaaag,22,GA,16
+11,2,465.l.105618.t.7,bridaaaag,25,SV,125
+11,2,465.l.105618.t.7,bridaaaag,27,SHO,0
+11,3,465.l.105618.t.4,Candy Kanes,1,G,13
+11,3,465.l.105618.t.4,Candy Kanes,2,A,26
+11,3,465.l.105618.t.4,Candy Kanes,8,PPP,11
+11,3,465.l.105618.t.4,Candy Kanes,14,SOG,108
+11,3,465.l.105618.t.4,Candy Kanes,31,HIT,61
+11,3,465.l.105618.t.4,Candy Kanes,32,BLK,51
+11,3,465.l.105618.t.4,Candy Kanes,19,W,3
+11,3,465.l.105618.t.4,Candy Kanes,22,GA,8
+11,3,465.l.105618.t.4,Candy Kanes,25,SV,102
+11,3,465.l.105618.t.4,Candy Kanes,27,SHO,0
+11,3,465.l.105618.t.8,hnahm,1,G,20
+11,3,465.l.105618.t.8,hnahm,2,A,30
+11,3,465.l.105618.t.8,hnahm,8,PPP,13
+11,3,465.l.105618.t.8,hnahm,14,SOG,162
+11,3,465.l.105618.t.8,hnahm,31,HIT,72
+11,3,465.l.105618.t.8,hnahm,32,BLK,47
+11,3,465.l.105618.t.8,hnahm,19,W,2
+11,3,465.l.105618.t.8,hnahm,22,GA,21
+11,3,465.l.105618.t.8,hnahm,25,SV,155
+11,3,465.l.105618.t.8,hnahm,27,SHO,0
+11,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,11
+11,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,43
+11,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,17
+11,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,160
+11,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,45
+11,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,59
+11,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,1
+11,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,15
+11,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,152
+11,4,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,1
+11,4,465.l.105618.t.11,The Dark Side,1,G,14
+11,4,465.l.105618.t.11,The Dark Side,2,A,29
+11,4,465.l.105618.t.11,The Dark Side,8,PPP,13
+11,4,465.l.105618.t.11,The Dark Side,14,SOG,116
+11,4,465.l.105618.t.11,The Dark Side,31,HIT,78
+11,4,465.l.105618.t.11,The Dark Side,32,BLK,56
+11,4,465.l.105618.t.11,The Dark Side,19,W,3
+11,4,465.l.105618.t.11,The Dark Side,22,GA,3
+11,4,465.l.105618.t.11,The Dark Side,25,SV,79
+11,4,465.l.105618.t.11,The Dark Side,27,SHO,1
+11,5,465.l.105618.t.6,Bad Tape Hockey,1,G,7
+11,5,465.l.105618.t.6,Bad Tape Hockey,2,A,17
+11,5,465.l.105618.t.6,Bad Tape Hockey,8,PPP,8
+11,5,465.l.105618.t.6,Bad Tape Hockey,14,SOG,86
+11,5,465.l.105618.t.6,Bad Tape Hockey,31,HIT,42
+11,5,465.l.105618.t.6,Bad Tape Hockey,32,BLK,48
+11,5,465.l.105618.t.6,Bad Tape Hockey,19,W,2
+11,5,465.l.105618.t.6,Bad Tape Hockey,22,GA,13
+11,5,465.l.105618.t.6,Bad Tape Hockey,25,SV,105
+11,5,465.l.105618.t.6,Bad Tape Hockey,27,SHO,0
+11,5,465.l.105618.t.12,Fantasy Reaper,1,G,15
+11,5,465.l.105618.t.12,Fantasy Reaper,2,A,30
+11,5,465.l.105618.t.12,Fantasy Reaper,8,PPP,15
+11,5,465.l.105618.t.12,Fantasy Reaper,14,SOG,116
+11,5,465.l.105618.t.12,Fantasy Reaper,31,HIT,50
+11,5,465.l.105618.t.12,Fantasy Reaper,32,BLK,56
+11,5,465.l.105618.t.12,Fantasy Reaper,19,W,3
+11,5,465.l.105618.t.12,Fantasy Reaper,22,GA,7
+11,5,465.l.105618.t.12,Fantasy Reaper,25,SV,124
+11,5,465.l.105618.t.12,Fantasy Reaper,27,SHO,2
+11,6,465.l.105618.t.9,Murray Ploppins,1,G,15
+11,6,465.l.105618.t.9,Murray Ploppins,2,A,30
+11,6,465.l.105618.t.9,Murray Ploppins,8,PPP,12
+11,6,465.l.105618.t.9,Murray Ploppins,14,SOG,125
+11,6,465.l.105618.t.9,Murray Ploppins,31,HIT,72
+11,6,465.l.105618.t.9,Murray Ploppins,32,BLK,47
+11,6,465.l.105618.t.9,Murray Ploppins,19,W,4
+11,6,465.l.105618.t.9,Murray Ploppins,22,GA,11
+11,6,465.l.105618.t.9,Murray Ploppins,25,SV,122
+11,6,465.l.105618.t.9,Murray Ploppins,27,SHO,0
+11,6,465.l.105618.t.10,Puck Shiesty,1,G,16
+11,6,465.l.105618.t.10,Puck Shiesty,2,A,20
+11,6,465.l.105618.t.10,Puck Shiesty,8,PPP,10
+11,6,465.l.105618.t.10,Puck Shiesty,14,SOG,118
+11,6,465.l.105618.t.10,Puck Shiesty,31,HIT,46
+11,6,465.l.105618.t.10,Puck Shiesty,32,BLK,30
+11,6,465.l.105618.t.10,Puck Shiesty,19,W,3
+11,6,465.l.105618.t.10,Puck Shiesty,22,GA,12
+11,6,465.l.105618.t.10,Puck Shiesty,25,SV,118
+11,6,465.l.105618.t.10,Puck Shiesty,27,SHO,0
+12,1,465.l.105618.t.1,Winless without Bakov,1,G,7
+12,1,465.l.105618.t.1,Winless without Bakov,2,A,11
+12,1,465.l.105618.t.1,Winless without Bakov,8,PPP,5
+12,1,465.l.105618.t.1,Winless without Bakov,14,SOG,79
+12,1,465.l.105618.t.1,Winless without Bakov,31,HIT,44
+12,1,465.l.105618.t.1,Winless without Bakov,32,BLK,34
+12,1,465.l.105618.t.1,Winless without Bakov,19,W,4
+12,1,465.l.105618.t.1,Winless without Bakov,22,GA,17
+12,1,465.l.105618.t.1,Winless without Bakov,25,SV,154
+12,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+12,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,21
+12,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,16
+12,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,12
+12,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,90
+12,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,45
+12,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,40
+12,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,1
+12,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,13
+12,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,64
+12,1,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,0
+12,2,465.l.105618.t.2,Triple Headed Monster,1,G,11
+12,2,465.l.105618.t.2,Triple Headed Monster,2,A,18
+12,2,465.l.105618.t.2,Triple Headed Monster,8,PPP,6
+12,2,465.l.105618.t.2,Triple Headed Monster,14,SOG,90
+12,2,465.l.105618.t.2,Triple Headed Monster,31,HIT,29
+12,2,465.l.105618.t.2,Triple Headed Monster,32,BLK,22
+12,2,465.l.105618.t.2,Triple Headed Monster,19,W,1
+12,2,465.l.105618.t.2,Triple Headed Monster,22,GA,18
+12,2,465.l.105618.t.2,Triple Headed Monster,25,SV,81
+12,2,465.l.105618.t.2,Triple Headed Monster,27,SHO,0
+12,2,465.l.105618.t.6,Bad Tape Hockey,1,G,4
+12,2,465.l.105618.t.6,Bad Tape Hockey,2,A,13
+12,2,465.l.105618.t.6,Bad Tape Hockey,8,PPP,3
+12,2,465.l.105618.t.6,Bad Tape Hockey,14,SOG,64
+12,2,465.l.105618.t.6,Bad Tape Hockey,31,HIT,34
+12,2,465.l.105618.t.6,Bad Tape Hockey,32,BLK,26
+12,2,465.l.105618.t.6,Bad Tape Hockey,19,W,2
+12,2,465.l.105618.t.6,Bad Tape Hockey,22,GA,10
+12,2,465.l.105618.t.6,Bad Tape Hockey,25,SV,86
+12,2,465.l.105618.t.6,Bad Tape Hockey,27,SHO,0
+12,3,465.l.105618.t.3,The Nephilim,1,G,7
+12,3,465.l.105618.t.3,The Nephilim,2,A,21
+12,3,465.l.105618.t.3,The Nephilim,8,PPP,4
+12,3,465.l.105618.t.3,The Nephilim,14,SOG,63
+12,3,465.l.105618.t.3,The Nephilim,31,HIT,38
+12,3,465.l.105618.t.3,The Nephilim,32,BLK,25
+12,3,465.l.105618.t.3,The Nephilim,19,W,2
+12,3,465.l.105618.t.3,The Nephilim,22,GA,6
+12,3,465.l.105618.t.3,The Nephilim,25,SV,82
+12,3,465.l.105618.t.3,The Nephilim,27,SHO,0
+12,3,465.l.105618.t.11,The Dark Side,1,G,7
+12,3,465.l.105618.t.11,The Dark Side,2,A,14
+12,3,465.l.105618.t.11,The Dark Side,8,PPP,7
+12,3,465.l.105618.t.11,The Dark Side,14,SOG,68
+12,3,465.l.105618.t.11,The Dark Side,31,HIT,51
+12,3,465.l.105618.t.11,The Dark Side,32,BLK,31
+12,3,465.l.105618.t.11,The Dark Side,19,W,1
+12,3,465.l.105618.t.11,The Dark Side,22,GA,4
+12,3,465.l.105618.t.11,The Dark Side,25,SV,47
+12,3,465.l.105618.t.11,The Dark Side,27,SHO,0
+12,4,465.l.105618.t.4,Candy Kanes,1,G,8
+12,4,465.l.105618.t.4,Candy Kanes,2,A,18
+12,4,465.l.105618.t.4,Candy Kanes,8,PPP,9
+12,4,465.l.105618.t.4,Candy Kanes,14,SOG,89
+12,4,465.l.105618.t.4,Candy Kanes,31,HIT,31
+12,4,465.l.105618.t.4,Candy Kanes,32,BLK,25
+12,4,465.l.105618.t.4,Candy Kanes,19,W,3
+12,4,465.l.105618.t.4,Candy Kanes,22,GA,9
+12,4,465.l.105618.t.4,Candy Kanes,25,SV,104
+12,4,465.l.105618.t.4,Candy Kanes,27,SHO,1
+12,4,465.l.105618.t.12,Fantasy Reaper,1,G,8
+12,4,465.l.105618.t.12,Fantasy Reaper,2,A,26
+12,4,465.l.105618.t.12,Fantasy Reaper,8,PPP,10
+12,4,465.l.105618.t.12,Fantasy Reaper,14,SOG,98
+12,4,465.l.105618.t.12,Fantasy Reaper,31,HIT,42
+12,4,465.l.105618.t.12,Fantasy Reaper,32,BLK,42
+12,4,465.l.105618.t.12,Fantasy Reaper,19,W,1
+12,4,465.l.105618.t.12,Fantasy Reaper,22,GA,21
+12,4,465.l.105618.t.12,Fantasy Reaper,25,SV,137
+12,4,465.l.105618.t.12,Fantasy Reaper,27,SHO,0
+12,5,465.l.105618.t.7,bridaaaag,1,G,13
+12,5,465.l.105618.t.7,bridaaaag,2,A,16
+12,5,465.l.105618.t.7,bridaaaag,8,PPP,9
+12,5,465.l.105618.t.7,bridaaaag,14,SOG,98
+12,5,465.l.105618.t.7,bridaaaag,31,HIT,25
+12,5,465.l.105618.t.7,bridaaaag,32,BLK,19
+12,5,465.l.105618.t.7,bridaaaag,19,W,0
+12,5,465.l.105618.t.7,bridaaaag,22,GA,11
+12,5,465.l.105618.t.7,bridaaaag,25,SV,72
+12,5,465.l.105618.t.7,bridaaaag,27,SHO,0
+12,5,465.l.105618.t.10,Puck Shiesty,1,G,10
+12,5,465.l.105618.t.10,Puck Shiesty,2,A,10
+12,5,465.l.105618.t.10,Puck Shiesty,8,PPP,7
+12,5,465.l.105618.t.10,Puck Shiesty,14,SOG,59
+12,5,465.l.105618.t.10,Puck Shiesty,31,HIT,29
+12,5,465.l.105618.t.10,Puck Shiesty,32,BLK,24
+12,5,465.l.105618.t.10,Puck Shiesty,19,W,1
+12,5,465.l.105618.t.10,Puck Shiesty,22,GA,4
+12,5,465.l.105618.t.10,Puck Shiesty,25,SV,53
+12,5,465.l.105618.t.10,Puck Shiesty,27,SHO,0
+12,6,465.l.105618.t.8,hnahm,1,G,7
+12,6,465.l.105618.t.8,hnahm,2,A,9
+12,6,465.l.105618.t.8,hnahm,8,PPP,2
+12,6,465.l.105618.t.8,hnahm,14,SOG,71
+12,6,465.l.105618.t.8,hnahm,31,HIT,34
+12,6,465.l.105618.t.8,hnahm,32,BLK,25
+12,6,465.l.105618.t.8,hnahm,19,W,2
+12,6,465.l.105618.t.8,hnahm,22,GA,14
+12,6,465.l.105618.t.8,hnahm,25,SV,78
+12,6,465.l.105618.t.8,hnahm,27,SHO,0
+12,6,465.l.105618.t.9,Murray Ploppins,1,G,13
+12,6,465.l.105618.t.9,Murray Ploppins,2,A,13
+12,6,465.l.105618.t.9,Murray Ploppins,8,PPP,8
+12,6,465.l.105618.t.9,Murray Ploppins,14,SOG,78
+12,6,465.l.105618.t.9,Murray Ploppins,31,HIT,47
+12,6,465.l.105618.t.9,Murray Ploppins,32,BLK,33
+12,6,465.l.105618.t.9,Murray Ploppins,19,W,2
+12,6,465.l.105618.t.9,Murray Ploppins,22,GA,7
+12,6,465.l.105618.t.9,Murray Ploppins,25,SV,68
+12,6,465.l.105618.t.9,Murray Ploppins,27,SHO,0
+13,1,465.l.105618.t.1,Winless without Bakov,1,G,10
+13,1,465.l.105618.t.1,Winless without Bakov,2,A,24
+13,1,465.l.105618.t.1,Winless without Bakov,8,PPP,13
+13,1,465.l.105618.t.1,Winless without Bakov,14,SOG,89
+13,1,465.l.105618.t.1,Winless without Bakov,31,HIT,50
+13,1,465.l.105618.t.1,Winless without Bakov,32,BLK,31
+13,1,465.l.105618.t.1,Winless without Bakov,19,W,3
+13,1,465.l.105618.t.1,Winless without Bakov,22,GA,9
+13,1,465.l.105618.t.1,Winless without Bakov,25,SV,114
+13,1,465.l.105618.t.1,Winless without Bakov,27,SHO,0
+13,1,465.l.105618.t.3,The Nephilim,1,G,14
+13,1,465.l.105618.t.3,The Nephilim,2,A,32
+13,1,465.l.105618.t.3,The Nephilim,8,PPP,23
+13,1,465.l.105618.t.3,The Nephilim,14,SOG,88
+13,1,465.l.105618.t.3,The Nephilim,31,HIT,27
+13,1,465.l.105618.t.3,The Nephilim,32,BLK,29
+13,1,465.l.105618.t.3,The Nephilim,19,W,1
+13,1,465.l.105618.t.3,The Nephilim,22,GA,11
+13,1,465.l.105618.t.3,The Nephilim,25,SV,65
+13,1,465.l.105618.t.3,The Nephilim,27,SHO,0
+13,2,465.l.105618.t.2,Triple Headed Monster,1,G,12
+13,2,465.l.105618.t.2,Triple Headed Monster,2,A,23
+13,2,465.l.105618.t.2,Triple Headed Monster,8,PPP,10
+13,2,465.l.105618.t.2,Triple Headed Monster,14,SOG,83
+13,2,465.l.105618.t.2,Triple Headed Monster,31,HIT,27
+13,2,465.l.105618.t.2,Triple Headed Monster,32,BLK,31
+13,2,465.l.105618.t.2,Triple Headed Monster,19,W,3
+13,2,465.l.105618.t.2,Triple Headed Monster,22,GA,14
+13,2,465.l.105618.t.2,Triple Headed Monster,25,SV,122
+13,2,465.l.105618.t.2,Triple Headed Monster,27,SHO,0
+13,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,1,G,15
+13,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,2,A,31
+13,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,8,PPP,14
+13,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,14,SOG,113
+13,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,31,HIT,39
+13,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,32,BLK,36
+13,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,19,W,0
+13,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,22,GA,12
+13,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,25,SV,87
+13,2,465.l.105618.t.5,Missin’ Mack 4 Weegz,27,SHO,0
+13,3,465.l.105618.t.4,Candy Kanes,1,G,9
+13,3,465.l.105618.t.4,Candy Kanes,2,A,20
+13,3,465.l.105618.t.4,Candy Kanes,8,PPP,8
+13,3,465.l.105618.t.4,Candy Kanes,14,SOG,84
+13,3,465.l.105618.t.4,Candy Kanes,31,HIT,33
+13,3,465.l.105618.t.4,Candy Kanes,32,BLK,30
+13,3,465.l.105618.t.4,Candy Kanes,19,W,2
+13,3,465.l.105618.t.4,Candy Kanes,22,GA,11
+13,3,465.l.105618.t.4,Candy Kanes,25,SV,75
+13,3,465.l.105618.t.4,Candy Kanes,27,SHO,0
+13,3,465.l.105618.t.6,Bad Tape Hockey,1,G,6
+13,3,465.l.105618.t.6,Bad Tape Hockey,2,A,12
+13,3,465.l.105618.t.6,Bad Tape Hockey,8,PPP,4
+13,3,465.l.105618.t.6,Bad Tape Hockey,14,SOG,57
+13,3,465.l.105618.t.6,Bad Tape Hockey,31,HIT,29
+13,3,465.l.105618.t.6,Bad Tape Hockey,32,BLK,25
+13,3,465.l.105618.t.6,Bad Tape Hockey,19,W,2
+13,3,465.l.105618.t.6,Bad Tape Hockey,22,GA,5
+13,3,465.l.105618.t.6,Bad Tape Hockey,25,SV,74
+13,3,465.l.105618.t.6,Bad Tape Hockey,27,SHO,0
+13,4,465.l.105618.t.7,bridaaaag,1,G,17
+13,4,465.l.105618.t.7,bridaaaag,2,A,16
+13,4,465.l.105618.t.7,bridaaaag,8,PPP,8
+13,4,465.l.105618.t.7,bridaaaag,14,SOG,90
+13,4,465.l.105618.t.7,bridaaaag,31,HIT,22
+13,4,465.l.105618.t.7,bridaaaag,32,BLK,38
+13,4,465.l.105618.t.7,bridaaaag,19,W,0
+13,4,465.l.105618.t.7,bridaaaag,22,GA,17
+13,4,465.l.105618.t.7,bridaaaag,25,SV,76
+13,4,465.l.105618.t.7,bridaaaag,27,SHO,0
+13,4,465.l.105618.t.8,hnahm,1,G,12
+13,4,465.l.105618.t.8,hnahm,2,A,20
+13,4,465.l.105618.t.8,hnahm,8,PPP,10
+13,4,465.l.105618.t.8,hnahm,14,SOG,88
+13,4,465.l.105618.t.8,hnahm,31,HIT,47
+13,4,465.l.105618.t.8,hnahm,32,BLK,31
+13,4,465.l.105618.t.8,hnahm,19,W,4
+13,4,465.l.105618.t.8,hnahm,22,GA,14
+13,4,465.l.105618.t.8,hnahm,25,SV,145
+13,4,465.l.105618.t.8,hnahm,27,SHO,1
+13,5,465.l.105618.t.9,Murray Ploppins,1,G,8
+13,5,465.l.105618.t.9,Murray Ploppins,2,A,14
+13,5,465.l.105618.t.9,Murray Ploppins,8,PPP,4
+13,5,465.l.105618.t.9,Murray Ploppins,14,SOG,87
+13,5,465.l.105618.t.9,Murray Ploppins,31,HIT,75
+13,5,465.l.105618.t.9,Murray Ploppins,32,BLK,29
+13,5,465.l.105618.t.9,Murray Ploppins,19,W,2
+13,5,465.l.105618.t.9,Murray Ploppins,22,GA,15
+13,5,465.l.105618.t.9,Murray Ploppins,25,SV,70
+13,5,465.l.105618.t.9,Murray Ploppins,27,SHO,0
+13,5,465.l.105618.t.12,Fantasy Reaper,1,G,14
+13,5,465.l.105618.t.12,Fantasy Reaper,2,A,19
+13,5,465.l.105618.t.12,Fantasy Reaper,8,PPP,11
+13,5,465.l.105618.t.12,Fantasy Reaper,14,SOG,94
+13,5,465.l.105618.t.12,Fantasy Reaper,31,HIT,38
+13,5,465.l.105618.t.12,Fantasy Reaper,32,BLK,36
+13,5,465.l.105618.t.12,Fantasy Reaper,19,W,1
+13,5,465.l.105618.t.12,Fantasy Reaper,22,GA,12
+13,5,465.l.105618.t.12,Fantasy Reaper,25,SV,93
+13,5,465.l.105618.t.12,Fantasy Reaper,27,SHO,0
+13,6,465.l.105618.t.10,Puck Shiesty,1,G,6
+13,6,465.l.105618.t.10,Puck Shiesty,2,A,10
+13,6,465.l.105618.t.10,Puck Shiesty,8,PPP,5
+13,6,465.l.105618.t.10,Puck Shiesty,14,SOG,55
+13,6,465.l.105618.t.10,Puck Shiesty,31,HIT,21
+13,6,465.l.105618.t.10,Puck Shiesty,32,BLK,28
+13,6,465.l.105618.t.10,Puck Shiesty,19,W,2
+13,6,465.l.105618.t.10,Puck Shiesty,22,GA,9
+13,6,465.l.105618.t.10,Puck Shiesty,25,SV,87
+13,6,465.l.105618.t.10,Puck Shiesty,27,SHO,0
+13,6,465.l.105618.t.11,The Dark Side,1,G,16
+13,6,465.l.105618.t.11,The Dark Side,2,A,11
+13,6,465.l.105618.t.11,The Dark Side,8,PPP,8
+13,6,465.l.105618.t.11,The Dark Side,14,SOG,91
+13,6,465.l.105618.t.11,The Dark Side,31,HIT,63
+13,6,465.l.105618.t.11,The Dark Side,32,BLK,46
+13,6,465.l.105618.t.11,The Dark Side,19,W,3
+13,6,465.l.105618.t.11,The Dark Side,22,GA,5
+13,6,465.l.105618.t.11,The Dark Side,25,SV,68
+13,6,465.l.105618.t.11,The Dark Side,27,SHO,0

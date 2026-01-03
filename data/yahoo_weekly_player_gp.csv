@@ -1,23 +1,49 @@
 week,player_name,team_name,positions,GP
-8,Vincent Trocheck,Trocheck Backcheck Paycheque,"C,Util",4
-8,Tim Stutzle,Trocheck Backcheck Paycheque,"C,LW,Util",3
-8,Timo Meier,Trocheck Backcheck Paycheque,"LW,RW,Util",4
-8,Travis Konecny,Trocheck Backcheck Paycheque,"LW,RW,Util",2
-8,Nikita Kucherov,Trocheck Backcheck Paycheque,"RW,Util",4
-8,Patrick Kane,Trocheck Backcheck Paycheque,"RW,Util",2
-8,Brandon Montour,Trocheck Backcheck Paycheque,"D,Util,IR+",2
-8,Brock Faber,Trocheck Backcheck Paycheque,"D,Util",2
-8,K'Andre Miller,Trocheck Backcheck Paycheque,"D,Util",2
-8,John Carlson,Trocheck Backcheck Paycheque,"D,Util,IR+",4
-8,Dylan Guenther,Trocheck Backcheck Paycheque,"LW,RW,Util",4
-8,Nathan MacKinnon,Trocheck Backcheck Paycheque,"C,Util",3
-8,Morgan Geekie,Trocheck Backcheck Paycheque,"C,LW,RW,Util",3
-8,Jaden Schwartz,Trocheck Backcheck Paycheque,"C,LW,Util,IR,IR+",0
-8,Mats Zuccarello,Trocheck Backcheck Paycheque,"RW,Util",0
-8,Nikita Zadorov,Trocheck Backcheck Paycheque,"D,Util",3
-8,Jake McCabe,Trocheck Backcheck Paycheque,"D,Util",2
-8,Lukas Dostal,Trocheck Backcheck Paycheque,"G,IR,IR+",0
-8,Sergei Bobrovsky,Trocheck Backcheck Paycheque,G,1
-8,Thomas Harley,Trocheck Backcheck Paycheque,"D,Util,IR+",0
-8,Daniil Tarasov,Trocheck Backcheck Paycheque,G,1
-8,Stuart Skinner,Trocheck Backcheck Paycheque,G,1
+8,Jack Eichel,Candy Kanes,"C,Util",0
+8,Alexander Wennberg,Candy Kanes,"C,Util",0
+8,Elias Lindholm,Candy Kanes,"C,Util",0
+8,Gabriel Landeskog,Candy Kanes,"LW,RW,Util",0
+8,Claude Giroux,Candy Kanes,"LW,RW,Util",0
+8,Jason Robertson,Candy Kanes,"LW,RW,Util",0
+8,Patrick Kane,Candy Kanes,"RW,Util",0
+8,Lucas Raymond,Candy Kanes,"RW,Util",0
+8,Travis Konecny,Candy Kanes,"LW,RW,Util",0
+8,Mattias Ekholm,Candy Kanes,"D,Util",0
+8,Evan Bouchard,Candy Kanes,"D,Util",0
+8,Zeev Buium,Candy Kanes,"D,Util",0
+8,Shea Theodore,Candy Kanes,"D,Util,IR+",0
+8,Dmitri Voronkov,Candy Kanes,"LW,Util",0
+8,Ivan Barbashev,Candy Kanes,"LW,Util",0
+8,Kevin Fiala,Candy Kanes,"LW,Util",0
+8,Sean Monahan,Candy Kanes,"C,Util,IR+",0
+8,Marco Rossi,Candy Kanes,"C,Util,IR+",0
+8,Valeri Nichushkin,Candy Kanes,"LW,RW,Util",0
+8,Pierre-Luc Dubois,Candy Kanes,"C,LW,Util,IR+",0
+8,Mackenzie Blackwood,Candy Kanes,"G,IR+",0
+8,Scott Wedgewood,Candy Kanes,G,0
+8,Darcy Kuemper,Candy Kanes,G,0
+8,Mason McTavish,bridaaaag,"C,Util",0
+8,Nick Schmaltz,bridaaaag,"C,RW,Util",0
+8,Auston Matthews,bridaaaag,"C,Util",0
+8,Filip Forsberg,bridaaaag,"LW,Util",0
+8,Evgeni Malkin,bridaaaag,"C,LW,Util,IR+",0
+8,Frank Vatrano,bridaaaag,"C,LW,Util,IR+",0
+8,Pavel Dorofeyev,bridaaaag,"LW,RW,Util",0
+8,Troy Terry,bridaaaag,"RW,Util",0
+8,Tyler Seguin,bridaaaag,"C,RW,Util,IR+",0
+8,Brock Faber,bridaaaag,"D,Util",0
+8,Mason Lohrei,bridaaaag,"D,Util",0
+8,John Carlson,bridaaaag,"D,Util",0
+8,Sean Walker,bridaaaag,"D,Util",0
+8,Sidney Crosby,bridaaaag,"C,Util",0
+8,Martin Necas,bridaaaag,"RW,Util",0
+8,Zach Hyman,bridaaaag,"LW,RW,Util",0
+8,Thomas Harley,bridaaaag,"D,Util",0
+8,Drew Doughty,bridaaaag,"D,Util",0
+8,Mikael Granlund,bridaaaag,"C,LW,RW,Util",0
+8,Steven Stamkos,bridaaaag,"C,LW,RW,Util",0
+8,Jonathan Huberdeau,bridaaaag,"C,LW,Util",0
+8,Tristan Jarry,bridaaaag,"G,IR+",0
+8,Jake Oettinger,bridaaaag,G,0
+8,Lukas Dostal,bridaaaag,G,0
+8,Casey DeSmith,bridaaaag,"G,IR+",0

@@ -14,12 +14,19 @@ except Exception:
 
 
 def get_param(name, default=None):
+    val = None
     if HAS_DJANGO:
         try:
-            return Parameter.objects.get(key=name).value
+            val = Parameter.objects.get(key=name).value
         except Parameter.DoesNotExist:
             pass
-    return os.getenv(name, default)
+    if val is None:
+        val = os.getenv(name, default)
+    
+    # Strip comments if value is a string
+    if isinstance(val, str) and "#" in val:
+        val = val.split("#")[0].strip()
+    return val
 
 
 def load_default_params():

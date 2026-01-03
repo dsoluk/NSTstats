@@ -31,6 +31,7 @@ try:
         upsert_matchup,
         upsert_weekly_total,
         upsert_stat_category,
+        upsert_roster_requirement,
         upsert_weekly_player_gp,
         is_week_closed,
         mark_week_closed,
@@ -39,7 +40,7 @@ except Exception:
     # Defer import errors until flag is enabled
     get_session = None  # type: ignore
     upsert_league = upsert_week = upsert_team = upsert_matchup = None  # type: ignore
-    upsert_weekly_total = upsert_stat_category = None  # type: ignore
+    upsert_weekly_total = upsert_stat_category = upsert_roster_requirement = None  # type: ignore
     upsert_weekly_player_gp = is_week_closed = mark_week_closed = None  # type: ignore
 
 
@@ -91,21 +92,27 @@ class YahooFantasyApp:
     def _pretty(obj) -> str:
         return json.dumps(obj, indent=2, ensure_ascii=False)
 
-    def run(self) -> None:
+    def run(self, league_id: Optional[str] = None) -> None:
         """
         Main execution flow. Decomposed into logical steps for readability.
         """
         print("Starting Yahoo Fantasy NHL helper (OO mode)...")
         
+        target_league_id = league_id or self.league_id
+        if not target_league_id:
+            game_key = self._get_and_verify_game_key()
+            if game_key:
+                self._list_user_leagues(game_key)
+            return
+
+        # Ensure self.league_id is updated for downstream methods
+        self.league_id = target_league_id
+        
         game_key = self._get_and_verify_game_key()
         if not game_key:
             sys.exit(2)
 
-        if not self.league_id:
-            self._list_user_leagues(game_key)
-            return
-
-        league_key = make_league_key(game_key, self.league_id)
+        league_key = make_league_key(game_key, target_league_id)
         league_json = self.client.get_league(league_key)
         
         session, league_row = self._init_db(game_key, league_key)
@@ -132,7 +139,13 @@ class YahooFantasyApp:
         return game_key
 
     def _init_db(self, game_key: str, league_key: str):
-        persist_db = str(self._env("PERSIST_DB", "0")).lower() in {"1", "true", "yes", "y"}
+        # Default to enabling persistence if the DB connection is available
+        persist_db_val = self._env("PERSIST_DB")
+        if persist_db_val is None:
+            persist_db = (get_session is not None)
+        else:
+            persist_db = str(persist_db_val).lower() in {"1", "true", "yes", "y"}
+
         if not (persist_db and get_session):
             return None, None
         try:
@@ -149,7 +162,7 @@ class YahooFantasyApp:
     def _get_league_context(self, league_key: str, session, league_row) -> dict:
         settings_payload = self.client.get_league_settings(league_key)
         raw_xml = settings_payload.get("_raw_xml")
-        context = {'stat_map': {}, 'current_week': 9}
+        context = {'stat_map': {}, 'current_week': 9, 'gp_stat_id': 0}
         
         if raw_xml:
             settings = parse_settings_xml(raw_xml)
@@ -162,11 +175,25 @@ class YahooFantasyApp:
             for s in settings.get("stat_categories", []):
                 sid = int(s["id"])
                 context['stat_map'][sid] = s.get("display") or s.get("name") or str(sid)
+                
+                # Identify GP stat ID
+                if s.get("display") == "GP" or s.get("name") == "Games Played":
+                    context['gp_stat_id'] = sid
+                    print(f"[Diag] Identified GP stat_id: {sid}")
+
                 if session and league_row:
                     try:
                         upsert_stat_category(session, league_id=league_row.id, stat_id=sid, 
                                              abbr=s.get("display"), name=s.get("name"), 
-                                             position_type=s.get("position_type"))
+                                             position_type=s.get("position_type"),
+                                             value=s.get("value"))
+                    except Exception: pass
+            
+            for r in settings.get("roster_requirements", []):
+                if session and league_row:
+                    try:
+                        upsert_roster_requirement(session, league_id=league_row.id,
+                                                   position=r["position"], count=r["count"])
                     except Exception: pass
             try:
                 if session: session.commit()
@@ -341,20 +368,28 @@ class YahooFantasyApp:
     def _export_league_rosters(self, game_key, league_json):
         try:
             num_teams = extract_num_teams(league_json) or int(self._env("NUM_TEAMS", "12"))
-            print(f"\nBuilding combined roster CSV for {num_teams} teams...")
+            print(f"\n[Info] Building combined roster CSV for {num_teams} teams in league {self.league_id}...")
             rows = []
             for i in range(1, num_teams + 1):
                 tkey = make_team_key(game_key, self.league_id, i)
-                payload = self.client.get_team_roster(tkey)
-                if payload.get("_raw_xml"):
-                    r = parse_roster_xml(payload["_raw_xml"])
-                    for p in r.get("players", []):
-                        rows.append({
-                            "team_id": i, "team_key": r.get("team_key") or tkey, "team_name": r.get("team_name"),
-                            "player_id": p.get("player_id"), "name": p.get("name"),
-                            "positions": ";".join(p.get("positions", [])), "selected_position": p.get("selected_position")
-                        })
+                try:
+                    payload = self.client.get_team_roster(tkey)
+                    if payload.get("_raw_xml"):
+                        r = parse_roster_xml(payload["_raw_xml"])
+                        for p in r.get("players", []):
+                            rows.append({
+                                "team_id": i, "team_key": r.get("team_key") or tkey, "team_name": r.get("team_name"),
+                                "player_id": p.get("player_id"), "name": p.get("name"),
+                                "positions": ";".join(p.get("positions", [])), "selected_position": p.get("selected_position")
+                            })
+                except Exception as te:
+                    print(f"  [Warn] Failed to fetch roster for team {tkey}: {te}")
+            
+            # Save with suffix to avoid overwriting between leagues if possible, 
+            # but keep all_rosters.csv for backward compatibility
             self._write_csv("all_rosters.csv", ["team_id", "team_key", "team_name", "player_id", "name", "positions", "selected_position"], rows)
+            if self.league_id:
+                self._write_csv(f"all_rosters_{self.league_id}.csv", ["team_id", "team_key", "team_name", "player_id", "name", "positions", "selected_position"], rows)
         except Exception as e:
             print(f"Error building league rosters: {e}")
 

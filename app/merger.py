@@ -1,4 +1,5 @@
 import os
+from typing import Optional
 
 import pandas as pd
 
@@ -11,15 +12,14 @@ from sqlalchemy.orm import joinedload
 
 
 
-def _load_yahoo_rosters_from_db() -> pd.DataFrame:
+def _load_yahoo_rosters_from_db(league_id: Optional[int] = None) -> pd.DataFrame:
     """
     Load roster mapping from database (CurrentRoster join Player join Team).
     """
     session = get_session()
     try:
-        # We need to know which league. For now, assume most recent or provided.
-        # But for merge, we usually want all known rosters if not filtered.
-        # Let's just get everything from CurrentRoster and join Player/Team.
+        # We need to know which league.
+        # If league_id is provided, filter by it.
         q = (
             session.query(
                 Player.name,
@@ -31,6 +31,9 @@ def _load_yahoo_rosters_from_db() -> pd.DataFrame:
             .join(CurrentRoster, Player.player_key == CurrentRoster.player_key)
             .join(Team, CurrentRoster.team_key == Team.team_key)
         )
+        if league_id is not None:
+            q = q.filter(Team.league_id == league_id)
+            
         rows = []
         for p_name, p_pos, p_status, t_name, t_key in q.all():
             rows.append({
@@ -42,11 +45,21 @@ def _load_yahoo_rosters_from_db() -> pd.DataFrame:
             })
         
         # Also include unowned players that have a status (IR, IR+, etc.)
+        # For a specific league merge, we might want to know who is IR in THAT league.
+        # But Player.status is global currently. 
+        # TODO: Yahoo rosters often have different status per league (e.g. NA in one, IR in another).
         unowned_q = (
             session.query(Player.name, Player.positions, Player.status)
             .filter(Player.status.isnot(None))
-            .filter(~Player.player_key.in_(session.query(CurrentRoster.player_key)))
         )
+        if league_id is not None:
+            # Filter to players not in CurrentRoster for THIS league
+            unowned_q = unowned_q.filter(~Player.player_key.in_(
+                session.query(CurrentRoster.player_key).filter(CurrentRoster.league_id == league_id)
+            ))
+        else:
+            unowned_q = unowned_q.filter(~Player.player_key.in_(session.query(CurrentRoster.player_key)))
+
         for p_name, p_pos, p_status in unowned_q.all():
             rows.append({
                 'name': p_name,
@@ -112,19 +125,31 @@ def _load_yahoo_rosters_from_db() -> pd.DataFrame:
     finally:
         session.close()
 
-def _load_yahoo_all_rosters(csv_path: str) -> pd.DataFrame:
+def _load_yahoo_all_rosters(csv_path: str, league_id: Optional[int] = None) -> pd.DataFrame:
     """
     Attempt to load from DB first, fall back to CSV if DB is empty.
     """
-    df = _load_yahoo_rosters_from_db()
+    df = _load_yahoo_rosters_from_db(league_id)
     if not df.empty:
-        print("[Info] Loaded roster mapping from database.")
+        if league_id is not None:
+            print(f"[Info] Loaded roster mapping from database for league_id={league_id}.")
+        else:
+            print("[Info] Loaded roster mapping from database.")
         return df
     
-    print(f"[Info] Database rosters empty, falling back to {csv_path}")
+    if league_id is not None:
+        print(f"[Info] Database rosters empty for league_id={league_id}, falling back to {csv_path}")
+    else:
+        print(f"[Info] Database rosters empty, falling back to {csv_path}")
+    
     if not os.path.exists(csv_path):
         return pd.DataFrame(columns=['cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name', 'status'])
     ydf = pd.read_csv(csv_path)
+    
+    # Filter CSV by league_id if it has it
+    if league_id is not None and 'league_id' in ydf.columns:
+        ydf = ydf[ydf['league_id'] == league_id].copy()
+    
     if 'status' not in ydf.columns:
         ydf['status'] = None
     # Normalize name to cname
@@ -202,7 +227,7 @@ def _load_yahoo_all_rosters(csv_path: str) -> pd.DataFrame:
     return pd.DataFrame(columns=['cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name'])
 
 
-def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
+def merge_role(nst_csv: str, role: str, out_csv: str, league_id: Optional[int] = None) -> str:
     """
     Merge NST stats with Yahoo ownership using local normalization (no registry).
     role: 'skater' or 'goalie'
@@ -288,7 +313,7 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
     merged = df.copy()
 
     # Load Yahoo roster info and merge on cname+position (no team)
-    yinfo = _load_yahoo_all_rosters(os.path.join('data', 'all_rosters.csv'))
+    yinfo = _load_yahoo_all_rosters(os.path.join('data', 'all_rosters.csv'), league_id)
     if not yinfo.empty:
         # Exact match on (cname, exact position)
         merged = merged.merge(
@@ -306,7 +331,7 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
                 return p
             return ''
         merged['fpos'] = merged['pos_code'].apply(_to_fpos)
-        need_fallback = merged['team_name'].isna()
+        need_fallback = merged['yahoo_name'].isna()
         if need_fallback.any():
             y_fg = yinfo[['cname', 'fpos', 'team_name', 'yahoo_positions', 'yahoo_name', 'status']].copy()
             y_fg = y_fg.dropna(subset=['fpos'])
@@ -325,7 +350,7 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
             if drop_alt:
                 merged.drop(columns=drop_alt, inplace=True)
         # Final fallback: match on cname only (may be ambiguous for duplicate names)
-        need_final = merged['team_name'].isna()
+        need_final = merged['yahoo_name'].isna()
         if need_final.any():
             y_by_name = (
                 yinfo.groupby('cname', as_index=False)
@@ -387,103 +412,118 @@ def merge_role(nst_csv: str, role: str, out_csv: str) -> str:
 
 
 def run_merge():
-    out1 = merge_role(os.path.join('data', 'skaters_scored.csv'), 'skater', os.path.join('data', 'merged_skaters.csv'))
-    # Use scored goalies in merge (goalies_scored.csv), not raw goalies.csv
-    out2 = merge_role(os.path.join('data', 'goalies_scored.csv'), 'goalie', os.path.join('data', 'merged_goalies.csv'))
-    print(f"Saved merged skaters to {out1}")
-    print(f"Saved merged goalies to {out2}")
-
-    # If prior-season inputs exist, produce prior merged outputs too
+    session = get_session()
     try:
-        prior_sk_in = os.path.join('data', 'skaters_scored_prior.csv')
-        # Use scored prior goalies if available
-        prior_g_in = os.path.join('data', 'goalies_scored_prior.csv')
-        if os.path.exists(prior_sk_in):
-            prior_sk_out = merge_role(prior_sk_in, 'skater', os.path.join('data', 'merged_skaters_prior.csv'))
-            print(f"Saved prior-season merged skaters to {prior_sk_out}")
-        if os.path.exists(prior_g_in):
-            prior_g_out = merge_role(prior_g_in, 'goalie', os.path.join('data', 'merged_goalies_prior.csv'))
-            print(f"Saved prior-season merged goalies to {prior_g_out}")
-    except Exception as _pm:
-        print(f"[Warn] Prior-season merge skipped due to error: {_pm}")
+        leagues = session.query(League).all()
+        if not leagues:
+            print("[Warn] No leagues found in DB. Performing default merge.")
+            leagues = [None]
+        
+        for league in leagues:
+            league_id_str = ""
+            league_id = None
+            if league:
+                league_id = league.id
+                league_id_str = league.league_key.split(".l.")[-1]
+            
+            suffix = f"_{league_id_str}" if league_id_str else ""
+            
+            # For each league, we use the scored file for THAT league if it exists, otherwise fall back to default
+            sk_scored = os.path.join('data', f'skaters_scored{suffix}.csv')
+            if not os.path.exists(sk_scored): sk_scored = os.path.join('data', 'skaters_scored.csv')
+            
+            g_scored = os.path.join('data', f'goalies_scored{suffix}.csv')
+            if not os.path.exists(g_scored): g_scored = os.path.join('data', 'goalies_scored.csv')
 
+            out1 = merge_role(sk_scored, 'skater', os.path.join('data', f'merged_skaters{suffix}.csv'), league_id)
+            out2 = merge_role(g_scored, 'goalie', os.path.join('data', f'merged_goalies{suffix}.csv'), league_id)
+            
+            # For backward compatibility, also save to default path if it's the first/only league
+            if league == leagues[0]:
+                import shutil
+                shutil.copy(out1, os.path.join('data', 'merged_skaters.csv'))
+                shutil.copy(out2, os.path.join('data', 'merged_goalies.csv'))
+
+            print(f"Saved merged skaters for {league.league_key if league else 'default'} to {out1}")
+            print(f"Saved merged goalies for {league.league_key if league else 'default'} to {out2}")
+
+            # DQ report per league? For now just keep the default behavior for the first league
+            if league == leagues[0]:
+                _run_dq_report(out1, out2, league_id)
+
+    finally:
+        session.close()
+
+def _run_dq_report(out1, out2, league_id=None):
     # Lightweight data-quality report for merge coverage
     try:
         import json as _json
-        all_rosters_path = os.path.join('data', 'all_rosters.csv')
-        if os.path.exists(all_rosters_path):
-            ydf = pd.read_csv(all_rosters_path)
-            total_yahoo_rows = len(ydf)
-            # Build cname+ypos keys for yahoo to better reflect distinct roster spots
-            ydf['cname'] = ydf['name'].fillna('').apply(normalize_name)
-            def _ypos_map(row):
-                sel = str(row.get('selected_position') or '').upper()
-                poss = str(row.get('positions') or '')
-                parts = [p.strip().upper() for p in poss.split(';') if p.strip()]
-                pref = sel if sel and sel not in {'BN','IR','IR+','NA'} else ''
-                order = ([pref] if pref else []) + parts
-                for p in order:
-                    c = normalize_position(p)
-                    if c in {'G','D','C','L','R'}:
-                        return c
-                if 'D' in parts: return 'D'
-                if 'G' in parts: return 'G'
-                return ''
-            ydf['ypos'] = ydf.apply(_ypos_map, axis=1)
-            # Distinct players count as in the CSV (user expectation)
-            expected_total = total_yahoo_rows
+        
+        # Load Yahoo rosters for this league
+        yinfo = _load_yahoo_all_rosters(os.path.join('data', 'all_rosters.csv'), league_id)
+        if yinfo.empty:
+            print(f"[Info] No Yahoo rosters found for league_id={league_id}; skipping DQ report.")
+            return
 
-            ms = pd.read_csv(out1)
-            mg = pd.read_csv(out2)
-            sk_with_team = int(ms['team_name'].notna().sum()) if 'team_name' in ms.columns else 0
-            g_with_team = int(mg['team_name'].notna().sum()) if 'team_name' in mg.columns else 0
-            total_with_team = sk_with_team + g_with_team
+        # Load merged outputs without converting "None" or empty strings to NaN
+        ms = pd.read_csv(out1, na_filter=False)
+        mg = pd.read_csv(out2, na_filter=False)
+        
+        # Count matched players with a team
+        sk_with_team = int((ms['team_name'] != '').sum()) if 'team_name' in ms.columns else 0
+        g_with_team = int((mg['team_name'] != '').sum()) if 'team_name' in mg.columns else 0
+        total_with_team = sk_with_team + g_with_team
 
-            # Report on unmatched players for data quality (consistency check)
-            yinfo = _load_yahoo_all_rosters(os.path.join('data', 'all_rosters.csv'))
-            if not yinfo.empty:
-                # Identify which players from Yahoo are correctly matched to a team in the merged output
-                matched_names = set()
-                if not ms.empty and 'team_name' in ms.columns:
-                    matched_names.update(ms.loc[ms['team_name'].notna(), 'Player'].astype(str).apply(normalize_name))
-                if not mg.empty and 'team_name' in mg.columns:
-                    matched_names.update(mg.loc[mg['team_name'].notna(), 'Player'].astype(str).apply(normalize_name))
+        # Identify matched names (including unowned)
+        matched_names = set()
+        for df in [ms, mg]:
+            if not df.empty and 'Elig_Pos' in df.columns:
+                # If matched, Elig_Pos will be non-empty (even if it's "None")
+                matched_names.update(df.loc[df['Elig_Pos'] != '', 'Player'].astype(str).apply(normalize_name))
 
-                missing = yinfo[~yinfo['cname'].isin(matched_names)].copy()
-                if not missing.empty:
-                    # Rename columns for clarity in the output CSV
-                    report_cols = {'yahoo_name': 'name', 'yahoo_positions': 'positions'}
-                    missing.rename(columns={k: v for k, v in report_cols.items() if k in missing.columns}, inplace=True)
+        # Identify missing Yahoo players
+        missing = yinfo[~yinfo['cname'].isin(matched_names)].copy()
+        
+        # Identify all NST players for the reason field
+        nst_names = set()
+        if not ms.empty: nst_names.update(ms['Player'].astype(str).apply(normalize_name))
+        if not mg.empty: nst_names.update(mg['Player'].astype(str).apply(normalize_name))
 
-                    # Differentiate reasons: Not in NST at all vs. Match failed
-                    nst_names = set()
-                    if not ms.empty: nst_names.update(ms['Player'].astype(str).apply(normalize_name))
-                    if not mg.empty: nst_names.update(mg['Player'].astype(str).apply(normalize_name))
-
-                    def get_reason(row):
-                        if row['cname'] not in nst_names:
-                            return "Missing from NST (Injured/AHL?)"
-                        return "Position match failed"
-
-                    missing['reason'] = missing.apply(get_reason, axis=1)
-
-                    out_missing = os.path.join('data', 'unmatched_in_merged.csv')
-                    keep = [c for c in ['cname', 'name', 'positions', 'team_name', 'reason'] if c in missing.columns]
-                    missing[keep].to_csv(out_missing, index=False)
-                    print(f"Saved unmatched details to {out_missing} ({len(missing)} rows)")
+        if not missing.empty:
+            # Rename columns for clarity in the output CSV
+            missing.rename(columns={'yahoo_name': 'name', 'yahoo_positions': 'positions'}, inplace=True)
             
-            report = {
-                'expected_total_from_yahoo_rosters': len(yinfo) if not yinfo.empty else 0,
-                'skaters_with_team_name': sk_with_team,
-                'goalies_with_team_name': g_with_team,
-                'total_with_team_name': total_with_team,
-                'difference': (len(yinfo) if not yinfo.empty else 0) - total_with_team
-            }
-            os.makedirs('data', exist_ok=True)
-            with open(os.path.join('data','dq_merge_report.json'), 'w', encoding='utf-8') as f:
-                _json.dump(report, f, indent=2)
-            print(f"DQ report: {report}")
+            def get_reason(row):
+                if row['cname'] not in nst_names:
+                    return "Missing from NST (Injured/AHL?)"
+                return "Position match failed"
+
+            missing['reason'] = missing.apply(get_reason, axis=1)
+            
+            # Save unmatched report
+            out_missing = os.path.join('data', 'unmatched_in_merged.csv')
+            keep = [c for c in ['cname', 'name', 'positions', 'team_name', 'reason'] if c in missing.columns]
+            missing[keep].to_csv(out_missing, index=False)
+            print(f"Saved unmatched details to {out_missing} ({len(missing)} rows)")
         else:
-            print("all_rosters.csv not found; skipped DQ merge report.")
+            # Clean up old report if it exists and we are now 100% matched
+            out_missing = os.path.join('data', 'unmatched_in_merged.csv')
+            if os.path.exists(out_missing):
+                os.remove(out_missing)
+
+        # Summary report
+        report = {
+            'expected_total_from_yahoo_rosters': len(yinfo),
+            'skaters_with_team_name': sk_with_team,
+            'goalies_with_team_name': g_with_team,
+            'total_with_team_name': total_with_team,
+            'difference': len(yinfo) - total_with_team
+        }
+        
+        os.makedirs('data', exist_ok=True)
+        with open(os.path.join('data','dq_merge_report.json'), 'w', encoding='utf-8') as f:
+            _json.dump(report, f, indent=2)
+        print(f"DQ report: {report}")
+
     except Exception as _e:
         print(f"[Warn] Could not produce DQ report: {_e}")

@@ -17,7 +17,14 @@ def _coerce_toi_to_timedelta(series: pd.Series) -> pd.Series:
 
 
 def basic_cleansing(souptable):
-    headers = [th.get_text(strip=True) for th in souptable.find("tr").find_all("th")]
+    if souptable is None:
+        return pd.DataFrame()
+    
+    first_row = souptable.find("tr")
+    if not first_row:
+        return pd.DataFrame()
+        
+    headers = [th.get_text(strip=True) for th in first_row.find_all("th")]
     rows = []
     for row in souptable.find_all("tr")[1:]:
         cells = row.find_all("td")

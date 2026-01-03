@@ -23,6 +23,7 @@ class League(Base):
     weeks: Mapped[list["Week"]] = relationship(back_populates="league")
     teams: Mapped[list["Team"]] = relationship(back_populates="league")
     stats: Mapped[list["StatCategory"]] = relationship(back_populates="league")
+    roster_requirements: Mapped[list["RosterRequirement"]] = relationship(back_populates="league")
 
 
 class Week(Base):
@@ -83,6 +84,7 @@ class StatCategory(Base):
     abbr: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     name: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
     position_type: Mapped[Optional[str]] = mapped_column(String(16), nullable=True)
+    value: Mapped[Optional[float]] = mapped_column(Numeric(18, 6), nullable=True)
     # Optional grouping metadata for ordering reports
     group_code: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     group_order: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
@@ -90,6 +92,18 @@ class StatCategory(Base):
     league: Mapped[League] = relationship(back_populates="stats")
     __table_args__ = (
         UniqueConstraint("league_id", "stat_id", name="uq_stat_cat_league_stat"),
+    )
+
+
+class RosterRequirement(Base):
+    __tablename__ = "roster_requirements"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    league_id: Mapped[int] = mapped_column(ForeignKey("leagues.id", ondelete="CASCADE"), nullable=False)
+    position: Mapped[str] = mapped_column(String(16), nullable=False)
+    count: Mapped[int] = mapped_column(Integer, nullable=False)
+    league: Mapped[League] = relationship(back_populates="roster_requirements")
+    __table_args__ = (
+        UniqueConstraint("league_id", "position", name="uq_roster_req_league_pos"),
     )
 
 
@@ -296,21 +310,48 @@ def set_player_positions(session: Session, *, player_key: str, positions: Iterab
     session.flush()
 
 
-def upsert_stat_category(session: Session, *, league_id: int, stat_id: int, abbr: Optional[str], name: Optional[str], position_type: Optional[str]) -> StatCategory:
+def upsert_stat_category(session: Session, *, league_id: int, stat_id: int, abbr: Optional[str], name: Optional[str],
+                         position_type: Optional[str], value: Optional[float] = None, group_code: Optional[str] = None) -> StatCategory:
     obj = session.query(StatCategory).filter_by(league_id=league_id, stat_id=stat_id).one_or_none()
     if obj is None:
-        obj = StatCategory(league_id=league_id, stat_id=stat_id, abbr=abbr, name=name, position_type=position_type)
+        obj = StatCategory(league_id=league_id, stat_id=stat_id, abbr=abbr, name=name,
+                           position_type=position_type, value=value, group_code=group_code)
         session.add(obj)
         session.flush()
     else:
         changed = False
-        if obj.abbr != abbr:
+        if abbr and obj.abbr != abbr:
             obj.abbr = abbr; changed = True
-        if obj.name != name:
+        if name and obj.name != name:
             obj.name = name; changed = True
-        if obj.position_type != position_type:
+        if position_type and obj.position_type != position_type:
             obj.position_type = position_type; changed = True
+        
+        # Only update value if the new value is not None
+        if value is not None:
+            v1 = float(obj.value) if obj.value is not None else None
+            v2 = float(value)
+            if v1 != v2:
+                obj.value = value; changed = True
+        
+        # Only update group_code if the new value is not None
+        if group_code is not None and obj.group_code != group_code:
+            obj.group_code = group_code; changed = True
+            
         if changed:
+            session.flush()
+    return obj
+
+
+def upsert_roster_requirement(session: Session, *, league_id: int, position: str, count: int) -> RosterRequirement:
+    obj = session.query(RosterRequirement).filter_by(league_id=league_id, position=position).one_or_none()
+    if obj is None:
+        obj = RosterRequirement(league_id=league_id, position=position, count=count)
+        session.add(obj)
+        session.flush()
+    else:
+        if obj.count != count:
+            obj.count = count
             session.flush()
     return obj
 

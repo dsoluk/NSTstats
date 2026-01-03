@@ -440,11 +440,12 @@ def _text(el) -> str:
 
 
 def parse_settings_xml(raw_xml: str) -> Dict[str, Any]:
-    """Parse league settings to extract stat categories mapping.
-    Returns: { 'stat_categories': [{id:int, name:str, display:str, position_type:str}],
+    """Parse league settings to extract stat categories mapping and roster requirements.
+    Returns: { 'stat_categories': [{id:int, name:str, display:str, position_type:str, value:float}],
+               'roster_requirements': [{position:str, count:int}],
                'current_week': Optional[int] }
     """
-    out: Dict[str, Any] = {"stat_categories": [], "current_week": None}
+    out: Dict[str, Any] = {"stat_categories": [], "roster_requirements": [], "current_week": None}
     try:
         root = ET.fromstring(raw_xml)
         # Find current_week
@@ -455,10 +456,30 @@ def parse_settings_xml(raw_xml: str) -> Dict[str, Any]:
                     out['current_week'] = int(_text(elem) or '0') or None
                 except Exception:
                     pass
-        # Find stat categories
+        # Find stat categories and roster requirements
         # Use BeautifulSoup to be flexible
         soup = _make_soup(raw_xml)
         if soup:
+            # Roster requirements
+            roster_parent = None
+            for cand in soup.find_all():
+                nm = getattr(cand, 'name', '') or ''
+                if nm.endswith('roster_positions'):
+                    roster_parent = cand
+                    break
+            if roster_parent:
+                for rp in roster_parent.find_all(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('roster_position')):
+                    pos = rp.find(lambda t: hasattr(t, 'name') and str(t.name).endswith('position'))
+                    count = rp.find(lambda t: hasattr(t, 'name') and str(t.name).endswith('count'))
+                    if pos and count:
+                        try:
+                            out['roster_requirements'].append({
+                                'position': pos.text.strip(),
+                                'count': int(count.text.strip())
+                            })
+                        except Exception: pass
+
+            # Stat categories
             stats_parent = None
             # common nesting: league > settings > stat_categories > stats > stat
             for cand in soup.find_all():
@@ -474,17 +495,26 @@ def parse_settings_xml(raw_xml: str) -> Dict[str, Any]:
                 name = st.find(lambda t: hasattr(t, 'name') and str(t.name).endswith('name'))
                 display = st.find(lambda t: hasattr(t, 'name') and str(t.name).endswith('display_name'))
                 pos = st.find(lambda t: hasattr(t, 'name') and str(t.name).endswith('position_type'))
+                val = st.find(lambda t: hasattr(t, 'name') and str(t.name).endswith('value'))
                 try:
                     sid_int = int(sid.text.strip()) if sid and sid.text else None
                 except Exception:
                     sid_int = None
                 if sid_int is None:
                     continue
+                
+                stat_val = None
+                if val and val.text:
+                    try:
+                        stat_val = float(val.text.strip())
+                    except Exception: pass
+
                 stats.append({
                     'id': sid_int,
                     'name': (name.text.strip() if name and name.text else ''),
                     'display': (display.text.strip() if display and display.text else ''),
                     'position_type': (pos.text.strip() if pos and pos.text else ''),
+                    'value': stat_val,
                 })
             out['stat_categories'] = stats
     except Exception:

@@ -377,6 +377,10 @@ def compare_averages(*, league_key: str, current_week: int, team_id: str, opp_te
         opp_gp = _avg_gp_by_pos_type(session, league.id, opp_key, current_week)
         league_gp = _league_avg_gp_by_pos_type(session, league.id, current_week)
 
+        # Points calculation (if league has point values)
+        has_points = any(s.value is not None and float(s.value) != 0 for s in stats)
+        stat_weights: Dict[int, float] = {s.stat_id: float(s.value) for s in stats if s.value is not None}
+
         # Totals for per-GP grid
         team_sum = _sum_stats_by_team(session, league.id, team_key, current_week)
         opp_sum = _sum_stats_by_team(session, league.id, opp_key, current_week)
@@ -392,7 +396,7 @@ def compare_averages(*, league_key: str, current_week: int, team_id: str, opp_te
             # Sorting using grouping metadata with fallback
             sort_key = _stat_sort_key_factory(pos, abbr_meta)
 
-            base_rows: List[Tuple[str, float, float, float, int, float, float, float, int, str]] = []
+            base_rows: List[Tuple[str, float, float, float, int, float, float, float, int, str, float, float, float]] = []
             for s in sorted(by_pos.get(pos, []), key=sort_key):
                 name = s.abbr or s.name or str(s.stat_id)
                 if (s.abbr or "").upper() in EXCLUDE_STATS:
@@ -406,10 +410,17 @@ def compare_averages(*, league_key: str, current_week: int, team_id: str, opp_te
                 win_vs_opp = 1 if (a < b if inv else a > b) else 0
                 win_vs_lg = 1 if (a < lavg if inv else a > lavg) else 0
                 group_code = abbr_meta.get((s.abbr or '').upper(), (None, None, None))[0]
-                base_rows.append((name, a, b, d1, win_vs_opp, a, lavg, d2, win_vs_lg, group_code or ("Goalie" if pos == 'G' else "")))
+                
+                # Points contribution per game
+                w = stat_weights.get(s.stat_id, 0.0)
+                a_pts = a * w if not math.isnan(a) else 0.0
+                b_pts = b * w if not math.isnan(b) else 0.0
+                l_pts = lavg * w if not math.isnan(lavg) else 0.0
+                
+                base_rows.append((name, a, b, d1, win_vs_opp, a, lavg, d2, win_vs_lg, group_code or ("Goalie" if pos == 'G' else ""), a_pts, b_pts, l_pts))
 
             # Per-GP grid
-            rows_gp: List[Tuple[str, float, float, float, int, float, float, float, int, str]] = []
+            rows_gp: List[Tuple[str, float, float, float, int, float, float, float, int, str, float, float, float]] = []
             t_gp = float(team_gp_tot.get(pos, 0.0))
             o_gp = float(opp_gp_tot.get(pos, 0.0))
             l_gp = float(league_gp_tot.get(pos, 0.0))
@@ -452,7 +463,14 @@ def compare_averages(*, league_key: str, current_week: int, team_id: str, opp_te
                 win_vs_opp = 1 if (a < b if inv else a > b) else 0
                 win_vs_lg = 1 if (a < lavg if inv else a > lavg) else 0
                 group_code = abbr_meta.get((s.abbr or '').upper(), (None, None, None))[0]
-                rows_gp.append((name, a, b, d1, win_vs_opp, a, lavg, d2, win_vs_lg, group_code or ("Goalie" if pos == 'G' else "")))
+                
+                # Points contribution per game (avg stats * weight)
+                w = stat_weights.get(s.stat_id, 0.0)
+                a_pts = a * w if not math.isnan(a) else 0.0
+                b_pts = b * w if not math.isnan(b) else 0.0
+                l_pts = lavg * w if not math.isnan(lavg) else 0.0
+                
+                rows_gp.append((name, a, b, d1, win_vs_opp, a, lavg, d2, win_vs_lg, group_code or ("Goalie" if pos == 'G' else ""), a_pts, b_pts, l_pts))
 
             # Emit CSV rows for this section
             section = 'Skaters' if pos == 'P' else 'Goalies'
@@ -460,8 +478,12 @@ def compare_averages(*, league_key: str, current_week: int, team_id: str, opp_te
             total_wins_vs_opp = sum(r[4] for r in base_rows)
             total_wins_vs_lg = sum(r[8] for r in base_rows)
             nstats = len(base_rows) or 1
-            for (name, a, b, d1, w1, a2, lavg, d2, w2, grp) in base_rows:
-                csv_rows.append({
+            total_pts_team = sum(r[10] for r in base_rows)
+            total_pts_opp = sum(r[11] for r in base_rows)
+            total_pts_lg = sum(r[12] for r in base_rows)
+
+            for (name, a, b, d1, w1, a2, lavg, d2, w2, grp, a_pts, b_pts, l_pts) in base_rows:
+                row = {
                     'section': section,
                     'grid': 'base',
                     'group': grp,
@@ -474,19 +496,38 @@ def compare_averages(*, league_key: str, current_week: int, team_id: str, opp_te
                     'league_avg': lavg,
                     'diff_vs_league': d2,
                     'xWin_vs_league': w2,
-                })
+                }
+                if has_points:
+                    row['team_pts'] = a_pts
+                    row['opp_pts'] = b_pts
+                    row['league_pts'] = l_pts
+                csv_rows.append(row)
+            
             # Totals and Win%
-            csv_rows.append({'section': section, 'grid': 'base', 'group': '', 'stat': 'Total Wins', 'team': total_wins_vs_opp, 'opp': '', 'diff_vs_opp': '', 'xWin_vs_opp': '', 'team_vs_league': total_wins_vs_lg, 'league_avg': '', 'diff_vs_league': '', 'xWin_vs_league': ''})
-            csv_rows.append({'section': section, 'grid': 'base', 'group': '', 'stat': 'Win%', 'team': (total_wins_vs_opp / nstats), 'opp': '', 'diff_vs_opp': '', 'xWin_vs_opp': '', 'team_vs_league': (total_wins_vs_lg / nstats), 'league_avg': '', 'diff_vs_league': '', 'xWin_vs_league': ''})
+            total_row = {'section': section, 'grid': 'base', 'group': '', 'stat': 'Total Wins', 'team': total_wins_vs_opp, 'opp': '', 'diff_vs_opp': '', 'xWin_vs_opp': '', 'team_vs_league': total_wins_vs_lg, 'league_avg': '', 'diff_vs_league': '', 'xWin_vs_league': ''}
+            if has_points:
+                total_row['team_pts'] = total_pts_team
+                total_row['opp_pts'] = total_pts_opp
+                total_row['league_pts'] = total_pts_lg
+            csv_rows.append(total_row)
+            
+            win_pct_row = {'section': section, 'grid': 'base', 'group': '', 'stat': 'Win%', 'team': (total_wins_vs_opp / nstats), 'opp': '', 'diff_vs_opp': '', 'xWin_vs_opp': '', 'team_vs_league': (total_wins_vs_lg / nstats), 'league_avg': '', 'diff_vs_league': '', 'xWin_vs_league': ''}
+            csv_rows.append(win_pct_row)
+
             # Avg GP footer
-            csv_rows.append({'section': section, 'grid': 'base', 'group': '', 'stat': 'Avg GP', 'team': float(team_gp.get(pos, 0.0)), 'opp': float(opp_gp.get(pos, 0.0)), 'diff_vs_opp': '', 'xWin_vs_opp': '', 'team_vs_league': float(team_gp.get(pos, 0.0)), 'league_avg': float(league_gp.get(pos, 0.0)), 'diff_vs_league': '', 'xWin_vs_league': ''})
+            avg_gp_row = {'section': section, 'grid': 'base', 'group': '', 'stat': 'Avg GP', 'team': float(team_gp.get(pos, 0.0)), 'opp': float(opp_gp.get(pos, 0.0)), 'diff_vs_opp': '', 'xWin_vs_opp': '', 'team_vs_league': float(team_gp.get(pos, 0.0)), 'league_avg': float(league_gp.get(pos, 0.0)), 'diff_vs_league': '', 'xWin_vs_league': ''}
+            csv_rows.append(avg_gp_row)
 
             # Per-GP grid rows
             total_wins_vs_opp_gp = sum(r[4] for r in rows_gp)
             total_wins_vs_lg_gp = sum(r[8] for r in rows_gp)
             nstats_gp = len(rows_gp) or 1
-            for (name, a, b, d1, w1, a2, lavg, d2, w2, grp) in rows_gp:
-                csv_rows.append({
+            total_pts_team_gp = sum(r[10] for r in rows_gp)
+            total_pts_opp_gp = sum(r[11] for r in rows_gp)
+            total_pts_lg_gp = sum(r[12] for r in rows_gp)
+
+            for (name, a, b, d1, w1, a2, lavg, d2, w2, grp, a_pts, b_pts, l_pts) in rows_gp:
+                row = {
                     'section': section,
                     'grid': 'per_gp',
                     'group': grp,
@@ -499,9 +540,22 @@ def compare_averages(*, league_key: str, current_week: int, team_id: str, opp_te
                     'league_avg': lavg,
                     'diff_vs_league': d2,
                     'xWin_vs_league': w2,
-                })
-            csv_rows.append({'section': section, 'grid': 'per_gp', 'group': '', 'stat': 'Total Wins', 'team': total_wins_vs_opp_gp, 'opp': '', 'diff_vs_opp': '', 'xWin_vs_opp': '', 'team_vs_league': total_wins_vs_lg_gp, 'league_avg': '', 'diff_vs_league': '', 'xWin_vs_league': ''})
-            csv_rows.append({'section': section, 'grid': 'per_gp', 'group': '', 'stat': 'Win%', 'team': (total_wins_vs_opp_gp / nstats_gp), 'opp': '', 'diff_vs_opp': '', 'xWin_vs_opp': '', 'team_vs_league': (total_wins_vs_lg_gp / nstats_gp), 'league_avg': '', 'diff_vs_league': '', 'xWin_vs_league': ''})
+                }
+                if has_points:
+                    row['team_pts'] = a_pts
+                    row['opp_pts'] = b_pts
+                    row['league_pts'] = l_pts
+                csv_rows.append(row)
+            
+            total_row_gp = {'section': section, 'grid': 'per_gp', 'group': '', 'stat': 'Total Wins', 'team': total_wins_vs_opp_gp, 'opp': '', 'diff_vs_opp': '', 'xWin_vs_opp': '', 'team_vs_league': total_wins_vs_lg_gp, 'league_avg': '', 'diff_vs_league': '', 'xWin_vs_league': ''}
+            if has_points:
+                total_row_gp['team_pts'] = total_pts_team_gp
+                total_row_gp['opp_pts'] = total_pts_opp_gp
+                total_row_gp['league_pts'] = total_pts_lg_gp
+            csv_rows.append(total_row_gp)
+
+            win_pct_row_gp = {'section': section, 'grid': 'per_gp', 'group': '', 'stat': 'Win%', 'team': (total_wins_vs_opp_gp / nstats_gp), 'opp': '', 'diff_vs_opp': '', 'xWin_vs_opp': '', 'team_vs_league': (total_wins_vs_lg_gp / nstats_gp), 'league_avg': '', 'diff_vs_league': '', 'xWin_vs_league': ''}
+            csv_rows.append(win_pct_row_gp)
 
         # Write CSV
         safe_lkey = str(league_key).replace(':', '_').replace('/', '_')
@@ -510,11 +564,16 @@ def compare_averages(*, league_key: str, current_week: int, team_id: str, opp_te
         # Write manually to avoid pandas dependency (already present but keep light)
         import csv
         fieldnames = ['section', 'grid', 'group', 'stat', 'team', 'opp', 'diff_vs_opp', 'xWin_vs_opp', 'team_vs_league', 'league_avg', 'diff_vs_league', 'xWin_vs_league']
+        if has_points:
+            fieldnames += ['team_pts', 'opp_pts', 'league_pts']
+
         with open(out_path, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
             for row in csv_rows:
-                writer.writerow(row)
+                # filter to only known fields
+                filtered = {k: v for k, v in row.items() if k in fieldnames}
+                writer.writerow(filtered)
 
         print(f"avg-compare: Computed Team {team_id} vs Opp {opp_team_id} for weeks < {current_week} in league {league_key}.")
         print("- Excluded stats: SA, SV from grids (info only)")

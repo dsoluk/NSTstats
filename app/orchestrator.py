@@ -1,6 +1,8 @@
 import os
+from typing import Optional
 from config import load_default_params
-from pipelines import StatPipelineFactory, PlayerIndexPipeline
+from pipelines import StatPipelineFactory, PlayerIndexPipeline, GoalieIndexPipeline, FantasyPointsPipeline
+from infrastructure.persistence import get_session, League, StatCategory
 
 # Registry removed: using local normalization; keep placeholders for backward compatibility
 RegistryFactory = None
@@ -21,14 +23,14 @@ except Exception:
     _run_merge_impl = None
 
 
-def run_yahoo():
+def run_yahoo(league_id: Optional[str] = None):
     # If YahooFantasyApp failed to import, provide a clear message and return
     if YahooFantasyApp is None:
         print("Yahoo data source skipped: YahooFantasyApp could not be imported (check yahoo/app.py and dependencies).")
         return
     try:
         app = YahooFantasyApp()
-        app.run()
+        app.run(league_id=league_id)
     except Exception as err:
         print(f"Yahoo data source skipped due to error: {err}")
 
@@ -93,33 +95,61 @@ def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False):
         skater_pipeline.save(os.path.join(out_dir, "skaters.csv"))
         goalie_pipeline.save(os.path.join(out_dir, "goalies.csv"))
 
-        # compute player index on skaters
-        if verbose:
-            print("[Diag] Starting PlayerIndexPipeline scoring...")
-        indexer = PlayerIndexPipeline(skater_df)
+        # Scoring logic - multi-league support
+        session = get_session()
         try:
-            scored_df = indexer.run()
-        except Exception as se:
-            if verbose:
-                import traceback
-                print("[Diag] Scoring failed with traceback:")
-                print(traceback.format_exc())
-            raise
-        # persist scored skaters
-        skater_scored_path = os.path.join(out_dir, "skaters_scored.csv")
-        scored_df.to_csv(skater_scored_path, index=False)
-        print(f"Saved scored skaters to {skater_scored_path}")
+            leagues = session.query(League).all()
+            if not leagues:
+                print("[Warn] No leagues found in DB. Scoring with default T-score only.")
+                leagues = [None] # Dummy league for default scoring
+            
+            for league in leagues:
+                league_id_str = ""
+                league_label = ""
+                if league:
+                    league_id_str = league.league_key.split(".l.")[-1]
+                    league_label = f" for league {league_id_str}"
+                
+                print(f"Scoring skaters{league_label}...")
+                indexer = PlayerIndexPipeline(skater_df, league=league)
+                scored_skater_df = indexer.run()
+                
+                # If league has point values, apply FantasyPointsPipeline
+                if league:
+                    stat_info = {s.abbr: (float(s.value), s.group_code) for s in league.stats if s.value is not None}
+                    if stat_info:
+                        print(f"  Applying points scoring{league_label}")
+                        points_pipeline = FantasyPointsPipeline(scored_skater_df, stat_info, league_id=league.id)
+                        scored_skater_df = points_pipeline.run()
 
-        # Score goalies (GA, SV%, GAA) similarly to skaters
-        try:
-            from pipelines import GoalieIndexPipeline
-            g_indexer = GoalieIndexPipeline(goalie_df)
-            g_scored = g_indexer.run()
-            goalie_scored_path = os.path.join(out_dir, "goalies_scored.csv")
-            g_scored.to_csv(goalie_scored_path, index=False)
-            print(f"Saved scored goalies to {goalie_scored_path}")
-        except Exception as ge:
-            print(f"[Warn] Goalie scoring failed: {ge}")
+                # Persist scored skaters
+                suffix = f"_{league_id_str}" if league_id_str else ""
+                skater_scored_path = os.path.join(out_dir, f"skaters_scored{suffix}.csv")
+                scored_skater_df.to_csv(skater_scored_path, index=False)
+                print(f"  Saved scored skaters to {skater_scored_path}")
+
+                # Scoring goalies
+                print(f"Scoring goalies{league_label}...")
+                g_indexer = GoalieIndexPipeline(goalie_df, league=league)
+                scored_goalie_df = g_indexer.run()
+                
+                if league:
+                    if stat_info:
+                        # Re-use stat_info, assuming stat names match
+                        points_pipeline = FantasyPointsPipeline(scored_goalie_df, stat_info, league_id=league.id)
+                        scored_goalie_df = points_pipeline.run()
+                
+                goalie_scored_path = os.path.join(out_dir, f"goalies_scored{suffix}.csv")
+                scored_goalie_df.to_csv(goalie_scored_path, index=False)
+                print(f"  Saved scored goalies to {goalie_scored_path}")
+
+                # For backward compatibility, also save to default path if it's the first league or only league
+                if league == leagues[0]:
+                    scored_skater_df.to_csv(os.path.join(out_dir, "skaters_scored.csv"), index=False)
+                    scored_goalie_df.to_csv(os.path.join(out_dir, "goalies_scored.csv"), index=False)
+
+        finally:
+            session.close()
 
         # Optional prior-season pass (derive from env FROMSEASON/THRUSEASON)
         try:
@@ -176,7 +206,9 @@ def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False):
             print(f"[Warn] Prior-season pass skipped due to error: {_pe}")
 
     except Exception as e:
+        import traceback
         print(f"NST processing failed: {e}")
+        traceback.print_exc()
 
 
 def run_merge():
@@ -190,7 +222,20 @@ def run_merge():
 
 
 def run_all():
-    run_yahoo()
+    session = get_session()
+    try:
+        leagues = session.query(League).all()
+        if not leagues:
+            run_yahoo()
+        else:
+            for league in leagues:
+                # Extract numeric ID from league_key (e.g. 12345 from nhl.l.12345)
+                l_id = league.league_key.split(".l.")[-1]
+                print(f"\n--- Running Yahoo for League {l_id} ---")
+                run_yahoo(league_id=l_id)
+    finally:
+        session.close()
+        
     run_nst()
     run_merge()
 
@@ -201,7 +246,7 @@ def run_roster_sync(league_key: str):
     """
     from infrastructure.persistence import (
         get_session, League, Team, Player, CurrentRoster, 
-        upsert_team, upsert_player
+        upsert_team, upsert_player, upsert_league
     )
     from yahoo.yfs_client import YahooFantasyClient, parse_roster_xml, extract_num_teams, make_team_key
     from yahoo.yahoo_auth import get_oauth
@@ -210,8 +255,11 @@ def run_roster_sync(league_key: str):
     try:
         league = session.query(League).filter(League.league_key == league_key).one_or_none()
         if not league:
-            print(f"League {league_key} not found. Run init-weeks first.")
-            return
+            print(f"League {league_key} not found in database. Registering...")
+            game_key = league_key.split('.l.')[0]
+            season = os.getenv("SEASON", "2025")
+            league = upsert_league(session, game_key=game_key, league_key=league_key, season=season)
+            session.commit()
 
         client_id = os.getenv("YAHOO_CLIENT_ID")
         client_secret = os.getenv("YAHOO_CLIENT_SECRET")

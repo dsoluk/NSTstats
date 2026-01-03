@@ -30,12 +30,18 @@ class NSTPlayerPipeline:
     def fetch_html(self, sit, tgp):
         self.params["sit"] = sit
         self.params["tgp"] = tgp
-        # print(f"Fetching {sit} {tgp}")
+        print(f"[Diag] Fetching NST {sit} (tgp={tgp})...")
         return fetch_nst_html(self.url, self.params)
 
     def process(self, html):
-        clean = basic_cleansing(html)
-        return basic_filtering(clean)
+        if html is None:
+            return pd.DataFrame()
+        try:
+            clean = basic_cleansing(html)
+            return basic_filtering(clean)
+        except Exception as e:
+            print(f"[Warn] NST processing error: {e}")
+            return pd.DataFrame()
 
     def _col_map_for_sit(self, sit: str) -> dict:
         # Normalize and choose the correct mapping
@@ -116,10 +122,8 @@ class NSTPlayerPipeline:
         # print(f"Join keys (candidate columns): {candidate_cols}")
 
         def is_text_like(s: pd.Series) -> bool:
-            # print(s.dtypes)
-
             # Treat pandas string dtype, generic object (often strings), and categoricals as text-like
-            return is_string_dtype(s)
+            return is_string_dtype(s) or is_object_dtype(s) or is_categorical_dtype(s)
 
         keys = []
         for col in candidate_cols:
@@ -161,8 +165,12 @@ class NSTPlayerPipeline:
         frames_for_keys = [base] + [df for _, df in to_join]
         on_cols = self._detect_join_keys(frames_for_keys)
         if not on_cols:
+            # Check if all frames are empty
+            if all(df.empty for df in frames_for_keys):
+                raise ValueError("Could not infer join keys because all NST dataframes are empty. Check your parameters and URL.")
             raise ValueError(
-                "Could not infer join keys. Ensure identity columns (e.g., Player/Team/position) exist and are not prefixed.")
+                f"Could not infer join keys. common columns: {list(set.intersection(*(set(df.columns) for df in frames_for_keys)))}. "
+                "Ensure identity columns (e.g., Player/Team/position) exist and are not prefixed.")
 
         merged = base
         for name, dfj in to_join:
@@ -288,8 +296,9 @@ class StatPipelineFactory:
 
 
 class PlayerIndexPipeline:
-    def __init__(self, df):
+    def __init__(self, df, league=None):
         self.df = df.copy()
+        self.league = league
         # Load weights from config
         try:
             _, _, index_weights, _, _, _ = load_default_params()
@@ -305,6 +314,18 @@ class PlayerIndexPipeline:
         # Base stat names (without prefixes)
         self.offensive_stats = ["G", "A", "PPP", "SOG", "FOW"]
         self.banger_stats = ["HIT", "BLK", "PIM"]
+        self.to_drop = []
+
+        # Filter stats based on league if provided
+        if self.league:
+            league_abbrs = {s.abbr for s in self.league.stats}
+            self.offensive_stats = [s for s in self.offensive_stats if s in league_abbrs]
+            self.banger_stats = [s for s in self.banger_stats if s in league_abbrs]
+            
+            # Identify stats to drop (League 2 specifically wants to exclude these)
+            if self.league.id == 2:
+                self.to_drop = ["PIM", "FOW"]
+
         # Determine which prefixes/windows are available
         self.prefixes = self._detect_prefixes()
         # Determine the position column name
@@ -541,6 +562,13 @@ class PlayerIndexPipeline:
         drop_candidates = [
             "Offensive_Index", "Banger_Index", "Composite_Index", "T_Composite_Index"
         ]
+        
+        # Add league-specific exclusions
+        if self.to_drop:
+            for prefix in self.prefixes:
+                for stat in self.to_drop:
+                    drop_candidates.append(f"{prefix}{stat}")
+
         existing = [c for c in drop_candidates if c in self.df.columns]
         if existing:
             self.df.drop(columns=existing, inplace=True)
@@ -552,14 +580,24 @@ class PlayerIndexPipeline:
 
 
 class GoalieIndexPipeline:
-    def __init__(self, df):
+    def __init__(self, df, league=None):
         self.df = df.copy()
+        self.league = league
         # Verbose scoring diagnostics via env flag
         self.verbose = str(os.getenv("VERBOSE_SCORING", "0")).lower() in {"1", "true", "yes", "y"}
         # Goalie metrics to score (without prefixes)
-        self.goalie_stats = ["GA", "SV%", "GAA"]
+        self.goalie_stats = ["GA", "SV%", "GAA", "W", "SV", "SHO"]
+        self.to_drop = []
+        if self.league:
+            league_abbrs = {s.abbr for s in self.league.stats}
+            self.goalie_stats = [s for s in self.goalie_stats if s in league_abbrs]
+            
+            # Identify stats to drop (League 2 specifically wants to exclude these)
+            if self.league.id == 2:
+                self.to_drop = ["SV%", "GAA"]
+
         # Which metrics are lower-better and should be inverted after percentile mapping
-        self.lower_better = {"GA": True, "GAA": True, "SV%": False}
+        self.lower_better = {"GA": True, "GAA": True, "SV%": False, "W": False, "SV": False, "SHO": False}
         # Determine which prefixes/windows are available
         self.prefixes = self._detect_prefixes()
 
@@ -661,5 +699,146 @@ class GoalieIndexPipeline:
     def run(self):
         self.calculate_t_scores()
         self.calculate_indexes_per_window()
-        # Drop any temporary log columns if any were created (none expected here)
+        
+        # Add league-specific exclusions
+        if self.to_drop:
+            drop_candidates = []
+            for prefix in self.prefixes:
+                for stat in self.to_drop:
+                    drop_candidates.append(f"{prefix}{stat}")
+            
+            existing = [c for c in drop_candidates if c in self.df.columns]
+            if existing:
+                self.df.drop(columns=existing, inplace=True)
+
+        return self.df
+
+
+class FantasyPointsPipeline:
+    def __init__(self, df, stat_info: dict, league_id: int = None):
+        self.df = df.copy()
+        self.stat_info = stat_info  # abbr -> (value, group_code)
+        self.league_id = league_id
+
+    def _detect_prefixes(self):
+        has_szn = any(c.startswith("szn_") for c in self.df.columns)
+        has_l7 = any(c.startswith("l7_") for c in self.df.columns)
+        prefixes = []
+        if has_szn: prefixes.append("szn_")
+        if has_l7: prefixes.append("l7_")
+        if not prefixes: prefixes = [""]
+        return prefixes
+
+    @staticmethod
+    def _phi(z):
+        try:
+            return 0.5 * np.erfc(-np.asarray(z, dtype=float) / np.sqrt(2.0))
+        except Exception:
+            arr = np.asarray(z, dtype=float)
+            return 0.5 * (1.0 + np.vectorize(math.erf)(arr / math.sqrt(2.0)))
+
+    def _percentile_score(self, x_series: pd.Series, group_mask: pd.Series):
+        x = pd.to_numeric(x_series, errors="coerce")
+        sample = x[group_mask].dropna()
+        if sample.empty:
+            return pd.Series(50, index=x.index, dtype="Int64")
+        mu = sample.mean()
+        sd = sample.std(ddof=0)
+        if not np.isfinite(sd) or sd <= 0:
+            p = pd.Series(0.5, index=sample.index)
+        else:
+            p = pd.Series(self._phi((sample - mu) / sd), index=sample.index)
+        
+        s = np.ceil(99.0 * p.clip(lower=0.0, upper=1.0)).astype("Int64").fillna(50)
+        out = pd.Series(50, index=x.index, dtype="Int64")
+        out.loc[sample.index] = s.values
+        return out
+
+    def run(self):
+        prefixes = self._detect_prefixes()
+        for prefix in prefixes:
+            points_col = f"{prefix}FantasyPoints"
+            self.df[points_col] = 0.0
+            
+            # Additional columns for league 2
+            if self.league_id == 2:
+                self.df[f"{prefix}Raw_Total_Points"] = 0.0
+                self.df[f"{prefix}Offensive_Points"] = 0.0
+                self.df[f"{prefix}Banger_Points"] = 0.0
+
+            # Check for rates vs counts for skaters in League 2
+            is_skater = "pos_group" in self.df.columns
+            rate_param = os.getenv("RATE", "y")
+            use_conversion = (self.league_id == 2 and is_skater and rate_param == 'y')
+
+            for stat, info in self.stat_info.items():
+                if isinstance(info, (int, float)):
+                    weight = float(info)
+                    group = None
+                else:
+                    weight, group = info
+                
+                if weight is None or weight == 0:
+                    continue
+                
+                col = f"{prefix}{stat}"
+                if col in self.df.columns:
+                    val = pd.to_numeric(self.df[col], errors="coerce").fillna(0)
+                    
+                    if use_conversion:
+                        # Convert rate per 60 to total count
+                        sit = 'pp' if stat in ['PPP', 'PPG', 'PPA'] else 'all'
+                        gp_col = f"{prefix}GP_{sit}"
+                        toi_col = f"{prefix}TOI/GP_{sit}"
+                        
+                        if gp_col in self.df.columns and toi_col in self.df.columns:
+                            gp_val = pd.to_numeric(self.df[gp_col], errors="coerce").fillna(0)
+                            toi_val = self.df[toi_col]
+                            
+                            # Ensure toi_val is Timedelta-like for total_seconds()
+                            if not hasattr(toi_val, 'dt'):
+                                toi_val = pd.to_timedelta(toi_val, errors='coerce')
+                            
+                            if toi_val.notna().any():
+                                total_hours = (gp_val * toi_val.dt.total_seconds()) / 3600.0
+                                val = (val * total_hours).fillna(0)
+                    
+                    contribution = val * float(weight)
+                    self.df[points_col] += contribution
+                    
+                    if self.league_id == 2:
+                        self.df[f"{prefix}Raw_Total_Points"] += contribution
+                        if group == "Offensive":
+                            self.df[f"{prefix}Offensive_Points"] += contribution
+                        elif group == "Banger":
+                            self.df[f"{prefix}Banger_Points"] += contribution
+            
+            if self.league_id == 2:
+                # Overall = Raw Total Points
+                self.df[f"{prefix}Overall_Points"] = self.df[f"{prefix}Raw_Total_Points"]
+
+                # FP/GP
+                gp_col = f"{prefix}GP_all"
+                if gp_col not in self.df.columns:
+                    gp_col = f"{prefix}GP"
+                if gp_col in self.df.columns:
+                    gp_val = pd.to_numeric(self.df[gp_col], errors="coerce")
+                    # Use Raw_Total_Points / GP. Replace 0 with NaN to avoid inf
+                    self.df[f"{prefix}FP/GP"] = self.df[f"{prefix}Raw_Total_Points"] / gp_val.replace(0, np.nan)
+
+                # Total Points T Score
+                # Determine segmentation (D vs F vs Goalie)
+                if "pos_group" in self.df.columns:
+                    # Skaters
+                    scores = pd.Series(50, index=self.df.index, dtype="Int64")
+                    for seg in ["D", "F"]:
+                        mask = self.df["pos_group"] == seg
+                        if mask.any():
+                            scores.loc[mask] = self._percentile_score(self.df[f"{prefix}Raw_Total_Points"], mask).loc[mask]
+                    self.df[f"{prefix}Total_Points_T_Score"] = scores
+                else:
+                    # Goalies or default
+                    mask = pd.Series(True, index=self.df.index)
+                    self.df[f"{prefix}Total_Points_T_Score"] = self._percentile_score(self.df[f"{prefix}Raw_Total_Points"], mask)
+
         return self.df

@@ -27,8 +27,14 @@ Process (via CLI):
 - `all`: convenience orchestration that runs `yahoo`, `nst`, and `merge`.
 
 ### Composite Workflows
-- `daily`: runs `sync-rosters`, `all`, and `schedule-lookup`. Prompts for `current-week`.
-- `weekly`: runs `fetch-daily-gp`, `backfill-gp`, and `avg-compare` for the prior week. Prompts for `current-week`, `team-id`, and `opp-team-id`.
+- `daily`: runs `sync-rosters`, `all`, and `schedule-lookup`. If multiple leagues are present in the database, it processes all of them. Prompts for `current-week`.
+- `weekly`: runs `fetch-daily-gp`, `backfill-gp`, and `avg-compare` for the prior week. If multiple leagues are present, it loops through them, attempting to auto-detect teams like "Bad Tape Hockey". Prompts for `current-week`, and optionally `team-id`/`opp-team-id`.
+
+### Multi-League and Points Support
+- The system now supports managing multiple Yahoo leagues simultaneously. 
+- Points-based leagues are handled by ingesting stat values (weights) from Yahoo settings and calculating "FantasyPoints" columns during the scoring step.
+- Outputs for separate leagues are saved with a league ID suffix, e.g., `data/skaters_scored_105618.csv` and `data/merged_skaters_105618.csv`.
+- `avg-compare` reports for points leagues include "Pts Contribution" columns to help evaluate team performance relative to opponents and league averages.
 
 Key outputs:
 - `data/merged_skaters.csv` (and analogous outputs for goalies, if applicable).

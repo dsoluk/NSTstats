@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="post merge of rework-merge">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="checkpoint 1/2/26b">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_cache/nst_team_pk_NA_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_pk_NA_20252026.parquet" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_cache/nst_team_pp_NA_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_pp_NA_20252026.parquet" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_cache/nst_team_sva_B_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_sva_B_20252026.parquet" afterDir="false" />
@@ -51,21 +48,32 @@
       <change beforePath="$PROJECT_DIR$/_plots/team_defense_vs_ga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/team_defense_vs_ga60.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_plots/team_defense_vs_xga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/team_defense_vs_xga60.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/merger.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/merger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/orchestrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/orchestrator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/avg_compare.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/avg_compare.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/all_rosters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_rosters.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/app.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/goalies_scored.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies_scored.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/lookup_table.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/lookup_table.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/merged_goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_goalies.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/merged_goalies_prior.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_goalies_prior.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/merged_skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/merged_skaters_prior.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters_prior.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/opponent_offense_lookup.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/opponent_offense_lookup.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/skaters.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/skaters_scored.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/skaters_scored.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/team_defense_lookup.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/team_defense_lookup.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/team_offense_lookup.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/team_offense_lookup.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/unmatched_in_merged.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/unmatched_in_merged.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/yahoo_weekly_player_gp.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/yahoo_weekly_player_gp.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/yahoo_weekly_totals.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/yahoo_weekly_totals.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/PROCESS.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PROCESS.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers/extract.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers/extract.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers/transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers/transform.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infrastructure/persistence.py" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/persistence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipelines.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yahoo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahoo/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yahoo/yfs_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahoo/yfs_client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +81,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="460" />
+    <option name="cachedIndexableFilesCount" value="472" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -254,7 +262,7 @@
       <workItem from="1766256940497" duration="30533000" />
       <workItem from="1766500912715" duration="4864000" />
       <workItem from="1766930259373" duration="10867000" />
-      <workItem from="1767358714761" duration="1884000" />
+      <workItem from="1767358714761" duration="20185000" />
     </task>
     <task id="LOCAL-00001" summary="with Pipelines">
       <option name="closed" value="true" />
@@ -544,15 +552,21 @@
       <option name="project" value="LOCAL" />
       <updated>1766755096596</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="checkpoint 1/2/26b">
+      <option name="closed" value="true" />
+      <created>1767361373520</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1767361373520</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added analysis...note. no ly yet" />
-    <MESSAGE value="changed score calcs" />
     <MESSAGE value="rerun prior to branch" />
     <MESSAGE value="fcast improvements and pre-adding goalie dq" />
     <MESSAGE value="goalies working" />
@@ -576,7 +590,9 @@
     <MESSAGE value="added lookup of IR status for waiver wire" />
     <MESSAGE value="fixed status" />
     <MESSAGE value="post merge of rework-merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="post merge of rework-merge" />
+    <MESSAGE value="checkpoint 1/2/26" />
+    <MESSAGE value="checkpoint 1/2/26b" />
+    <option name="LAST_COMMIT_MESSAGE" value="checkpoint 1/2/26b" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NSTstats$main.coverage" NAME="main Coverage Results" MODIFIED="1761609118434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
