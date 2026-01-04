@@ -1,27 +1,4 @@
 week,player_name,team_name,positions,GP
-8,Jack Eichel,Candy Kanes,"C,Util",0
-8,Alexander Wennberg,Candy Kanes,"C,Util",0
-8,Elias Lindholm,Candy Kanes,"C,Util",0
-8,Gabriel Landeskog,Candy Kanes,"LW,RW,Util",0
-8,Claude Giroux,Candy Kanes,"LW,RW,Util",0
-8,Jason Robertson,Candy Kanes,"LW,RW,Util",0
-8,Patrick Kane,Candy Kanes,"RW,Util",0
-8,Lucas Raymond,Candy Kanes,"RW,Util",0
-8,Travis Konecny,Candy Kanes,"LW,RW,Util",0
-8,Mattias Ekholm,Candy Kanes,"D,Util",0
-8,Evan Bouchard,Candy Kanes,"D,Util",0
-8,Zeev Buium,Candy Kanes,"D,Util",0
-8,Shea Theodore,Candy Kanes,"D,Util,IR+",0
-8,Dmitri Voronkov,Candy Kanes,"LW,Util",0
-8,Ivan Barbashev,Candy Kanes,"LW,Util",0
-8,Kevin Fiala,Candy Kanes,"LW,Util",0
-8,Sean Monahan,Candy Kanes,"C,Util,IR+",0
-8,Marco Rossi,Candy Kanes,"C,Util,IR+",0
-8,Valeri Nichushkin,Candy Kanes,"LW,RW,Util",0
-8,Pierre-Luc Dubois,Candy Kanes,"C,LW,Util,IR+",0
-8,Mackenzie Blackwood,Candy Kanes,"G,IR+",0
-8,Scott Wedgewood,Candy Kanes,G,0
-8,Darcy Kuemper,Candy Kanes,G,0
 8,Mason McTavish,bridaaaag,"C,Util",0
 8,Nick Schmaltz,bridaaaag,"C,RW,Util",0
 8,Auston Matthews,bridaaaag,"C,Util",0
@@ -47,3 +24,26 @@ week,player_name,team_name,positions,GP
 8,Jake Oettinger,bridaaaag,G,0
 8,Lukas Dostal,bridaaaag,G,0
 8,Casey DeSmith,bridaaaag,"G,IR+",0
+8,Jack Eichel,Candy Kanes,"C,Util",0
+8,Alexander Wennberg,Candy Kanes,"C,Util",0
+8,Elias Lindholm,Candy Kanes,"C,Util",0
+8,Gabriel Landeskog,Candy Kanes,"LW,RW,Util",0
+8,Claude Giroux,Candy Kanes,"LW,RW,Util",0
+8,Jason Robertson,Candy Kanes,"LW,RW,Util",0
+8,Patrick Kane,Candy Kanes,"RW,Util",0
+8,Lucas Raymond,Candy Kanes,"RW,Util",0
+8,Travis Konecny,Candy Kanes,"LW,RW,Util",0
+8,Mattias Ekholm,Candy Kanes,"D,Util",0
+8,Evan Bouchard,Candy Kanes,"D,Util",0
+8,Zeev Buium,Candy Kanes,"D,Util",0
+8,Shea Theodore,Candy Kanes,"D,Util,IR+",0
+8,Dmitri Voronkov,Candy Kanes,"LW,Util",0
+8,Ivan Barbashev,Candy Kanes,"LW,Util",0
+8,Kevin Fiala,Candy Kanes,"LW,Util",0
+8,Sean Monahan,Candy Kanes,"C,Util,IR+",0
+8,Marco Rossi,Candy Kanes,"C,Util,IR+",0
+8,Valeri Nichushkin,Candy Kanes,"LW,RW,Util",0
+8,Pierre-Luc Dubois,Candy Kanes,"C,LW,Util,IR+",0
+8,Mackenzie Blackwood,Candy Kanes,"G,IR+",0
+8,Scott Wedgewood,Candy Kanes,G,0
+8,Darcy Kuemper,Candy Kanes,G,0

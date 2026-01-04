@@ -17,7 +17,7 @@ from yahoo.yfs_client import (
     parse_roster_xml,
     parse_settings_xml,
     parse_scoreboard_xml,
-    parse_players_week_stats_xml,
+    parse_players_stats_xml,
     extract_num_teams,
 )
 
@@ -327,7 +327,7 @@ class YahooFantasyApp:
             try:
                 payload = self.client.get_players_week_stats(batch, week)
                 if payload.get("_raw_xml"):
-                    parsed = parse_players_week_stats_xml(payload["_raw_xml"])
+                    parsed = parse_players_stats_xml(payload["_raw_xml"])
                     for item in parsed.get('players', []):
                         stats_map[item['player_key']] = item.get('stats', {})
             except Exception: continue
@@ -377,9 +377,10 @@ class YahooFantasyApp:
                     if payload.get("_raw_xml"):
                         r = parse_roster_xml(payload["_raw_xml"])
                         for p in r.get("players", []):
+                            pkey = f"{game_key}.p.{p['player_id']}"
                             rows.append({
                                 "team_id": i, "team_key": r.get("team_key") or tkey, "team_name": r.get("team_name"),
-                                "player_id": p.get("player_id"), "name": p.get("name"),
+                                "player_id": p.get("player_id"), "player_key": pkey, "name": p.get("name"),
                                 "positions": ";".join(p.get("positions", [])), "selected_position": p.get("selected_position")
                             })
                 except Exception as te:
@@ -387,9 +388,9 @@ class YahooFantasyApp:
             
             # Save with suffix to avoid overwriting between leagues if possible, 
             # but keep all_rosters.csv for backward compatibility
-            self._write_csv("all_rosters.csv", ["team_id", "team_key", "team_name", "player_id", "name", "positions", "selected_position"], rows)
+            self._write_csv("all_rosters.csv", ["team_id", "team_key", "team_name", "player_id", "player_key", "name", "positions", "selected_position"], rows)
             if self.league_id:
-                self._write_csv(f"all_rosters_{self.league_id}.csv", ["team_id", "team_key", "team_name", "player_id", "name", "positions", "selected_position"], rows)
+                self._write_csv(f"all_rosters_{self.league_id}.csv", ["team_id", "team_key", "team_name", "player_id", "player_key", "name", "positions", "selected_position"], rows)
         except Exception as e:
             print(f"Error building league rosters: {e}")
 

@@ -128,6 +128,22 @@ class YahooFantasyClient:
         path = f"/players;player_keys={keys}/stats;type=week;week={week}"
         return self.get(path)
 
+    def get_players_season_stats(self, player_keys: list[str]) -> Dict[str, Any]:
+        """Batch-fetch season stats for up to 25 players.
+        Endpoint: /players;player_keys=K1,K2,.../stats;type=season
+        """
+        keys = ",".join(player_keys)
+        path = f"/players;player_keys={keys}/stats;type=season"
+        return self.get(path)
+
+    def get_players_lastweek_stats(self, player_keys: list[str]) -> Dict[str, Any]:
+        """Batch-fetch last week stats for up to 25 players.
+        Endpoint: /players;player_keys=K1,K2,.../stats;type=lastweek
+        """
+        keys = ",".join(player_keys)
+        path = f"/players;player_keys={keys}/stats;type=lastweek"
+        return self.get(path)
+
     def get_players_date_stats(self, player_keys: list[str], date_iso: str) -> Dict[str, Any]:
         """Batch-fetch single-date stats for up to 25 players.
         Endpoint: /players;player_keys=K1,K2,.../stats;type=date;date=YYYY-MM-DD
@@ -611,7 +627,31 @@ def parse_team_week_stats_xml(raw_xml: str) -> Dict[str, Any]:
     return out
 
 
-def parse_players_week_stats_xml(raw_xml: str) -> Dict[str, Any]:
+def parse_players_xml(raw_xml: str) -> list[Dict[str, Any]]:
+    """Generic parser for <players> lists (e.g. from league players endpoint)."""
+    soup = _make_soup(raw_xml)
+    players = []
+    if not soup:
+        return players
+    
+    # Find all player nodes
+    pnodes = soup.find_all(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('player'))
+    for pn in pnodes:
+        pkey = pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('player_key'))
+        pname = pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('full')) or \
+                pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('name'))
+        pteam = pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('editorial_team_abbr'))
+        ppos = pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('display_position'))
+        
+        players.append({
+            'player_key': pkey.text.strip() if pkey and pkey.text else '',
+            'name': pname.text.strip() if pname and pname.text else '',
+            'team': pteam.text.strip() if pteam and pteam.text else '',
+            'position': ppos.text.strip() if ppos and ppos.text else '',
+        })
+    return players
+
+def parse_players_stats_xml(raw_xml: str) -> Dict[str, Any]:
     """Parse /players;player_keys=.../stats;type=week payload.
     Returns: { 'players': [ { 'player_key': str, 'player_id': str, 'name': str, 'stats': {stat_id: value} } ] }
     """

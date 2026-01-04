@@ -4,73 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="checkpoint 1/2/26b">
+    <list default="true" id="a965f75e-278f-41dd-96dc-9a534f037300" name="Changes" comment="added league 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_cache/nst_team_pk_NA_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_pk_NA_20252026.parquet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_cache/nst_team_pp_NA_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_pp_NA_20252026.parquet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_cache/nst_team_sva_B_20252026.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/_cache/nst_team_sva_B_20252026.parquet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/corr_pk.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/corr_pk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/corr_pp.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/corr_pp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/corr_sva.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/corr_sva.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_Opponent_Ease_0_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_Opponent_Ease_0_100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_Opponent_Offense_0_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_Opponent_Offense_0_100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_TeamWeek_SOS_0_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_TeamWeek_SOS_0_100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_ga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_ga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_gf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_gf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_hdca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_hdca60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_hdcf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_hdcf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_sa60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_sa60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_sca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_sca60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_scf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_scf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_sf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_sf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_xga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_xga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pk_xgf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pk_xgf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_ga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_ga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_gf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_gf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_hdca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_hdca60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_hdcf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_hdcf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_sa60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_sa60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_sca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_sca60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_scf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_scf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_sf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_sf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_xga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_xga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_pp_xgf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_pp_xgf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_ga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_ga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_gf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_gf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_hdca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_hdca60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_hdcf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_hdcf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_sa60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_sa60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_sca60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_sca60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_scf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_scf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_sf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_sf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_xga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_xga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/normality_sva_xgf60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/normality_sva_xgf60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/team_defense_vs_ga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/team_defense_vs_ga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_plots/team_defense_vs_xga60.png" beforeDir="false" afterPath="$PROJECT_DIR$/_plots/team_defense_vs_xga60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/cli.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/merger.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/merger.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/orchestrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/orchestrator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/avg_compare.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/avg_compare.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/all_rosters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_rosters.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/app.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/goalies_scored.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/goalies_scored.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lookup_table.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/lookup_table.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/merged_goalies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_goalies.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/merged_skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/merged_skaters.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/opponent_offense_lookup.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/opponent_offense_lookup.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/skaters.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/skaters.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/skaters_scored.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/skaters_scored.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/team_defense_lookup.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/team_defense_lookup.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/team_offense_lookup.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/team_offense_lookup.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/unmatched_in_merged.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/unmatched_in_merged.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/yahoo_weekly_player_gp.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/yahoo_weekly_player_gp.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/yahoo_weekly_totals.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/yahoo_weekly_totals.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/PROCESS.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PROCESS.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers/extract.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers/extract.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers/transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers/transform.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/persistence.py" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/persistence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipelines.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yahoo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahoo/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yahoo/yfs_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahoo/yfs_client.py" afterDir="false" />
@@ -262,7 +210,7 @@
       <workItem from="1766256940497" duration="30533000" />
       <workItem from="1766500912715" duration="4864000" />
       <workItem from="1766930259373" duration="10867000" />
-      <workItem from="1767358714761" duration="20185000" />
+      <workItem from="1767358714761" duration="29054000" />
     </task>
     <task id="LOCAL-00001" summary="with Pipelines">
       <option name="closed" value="true" />
@@ -560,14 +508,21 @@
       <option name="project" value="LOCAL" />
       <updated>1767361373520</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="added league 2">
+      <option name="closed" value="true" />
+      <created>1767464365461</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1767464365461</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="rerun prior to branch" />
     <MESSAGE value="fcast improvements and pre-adding goalie dq" />
     <MESSAGE value="goalies working" />
     <MESSAGE value="better NHLschedule integration" />
@@ -592,7 +547,8 @@
     <MESSAGE value="post merge of rework-merge" />
     <MESSAGE value="checkpoint 1/2/26" />
     <MESSAGE value="checkpoint 1/2/26b" />
-    <option name="LAST_COMMIT_MESSAGE" value="checkpoint 1/2/26b" />
+    <MESSAGE value="added league 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="added league 2" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NSTstats$main.coverage" NAME="main Coverage Results" MODIFIED="1761609118434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

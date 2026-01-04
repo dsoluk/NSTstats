@@ -22,6 +22,7 @@ def _load_yahoo_rosters_from_db(league_id: Optional[int] = None) -> pd.DataFrame
         # If league_id is provided, filter by it.
         q = (
             session.query(
+                Player.player_key,
                 Player.name,
                 Player.positions,
                 Player.status,
@@ -35,8 +36,9 @@ def _load_yahoo_rosters_from_db(league_id: Optional[int] = None) -> pd.DataFrame
             q = q.filter(Team.league_id == league_id)
             
         rows = []
-        for p_name, p_pos, p_status, t_name, t_key in q.all():
+        for p_key, p_name, p_pos, p_status, t_name, t_key in q.all():
             rows.append({
+                'player_key': p_key,
                 'name': p_name,
                 'positions': p_pos,
                 'status': p_status,
@@ -49,7 +51,7 @@ def _load_yahoo_rosters_from_db(league_id: Optional[int] = None) -> pd.DataFrame
         # But Player.status is global currently. 
         # TODO: Yahoo rosters often have different status per league (e.g. NA in one, IR in another).
         unowned_q = (
-            session.query(Player.name, Player.positions, Player.status)
+            session.query(Player.player_key, Player.name, Player.positions, Player.status)
             .filter(Player.status.isnot(None))
         )
         if league_id is not None:
@@ -60,8 +62,9 @@ def _load_yahoo_rosters_from_db(league_id: Optional[int] = None) -> pd.DataFrame
         else:
             unowned_q = unowned_q.filter(~Player.player_key.in_(session.query(CurrentRoster.player_key)))
 
-        for p_name, p_pos, p_status in unowned_q.all():
+        for p_key, p_name, p_pos, p_status in unowned_q.all():
             rows.append({
+                'player_key': p_key,
                 'name': p_name,
                 'positions': p_pos,
                 'status': p_status,
@@ -115,7 +118,7 @@ def _load_yahoo_rosters_from_db(league_id: Optional[int] = None) -> pd.DataFrame
 
         agg = (
             ydf.dropna(subset=['cname', 'ypos'])
-               .groupby(['cname', 'ypos', 'fpos'], as_index=False)
+               .groupby(['player_key', 'cname', 'ypos', 'fpos'], as_index=False)
                .agg(yahoo_name=('yahoo_name', first_non_null),
                     yahoo_positions=('yahoo_positions', agg_positions),
                     team_name=('team_name', first_non_null),
@@ -154,6 +157,8 @@ def _load_yahoo_all_rosters(csv_path: str, league_id: Optional[int] = None) -> p
         ydf['status'] = None
     # Normalize name to cname
     ydf['cname'] = ydf['name'].fillna('').apply(normalize_name)
+    if 'player_key' not in ydf.columns:
+        ydf['player_key'] = None
 
     def map_pos(row) -> str:
         sel = str(row.get('selected_position') or '').upper()
@@ -216,7 +221,7 @@ def _load_yahoo_all_rosters(csv_path: str, league_id: Optional[int] = None) -> p
 
         agg = (
             ydf.dropna(subset=['cname', 'ypos'])
-               .groupby(['cname', 'ypos', 'fpos'], as_index=False)
+               .groupby(['player_key', 'cname', 'ypos', 'fpos'], as_index=False)
                .agg(yahoo_name=('yahoo_name', first_non_null),
                     yahoo_positions=('yahoo_positions', agg_positions),
                     team_name=('team_name', first_non_null),
@@ -224,19 +229,19 @@ def _load_yahoo_all_rosters(csv_path: str, league_id: Optional[int] = None) -> p
         )
         return agg
 
-    return pd.DataFrame(columns=['cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name'])
+    return pd.DataFrame(columns=['player_key', 'cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name'])
 
 
 def merge_role(nst_csv: str, role: str, out_csv: str, league_id: Optional[int] = None) -> str:
     """
-    Merge NST stats with Yahoo ownership using local normalization (no registry).
+    Merge stats with Yahoo ownership using local normalization (no registry).
     role: 'skater' or 'goalie'
     Returns output CSV path.
     """
 
-    # Load NST
+    # Load stats
     if not os.path.exists(nst_csv):
-        raise FileNotFoundError(f"NST CSV not found: {nst_csv}")
+        raise FileNotFoundError(f"Stats CSV not found: {nst_csv}")
     df = pd.read_csv(nst_csv)
 
     # Ensure TOI/GP columns are MM:SS for Excel (skaters only)
@@ -291,11 +296,11 @@ def merge_role(nst_csv: str, role: str, out_csv: str, league_id: Optional[int] =
             # Non-fatal; leave as-is if something unexpected happens
             print(f"[Warn] TOI/GP formatting skipped due to error: {_e}")
 
-    # Prepare NST keys
+    # Prepare keys
     df['cname'] = df['Player'].astype(str).apply(normalize_name)
     if role == 'goalie':
         df['Position'] = 'G'
-    # Normalize NST team/position using local helpers
+    # Normalize team/position using local helpers
     def _last_token(val: str) -> str:
         s = str(val or '').strip()
         if ',' in s:
@@ -309,19 +314,44 @@ def merge_role(nst_csv: str, role: str, out_csv: str, league_id: Optional[int] =
     df['pos_code'] = df['Position'].astype(str).apply(normalize_position)
     df['team_code'] = df['Team'].astype(str).apply(_last_token).apply(to_team_code)
 
-    # Start merged from NST; no registry
+    # Start merged from stats; no registry
     merged = df.copy()
 
     # Load Yahoo roster info and merge on cname+position (no team)
     yinfo = _load_yahoo_all_rosters(os.path.join('data', 'all_rosters.csv'), league_id)
     if not yinfo.empty:
-        # Exact match on (cname, exact position)
-        merged = merged.merge(
-            yinfo[['cname', 'ypos', 'team_name', 'yahoo_positions', 'yahoo_name', 'status']],
-            left_on=['cname', 'pos_code'],
-            right_on=['cname', 'ypos'],
-            how='left'
-        )
+        # If we have player_key in our stats (Yahoo sourced), join on it first
+        if 'player_key' in merged.columns and 'player_key' in yinfo.columns:
+            # Ensure dtypes match
+            merged['player_key'] = merged['player_key'].astype(str)
+            yinfo['player_key'] = yinfo['player_key'].astype(str)
+            
+            merged = merged.merge(
+                yinfo[['player_key', 'team_name', 'yahoo_positions', 'yahoo_name', 'status']],
+                on='player_key',
+                how='left'
+            )
+            # Fill missing via cname/pos below if any pkeys didn't match
+        
+        if 'yahoo_name' not in merged.columns or merged['yahoo_name'].isna().any():
+            # Exact match on (cname, exact position)
+            merged = merged.merge(
+                yinfo[['cname', 'ypos', 'team_name', 'yahoo_positions', 'yahoo_name', 'status']],
+                left_on=['cname', 'pos_code'],
+                right_on=['cname', 'ypos'],
+                how='left',
+                suffixes=('', '_p')
+            )
+            # Resolve suffixes
+            for col in ['team_name', 'yahoo_positions', 'yahoo_name', 'status']:
+                pcol = f"{col}_p"
+                if pcol in merged.columns:
+                    merged[col] = merged[col].fillna(merged[pcol])
+                    merged.drop(columns=[pcol], inplace=True)
+            if 'ypos' in merged.columns:
+                merged.drop(columns=['ypos'], inplace=True)
+
+        # Coarse F/D/G fallback for rows still missing team_name
         # Coarse F/D/G fallback for rows still missing team_name
         def _to_fpos(p: str) -> str:
             p = str(p).upper()

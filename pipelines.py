@@ -756,6 +756,7 @@ class FantasyPointsPipeline:
 
     def run(self):
         prefixes = self._detect_prefixes()
+        is_skater = "pos_group" in self.df.columns
         for prefix in prefixes:
             points_col = f"{prefix}FantasyPoints"
             self.df[points_col] = 0.0
@@ -767,9 +768,10 @@ class FantasyPointsPipeline:
                 self.df[f"{prefix}Banger_Points"] = 0.0
 
             # Check for rates vs counts for skaters in League 2
-            is_skater = "pos_group" in self.df.columns
             rate_param = os.getenv("RATE", "y")
             use_conversion = (self.league_id == 2 and is_skater and rate_param == 'y')
+            
+            stat_points_map = {}
 
             for stat, info in self.stat_info.items():
                 if isinstance(info, (int, float)):
@@ -805,6 +807,7 @@ class FantasyPointsPipeline:
                     
                     contribution = val * float(weight)
                     self.df[points_col] += contribution
+                    stat_points_map[stat] = contribution
                     
                     if self.league_id == 2:
                         self.df[f"{prefix}Raw_Total_Points"] += contribution
@@ -828,7 +831,7 @@ class FantasyPointsPipeline:
 
                 # Total Points T Score
                 # Determine segmentation (D vs F vs Goalie)
-                if "pos_group" in self.df.columns:
+                if is_skater:
                     # Skaters
                     scores = pd.Series(50, index=self.df.index, dtype="Int64")
                     for seg in ["D", "F"]:
@@ -837,8 +840,49 @@ class FantasyPointsPipeline:
                             scores.loc[mask] = self._percentile_score(self.df[f"{prefix}Raw_Total_Points"], mask).loc[mask]
                     self.df[f"{prefix}Total_Points_T_Score"] = scores
                 else:
-                    # Goalies or default
+                    # Goalies
                     mask = pd.Series(True, index=self.df.index)
                     self.df[f"{prefix}Total_Points_T_Score"] = self._percentile_score(self.df[f"{prefix}Raw_Total_Points"], mask)
+                    
+                    # New requested columns for Goalies League 2
+                    for s in ['W', 'GA', 'SV', 'SHO']:
+                        if s in stat_points_map:
+                            self.df[f"T_{prefix}{s}_FP"] = self._percentile_score(stat_points_map[s], mask)
+                    
+                    # /60 versions for Goalies
+                    toi_col = f"{prefix}TOI"
+                    if toi_col in self.df.columns:
+                        toi_val = self.df[toi_col]
+                        if not hasattr(toi_val, 'dt'):
+                            toi_val = pd.to_timedelta(toi_val, errors='coerce')
+                        
+                        total_hours = toi_val.dt.total_seconds() / 3600.0
+                        # Avoid div by zero
+                        h_divisor = total_hours.replace(0, np.nan)
+                        
+                        for s in ['W', 'GA', 'SV', 'SHO']:
+                            if s in stat_points_map:
+                                rate_pts = stat_points_map[s] / h_divisor
+                                self.df[f"T_{prefix}{s}_FP/60"] = self._percentile_score(rate_pts, mask)
+                        
+                        # Total FP/60
+                        total_rate_pts = self.df[points_col] / h_divisor
+                        self.df[f"T_{prefix}FP/60"] = self._percentile_score(total_rate_pts, mask)
+
+                # Final renames for League 2
+                self.df.rename(columns={
+                    points_col: f"{prefix}FP",
+                    f"{prefix}Total_Points_T_Score": f"T_{prefix}FP"
+                }, inplace=True)
+                
+                # Column removals for Goalies only
+                if not is_skater:
+                    to_drop = [
+                        f"{prefix}Raw_Total_Points",
+                        f"{prefix}Offensive_Points",
+                        f"{prefix}Banger_Points",
+                        f"{prefix}Overall_Points"
+                    ]
+                    self.df.drop(columns=[c for c in to_drop if c in self.df.columns], inplace=True)
 
         return self.df

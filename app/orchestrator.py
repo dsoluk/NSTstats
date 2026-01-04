@@ -1,8 +1,11 @@
 import os
+import pandas as pd
+import numpy as np
 from typing import Optional
 from config import load_default_params
 from pipelines import StatPipelineFactory, PlayerIndexPipeline, GoalieIndexPipeline, FantasyPointsPipeline
-from infrastructure.persistence import get_session, League, StatCategory
+from infrastructure.persistence import get_session, League, StatCategory, Player
+from yahoo.yfs_client import parse_players_stats_xml, parse_players_xml
 
 # Registry removed: using local normalization; keep placeholders for backward compatibility
 RegistryFactory = None
@@ -35,6 +38,116 @@ def run_yahoo(league_id: Optional[str] = None):
         print(f"Yahoo data source skipped due to error: {err}")
 
 
+def fetch_goalies_from_yahoo(league_key: str):
+    """Fetch all goalies and their season/lastweek stats from Yahoo, replacing NST."""
+    if YahooFantasyApp is None:
+        print("[Error] YahooFantasyApp not available for goalie fetch.")
+        return pd.DataFrame()
+    
+    from yahoo.yfs_client import parse_players_xml, parse_players_stats_xml
+    
+    try:
+        app = YahooFantasyApp()
+        client = app.client
+        
+        print(f"Fetching all goalies from Yahoo league {league_key}...")
+        all_goalies = []
+        start_idx = 0
+        while True:
+            payload = client.get_league_players(league_key, position="G", count=25, start=start_idx)
+            raw_xml = payload.get("_raw_xml")
+            if not raw_xml:
+                break
+                
+            goalies = parse_players_xml(raw_xml)
+            if not goalies:
+                break
+                
+            all_goalies.extend(goalies)
+            if len(goalies) < 25:
+                break
+            start_idx += 25
+            if start_idx >= 125: # Safety cap
+                break
+
+        if not all_goalies:
+            print("[Warn] No goalies found in Yahoo league.")
+            return pd.DataFrame()
+            
+        pkeys = [g['player_key'] for g in all_goalies if g['player_key']]
+        print(f"Fetching stats for {len(pkeys)} goalies...")
+        
+        season_stats = {}
+        lastweek_stats = {}
+        
+        for i in range(0, len(pkeys), 25):
+            batch = pkeys[i:i+25]
+            # Season
+            s_payload = client.get_players_season_stats(batch)
+            if s_payload.get("_raw_xml"):
+                s_parsed = parse_players_stats_xml(s_payload["_raw_xml"])
+                for p in s_parsed.get('players', []):
+                    season_stats[p['player_key']] = p.get('stats', {})
+            # Last Week
+            lw_payload = client.get_players_lastweek_stats(batch)
+            if lw_payload.get("_raw_xml"):
+                lw_parsed = parse_players_stats_xml(lw_payload["_raw_xml"])
+                for p in lw_parsed.get('players', []):
+                    lastweek_stats[p['player_key']] = p.get('stats', {})
+
+        # Mapping Yahoo ID -> base column name
+        id_map = {
+            18: 'GP', 19: 'W', 20: 'L', 21: 'OT', 22: 'GA',
+            23: 'GAA', 24: 'SA', 25: 'SV', 26: 'SV%', 27: 'SHO', 28: 'TOI'
+        }
+        
+        rows = []
+        for g in all_goalies:
+            pkey = g['player_key']
+            s_data = season_stats.get(pkey, {})
+            lw_data = lastweek_stats.get(pkey, {})
+            
+            row = {'Player': g['name'], 'Team': g['team'], 'Position': 'G', 'player_key': pkey}
+            for sid, col in id_map.items():
+                row[f'szn_{col}'] = s_data.get(sid)
+            for sid, col in id_map.items():
+                row[f'l7_{col}'] = lw_data.get(sid)
+            rows.append(row)
+            
+        df = pd.DataFrame(rows)
+        
+        def convert_toi(val):
+            if not val or not isinstance(val, str): return val
+            clean = val.replace(',', '')
+            if ':' in clean:
+                parts = clean.split(':')
+                if len(parts) == 2:
+                    try:
+                        m = int(parts[0]); s = int(parts[1])
+                        return f"{m // 60:02d}:{m % 60:02d}:{s:02d}"
+                    except: pass
+            return clean
+
+        if not df.empty:
+            for prefix in ['szn_', 'l7_']:
+                col = f'{prefix}TOI'
+                if col in df.columns:
+                    df[col] = df[col].apply(convert_toi)
+                    
+            # Ensure numeric types
+            for col in df.columns:
+                if col not in ['Player', 'Team', 'Position'] and 'TOI' not in col:
+                    df[col] = pd.to_numeric(df[col], errors='coerce')
+                    
+        return df
+        
+    except Exception as e:
+        print(f"[Error] fetch_goalies_from_yahoo failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return pd.DataFrame()
+
+
 def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False):
     try:
         from helpers.seasons import previous_season_label
@@ -52,18 +165,32 @@ def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False):
 
         # Current season pass
         skater_pipeline = StatPipelineFactory.create("skater", {**base_config, **sk8r_config})
-        goalie_pipeline = StatPipelineFactory.create("goalie", {**base_config, **goalie_config})
-
-        # Warning: running these will fetch data from NST based on .env configuration
+        
+        # Skaters still use NST
         skater_pipeline.run()
-        goalie_pipeline.run()
-
-        # Merge windows into one dataframe per role
         skater_df = skater_pipeline.merge()
-        goalie_df = goalie_pipeline.merge()
-
         print(f"Merge complete for skaters: {skater_df.shape} ")
-        print(f"Merge complete for goalies: {goalie_df.shape} ")
+
+        # Goalies now use Yahoo exclusively
+        default_lk = os.getenv("YAHOO_LEAGUE_KEY")
+        if not default_lk:
+            session = get_session()
+            try:
+                l = session.query(League).first()
+                if l:
+                    default_lk = l.league_key
+            finally:
+                session.close()
+
+        if default_lk:
+            print(f"Fetching goalies from Yahoo using league {default_lk}...")
+            goalie_df = fetch_goalies_from_yahoo(default_lk)
+        else:
+            print("[Warn] No Yahoo league key found for goalie fetch. Skipping goalies.")
+            goalie_df = pd.DataFrame()
+
+        if not goalie_df.empty:
+            print(f"Yahoo fetch complete for goalies: {goalie_df.shape} ")
 
         # Optional verbose diagnostics for scoring
         verbose = str(os.getenv("VERBOSE_SCORING", "0")).lower() in {"1", "true", "yes", "y"}
@@ -93,7 +220,8 @@ def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False):
         os.makedirs(out_dir, exist_ok=True)
         # Restore persistence of raw skaters.csv for diagnostic visibility
         skater_pipeline.save(os.path.join(out_dir, "skaters.csv"))
-        goalie_pipeline.save(os.path.join(out_dir, "goalies.csv"))
+        if not goalie_df.empty:
+            goalie_df.to_csv(os.path.join(out_dir, "goalies.csv"), index=False)
 
         # Scoring logic - multi-league support
         session = get_session()
@@ -130,23 +258,28 @@ def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False):
 
                 # Scoring goalies
                 print(f"Scoring goalies{league_label}...")
-                g_indexer = GoalieIndexPipeline(goalie_df, league=league)
-                scored_goalie_df = g_indexer.run()
-                
-                if league:
-                    if stat_info:
-                        # Re-use stat_info, assuming stat names match
-                        points_pipeline = FantasyPointsPipeline(scored_goalie_df, stat_info, league_id=league.id)
-                        scored_goalie_df = points_pipeline.run()
-                
-                goalie_scored_path = os.path.join(out_dir, f"goalies_scored{suffix}.csv")
-                scored_goalie_df.to_csv(goalie_scored_path, index=False)
-                print(f"  Saved scored goalies to {goalie_scored_path}")
+                # Use Yahoo-sourced goalie_df directly if available
+                if not goalie_df.empty:
+                    g_indexer = GoalieIndexPipeline(goalie_df, league=league)
+                    scored_goalie_df = g_indexer.run()
+                    
+                    if league:
+                        if stat_info:
+                            # Re-use stat_info, assuming stat names match
+                            points_pipeline = FantasyPointsPipeline(scored_goalie_df, stat_info, league_id=league.id)
+                            scored_goalie_df = points_pipeline.run()
+                    
+                    goalie_scored_path = os.path.join(out_dir, f"goalies_scored{suffix}.csv")
+                    scored_goalie_df.to_csv(goalie_scored_path, index=False)
+                    print(f"  Saved scored goalies to {goalie_scored_path}")
+                else:
+                    print(f"  [Warn] goalie_df is empty; skipping scoring{league_label}")
 
                 # For backward compatibility, also save to default path if it's the first league or only league
                 if league == leagues[0]:
                     scored_skater_df.to_csv(os.path.join(out_dir, "skaters_scored.csv"), index=False)
-                    scored_goalie_df.to_csv(os.path.join(out_dir, "goalies_scored.csv"), index=False)
+                    if not goalie_df.empty:
+                        scored_goalie_df.to_csv(os.path.join(out_dir, "goalies_scored.csv"), index=False)
 
         finally:
             session.close()
@@ -175,33 +308,18 @@ def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False):
                     prior_params["thruseason"] = prior_label
                     prior_base = {"tgps": [410, 7], "base_params": prior_params, "base_url": url}
                     prior_skater = StatPipelineFactory.create("skater", {**prior_base, **sk8r_config})
-                    prior_goalie = StatPipelineFactory.create("goalie", {**prior_base, **goalie_config})
                     # Fetch prior season
                     prior_skater.run()
-                    prior_goalie.run()
                     # Merge and save
                     prior_sk_df = prior_skater.merge()
-                    prior_g_df = prior_goalie.merge()
                     prior_sk_path = os.path.join(out_dir, "skaters_prior.csv")
-                    prior_g_path = os.path.join(out_dir, "goalies_prior.csv")
                     prior_skater.save(prior_sk_path)
-                    prior_goalie.save(prior_g_path)
                     # Score prior skaters
                     prior_indexer = PlayerIndexPipeline(prior_sk_df)
                     prior_scored = prior_indexer.run()
                     prior_scored_path = prior_sk_scored_path
                     prior_scored.to_csv(prior_scored_path, index=False)
                     print(f"Saved prior-season skaters to {prior_sk_path} and scored to {prior_scored_path}")
-                    # Score prior goalies
-                    try:
-                        from pipelines import GoalieIndexPipeline as _GIP
-                        prior_g_indexer = _GIP(prior_g_df)
-                        prior_g_scored = prior_g_indexer.run()
-                        # use previously defined scored path
-                        prior_g_scored.to_csv(prior_g_scored_path, index=False)
-                        print(f"Saved prior-season goalies to {prior_g_path} and scored to {prior_g_scored_path}")
-                    except Exception as _gge:
-                        print(f"[Warn] Prior-season goalie scoring failed: {_gge}")
         except Exception as _pe:
             print(f"[Warn] Prior-season pass skipped due to error: {_pe}")
 
