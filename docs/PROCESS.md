@@ -4,37 +4,42 @@ This document summarizes the main end‑to‑end processes in this project and h
 
 ## 1) Data Ingestion and Ownership Merge
 
-Purpose: Gather actual performance from Natural Stat Trick (NST) and join to Yahoo Fantasy rosters to attribute players to a fantasy team (`team_name`).
+Purpose: Gather actual performance from Natural Stat Trick (NST) for skaters and Yahoo Fantasy for goalies, and join to Yahoo Fantasy rosters to attribute players to a fantasy team (`team_name`).
 
 Inputs and sources:
-- NST skater/goalie stats (season‑to‑date and last 7 games). Rates are per‑60 (NST `rate=y`).
+- NST skater stats (season‑to‑date and last 7 games). Rates are per‑60 (NST `rate=y`).
+- Yahoo Fantasy goalie stats (season-to-date and last week).
 - Yahoo Fantasy roster export (current league rosters/ownership).
 - Local normalization helpers for names/teams/positions (helpers/normalization.py).
 
 Process (via CLI):
 - `init-weeks`: population of the local database `Week` table with start and end dates for a given league and season. This is required for all subsequent database-backed commands.
   - `python -m app.cli init-weeks --league-key nhl.p.2526 --season 2025`
-- `sync-rosters`: synchronizes the current Yahoo league rosters to the local database `CurrentRoster` table. This creates a local snapshot that reduces Yahoo API overhead.
+- `sync-rosters`: synchronizes the current Yahoo league rosters to the local database `CurrentRoster` table. This also populates league settings, stat categories, and roster requirements in the database.
   - `python -m app.cli sync-rosters --league-key nhl.p.2526`
-- `nst`: fetch/refresh NST skater and goalie datasets; compute scored outputs for skaters and goalies.
-  - Produces `data/skaters_scored.csv` and `data/goalies_scored.csv`.
+  - **Caching**: This command now caches results for the day. If it has already run today, it will skip fetching unless the `--force` flag is used.
+- `nst`: fetch/refresh skater stats from NST and goalie stats from the Yahoo Fantasy API; compute scored outputs for both.
+  - Produces `data/skaters_scored.csv` and `data/goalies_scored.csv` (and league-specific versions).
+  - Goalie fetching now uses the Yahoo API exclusively.
+  - **Caching**: This command now caches results for the day. If it has already run today, it will skip fetching unless the `--force` flag is used.
+  - **Minimizing API Calls**: If rosters were already synced today (via `sync-rosters`), the Yahoo component of `nst` will skip redundant roster fetches.
   - Prior-season caching: if both `data/skaters_scored_prior.csv` and `data/goalies_scored_prior.csv` already exist, the prior-season fetch/scoring is skipped by default since last-year stats do not change during the current season.
     - Use `python -m app.cli nst --refresh-prior` to force a re-fetch/re-score of the prior season.
     - Use `python -m app.cli nst --skip-prior` to explicitly skip the prior-season step regardless of cache state.
 - `yahoo`: fetch or refresh Yahoo roster data (produces `data/all_rosters.csv`).
 - `merge`: merge NST stats with Yahoo ownership using local normalization helpers, producing per‑player rows with `team_name` attribution.
-  - **Note**: The merge process now prefers loading roster information from the local database if available, falling back to `data/all_rosters.csv` only if the database is empty.
+  - **Note**: The merge process now relies exclusively on the local database for roster information. `data/all_rosters.csv` is no longer used as a fallback.
 - `all`: convenience orchestration that runs `yahoo`, `nst`, and `merge`.
 
 ### Composite Workflows
-- `daily`: runs `sync-rosters`, `all`, and `schedule-lookup`. If multiple leagues are present in the database, it processes all of them. Prompts for `current-week`.
+- `daily`: runs `sync-rosters`, `all`, and `schedule-lookup`. If multiple leagues are present in the database, it processes all of them. Prompts for `current-week`. Supports `--force` to override all daily caching (rosters, NST, and schedule).
 - `weekly`: runs `fetch-daily-gp`, `backfill-gp`, and `avg-compare` for the prior week. If multiple leagues are present, it loops through them, attempting to auto-detect teams like "Bad Tape Hockey". Prompts for `current-week`, and optionally `team-id`/`opp-team-id`.
 
 ### Multi-League and Points Support
-- The system now supports managing multiple Yahoo leagues simultaneously. 
-- Points-based leagues are handled by ingesting stat values (weights) from Yahoo settings and calculating "FantasyPoints" columns during the scoring step.
+- The system supports managing multiple Yahoo leagues simultaneously by persisting their configuration in the local database (`data/app.db`).
+- Points-based leagues are handled by ingesting stat values (weights) from Yahoo settings during `sync-rosters` and calculating "FantasyPoints" columns during the scoring step.
 - Outputs for separate leagues are saved with a league ID suffix, e.g., `data/skaters_scored_105618.csv` and `data/merged_skaters_105618.csv`.
-- `avg-compare` reports for points leagues include "Pts Contribution" columns to help evaluate team performance relative to opponents and league averages.
+- Scoring and merging logic iterates through all leagues found in the database.
 
 Key outputs:
 - `data/merged_skaters.csv` (and analogous outputs for goalies, if applicable).
@@ -42,10 +47,11 @@ Key outputs:
 - Local SQLite database `data/app.db` containing synced rosters, weeks, and historical GP data.
 
 Notes on metrics and scoring (see also [SCORING.md](./SCORING.md)):
-- Actuals tracked for both season‑to‑date (Szn) and last‑7 games (L7).
+- Actuals tracked for both season‑to‑date (Szn) and last‑7 games (L7). 
+- **Goalies**: Sourced from Yahoo API. The **L7 window uses Yahoo's "Last Week" stats**.
 - Skaters are scored into percentile‑based T_scores per metric and window, with Offensive/Banger/Composite indexes.
-- Goalies are scored analogously on GA, SV%, and GAA per window, with a Goalie_Index per window.
-- Skater inputs use NST per‑60 rates (`rate=y`); goalie pulls use NST goalie tables with appropriate parameters.
+- Goalies are scored analogously on GA, SV%, GAA, W, SV, SHO per window, with a Goalie_Index per window.
+- Skater inputs use NST per‑60 rates (`rate=y`).
 
 ## 2) Data Quality (DQ)
 
@@ -110,6 +116,7 @@ Purpose: Build a team/date lookup table to count upcoming games across horizons 
 How to build/update:
 - `python -m app.cli --schedule-lookup` (top‑level flag) or
 - `python -m app.cli schedule-lookup`
+- **Caching**: This command now caches results for the day. If it has already run today, it will skip execution unless the `--force` flag is used.
 
 Default output:
 - `data/lookup_table.csv` – a consolidated lookup table built via `nhl_schedule.build_lookup`.
@@ -234,8 +241,8 @@ If helpful, you can capture this visually with a Mermaid diagram in Markdown (Py
 ```mermaid
 flowchart TD
   subgraph Inputs
-    NST[NST skaters/goalies Szn & L7 per60]
-    Yahoo[Yahoo API / rosters]
+    NST[NST skaters Szn & L7 per60]
+    Yahoo[Yahoo API / rosters / goalie stats]
     SchedSrc[NHL schedule inputs]
   end
 
@@ -246,11 +253,13 @@ flowchart TD
   Yahoo -- sync-rosters --> DB
   Yahoo -- yahoo --> RosterCSV[data/all_rosters.csv]
 
-  NST -- nst --> Scored[data/skaters_scored.csv]
+  NST -- nst --> ScoredSk8r[data/skaters_scored.csv]
+  Yahoo -- nst --> ScoredG[data/goalies_scored.csv]
   
   DB -- merge --> Merge
   RosterCSV -- fallback --> Merge
-  Scored --> Merge
+  ScoredSk8r --> Merge
+  ScoredG --> Merge
   
   Merge --> Merged[data/merged_skaters.csv]
 

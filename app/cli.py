@@ -32,6 +32,8 @@ def cmd_schedule_refresh(argv=None):
                    help="Output CSV path (default: data/lookup_table.csv)")
     p.add_argument("--refresh-cache", action="store_true",
                    help="Bypass cache and refetch all team tables (proxied to nhl_schedule)")
+    p.add_argument("--force", action="store_true",
+                   help="Force rebuild schedule lookup even if already done today")
     p.add_argument(
         "--nhl-schedule-path",
         dest="nhl_schedule_path",
@@ -43,6 +45,16 @@ def cmd_schedule_refresh(argv=None):
     )
 
     args = p.parse_args(argv)
+
+    # Check for daily caching
+    session = get_session()
+    try:
+        l = session.query(League).filter(League.last_sched_sync.isnot(None)).order_by(League.last_sched_sync.desc()).first()
+        if l and not getattr(args, 'force', False) and l.last_sched_sync.date() == datetime.date.today():
+            print(f"[Info] Schedule lookup already built today ({l.last_sched_sync.date()}). Skipping. Use --force to override.")
+            return
+    finally:
+        session.close()
 
     # Ensure output directory exists
     out_csv = args.out_csv or DEFAULT_OUT_CSV
@@ -73,6 +85,17 @@ def cmd_schedule_refresh(argv=None):
         out_xlsx=None,
         refresh_cache=args.refresh_cache,
     )
+    
+    # Update sync timestamp
+    session = get_session()
+    try:
+        leagues = session.query(League).all()
+        for league in leagues:
+            league.last_sched_sync = datetime.datetime.now()
+        session.commit()
+    finally:
+        session.close()
+
     print(f"Lookup table written to: {out_path}")
 
 def main():
@@ -88,6 +111,7 @@ def main():
     # New Composite Commands
     daily = subparsers.add_parser("daily", help="Daily workflow: sync-rosters, all, schedule-lookup")
     daily.add_argument("--league-key", help="Yahoo league_key (optional, defaults to all leagues in DB)")
+    daily.add_argument("--force", action="store_true", help="Force sync rosters even if already done today")
 
     weekly = subparsers.add_parser("weekly", help="Weekly workflow: fetch-daily-gp, backfill-gp, avg-compare (for prior week)")
     weekly.add_argument("--league-key", help="Yahoo league_key")
@@ -98,10 +122,12 @@ def main():
     # New Sync Rosters command
     sync_rosters = subparsers.add_parser("sync-rosters", help="Sync Yahoo rosters to database")
     sync_rosters.add_argument("--league-key", required=True, help="Yahoo league_key")
+    sync_rosters.add_argument("--force", action="store_true", help="Force sync rosters even if already done today")
     
     nst = subparsers.add_parser("nst", help="Run NST pipelines (skaters, goalies)")
     nst.add_argument("--refresh-prior", dest="refresh_prior", action="store_true", help="Force re-fetch/re-score prior-season data even if cached CSVs exist")
     nst.add_argument("--skip-prior", dest="skip_prior", action="store_true", help="Skip prior-season fetch/scoring regardless of cache state")
+    nst.add_argument("--force", action="store_true", help="Force fetch current season stats even if already done today")
     subparsers.add_parser("merge", help="Merge NST with Yahoo ownership to CSVs")
 
     # Average comparison grid (team vs opp and league) from DB
@@ -153,6 +179,7 @@ def main():
 
     # Schedule lookup command (nhl_schedule integration)
     sched = subparsers.add_parser("schedule-lookup", help="Build or update the weekly schedule lookup table from inputs")
+    sched.add_argument("--force", action="store_true", help="Force rebuild schedule lookup even if already done today")
     # sched.add_argument("--matchups", default=DEFAULT_MATCHUPS, help="Path to matchups parquet/csv with team vs opponent per date")
     # sched.add_argument("--opp-ease", dest="opp_ease", default=DEFAULT_OPP_EASE, help="Path to opponent ease parquet/csv with OppDefenseScore0to100 by team")
     # sched.add_argument("--out-csv", dest="out_csv", default=DEFAULT_OUT_CSV, help="Output CSV path for the lookup table")
@@ -251,7 +278,7 @@ def main():
     if cmd == "yahoo":
         run_yahoo()
     elif cmd == "sync-rosters":
-        run_roster_sync(args.league_key)
+        run_roster_sync(args.league_key, force=args.force)
     elif cmd == "daily":
         session = get_session()
         try:
@@ -282,10 +309,10 @@ def main():
             for league in leagues:
                 lkey = league.league_key if league else l_key_arg
                 print(f"\n--- Starting Daily Workflow for League {lkey} (Week {curr_wk_str}) ---")
-                run_roster_sync(lkey)
+                run_roster_sync(lkey, force=args.force)
             
-            run_all()
-            cmd_schedule_refresh(argv=[])
+            run_all(force=getattr(args, "force", False))
+            cmd_schedule_refresh(argv=["--force"] if getattr(args, "force", False) else [])
         finally:
             session.close()
         print("--- Daily Workflow Complete ---")
@@ -508,12 +535,13 @@ def main():
         run_nst(
             refresh_prior=getattr(args, "refresh_prior", False),
             skip_prior=getattr(args, "skip_prior", False),
+            force=getattr(args, "force", False),
         )
     elif cmd == "merge":
         run_merge()
     elif cmd == "schedule-lookup":
-        # Pass an empty argv so the inner parser uses defaults and doesn't try to parse the outer Namespace
-        cmd_schedule_refresh(argv=[])
+        # Pass argv so the inner parser can handle --force
+        cmd_schedule_refresh(argv=["--force"] if getattr(args, "force", False) else [])
     elif cmd == "dq":
         windows = getattr(args, "windows", ["szn"]) or ["szn"]
         metrics = getattr(args, "metrics", ["G","A","PPP","SOG","FOW","HIT","BLK","PIM"]) or ["G","A","PPP","SOG","FOW","HIT","BLK","PIM"]

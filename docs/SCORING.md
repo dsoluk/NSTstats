@@ -1,9 +1,9 @@
 # Scoring and Indexing Details
 
-This section describes how skaters and goalies are scored and how these scores feed forecasts. For the full workflow, see [PROCESS.md](./PROCESS.md).
+This section describes how skaters and goalies are scored and how these scores feed forecasts. The system now supports multiple leagues and persists configuration in a local database (`data/app.db`). For the full workflow, see [PROCESS.md](./PROCESS.md).
 
 ## Skaters: Percentile T_ scores by window and segment
-- Windows: season‑to‑date (Szn) and last 7 games (L7).
+- Windows: season‑to‑date (Szn) and last 7 games (L7). Skater data is sourced from Natural Stat Trick (NST).
 - Segments: Forwards (F) vs Defense (D), derived from `Position`.
 - For each metric (e.g., `G, A, PPP, SOG, FOW, HIT, BLK, PIM`) and window, the scoring pipeline:
   1. Selects a distribution family per segment (from `data/dq/.../best_fit_comparison.csv` if available; else defaults such as `Normal(log1p)`).
@@ -20,8 +20,16 @@ Implementation: `pipelines.py` → `PlayerIndexPipeline` (`_load_best_fit_mappin
 - Output: `Offensive_Index_szn`, `Banger_Index_szn`, `Composite_Index_szn` (and `_l7`).
 
 ## Goalies
-- Metrics include `GA, SV%, GAA`. The pipeline computes percentile `T_` scores per window and a `Goalie_Index_<window>`.
+- **Data Source**: Goalie stats are now fetched exclusively from the **Yahoo Fantasy API**.
+- **Windows**: Szn (season-to-date) and L7. Note that for goalies, the **L7 window is actually sourced from Yahoo's "Last Week" (lastweek) stats**.
+- Metrics include `GA, SV%, GAA, W, SV, SHO`. The pipeline computes percentile `T_` scores per window and a `Goalie_Index_<window>`.
+- League-specific scoring: If a league specifically excludes certain metrics (e.g., SV% or GAA), the pipeline adjusts automatically.
 - Implementation: `pipelines.py` → `GoalieIndexPipeline`.
+
+## Multi-League Support
+- The system processes all leagues found in the local database.
+- Output files are suffixed with the league ID (e.g., `skaters_scored_105618.csv`, `merged_skaters_105618.csv`).
+- Fantasy point calculations are applied based on each league's specific settings (stat weights) stored in the database.
 
 ## Prior Season
 - When prior‑season files exist, current season and prior season are processed separately and merged outputs are available (e.g., `merged_skaters_prior.csv`). These enable prior‑season (`ly_*`) features during forecasting.

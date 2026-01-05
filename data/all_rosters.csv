@@ -1,7 +1,7 @@
 team_id,team_key,team_name,player_id,player_key,name,positions,selected_position
 1,465.l.105618.t.1,Winless without Bakov,5391,465.p.5391,Rickard Rakell,C;LW;RW;Util,C
-1,465.l.105618.t.1,Winless without Bakov,4687,465.p.4687,Nazem Kadri,C;Util,C
 1,465.l.105618.t.1,Winless without Bakov,5405,465.p.5405,Boone Jenner,C;LW;Util,C
+1,465.l.105618.t.1,Winless without Bakov,6370,465.p.6370,Sam Bennett,C;Util,C
 1,465.l.105618.t.1,Winless without Bakov,7557,465.p.7557,Eetu Luostarinen,LW;Util,LW
 1,465.l.105618.t.1,Winless without Bakov,4471,465.p.4471,Steven Stamkos,C;LW;RW;Util,LW
 1,465.l.105618.t.1,Winless without Bakov,6035,465.p.6035,Artturi Lehkonen,LW;RW;Util,LW
@@ -13,16 +13,16 @@ team_id,team_key,team_name,player_id,player_key,name,positions,selected_position
 1,465.l.105618.t.1,Winless without Bakov,7920,465.p.7920,K'Andre Miller,D;Util,D
 1,465.l.105618.t.1,Winless without Bakov,6750,465.p.6750,Zach Werenski,D;Util,D
 1,465.l.105618.t.1,Winless without Bakov,6728,465.p.6728,Artemi Panarin,LW;Util,Util
+1,465.l.105618.t.1,Winless without Bakov,4687,465.p.4687,Nazem Kadri,C;Util,BN
 1,465.l.105618.t.1,Winless without Bakov,5039,465.p.5039,Radko Gudas,D;Util,BN
 1,465.l.105618.t.1,Winless without Bakov,5367,465.p.5367,Mika Zibanejad,C;RW;Util,BN
-1,465.l.105618.t.1,Winless without Bakov,6370,465.p.6370,Sam Bennett,C;Util,BN
 1,465.l.105618.t.1,Winless without Bakov,4969,465.p.4969,Mikael Granlund,C;LW;RW;Util,BN
 1,465.l.105618.t.1,Winless without Bakov,5407,465.p.5407,John Gibson,G,G
 1,465.l.105618.t.1,Winless without Bakov,9118,465.p.9118,Jet Greaves,G,G
 1,465.l.105618.t.1,Winless without Bakov,7936,465.p.7936,Alexander Romanov,D;Util;IR+,IR+
-2,465.l.105618.t.2,Triple Headed Monster,6743,465.p.6743,Connor McDavid,C;Util,C
 2,465.l.105618.t.2,Triple Headed Monster,30742,465.p.30742,Danila Yurov,C;RW;Util,C
 2,465.l.105618.t.2,Triple Headed Monster,32763,465.p.32763,Macklin Celebrini,C;Util,C
+2,465.l.105618.t.2,Triple Headed Monster,8881,465.p.8881,Kent Johnson,C;LW;RW;Util,C
 2,465.l.105618.t.2,Triple Headed Monster,7147,465.p.7147,Alex DeBrincat,LW;RW;Util,LW
 2,465.l.105618.t.2,Triple Headed Monster,7900,465.p.7900,Andrei Svechnikov,LW;RW;Util,LW
 2,465.l.105618.t.2,Triple Headed Monster,7115,465.p.7115,Clayton Keller,LW;RW;Util,LW
@@ -34,10 +34,10 @@ team_id,team_key,team_name,player_id,player_key,name,positions,selected_position
 2,465.l.105618.t.2,Triple Headed Monster,8882,465.p.8882,Simon Edvinsson,D;Util,D
 2,465.l.105618.t.2,Triple Headed Monster,30221,465.p.30221,Luke Hughes,D;Util,D
 2,465.l.105618.t.2,Triple Headed Monster,32794,465.p.32794,Igor Chernyshov,LW;Util,Util
+2,465.l.105618.t.2,Triple Headed Monster,6743,465.p.6743,Connor McDavid,C;Util,BN
 2,465.l.105618.t.2,Triple Headed Monster,8282,465.p.8282,Bowen Byram,D;Util,BN
 2,465.l.105618.t.2,Triple Headed Monster,31759,465.p.31759,Cutter Gauthier,LW;Util,BN
 2,465.l.105618.t.2,Triple Headed Monster,8909,465.p.8909,Olen Zellweger,D;Util,BN
-2,465.l.105618.t.2,Triple Headed Monster,8881,465.p.8881,Kent Johnson,C;LW;RW;Util,BN
 2,465.l.105618.t.2,Triple Headed Monster,8651,465.p.8651,Yaroslav Askarov,G,G
 2,465.l.105618.t.2,Triple Headed Monster,6817,465.p.6817,Dan Vladar,G,G
 2,465.l.105618.t.2,Triple Headed Monster,30544,465.p.30544,Connor Bedard,C;RW;Util;IR+,IR+
@@ -48,17 +48,17 @@ team_id,team_key,team_name,player_id,player_key,name,positions,selected_position
 3,465.l.105618.t.3,The Nephilim,6375,465.p.6375,Nikolaj Ehlers,LW;RW;Util,LW
 3,465.l.105618.t.3,The Nephilim,4704,465.p.4704,Marcus Johansson,LW;Util,LW
 3,465.l.105618.t.3,The Nephilim,6057,465.p.6057,Jake Guentzel,LW;Util,LW
-3,465.l.105618.t.3,The Nephilim,8682,465.p.8682,Luke Evangelista,RW;Util,RW
 3,465.l.105618.t.3,The Nephilim,6395,465.p.6395,Adrian Kempe,RW;Util,RW
 3,465.l.105618.t.3,The Nephilim,8287,465.p.8287,Trevor Zegras,C;LW;RW;Util,RW
+3,465.l.105618.t.3,The Nephilim,5152,465.p.5152,Mark Stone,RW;Util,RW
 3,465.l.105618.t.3,The Nephilim,5685,465.p.5685,Morgan Rielly,D;Util,D
 3,465.l.105618.t.3,The Nephilim,7905,465.p.7905,Quinn Hughes,D;Util,D
 3,465.l.105618.t.3,The Nephilim,33423,465.p.33423,Matthew Schaefer,D;Util,D
 3,465.l.105618.t.3,The Nephilim,6038,465.p.6038,Tyler Bertuzzi,LW;RW;Util,Util
+3,465.l.105618.t.3,The Nephilim,8682,465.p.8682,Luke Evangelista,RW;Util,BN
 3,465.l.105618.t.3,The Nephilim,5768,465.p.5768,Chandler Stephenson,C;Util,BN
 3,465.l.105618.t.3,The Nephilim,5431,465.p.5431,Vincent Trocheck,C;Util,BN
 3,465.l.105618.t.3,The Nephilim,6390,465.p.6390,Jared McCann,C;LW;Util,BN
-3,465.l.105618.t.3,The Nephilim,5152,465.p.5152,Mark Stone,RW;Util,BN
 3,465.l.105618.t.3,The Nephilim,6985,465.p.6985,Connor Ingram,G,G
 3,465.l.105618.t.3,The Nephilim,6447,465.p.6447,Ilya Sorokin,G,G
 3,465.l.105618.t.3,The Nephilim,6941,465.p.6941,Joey Daccord,G,BN
@@ -67,26 +67,26 @@ team_id,team_key,team_name,player_id,player_key,name,positions,selected_position
 3,465.l.105618.t.3,The Nephilim,5032,465.p.5032,Jason Zucker,LW;Util;IR+,IR+
 3,465.l.105618.t.3,The Nephilim,5769,465.p.5769,Shayne Gostisbehere,D;Util,IR+
 3,465.l.105618.t.3,The Nephilim,5734,465.p.5734,Anthony Stolarz,G;IR+,IR+
-4,465.l.105618.t.4,Candy Kanes,4786,465.p.4786,Ryan O'Reilly,C;Util,C
 4,465.l.105618.t.4,Candy Kanes,5984,465.p.5984,Elias Lindholm,C;Util,C
 4,465.l.105618.t.4,Candy Kanes,8652,465.p.8652,Anton Lundell,C;Util,C
-4,465.l.105618.t.4,Candy Kanes,6377,465.p.6377,Kevin Fiala,LW;Util,LW
+4,465.l.105618.t.4,Candy Kanes,6744,465.p.6744,Jack Eichel,C;Util,C
 4,465.l.105618.t.4,Candy Kanes,6766,465.p.6766,Travis Konecny,LW;RW;Util,LW
 4,465.l.105618.t.4,Candy Kanes,8392,465.p.8392,Dmitri Voronkov,LW;Util,LW
+4,465.l.105618.t.4,Candy Kanes,6402,465.p.6402,Ivan Barbashev,LW;Util,LW
 4,465.l.105618.t.4,Candy Kanes,5989,465.p.5989,Valeri Nichushkin,LW;RW;Util,RW
-4,465.l.105618.t.4,Candy Kanes,8644,465.p.8644,Lucas Raymond,RW;Util,RW
 4,465.l.105618.t.4,Candy Kanes,4240,465.p.4240,Patrick Kane,RW;Util,RW
+4,465.l.105618.t.4,Candy Kanes,7554,465.p.7554,Jason Robertson,LW;RW;Util,RW
 4,465.l.105618.t.4,Candy Kanes,7908,465.p.7908,Evan Bouchard,D;Util,D
 4,465.l.105618.t.4,Candy Kanes,32766,465.p.32766,Zeev Buium,D;Util,D
 4,465.l.105618.t.4,Candy Kanes,5329,465.p.5329,Mattias Ekholm,D;Util,D
 4,465.l.105618.t.4,Candy Kanes,5370,465.p.5370,Dougie Hamilton,D;Util,D
 4,465.l.105618.t.4,Candy Kanes,5363,465.p.5363,Gabriel Landeskog,LW;RW;Util,Util
+4,465.l.105618.t.4,Candy Kanes,4786,465.p.4786,Ryan O'Reilly,C;Util,BN
+4,465.l.105618.t.4,Candy Kanes,6377,465.p.6377,Kevin Fiala,LW;Util,BN
+4,465.l.105618.t.4,Candy Kanes,8644,465.p.8644,Lucas Raymond,RW;Util,BN
 4,465.l.105618.t.4,Candy Kanes,7545,465.p.7545,Eeli Tolvanen,LW;RW;Util,BN
-4,465.l.105618.t.4,Candy Kanes,6402,465.p.6402,Ivan Barbashev,LW;Util,BN
-4,465.l.105618.t.4,Candy Kanes,7554,465.p.7554,Jason Robertson,LW;RW;Util,BN
-4,465.l.105618.t.4,Candy Kanes,6744,465.p.6744,Jack Eichel,C;Util,BN
-4,465.l.105618.t.4,Candy Kanes,5336,465.p.5336,Darcy Kuemper,G,G
 4,465.l.105618.t.4,Candy Kanes,5057,465.p.5057,Scott Wedgewood,G,G
+4,465.l.105618.t.4,Candy Kanes,5336,465.p.5336,Darcy Kuemper,G,G
 4,465.l.105618.t.4,Candy Kanes,6005,465.p.6005,Shea Theodore,D;Util;IR+,IR+
 4,465.l.105618.t.4,Candy Kanes,7111,465.p.7111,Pierre-Luc Dubois,C;LW;Util;IR+,IR+
 4,465.l.105618.t.4,Candy Kanes,8649,465.p.8649,Marco Rossi,C;Util;IR+,IR+
@@ -96,22 +96,22 @@ team_id,team_key,team_name,player_id,player_key,name,positions,selected_position
 5,465.l.105618.t.5,Missin’ Mack 4 Weegz,6381,465.p.6381,Dylan Larkin,C;Util,C
 5,465.l.105618.t.5,Missin’ Mack 4 Weegz,6759,465.p.6759,Kyle Connor,LW;Util,LW
 5,465.l.105618.t.5,Missin’ Mack 4 Weegz,9269,465.p.9269,Juraj Slafkovský,LW;RW;Util,LW
-5,465.l.105618.t.5,Missin’ Mack 4 Weegz,6369,465.p.6369,Leon Draisaitl,C;LW;Util,LW
-5,465.l.105618.t.5,Missin’ Mack 4 Weegz,7636,465.p.7636,Drake Batherson,LW;RW;Util,RW
-5,465.l.105618.t.5,Missin’ Mack 4 Weegz,8369,465.p.8369,Aliaksei Protas,LW;RW;Util;IR+,RW
+5,465.l.105618.t.5,Missin’ Mack 4 Weegz,7636,465.p.7636,Drake Batherson,LW;RW;Util,LW
 5,465.l.105618.t.5,Missin’ Mack 4 Weegz,7264,465.p.7264,Brandon Hagel,LW;RW;Util,RW
-5,465.l.105618.t.5,Missin’ Mack 4 Weegz,7122,465.p.7122,Charlie McAvoy,D;Util,D
+5,465.l.105618.t.5,Missin’ Mack 4 Weegz,6756,465.p.6756,Jake DeBrusk,LW;RW;Util,RW
+5,465.l.105618.t.5,Missin’ Mack 4 Weegz,30548,465.p.30548,Matvei Michkov,LW;RW;Util,RW
 5,465.l.105618.t.5,Missin’ Mack 4 Weegz,7117,465.p.7117,Mikhail Sergachev,D;Util,D
 5,465.l.105618.t.5,Missin’ Mack 4 Weegz,6643,465.p.6643,Darren Raddysh,D;Util,D
 5,465.l.105618.t.5,Missin’ Mack 4 Weegz,6184,465.p.6184,MacKenzie Weegar,D;Util,D
+5,465.l.105618.t.5,Missin’ Mack 4 Weegz,7122,465.p.7122,Charlie McAvoy,D;Util,D
 5,465.l.105618.t.5,Missin’ Mack 4 Weegz,4990,465.p.4990,Brock Nelson,C;Util,Util
-5,465.l.105618.t.5,Missin’ Mack 4 Weegz,6756,465.p.6756,Jake DeBrusk,LW;RW;Util,BN
 5,465.l.105618.t.5,Missin’ Mack 4 Weegz,30545,465.p.30545,Leo Carlsson,C;Util,BN
-5,465.l.105618.t.5,Missin’ Mack 4 Weegz,30548,465.p.30548,Matvei Michkov,LW;RW;Util,BN
+5,465.l.105618.t.5,Missin’ Mack 4 Weegz,6369,465.p.6369,Leon Draisaitl,C;LW;Util,BN
 5,465.l.105618.t.5,Missin’ Mack 4 Weegz,8155,465.p.8155,Logan Thompson,G,G
 5,465.l.105618.t.5,Missin’ Mack 4 Weegz,5820,465.p.5820,Connor Hellebuyck,G,G
-5,465.l.105618.t.5,Missin’ Mack 4 Weegz,5983,465.p.5983,Seth Jones,D;Util;IR+,IR+
+5,465.l.105618.t.5,Missin’ Mack 4 Weegz,8369,465.p.8369,Aliaksei Protas,LW;RW;Util;IR+,IR+
 5,465.l.105618.t.5,Missin’ Mack 4 Weegz,6424,465.p.6424,Brandon Montour,D;Util;IR+,IR+
+5,465.l.105618.t.5,Missin’ Mack 4 Weegz,5983,465.p.5983,Seth Jones,D;Util;IR+,IR+
 6,465.l.105618.t.6,Bad Tape Hockey,6448,465.p.6448,Brayden Point,C;Util,C
 6,465.l.105618.t.6,Bad Tape Hockey,7224,465.p.7224,Ross Colton,C;LW;Util,C
 6,465.l.105618.t.6,Bad Tape Hockey,7526,465.p.7526,Gabriel Vilardi,C;RW;Util,C
@@ -135,9 +135,9 @@ team_id,team_key,team_name,player_id,player_key,name,positions,selected_position
 6,465.l.105618.t.6,Bad Tape Hockey,8654,465.p.8654,Dylan Holloway,C;LW;Util;IR+,IR+
 6,465.l.105618.t.6,Bad Tape Hockey,9270,465.p.9270,Simon Nemec,D;Util;IR+,IR+
 6,465.l.105618.t.6,Bad Tape Hockey,6818,465.p.6818,Adin Hill,G;IR+,IR+
-7,465.l.105618.t.7,bridaaaag,7109,465.p.7109,Auston Matthews,C;Util,C
 7,465.l.105618.t.7,bridaaaag,8879,465.p.8879,Mason McTavish,C;Util,C
 7,465.l.105618.t.7,bridaaaag,3737,465.p.3737,Sidney Crosby,C;Util,C
+7,465.l.105618.t.7,bridaaaag,8670,465.p.8670,Mavrik Bourque,C;RW;Util,C
 7,465.l.105618.t.7,bridaaaag,5096,465.p.5096,Zach Hyman,LW;RW;Util,LW
 7,465.l.105618.t.7,bridaaaag,5691,465.p.5691,Filip Forsberg,LW;Util,LW
 7,465.l.105618.t.7,bridaaaag,8357,465.p.8357,Pavel Dorofeyev,LW;RW;Util,LW
@@ -149,12 +149,12 @@ team_id,team_key,team_name,player_id,player_key,name,positions,selected_position
 7,465.l.105618.t.7,bridaaaag,30075,465.p.30075,Brock Faber,D;Util,D
 7,465.l.105618.t.7,bridaaaag,8296,465.p.8296,Thomas Harley,D;Util,D
 7,465.l.105618.t.7,bridaaaag,7751,465.p.7751,Sean Walker,D;Util,Util
-7,465.l.105618.t.7,bridaaaag,8670,465.p.8670,Mavrik Bourque,C;RW;Util,BN
+7,465.l.105618.t.7,bridaaaag,7109,465.p.7109,Auston Matthews,C;Util,BN
 7,465.l.105618.t.7,bridaaaag,4498,465.p.4498,Jordan Eberle,RW;Util,BN
 7,465.l.105618.t.7,bridaaaag,6890,465.p.6890,Troy Terry,RW;Util,BN
-7,465.l.105618.t.7,bridaaaag,7983,465.p.7983,Lukas Dostal,G,G
 7,465.l.105618.t.7,bridaaaag,6024,465.p.6024,Tristan Jarry,G;IR+,G
-7,465.l.105618.t.7,bridaaaag,7541,465.p.7541,Jake Oettinger,G,BN
+7,465.l.105618.t.7,bridaaaag,7541,465.p.7541,Jake Oettinger,G,G
+7,465.l.105618.t.7,bridaaaag,7983,465.p.7983,Lukas Dostal,G,BN
 7,465.l.105618.t.7,bridaaaag,3638,465.p.3638,Evgeni Malkin,C;LW;Util;IR+,IR+
 8,465.l.105618.t.8,hnahm,5368,465.p.5368,Mark Scheifele,C;Util,C
 8,465.l.105618.t.8,hnahm,7516,465.p.7516,Nico Hischier,C;Util,C
@@ -181,23 +181,23 @@ team_id,team_key,team_name,player_id,player_key,name,positions,selected_position
 8,465.l.105618.t.8,hnahm,30024,465.p.30024,Frank Nazar,C;Util;IR+,IR+
 8,465.l.105618.t.8,hnahm,8653,465.p.8653,Seth Jarvis,C;LW;RW;Util;IR+,IR+
 8,465.l.105618.t.8,hnahm,5981,465.p.5981,Aleksander Barkov,C;Util;IR+,IR+
-9,465.l.105618.t.9,Murray Ploppins,30680,465.p.30680,Emmitt Finnie,C;LW;Util,C
 9,465.l.105618.t.9,Murray Ploppins,8643,465.p.8643,Tim Stutzle,C;LW;Util,C
 9,465.l.105618.t.9,Murray Ploppins,3980,465.p.3980,Jordan Staal,C;Util,C
-9,465.l.105618.t.9,Murray Ploppins,5928,465.p.5928,Anders Lee,LW;Util,LW
+9,465.l.105618.t.9,Murray Ploppins,5697,465.p.5697,Tomas Hertl,C;LW;Util,C
 9,465.l.105618.t.9,Murray Ploppins,4002,465.p.4002,Claude Giroux,LW;RW;Util,LW
 9,465.l.105618.t.9,Murray Ploppins,5999,465.p.5999,Anthony Mantha,LW;RW;Util,LW
+9,465.l.105618.t.9,Murray Ploppins,6752,465.p.6752,Mikko Rantanen,LW;RW;Util,LW
 9,465.l.105618.t.9,Murray Ploppins,8885,465.p.8885,Dylan Guenther,LW;RW;Util,RW
 9,465.l.105618.t.9,Murray Ploppins,7854,465.p.7854,Kiefer Sherwood,LW;RW;Util,RW
 9,465.l.105618.t.9,Murray Ploppins,7947,465.p.7947,Kirill Marchenko,RW;Util,RW
 9,465.l.105618.t.9,Murray Ploppins,5525,465.p.5525,Josh Manson,D;Util,D
-9,465.l.105618.t.9,Murray Ploppins,5232,465.p.5232,Jared Spurgeon,D;Util,D
 9,465.l.105618.t.9,Murray Ploppins,5010,465.p.5010,Justin Faulk,D;Util,D
 9,465.l.105618.t.9,Murray Ploppins,7161,465.p.7161,Filip Hronek,D;Util,D
+9,465.l.105618.t.9,Murray Ploppins,3358,465.p.3358,Brent Burns,D;Util,D
 9,465.l.105618.t.9,Murray Ploppins,4681,465.p.4681,John Tavares,C;Util,Util
-9,465.l.105618.t.9,Murray Ploppins,5697,465.p.5697,Tomas Hertl,C;LW;Util,BN
-9,465.l.105618.t.9,Murray Ploppins,6752,465.p.6752,Mikko Rantanen,LW;RW;Util,BN
-9,465.l.105618.t.9,Murray Ploppins,3358,465.p.3358,Brent Burns,D;Util,BN
+9,465.l.105618.t.9,Murray Ploppins,30680,465.p.30680,Emmitt Finnie,C;LW;Util,BN
+9,465.l.105618.t.9,Murray Ploppins,5928,465.p.5928,Anders Lee,LW;Util,BN
+9,465.l.105618.t.9,Murray Ploppins,5232,465.p.5232,Jared Spurgeon,D;Util,BN
 9,465.l.105618.t.9,Murray Ploppins,4901,465.p.4901,Sergei Bobrovsky,G,G
 9,465.l.105618.t.9,Murray Ploppins,9238,465.p.9238,Brandon Bussi,G,G
 9,465.l.105618.t.9,Murray Ploppins,5703,465.p.5703,Mike Matheson,D;Util,IR+
@@ -254,17 +254,17 @@ team_id,team_key,team_name,player_id,player_key,name,positions,selected_position
 12,465.l.105618.t.12,Fantasy Reaper,8310,465.p.8310,Shane Pinto,C;Util,C
 12,465.l.105618.t.12,Fantasy Reaper,30227,465.p.30227,Matthew Knies,LW;Util,LW
 12,465.l.105618.t.12,Fantasy Reaper,7578,465.p.7578,Fabian Zetterlund,LW;RW;Util,LW
-12,465.l.105618.t.12,Fantasy Reaper,6083,465.p.6083,Andrew Copp,C;LW;Util,LW
 12,465.l.105618.t.12,Fantasy Reaper,7134,465.p.7134,Tage Thompson,C;RW;Util,RW
-12,465.l.105618.t.12,Fantasy Reaper,30550,465.p.30550,Ryan Leonard,RW;Util,RW
 12,465.l.105618.t.12,Fantasy Reaper,8898,465.p.8898,Wyatt Johnston,C;RW;Util,RW
-12,465.l.105618.t.12,Fantasy Reaper,8284,465.p.8284,Moritz Seider,D;Util,D
+12,465.l.105618.t.12,Fantasy Reaper,8658,465.p.8658,Dawson Mercer,C;RW;Util,RW
 12,465.l.105618.t.12,Fantasy Reaper,31751,465.p.31751,Lane Hutson,D;Util,D
 12,465.l.105618.t.12,Fantasy Reaper,30905,465.p.30905,Alexander Nikishin,D;Util,D
 12,465.l.105618.t.12,Fantasy Reaper,7519,465.p.7519,Cale Makar,D;Util,D
+12,465.l.105618.t.12,Fantasy Reaper,6747,465.p.6747,Noah Hanifin,D;Util,D
 12,465.l.105618.t.12,Fantasy Reaper,30546,465.p.30546,Adam Fantilli,C;Util,Util
+12,465.l.105618.t.12,Fantasy Reaper,30550,465.p.30550,Ryan Leonard,RW;Util,BN
+12,465.l.105618.t.12,Fantasy Reaper,8284,465.p.8284,Moritz Seider,D;Util,BN
 12,465.l.105618.t.12,Fantasy Reaper,32779,465.p.32779,Beckett Sennecke,RW;Util,BN
-12,465.l.105618.t.12,Fantasy Reaper,6747,465.p.6747,Noah Hanifin,D;Util,BN
 12,465.l.105618.t.12,Fantasy Reaper,7174,465.p.7174,Adam Fox,D;Util,BN
 12,465.l.105618.t.12,Fantasy Reaper,8291,465.p.8291,Spencer Knight,G,G
 12,465.l.105618.t.12,Fantasy Reaper,30201,465.p.30201,Jacob Fowler,G,G

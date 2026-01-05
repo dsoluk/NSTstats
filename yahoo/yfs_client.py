@@ -627,6 +627,14 @@ def parse_team_week_stats_xml(raw_xml: str) -> Dict[str, Any]:
     return out
 
 
+def _find_tag(parent, tag_name):
+    """Robustly find a tag in a parent node, ignoring namespaces."""
+    target = tag_name.lower()
+    # Check if the tag name itself matches or ends with }tag (for namespaces)
+    found = parent.find(lambda t: t.name and (t.name.lower() == target or t.name.lower().endswith('}' + target)))
+    return found
+
+
 def parse_players_xml(raw_xml: str) -> list[Dict[str, Any]]:
     """Generic parser for <players> lists (e.g. from league players endpoint)."""
     soup = _make_soup(raw_xml)
@@ -634,20 +642,40 @@ def parse_players_xml(raw_xml: str) -> list[Dict[str, Any]]:
     if not soup:
         return players
     
-    # Find all player nodes
-    pnodes = soup.find_all(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('player'))
+    # Find all player nodes, ignoring namespaces
+    pnodes = soup.find_all(lambda t: t.name and (t.name.lower() == 'player' or t.name.lower().endswith('}player') or t.name.lower().endswith(':player')))
     for pn in pnodes:
-        pkey = pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('player_key'))
-        pname = pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('full')) or \
-                pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('name'))
-        pteam = pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('editorial_team_abbr'))
-        ppos = pn.find(lambda t: hasattr(t, 'name') and t.name and str(t.name).endswith('display_position'))
+        # Debugging: print first player's tags
+        # print(f"DEBUG: player node name={pn.name}, child tags={[c.name for c in pn.find_all(recursive=False) if c.name]}")
+        
+        pkey = _find_tag(pn, 'player_key')
+        
+        # Name is usually in <name><full>...</full></name>
+        name_node = _find_tag(pn, 'name')
+        name_val = ""
+        if name_node:
+            full_node = _find_tag(name_node, 'full')
+            if full_node:
+                name_val = full_node.text.strip()
+            else:
+                # Fallback to name node text if full is missing
+                name_val = name_node.text.strip()
+        else:
+            # Fallback to searching for 'full' anywhere in player
+            full_node = _find_tag(pn, 'full')
+            if full_node:
+                name_val = full_node.text.strip()
+
+        pteam = _find_tag(pn, 'editorial_team_abbr')
+        ppos = _find_tag(pn, 'display_position')
+        pstatus = _find_tag(pn, 'status')
         
         players.append({
-            'player_key': pkey.text.strip() if pkey and pkey.text else '',
-            'name': pname.text.strip() if pname and pname.text else '',
-            'team': pteam.text.strip() if pteam and pteam.text else '',
-            'position': ppos.text.strip() if ppos and ppos.text else '',
+            'player_key': pkey.get_text().strip() if pkey else '',
+            'name': name_val,
+            'team': pteam.get_text().strip() if pteam else '',
+            'position': ppos.get_text().strip() if ppos else '',
+            'status': pstatus.get_text().strip() if pstatus else '',
         })
     return players
 

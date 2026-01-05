@@ -125,8 +125,17 @@ class YahooFantasyApp:
         self._export_player_gp(game_key, league_key, context, session, league_row)
         self._export_player_gp_daily(game_key, league_key, context)
         self._export_player_gp_derived(game_key, league_key, context, session, league_row)
-        self._export_current_roster(game_key)
-        self._export_league_rosters(game_key, league_json)
+        
+        # Minimizing API calls: skip roster exports if they were already synced to DB today
+        skip_rosters = False
+        if league_row and league_row.last_roster_sync:
+            if league_row.last_roster_sync.date() == _dt.date.today():
+                print(f"[Info] Rosters for {league_key} were already synced today ({league_row.last_roster_sync.date()}). Skipping redundant Yahoo API roster fetches.")
+                skip_rosters = True
+
+        if not skip_rosters:
+            self._export_current_roster(game_key)
+            self._export_league_rosters(game_key, league_json)
 
         if session:
             session.close()

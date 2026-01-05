@@ -19,6 +19,9 @@ class League(Base):
     game_key: Mapped[str] = mapped_column(String(32), nullable=False)
     league_key: Mapped[str] = mapped_column(String(64), nullable=False, unique=True)
     season: Mapped[str] = mapped_column(String(16), nullable=False)
+    last_roster_sync: Mapped[Optional[_dt.datetime]] = mapped_column(nullable=True)
+    last_nst_sync: Mapped[Optional[_dt.datetime]] = mapped_column(nullable=True)
+    last_sched_sync: Mapped[Optional[_dt.datetime]] = mapped_column(nullable=True)
 
     weeks: Mapped[list["Week"]] = relationship(back_populates="league")
     teams: Mapped[list["Team"]] = relationship(back_populates="league")

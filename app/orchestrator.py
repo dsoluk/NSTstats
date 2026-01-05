@@ -50,11 +50,12 @@ def fetch_goalies_from_yahoo(league_key: str):
         app = YahooFantasyApp()
         client = app.client
         
-        print(f"Fetching all goalies from Yahoo league {league_key}...")
+        print(f"Fetching all owned goalies from Yahoo league {league_key}...")
         all_goalies = []
         start_idx = 0
         while True:
-            payload = client.get_league_players(league_key, position="G", count=25, start=start_idx)
+            # Fetch status="T" (Taken/Owned)
+            payload = client.get_league_players(league_key, status="T", position="G", count=25, start=start_idx)
             raw_xml = payload.get("_raw_xml")
             if not raw_xml:
                 break
@@ -97,17 +98,73 @@ def fetch_goalies_from_yahoo(league_key: str):
 
         # Mapping Yahoo ID -> base column name
         id_map = {
-            18: 'GP', 19: 'W', 20: 'L', 21: 'OT', 22: 'GA',
+            18: 'GP', 19: 'W', 22: 'GA',
             23: 'GAA', 24: 'SA', 25: 'SV', 26: 'SV%', 27: 'SHO', 28: 'TOI'
         }
         
+        # New filtering logic:
+        # 1. Fetch all goalies from league (this normally gets "all" or "owned" depending on how it's called)
+        # 2. Also fetch top 15 available sorted by PTS
+        # 3. Combine and filter based on ownership and eligibility
+        
+        print(f"Fetching top available goalies from Yahoo league {league_key}...")
+        avail_payload = client.get_league_players(league_key, status="A", position="G", sort="AR", sort_type="season", count=15)
+        if avail_payload.get("_raw_xml"):
+            avail_goalies = parse_players_xml(avail_payload["_raw_xml"])
+            seen_pkeys = {g['player_key'] for g in all_goalies}
+            for ag in avail_goalies:
+                if ag['player_key'] not in seen_pkeys:
+                    all_goalies.append(ag)
+                    seen_pkeys.add(ag['player_key'])
+
+        if not all_goalies:
+            print("[Warn] No goalies found in Yahoo league.")
+            return pd.DataFrame()
+            
+        pkeys = [g['player_key'] for g in all_goalies if g['player_key']]
+        print(f"Fetching stats for {len(pkeys)} goalies...")
+        
+        season_stats = {}
+        lastweek_stats = {}
+        
+        for i in range(0, len(pkeys), 25):
+            batch = pkeys[i:i+25]
+            # Season
+            s_payload = client.get_players_season_stats(batch)
+            if s_payload.get("_raw_xml"):
+                s_parsed = parse_players_stats_xml(s_payload["_raw_xml"])
+                for p in s_parsed.get('players', []):
+                    season_stats[p['player_key']] = p.get('stats', {})
+            # Last Week
+            lw_payload = client.get_players_lastweek_stats(batch)
+            if lw_payload.get("_raw_xml"):
+                lw_parsed = parse_players_stats_xml(lw_payload["_raw_xml"])
+                for p in lw_parsed.get('players', []):
+                    lastweek_stats[p['player_key']] = p.get('stats', {})
+
         rows = []
         for g in all_goalies:
-            pkey = g['player_key']
+            pkey = g.get('player_key')
             s_data = season_stats.get(pkey, {})
             lw_data = lastweek_stats.get(pkey, {})
             
-            row = {'Player': g['name'], 'Team': g['team'], 'Position': 'G', 'player_key': pkey}
+            # Status from Yahoo (T=Owned by someone, A=Available)
+            status = g.get('status', '')
+            
+            # Eligibility check
+            # Note: Yahoo display_position might be "G" or "G,IR+" etc.
+            pos = g.get('position', '')
+            if any(bad in pos for bad in ['NA', 'IR+']):
+                continue
+                
+            row = {
+                'Player': g.get('name'), 
+                'Team': g.get('team'), 
+                'Position': 'G', 
+                'player_key': pkey,
+                'status': status,
+                'Elig_Pos': pos
+            }
             for sid, col in id_map.items():
                 row[f'szn_{col}'] = s_data.get(sid)
             for sid, col in id_map.items():
@@ -148,10 +205,23 @@ def fetch_goalies_from_yahoo(league_key: str):
         return pd.DataFrame()
 
 
-def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False):
+def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False, force: bool = False):
+    import datetime
     try:
         from helpers.seasons import previous_season_label
         params, url, weights, std_columns, ppp_columns, goalie_columns = load_default_params()
+        
+        # Check for daily caching
+        session = get_session()
+        try:
+            # Check if ANY league has been synced today. Since NST is global, one league's sync is enough.
+            l = session.query(League).filter(League.last_nst_sync.isnot(None)).order_by(League.last_nst_sync.desc()).first()
+            if l and not force and l.last_nst_sync.date() == datetime.date.today():
+                print(f"[Info] NST stats already fetched today ({l.last_nst_sync.date()}). Skipping. Use --force to override.")
+                return
+        finally:
+            session.close()
+
         base_config = {
             "tgps": [410, 7],
             "base_params": params,
@@ -281,6 +351,11 @@ def run_nst(*, refresh_prior: bool = False, skip_prior: bool = False):
                     if not goalie_df.empty:
                         scored_goalie_df.to_csv(os.path.join(out_dir, "goalies_scored.csv"), index=False)
 
+                # Update sync timestamp
+                if league:
+                    league.last_nst_sync = datetime.datetime.now()
+
+            session.commit()
         finally:
             session.close()
 
@@ -339,7 +414,7 @@ def run_merge():
         print(f"Merge step failed: {e}")
 
 
-def run_all():
+def run_all(force: bool = False):
     session = get_session()
     try:
         leagues = session.query(League).all()
@@ -354,14 +429,15 @@ def run_all():
     finally:
         session.close()
         
-    run_nst()
+    run_nst(force=force)
     run_merge()
 
 
-def run_roster_sync(league_key: str):
+def run_roster_sync(league_key: str, force: bool = False):
     """
     Refresh local roster state to reduce API overhead for all subsequent commands.
     """
+    import datetime
     from infrastructure.persistence import (
         get_session, League, Team, Player, CurrentRoster, 
         upsert_team, upsert_player, upsert_league
@@ -372,6 +448,13 @@ def run_roster_sync(league_key: str):
     session = get_session()
     try:
         league = session.query(League).filter(League.league_key == league_key).one_or_none()
+        
+        # Daily caching logic
+        if league and not force and league.last_roster_sync:
+            if league.last_roster_sync.date() == datetime.date.today():
+                print(f"[Info] Rosters for {league_key} already synced today ({league.last_roster_sync.date()}). Use --force to override.")
+                return
+
         if not league:
             print(f"League {league_key} not found in database. Registering...")
             game_key = league_key.split('.l.')[0]
@@ -454,6 +537,10 @@ def run_roster_sync(league_key: str):
                     except Exception as e:
                         print(f"    [Warn] Failed to sync {status_filter} {pos_type} ({sort_type}): {e}")
                         session.rollback()
+        
+        # Update sync timestamp
+        league.last_roster_sync = datetime.datetime.now()
+        session.commit()
     finally:
         session.close()
 

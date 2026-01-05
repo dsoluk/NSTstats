@@ -128,9 +128,10 @@ def _load_yahoo_rosters_from_db(league_id: Optional[int] = None) -> pd.DataFrame
     finally:
         session.close()
 
-def _load_yahoo_all_rosters(csv_path: str, league_id: Optional[int] = None) -> pd.DataFrame:
+def _load_yahoo_all_rosters(csv_path: Optional[str] = None, league_id: Optional[int] = None) -> pd.DataFrame:
     """
-    Attempt to load from DB first, fall back to CSV if DB is empty.
+    Load roster mapping from database. 
+    The csv_path parameter is kept for backward compatibility but ignored; the DB is now the source of truth.
     """
     df = _load_yahoo_rosters_from_db(league_id)
     if not df.empty:
@@ -138,98 +139,13 @@ def _load_yahoo_all_rosters(csv_path: str, league_id: Optional[int] = None) -> p
             print(f"[Info] Loaded roster mapping from database for league_id={league_id}.")
         else:
             print("[Info] Loaded roster mapping from database.")
-        return df
-    
-    if league_id is not None:
-        print(f"[Info] Database rosters empty for league_id={league_id}, falling back to {csv_path}")
     else:
-        print(f"[Info] Database rosters empty, falling back to {csv_path}")
-    
-    if not os.path.exists(csv_path):
-        return pd.DataFrame(columns=['cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name', 'status'])
-    ydf = pd.read_csv(csv_path)
-    
-    # Filter CSV by league_id if it has it
-    if league_id is not None and 'league_id' in ydf.columns:
-        ydf = ydf[ydf['league_id'] == league_id].copy()
-    
-    if 'status' not in ydf.columns:
-        ydf['status'] = None
-    # Normalize name to cname
-    ydf['cname'] = ydf['name'].fillna('').apply(normalize_name)
-    if 'player_key' not in ydf.columns:
-        ydf['player_key'] = None
-
-    def map_pos(row) -> str:
-        sel = str(row.get('selected_position') or '').upper()
-        poss = str(row.get('positions') or '')
-        # positions is ";"-separated
-        parts = [p.strip().upper() for p in poss.split(';') if p.strip()]
-        # Prefer selected_position if available and not bench/IR
-        pref = sel if sel and sel not in {'BN', 'IR', 'IR+', 'NA'} else ''
-        order = ([pref] if pref else []) + parts
-        # Map to our codes using helpers.normalize_position
-        for p in order:
-            code = normalize_position(p)
-            if code in {'G', 'D', 'C', 'L', 'R'}:
-                return code
-        # Fallbacks
-        if 'D' in parts:
-            return 'D'
-        if 'G' in parts:
-            return 'G'
-        # Any forward variants → try to coerce to C by default
-        for cand in ['C', 'LW', 'RW']:
-            code = normalize_position(cand)
-            if code:
-                return code
-        return ''
-
-    # Primary normalized position for joining
-    ydf['ypos'] = ydf.apply(map_pos, axis=1)
-    # Coarse position for fallback
-    ydf['fpos'] = ydf['ypos'].apply(to_fpos)
-
-    # Build yahoo_positions (eligible set) with 'UTIL' removed, preserve original Yahoo labels
-    def build_yahoo_positions(poss: str) -> str:
-        parts = [p.strip() for p in str(poss).split(';') if p.strip()]
-        # Remove Util/UTIL case-insensitively
-        parts = [p for p in parts if p.upper() != 'UTIL']
-        # Return semicolon-joined string
-        return ';'.join(parts)
-
-    ydf['yahoo_positions'] = ydf['positions'].apply(build_yahoo_positions)
-    ydf['yahoo_name'] = ydf['name']
-
-    # Reduce to one row per (cname, ypos) by picking any non-empty yahoo_name and union of eligible positions
-    if not ydf.empty:
-        # Aggregate eligible positions by union (set) while keeping a representative name (first non-null)
-        def agg_positions(series: pd.Series) -> str:
-            acc = []
-            seen = set()
-            for s in series.dropna().astype(str):
-                for p in s.split(';') if s else []:
-                    if p and p not in seen:
-                        seen.add(p); acc.append(p)
-            return ';'.join(acc)
-
-        def first_non_null(series: pd.Series):
-            for v in series:
-                if pd.notna(v) and str(v).strip() != '':
-                    return v
-            return None
-
-        agg = (
-            ydf.dropna(subset=['cname', 'ypos'])
-               .groupby(['player_key', 'cname', 'ypos', 'fpos'], as_index=False)
-               .agg(yahoo_name=('yahoo_name', first_non_null),
-                    yahoo_positions=('yahoo_positions', agg_positions),
-                    team_name=('team_name', first_non_null),
-                    status=('status', first_non_null))
-        )
-        return agg
-
-    return pd.DataFrame(columns=['player_key', 'cname', 'ypos', 'fpos', 'yahoo_name', 'yahoo_positions', 'team_name'])
+        if league_id is not None:
+            print(f"[Warn] Database rosters empty for league_id={league_id}. Please run sync-rosters.")
+        else:
+            print("[Warn] Database rosters empty. Please run sync-rosters.")
+            
+    return df
 
 
 def merge_role(nst_csv: str, role: str, out_csv: str, league_id: Optional[int] = None) -> str:
@@ -320,18 +236,40 @@ def merge_role(nst_csv: str, role: str, out_csv: str, league_id: Optional[int] =
     # Load Yahoo roster info and merge on cname+position (no team)
     yinfo = _load_yahoo_all_rosters(os.path.join('data', 'all_rosters.csv'), league_id)
     if not yinfo.empty:
+        # Ensure player_key is string for reliable merging
+        if 'player_key' in yinfo.columns:
+            yinfo['player_key'] = yinfo['player_key'].astype(str)
+        
         # If we have player_key in our stats (Yahoo sourced), join on it first
         if 'player_key' in merged.columns and 'player_key' in yinfo.columns:
             # Ensure dtypes match
             merged['player_key'] = merged['player_key'].astype(str)
-            yinfo['player_key'] = yinfo['player_key'].astype(str)
             
+            # Avoid duplicate status/Elig_Pos/team_name if they exist in merged
+            yinfo_cols = ['player_key', 'team_name', 'yahoo_positions', 'yahoo_name', 'status']
+            join_cols = [c for c in yinfo_cols if c in yinfo.columns]
+            
+            # Check for existing columns to avoid suffixes
+            overlap = [c for c in join_cols if c in merged.columns and c != 'player_key']
+            for col in overlap:
+                # Prioritize existing non-null values if present
+                if col in merged.columns:
+                    # We will merge and then coalesce
+                    pass
+
             merged = merged.merge(
-                yinfo[['player_key', 'team_name', 'yahoo_positions', 'yahoo_name', 'status']],
+                yinfo[join_cols],
                 on='player_key',
-                how='left'
+                how='left',
+                suffixes=('', '_y')
             )
-            # Fill missing via cname/pos below if any pkeys didn't match
+            
+            # Resolve overlaps from player_key merge
+            for col in ['team_name', 'yahoo_positions', 'yahoo_name', 'status']:
+                ycol = f"{col}_y"
+                if ycol in merged.columns:
+                    merged[col] = merged[col].fillna(merged[ycol])
+                    merged.drop(columns=[ycol], inplace=True)
         
         if 'yahoo_name' not in merged.columns or merged['yahoo_name'].isna().any():
             # Exact match on (cname, exact position)
@@ -352,15 +290,14 @@ def merge_role(nst_csv: str, role: str, out_csv: str, league_id: Optional[int] =
                 merged.drop(columns=['ypos'], inplace=True)
 
         # Coarse F/D/G fallback for rows still missing team_name
-        # Coarse F/D/G fallback for rows still missing team_name
-        def _to_fpos(p: str) -> str:
+        def _to_fpos_local(p: str) -> str:
             p = str(p).upper()
             if p in {'C', 'L', 'R'}:
                 return 'F'
             if p in {'D', 'G'}:
                 return p
             return ''
-        merged['fpos'] = merged['pos_code'].apply(_to_fpos)
+        merged['fpos'] = merged['pos_code'].apply(_to_fpos_local)
         need_fallback = merged['yahoo_name'].isna()
         if need_fallback.any():
             y_fg = yinfo[['cname', 'fpos', 'team_name', 'yahoo_positions', 'yahoo_name', 'status']].copy()
@@ -376,9 +313,7 @@ def merge_role(nst_csv: str, role: str, out_csv: str, league_id: Optional[int] =
                 alt = f"{col}_fg"
                 if alt in merged.columns:
                     merged[col] = merged[col].fillna(merged[alt])
-            drop_alt = [c for c in ['team_name_fg', 'yahoo_positions_fg', 'yahoo_name_fg', 'status_fg'] if c in merged.columns]
-            if drop_alt:
-                merged.drop(columns=drop_alt, inplace=True)
+                    merged.drop(columns=[alt], inplace=True)
         # Final fallback: match on cname only (may be ambiguous for duplicate names)
         need_final = merged['yahoo_name'].isna()
         if need_final.any():
@@ -399,9 +334,7 @@ def merge_role(nst_csv: str, role: str, out_csv: str, league_id: Optional[int] =
                 alt = f"{col}_byname"
                 if alt in merged.columns:
                     merged[col] = merged[col].fillna(merged[alt])
-            drop_alt = [c for c in ['team_name_byname', 'yahoo_positions_byname', 'yahoo_name_byname', 'status_byname'] if c in merged.columns]
-            if drop_alt:
-                merged.drop(columns=drop_alt, inplace=True)
+                    merged.drop(columns=[alt], inplace=True)
         # Remove merge helpers
         for helper in ['ypos', 'fpos']:
             if helper in merged.columns:
@@ -413,10 +346,25 @@ def merge_role(nst_csv: str, role: str, out_csv: str, league_id: Optional[int] =
         merged['team_name'] = None
 
     # Create Elig_Pos from yahoo_positions (and keep even if empty)
-    if 'yahoo_positions' in merged.columns:
-        merged['Elig_Pos'] = merged['yahoo_positions']
-    else:
-        merged['Elig_Pos'] = None
+    if 'Elig_Pos' not in merged.columns or merged['Elig_Pos'].isna().all():
+        if 'yahoo_positions' in merged.columns:
+            merged['Elig_Pos'] = merged['yahoo_positions']
+        else:
+            merged['Elig_Pos'] = None
+    
+    # Fill player_key if missing and we have it from yinfo
+    if ('player_key' not in merged.columns or merged['player_key'].isna().any()) and 'player_key' in yinfo.columns:
+        # Match on cname and pos_code
+        merged = merged.merge(yinfo[['cname', 'ypos', 'player_key']], 
+                              left_on=['cname', 'pos_code'], 
+                              right_on=['cname', 'ypos'], 
+                              how='left', suffixes=('', '_y'))
+        if 'player_key_y' in merged.columns:
+            if 'player_key' in merged.columns:
+                merged['player_key'] = merged['player_key'].fillna(merged['player_key_y'])
+            else:
+                merged['player_key'] = merged['player_key_y']
+            merged.drop(columns=['player_key_y', 'ypos'], inplace=True)
 
     # Drop fields per request (updated)
     drop_cols = [
